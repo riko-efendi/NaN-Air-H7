@@ -1,0 +1,53 @@
+
+   __     __)          _____                
+  (, /|  /            (, /  |   ,                      _
+    / | /  _  __        /---|     __                 -=\`\    
+ ) /  |/  (_(_/ (_   ) /    |__(_/ (_            |\ ____\_\__      
+(_/   '             (_/                        -=\c`""""""" "`)     
+                                                  `~~~~~/ /~~`
+   ______                                           -==/ /
+  (, /    ) ,                                         '-'
+    /    /    _   __                        
+   /    /__(_(_(_/ (_(_/_                             _  _
+(_/___ /            .-/                              ( `   )_
+                   (_/                              (    )    `)
+						   (_   (_ .  _) _)
+ -------------------------┓┓┓┓┓┓┓┓┓┓┓┓						                                     _
+| Hópur – 7		  |	       			                       (  )
+|-------------------------|		        _ .                         ( `  ) . )	
+| Clarence Castro Santos  |	              (  _ )_                      (_, _(  ,_)_)
+| Gestur Pálsson	  |		     (_  _(_ ,)		
+| Guðni Hrafn Guðlaugsson |
+| Manwin Georg Edselsson  |
+| Riko Efendi		  |
+| Sindri Rafn Bjarkason	  |
+ -------------------------
+
+
+[27/11/2023 - mon]
+
+Me (Guðni) and Riko met up at our huuuge table, and we got to know each other. We started working on the class diagram, the use cases and the requirement list. 
+We also set up a simple github repo.
+Our  main task was simply to get our head around the project at hand.
+
+No-shows:
+ - Clarence Castro Santos
+ - Gestur Pálsson
+ - Manwin Georg Edselsson
+ - Sindri Rafn Bjarkason
+
+---------------------------------------------------------------------------
+
+[28/11/2023 – tue]
+
+Me (Guðni), Riko, Sindri and Gestur got up to speed with the project. Continued work on the report, and the overall design of the project.
+Sindri worked on creating a simple wireframe in figma. While Riko was finishing up the use cases. I finished setting up A requirements. Gestur made a happy path from one of the use cases.
+
+No-shows:
+ - Clarence Castro Santos
+ - Manwin Georg Edselsson
+
+---------------------------------------------------------------------------
+
+[29/11/2023 - wed]
+
