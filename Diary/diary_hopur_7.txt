@@ -15,7 +15,7 @@
 +-------------------------┓┓┓┓┓┓┓┓┓┓┓┓+						                                     _
 | 	 Hópur 7	  |	       			                       (  )
 |-------------------------|		        _ .                         ( `  ) . )	
-| Clarence Castro Santos  |	              (  _ )_                      (_, _(  ,_)_)
+| Clarence Castro Santos? |	              (  _ )_                      (_, _(  ,_)_)
 | Gestur Pálsson	  |		     (_  _(_ ,)		
 | Guðni Hrafn Guðlaugsson |
 | Manwin Georg Edselsson  |
@@ -75,3 +75,21 @@ Attendance:
  - Sindri Rafn Bjarkason
 
 ---------------------------------------------------------------------------
+
+[30/11/2023 - thu]
+
+Today was a biiig day:
+1. We finished the figma wireframe (Came to conclusion with the voyage window)
+2. We finished the use cases
+3. Finished the happy paths that we are going to make for the friday hand-in
+4. Finished the class diagrams
+
+And now the next big task is putting it all togheter in a pretty design report.
+
+Attendance:
+ - Gestur Pálsson
+ - Guðni Hrafn Guðlaugsson
+ - Manwin Georg Edselsson
+ - Riko Efendi
+ - Sindri Rafn Bjarkason
+
