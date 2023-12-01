@@ -85,6 +85,7 @@ Today was a biiig day:
 4. Finished the class diagrams
 
 And now the next big task is putting it all togheter in a pretty design report.
+We gathered all the resoures and put them to a cohesive document.
 
 Attendance:
  - Gestur Pálsson
@@ -93,3 +94,20 @@ Attendance:
  - Riko Efendi
  - Sindri Rafn Bjarkason
 
+---------------------------------------------------------------------------
+
+[1/12/2023 - fri]
+
+Today was the biiiiiiggest day so far, we added in the missing sections, being a text about the class diagrams and some conclusion text.
+We formatted the text so it looked cohesive.
+We noticed some things that could be improved in the class diagrams, so we fixed that before we put it back in to our report.
+Finally we handed in our report!
+
+Attendance:
+ - Gestur Pálsson
+ - Guðni Hrafn Guðlaugsson
+ - Manwin Georg Edselsson
+ - Riko Efendi
+
+Sick:
+ - Sindri Rafn Bjarkason
