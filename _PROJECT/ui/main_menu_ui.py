@@ -1,7 +1,6 @@
 from logic.logic_wapper import LogicWrapper
 from ui.employee_ui import EmployeeUI
-from ui.voyage_ui import VoyageUI
-import os
+from funclibrary.functions import clear_screen
 
 class MainMenuUI:
     def __init__(self) -> None:
@@ -9,7 +8,7 @@ class MainMenuUI:
 
     def menu_output(self):
         header = f"[MAIN]"
-        os.system("cls")
+        clear_screen()
         print(header)
         print()
         print(f"1. Employees")
@@ -18,7 +17,6 @@ class MainMenuUI:
 
     def input_prompt(self):
         while True:
-            
             self.menu_output()
             user_input = input("Enter your choice: ").lower()
             if user_input == "q":
@@ -27,13 +25,7 @@ class MainMenuUI:
             elif user_input == "1":
                 employee_menu = EmployeeUI(self.logic_wrapper)
                 back_method = employee_menu.input_prompt()
-                if back_method == "b":
-                    return "q"
-                pass
-            elif user_input == "2":
-                employee_menu = VoyageUI(self.logic_wrapper)
-                back_method = employee_menu.input_prompt()
-                if back_method == "b":
+                if back_method == "q":
                     return "q"
                 pass
             else:

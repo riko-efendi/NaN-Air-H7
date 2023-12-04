@@ -1,5 +1,5 @@
-from logic.logic_wapper import LogicWrapper
-import os
+#from logic.logic_wapper import LogicWrapper
+from funclibrary.functions import clear_screen
 
 class EmployeeUI:
     def __init__(self, wrapper) -> None:
@@ -7,7 +7,7 @@ class EmployeeUI:
 
     def menu_output(self):
         header = f"[EMPLOYEES]"
-        os.system("cls")
+        clear_screen()
         print(header)
         print()
         print(f"1. List all employees")
