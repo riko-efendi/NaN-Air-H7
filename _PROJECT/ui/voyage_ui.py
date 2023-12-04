@@ -1,5 +1,7 @@
 from logic.logic_wrapper import LogicWrapper
-from funclibrary.functions import clear_screen
+
+#from funclibrary.functions import clear_screen
+
 
 class VoyageUI:
     def __init__(self, wrapper) -> None:
@@ -7,7 +9,8 @@ class VoyageUI:
 
     def menu_output(self):
         header = f"[VOYAGE]"
-        clear_screen()
+        
+        print()
         print(header)
         print()
         print(f"1. Create Voyage")
@@ -20,7 +23,7 @@ class VoyageUI:
     def input_prompt(self):
         while True:
             self.menu_output()
-            user_input = input("Enter your choice: ").lower()
+            user_input = input("\nEnter your choice: ").lower()
             if user_input == "q":
                 print("Quitting")
                 break
