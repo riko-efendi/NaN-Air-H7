@@ -1,5 +1,5 @@
 from logic.logic_wapper import LogicWrapper
-import os
+from funclibrary.functions import clear_screen
 
 class VoyageUI:
     def __init__(self, wrapper) -> None:
@@ -7,7 +7,7 @@ class VoyageUI:
 
     def menu_output(self):
         header = f"[VOYAGE]"
-        os.system("cls")
+        clear_screen()
         print(header)
         print()
         print(f"1. Create Voyage")
