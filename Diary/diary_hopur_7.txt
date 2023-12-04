@@ -111,3 +111,16 @@ Attendance:
 
 Sick:
  - Sindri Rafn Bjarkason
+
+---------------------------------------------------------------------------
+
+[4/12/2023 - mon]
+
+Day started out by us putting together the skeleton of the project. Created the folders for the logic, data, models and ui.
+
+
+Attendance:
+ - Gestur Pálsson
+ - Guðni Hrafn Guðlaugsson
+ - Manwin Georg Edselsson
+ - Riko Efendi
