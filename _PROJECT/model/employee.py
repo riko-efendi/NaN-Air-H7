@@ -1,10 +1,14 @@
 class Employee:
-    def __init__(self, name, kennitala, address, phone_number, email):
-        self.name = name
+    def __init__(self, kennitala:int=0, name:str="", role:str="", address:str="", phone_number:int=0, email:str=""):
         self.kennitala = kennitala
+        self.name = name
+        self.role = role
         self.address = address
         self.phone_number = phone_number
         self.email = email
+
+    def __str__(self) -> str:
+        return f"{self.name}: {self.role}"
 
 class Pilot(Employee):
     def __init__(self, rank="Co-Pilot"):

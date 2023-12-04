@@ -7,7 +7,7 @@ class VoyageUI:
 
     def menu_output(self):
         header = f"[VOYAGE]"
-        # clear_screen()
+        clear_screen()
         print(header)
         print()
         print(f"1. Create Voyage")
