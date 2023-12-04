@@ -9,7 +9,7 @@ class MainMenuUI:
 
     def menu_output(self):
         header = f"[MAIN]"
-        clear_screen()
+        
         print(header)
         print()
         print(f"1. Employees")
@@ -20,6 +20,7 @@ class MainMenuUI:
         while True:
             self.menu_output()
             user_input = input("Enter your choice: ").lower()
+            clear_screen()
             if user_input == "q":
                 print("Quitting")
                 break
