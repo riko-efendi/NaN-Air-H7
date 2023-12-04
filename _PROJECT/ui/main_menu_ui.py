@@ -1,5 +1,6 @@
 from logic.logic_wapper import LogicWrapper
 from ui.employee_ui import EmployeeUI
+from ui.voyage_ui import VoyageUI
 import os
 
 class MainMenuUI:
@@ -25,6 +26,12 @@ class MainMenuUI:
                 break
             elif user_input == "1":
                 employee_menu = EmployeeUI(self.logic_wrapper)
+                back_method = employee_menu.input_prompt()
+                if back_method == "b":
+                    return "q"
+                pass
+            elif user_input == "2":
+                employee_menu = VoyageUI(self.logic_wrapper)
                 back_method = employee_menu.input_prompt()
                 if back_method == "b":
                     return "q"
