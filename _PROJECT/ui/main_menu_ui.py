@@ -1,4 +1,4 @@
-from logic.logic_wapper import LogicWrapper
+from logic.logic_wrapper import LogicWrapper
 from ui.employee_ui import EmployeeUI
 from ui.voyage_ui import VoyageUI
 from funclibrary.functions import clear_screen

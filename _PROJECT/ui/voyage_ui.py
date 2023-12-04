@@ -1,4 +1,4 @@
-from logic.logic_wapper import LogicWrapper
+from logic.logic_wrapper import LogicWrapper
 from funclibrary.functions import clear_screen
 
 class VoyageUI:
