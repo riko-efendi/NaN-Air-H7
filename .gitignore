@@ -1,3 +1,7 @@
+# Debuging NaN air
+PROJECT/gudni_debug.py
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
