@@ -7,3 +7,9 @@ class EmployeeLogic:
 
     def get_all_employees(self):
         return self.data_wrapper.get_all_employees()
+    
+    def get_all_pilots(self):
+        return self.data_wrapper.get_all_pilots()
+    
+    def get_all_cabincrews(self):
+        return self.data_wrapper.get_all_cabincrews()
