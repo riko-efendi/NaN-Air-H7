@@ -31,6 +31,7 @@ class EmployeeUI:
             if user_input == "q":
                 print("Quitting")
                 break
+
             elif user_input == "1":
                 employees = self.logic_wrapper.get_all_employees()
                 print()
@@ -38,8 +39,22 @@ class EmployeeUI:
                 print()
                 for index, employee in enumerate(employees):
                     print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
+
             elif user_input == "2":
-                pass
+                print("\n[REGISTER EMPLOYEE]\N")
+                e = Employee()
+                e.name = input("Input the employee name: ")
+                e.kennitala = input("Input the employee kennitala: ")
+                e_rank = input("Is the employee a [P]ilot or [C]abincrew? P/C: ").lower()
+                while e_rank != "p" or e_rank != "c":
+                    e_rank = input("Is the employee a [P]ilot or [C]abincrew? P/C: ").lower()
+                if e_rank == "p":
+                    e.role = "Pilot"
+                elif e_rank == "c":
+                    e.role = "Cabincrew"
+                
+                self.logic_wrapper.register(e)
+
             elif user_input == "3":
                 pilot_menu = PilotUI(self.logic_wrapper)
                 back_method = pilot_menu.input_prompt()
