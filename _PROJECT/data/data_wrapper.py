@@ -12,7 +12,7 @@ class DataWrapper:
         return self.employee_data.read_all_employees()
     
     def register_employee(self, employee):
-        return self.employee_data.register_employee()
+        return self.employee_data.register_employee(employee)
     
     def get_all_past_flights(self):
         return self.flight_data.read_all_past_flights()
@@ -22,4 +22,5 @@ class DataWrapper:
     
     def get_all_destinations(self):
         return self.destination_data.read_all_destinations()
-    
+    def create_destination(self, destination):
+        return self.destination_data.create_destination(destination)
