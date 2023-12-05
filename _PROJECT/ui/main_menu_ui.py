@@ -12,7 +12,7 @@ class MainMenuUI:
 
     def menu_output(self):
 
-        options = "1. Employees\n2. Voyage\nq. Quit"
+        options = "1. Employees\n2. Voyage\n\nEnter a number or [Q]uit"
         boarder = self.ui_utils.get_boarder("[MAIN MENU]", options, 0, 5)
         self.ui_utils.clear_screen()
         print(boarder)

@@ -9,7 +9,6 @@ class RegisterEmployeeUI():
         employee.name = input("Input the employee name: ")
         employee.kennitala = (input("Input the employee kennitala: "))
         e_role = ""
-        e_rank = ""
         while e_role != "1" and e_role != "2":
             e_role = input("Is the employee: 1. Pilot or 2. Cabincrew? 1/2: ").lower()
         if e_role == "1":

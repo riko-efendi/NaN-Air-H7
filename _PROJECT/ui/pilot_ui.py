@@ -1,27 +1,25 @@
 from logic.logic_wrapper import LogicWrapper
 from ui.register_employee_ui import RegisterEmployeeUI
 from model.employee import Employee
+from utils.ui_utils import UIUtils
 
 class PilotUI:
     def __init__(self, wrapper) -> None:
        self.logic_wrapper = LogicWrapper()
+       self.ui_utils = UIUtils()
 
     def menu_output(self):
-        header = f"[PILOTS]"
-        
-        print()
-        print(header)
-        print()
-        print(f"1. Register pilot")
-        print(f"2. List All pilots")
-        print(f"3. View specific pilot")
-        print(f"q. Quit")
+
+        options = "1. Register Pilot\n2. List All Pilots\n3. View Specific Pilot\nq. Quit"
+        boarder = self.ui_utils.get_boarder("[PILOTS MENU]", options, 0, 5)
+        self.ui_utils.clear_screen()
+        print(boarder)
 
     def input_prompt(self):
         """ Takes in input from user """
         while True:
             self.menu_output()
-            user_input = input("\nEnter your choice: ").lower()
+            user_input = input("Enter your choice: ").lower()
             if user_input == "q":
                 print("Quitting")
                 break

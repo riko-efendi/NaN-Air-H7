@@ -14,8 +14,8 @@ class EmployeeUI:
 
     def menu_output(self):
 
-        options = "1. List All Employees\n2. Pilot\n3. Cabin Crew\nq. Quit"
-        boarder = self.ui_utils.get_boarder("[EMPLOYEES MENU]", options, 0, 5)
+        options = "1. List All Employees\n2. Pilot\n3. Cabin Crew\n\nEnter a number or [B]ack"
+        boarder = self.ui_utils.get_boarder("[EMPLOYEE MENU]", options, 0, 5)
         self.ui_utils.clear_screen()
         print(boarder)
 
@@ -24,20 +24,20 @@ class EmployeeUI:
         while True:
             self.menu_output()
             user_input = input("Enter your choice: ").lower()
-            if user_input == "q":
+            if user_input == "b":
                 print("Quitting")
                 break
 
             elif user_input == "1":
 
                 self.ui_utils.clear_screen()
-                
+
                 employees = self.logic_wrapper.get_all_employees()
                 print("[ALL EMPLOYEES]")
                 print()
                 for index, employee in enumerate(employees):
                     print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
-                user_input = input("\nPress any key to exit")
+                input("\nPress any key to exit: ")
 
             elif user_input == "2":
                 pilot_menu = PilotUI(self.logic_wrapper)
