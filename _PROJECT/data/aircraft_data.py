@@ -3,9 +3,9 @@ from model.aircraft import Aircraft
 
 class AircraftData:
     def __init__(self) -> None:
-        self.file_name = "_PROJECT/files/aircraft.csv"
+        self.file_name = '_PROJECT/files/aircraft.csv'
 
-    def read_all_aicraft(self):
+    def read_all_aicrafts(self):
         aicraft_list = []
         with open(self.file_name, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)

@@ -21,3 +21,6 @@ class DataWrapper:
     
     def get_all_destinations(self):
         return self.destination_data.read_all_destinations()
+    
+    def get_all_aircrafts(self):
+        return self.aircraft_data.read_all_aicrafts()

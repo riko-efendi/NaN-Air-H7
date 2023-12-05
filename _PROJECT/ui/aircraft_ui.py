@@ -1,4 +1,6 @@
-
+from logic.aircraft_logic import Aircraft
+from model.aircraft import Aircraft
+from utils.utils import UIUtils
 
 class AircraftUI:
     def __init__(self, wrapper) -> None:
@@ -25,6 +27,11 @@ class AircraftUI:
             elif user_input == "1":
                 pass
             elif user_input == "2":
-                pass
+                aircrafts = self.logic_wrapper.get_all_aircrafts()
+                print()
+                print()
+                print()
+                for index, aircrafts in enumerate(aircrafts):
+                    print(f"{index+1:>2}.{' sign ':^2}{aircrafts.sign},{aircrafts.id},{aircrafts.manufacture},{aircrafts.maintinance}")
             else:
                 print("Invalid")
