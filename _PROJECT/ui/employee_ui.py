@@ -32,7 +32,6 @@ class EmployeeUI:
                 break
             elif user_input == "1":
                 employees = self.logic_wrapper.get_all_employees()
-                employees = self.logic_wrapper.get_all_employees()
                 print()
                 print("[ALL EMPLOYEES]")
                 print()
