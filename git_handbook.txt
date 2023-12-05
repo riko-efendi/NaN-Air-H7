@@ -7,7 +7,7 @@ To prevent us from doing the same things, we'll have to assign ourselves distinc
 [Codebase]
 We are heavily following the example from the pre-recorded lecture, about the setup of the project.
 So it's important that you watch or atleast have a general understanding of how the three layered design set up works.
-You can find the example project at: "Verklegt námskeið 1/Modules/example_project.zip
+You can find the example project at: "Verklegt námskeið 1/Modules/example_project.zip"
 
 [Rules]
 1. Do NOT push to main, without letting anyone know, unless you're making a diary/git handbbok entry.
