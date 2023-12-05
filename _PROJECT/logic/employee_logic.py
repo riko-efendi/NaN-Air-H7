@@ -8,5 +8,5 @@ class EmployeeLogic:
     def get_all_employees(self):
         return self.data_wrapper.get_all_employees()
     
-    def register_employees(self):
-        return self.data_wrapper.register_employees()
+    def register_employee(self, employee):
+        return self.data_wrapper.register_employee(employee)

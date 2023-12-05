@@ -30,4 +30,4 @@ class EmployeeData:
             
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-            writer.writerow({'name': employee.name, 'nid': employee.kennitala})
+            writer.writerow({"nid": employee.kennitala, "name": employee.name, "role": employee.role, "address": employee.address})
