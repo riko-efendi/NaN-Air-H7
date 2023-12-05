@@ -1,28 +1,27 @@
-#from logic.logic_wrapper import LogicWrapper
 from logic.logic_wrapper import LogicWrapper
 from ui.employee_ui import EmployeeUI
 from ui.voyage_ui import VoyageUI
-#from funclibrary.functions import clear_screen
+
+from utils.ui_utils import UIUtils
+
 
 class MainMenuUI:
     def __init__(self) -> None:
        self.logic_wrapper = LogicWrapper()
+       self.ui_utils = UIUtils()
 
     def menu_output(self):
-        header = f"[MAIN]"
-        
-        print()
-        print(header)
-        print()
-        print(f"1. Employees")
-        print(f"2. Voyage")
-        print(f"q. Quit")
+
+        options = "1. Employees\n2. Voyage\nq. Quit"
+        boarder = self.ui_utils.get_boarder("[MAIN MENU]", options, 0, 5)
+        self.ui_utils.clear_screen()
+        print(boarder)
 
     def input_prompt(self):
+
         while True:
             self.menu_output()
-            user_input = input("\nEnter your choice: ").lower()
-            #clear_screen()
+            user_input = input("Enter your choice: ").lower()
             if user_input == "q":
                 print("Quitting")
                 break
