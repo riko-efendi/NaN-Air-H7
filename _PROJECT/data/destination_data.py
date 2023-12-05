@@ -4,7 +4,7 @@ from model.destination import Destination
 
 class DestinationData:
     def __init__(self) -> None:
-        self.file_name = "_PROJECT/files/destination.csv"
+        self.file_name = "_PROJECT/files/destinations.csv"
 
     def read_all_destinations(self):
         destination_list = []
