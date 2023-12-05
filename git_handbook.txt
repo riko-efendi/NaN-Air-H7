@@ -8,13 +8,13 @@ To prevent us from working on the same things, we'll have to assign ourselves di
 [Codebase]
 We are heavily following the example from the pre-recorded lecture, about the setup of the project.
 So it's important that you watch or atleast have a general understanding of how the three layered design set up works.
-You can find the example project at: "Verklegt námskeið 1/Modules/example_project.zip"
+You can find the example project at: "Verklegt námskeið 1/Modules/example_project.zip" on canvas.
 
 [Rules]
 1. Do NOT push to main, without letting anyone know, unless you're making a diary/git handbbok entry.
 2. Always write a descriptive commit message.
-2. Don't merge your branch to main, without letting anyonen know.
-3. Don't push to other peoples branches, without letting them know.
+3. Don't merge your branch to main, without letting anyonen know.
+4. Don't push to other peoples branches, without letting them know.
 
 Most important rule: If you are unsure about anything, don't be afraid to ask. There are no dumb questions.
 
