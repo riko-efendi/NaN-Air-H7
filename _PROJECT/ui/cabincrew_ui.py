@@ -35,4 +35,4 @@ class CabinCrewUI:
                 print("[All CABIN CREW]\n")
                 for index, cabincrew in enumerate(cabincrews):
                     print(f"{index+1:>2}.{' Name: ':^2}{cabincrew.name:<}, {'Role: '}{cabincrew.role}")
-                input("\nPress any key to exit: ")
+                input("\nPress ENTER to exit: ")

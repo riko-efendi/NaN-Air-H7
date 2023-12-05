@@ -34,5 +34,5 @@ class PilotUI:
                 print("[All Pilots]\n")
                 for index, pilot in enumerate(pilots):
                     print(f"{index+1:>2}.{' name: ':^2}{pilot.name:<}, {'Role: '}{pilot.role}")
-                input("\nPress any key to exit: ")
+                input("\nPress ENTER to exit: ")
 

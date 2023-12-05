@@ -1,6 +1,3 @@
-from data.employee_data import EmployeeData
-from model.employee import Employee
-
 class EmployeeLogic:
     def __init__(self, data_connection) -> None:
         self.data_wrapper = data_connection

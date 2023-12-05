@@ -1,10 +1,6 @@
-from logic.employee_logic import EmployeeLogic
-from model.employee import Employee
 from ui.pilot_ui import PilotUI
-from ui.register_employee_ui import RegisterEmployeeUI
 from ui.cabincrew_ui import CabinCrewUI
 from utils.ui_utils import UIUtils
-
 
 
 class EmployeeUI:
@@ -37,7 +33,7 @@ class EmployeeUI:
                 print()
                 for index, employee in enumerate(employees):
                     print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
-                input("\nPress any key to exit: ")
+                input("\nPress ENTER to exit: ")
 
             elif user_input == "2":
                 pilot_menu = PilotUI(self.logic_wrapper)
