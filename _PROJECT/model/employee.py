@@ -1,3 +1,7 @@
+"""
+Employee base class. Here we give the employee all its variables.
+"""
+
 class Employee:
     def __init__(self, kennitala:int=0, name:str="", role:str="", address:str="", phone_number:int=0, email:str=""):
         self.kennitala = kennitala
