@@ -1,6 +1,7 @@
 from logic.employee_logic import EmployeeLogic
 from logic.destination_logic import DestinationLogic
 from data.data_wrapper import DataWrapper
+
 """
 Employee base class. Here we give the employee all its variables, and behaviours.
 """
