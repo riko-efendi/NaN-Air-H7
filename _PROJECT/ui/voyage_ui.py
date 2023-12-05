@@ -28,6 +28,10 @@ class VoyageUI:
             if user_input == "q":
                 print("Quitting")
                 break
+            elif user_input == "2":
+                pass
+
+            
             elif user_input == "3":
                 destination_menu = DestinationUI(self.logic_wrapper)
                 back_method = destination_menu.input_prompt()

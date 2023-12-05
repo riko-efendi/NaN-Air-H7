@@ -33,7 +33,7 @@ Flight related stuff:
 	List voyage with following condition:
 		- Employees can only take one voyage per day. Not possible to assign the same employee for two voyages per day
 		- Each voyage should have at least 2 pilots (one chief and one co-pilot).
-		- List all voyages for a specific day, and check if they are fully manned
+		- List all voyages' for a specific day, and check if they are fully manned
 		- List all voyages for a specific week and check if they are fully manned
 
 	
