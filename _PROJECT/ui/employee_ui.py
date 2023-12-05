@@ -1,6 +1,8 @@
 from logic.employee_logic import EmployeeLogic
 from model.employee import Employee
 from utils.utils import UIUtils
+from ui.pilot_ui import PilotUI
+from ui.cabincrew_ui import CabinCrewUI
 
 
 class EmployeeUI:
@@ -15,9 +17,8 @@ class EmployeeUI:
         print(header)
         print()
         print(f"1. List all employees")
-        print(f"2. Register employee")
-        print(f"3. Pilot")
-        print(f"4. Cabin crew")
+        print(f"2. Pilot")
+        print(f"3. Cabin crew")
         print(f"q. Quit")
 
     def input_prompt(self):
@@ -37,5 +38,17 @@ class EmployeeUI:
                 print()
                 for index, employee in enumerate(employees):
                     print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
+            elif user_input == "2":
+                pilot_menu = PilotUI(self.logic_wrapper)
+                back_method = pilot_menu.input_prompt()
+                if back_method == "q":
+                    return "q"
+                pass
+            elif user_input == "3":
+                cabincrew_menu = CabinCrewUI(self.logic_wrapper)
+                back_method = cabincrew_menu.input_prompt()
+                if back_method == "q":
+                    return "q"
+                pass
             else:
                 print("Invalid")
