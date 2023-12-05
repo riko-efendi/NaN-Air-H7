@@ -1,0 +1,10 @@
+[git HANDBOOK]
+
+Welcome to the githandbook, here I will provide all the rules of our git eco system!
+
+Rules:
+1. Do NOT push to main, without letting anyone know.
+2. Don't merge your branch to main, without letting anyonen know.
+3. Don't push to other members branches, without letting them know.
+4. 
+

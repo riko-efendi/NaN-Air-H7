@@ -116,11 +116,24 @@ Sick:
 
 [4/12/2023 - mon]
 
-Day started out by us putting together the skeleton of the project. Created the folders for the logic, data, models and ui.
+Day started out by us putting together the skeleton of the project. Created the folders for the logic, data, models and ui, as well as the corresponding wrappers.
+We had the TA's comingi over to review the feedback we got on the design report, and we had the non-functional requirements missing as well as the UX requirements, so tomorrow will go into making those!
 
+We also made a list all employee funcationality just to see if our skeleton worked, which it does!
 
 Attendance:
  - Gestur Pálsson
  - Guðni Hrafn Guðlaugsson
  - Manwin Georg Edselsson
  - Riko Efendi
+
+---------------------------------------------------------------------------
+
+[5/12/2023 - tue]
+
+Today's checklist:
+- make a git handbook
+- assign different task to different team members
+- make non-functional- and UX requirements
+- get everyone up to speed on git
+- get everyone up to speed on the project
