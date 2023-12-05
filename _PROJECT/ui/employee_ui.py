@@ -52,7 +52,7 @@ class EmployeeUI:
                 if back_method == "q":
                     return "q"
                 pass
-            elif user_input == "3":
+            elif user_input == "4":
                 cabincrew_menu = CabinCrewUI(self.logic_wrapper)
                 back_method = cabincrew_menu.input_prompt()
                 if back_method == "q":

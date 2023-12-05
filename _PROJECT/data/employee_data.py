@@ -31,7 +31,7 @@ class EmployeeData:
             
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-            writer.writerow({"nid": employee.kennitala, "name": employee.name, "role": employee.role, "address": employee.address})
+            writer.writerow({"nid": employee.kennitala, "name": employee.name, "role": employee.role, "rank":employee.rank, "address": employee.address, "phone_nr": employee.phone_number})
 
     def read_all_pilots(self):
         pilot_list = []

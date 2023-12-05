@@ -1,5 +1,6 @@
 from logic.logic_wrapper import LogicWrapper
-
+from ui.register_employee_ui import RegisterEmployeeUI
+from model.employee import Employee
 
 class PilotUI:
     def __init__(self, wrapper) -> None:
@@ -24,6 +25,12 @@ class PilotUI:
             if user_input == "q":
                 print("Quitting")
                 break
+
+            elif user_input == "1":
+                register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
+                e = Employee()
+                register_employee_menu.register_pilot(e)   
+
             elif user_input == "2":
                 pilots = self.logic_wrapper.get_all_pilots()
                 print()

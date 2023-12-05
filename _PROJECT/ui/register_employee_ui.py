@@ -7,7 +7,7 @@ class RegisterEmployeeUI():
 
         print("\n[REGISTER EMPLOYEE]\n")
         employee.name = input("Input the employee name: ")
-        employee.kennitala = int(input("Input the employee kennitala: "))
+        employee.kennitala = (input("Input the employee kennitala: "))
         e_role = ""
         e_rank = ""
         while e_role != "1" and e_role != "2":
@@ -18,6 +18,7 @@ class RegisterEmployeeUI():
             employee.role = "Cabincrew"
 
         employee.address = input("Input the employees address: ")
+        employee.phone_number = input("Input the employees phone number: ")
         self.logic_wrapper.register_employee(employee)
         print(f"\n{employee.name} is successfully created.")
 
@@ -26,10 +27,18 @@ class RegisterEmployeeUI():
         
         print("\n[REGISTER PILOT]\n")
         employee.name = input("Input the employee name: ")
-        employee.kennitala = int(input("Input the employee kennitala: "))
+        employee.kennitala = (input("Input the employee kennitala: "))
         employee.role = "Pilot"
+        e_rank = ""
+        while e_rank != "1" and e_rank != "2":
+            e_rank = input("Is the employee: 1. Captain or 2. Copilot? 1/2: ").lower()
+        if e_rank == "1":
+            employee.rank = "Captain"
+        elif e_rank == "2":
+            employee.rank = "Copilot"
 
         employee.address = input("Input the employees address: ")
+        employee.phone_number = input("Input the employees phone number: ")
         self.logic_wrapper.register_employee(employee)
         print(f"\n{employee.name} is successfully created.")
 
@@ -39,10 +48,18 @@ class RegisterEmployeeUI():
 
         print("\n[REGISTER CABIN CREW]\n")
         employee.name = input("Input the employee name: ")
-        employee.kennitala = int(input("Input the employee kennitala: "))
+        employee.kennitala = (input("Input the employee kennitala: "))
         employee.role = "Cabincrew"
+        e_rank = ""
+        while e_rank != "1" and e_rank != "2":
+            e_rank = input("Is the employee: 1. Flight Service Manager or 2. Flight Attendant? 1/2: ").lower()
+        if e_rank == "1":
+            employee.rank = "Flight Service Manager"
+        elif e_rank == "2":
+            employee.rank = "Flight Attendant"
 
         employee.address = input("Input the employees address: ")
+        employee.phone_number = input("Input the employees phone number: ")
         self.logic_wrapper.register_employee(employee)
         print(f"\n{employee.name} is successfully created.")
         
