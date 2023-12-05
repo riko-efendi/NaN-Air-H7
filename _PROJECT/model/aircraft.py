@@ -1,6 +1,6 @@
 class Aircraft:
-    def __init__(self, sign:str="", id:str="", manufacture="", maintinance="") -> None:
+    def __init__(self, sign:str="", id:str="", manufacture="", maintenance="") -> None:
         self.sign = sign
-        self.plane_type = id
-        self.dom = manufacture
-        self.maintinance = maintinance
+        self.id = id
+        self.manufacture = manufacture
+        self.maintenance = maintenance

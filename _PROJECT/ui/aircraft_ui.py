@@ -32,6 +32,6 @@ class AircraftUI:
                 print()
                 print()
                 for index, aircrafts in enumerate(aircrafts):
-                    print(f"{index+1:>2}.{' sign ':^2}{aircrafts.sign},{aircrafts.id},{aircrafts.manufacture},{aircrafts.maintinance}")
+                    print(f"{index+1:>2}.{' sign: ':^2} {aircrafts.sign}  plane type: {aircrafts.id} {'Date of Manufacture' :>12}: {aircrafts.manufacture} {'Last maintenance':>12} {aircrafts.maintenance}")
             else:
                 print("Invalid")

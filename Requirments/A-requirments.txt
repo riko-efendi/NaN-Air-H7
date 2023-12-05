@@ -1,7 +1,7 @@
 Employee related stuff:
 
 	Register employee
-		Register either as a pilot or a flight attentand
+	Register either as a pilot or a flight attentand
 	Register pilot
 	Register cabin crew / fligth attentand
 
