@@ -1,10 +1,22 @@
 [git HANDBOOK]
 
-Welcome to the githandbook, here I will provide all the rules of our git eco system!
+Welcome to the git handbook, here I will provide all the rules of our git eco system!
+The system we are currently using, is that each member has their own assigned branch, and works on their tasks there.
+To prevent us from doing the same things, we'll have to assign ourselves distinct tasks.
 
-Rules:
-1. Do NOT push to main, without letting anyone know.
+[Codebase]
+We are heavily following the example from the pre-recorded lecture, about the setup of the project.
+So it's important that you watch or atleast have a general understanding of how the three layered design set up works.
+You can find the example project at: "Verklegt námskeið 1/Modules/example_project.zip
+
+[Rules]
+1. Do NOT push to main, without letting anyone know, unless you're making a diary/git handbbok entry.
+2. Always write a descriptive commit message.
 2. Don't merge your branch to main, without letting anyonen know.
-3. Don't push to other members branches, without letting them know.
-4. 
+3. Don't push to other peoples branches, without letting them know.
 
+Most important rule: If you are unsure about anything, don't be afraid to ask. There are no dumb questions.
+
+---------------------------------------------
+| https://github.com/riko-efendi/NaN-Air-H7 |
+---------------------------------------------
