@@ -6,7 +6,7 @@ Never work directly on main.
 To prevent us from working on the same things, we'll have to assign ourselves distinct tasks.
 
 [Codebase]
-We are heavily following the example from the pre-recorded lecture, about the setup of the project.
+We are heavily following the example from the pre-recorded lecture, where it is shown how we should work and set up the project.
 So it's important that you watch or atleast have a general understanding of how the three layered design set up works.
 You can find the example project at: "Verklegt námskeið 1/Modules/example_project.zip" on canvas.
 
@@ -16,7 +16,7 @@ You can find the example project at: "Verklegt námskeið 1/Modules/example_proj
 3. Don't merge your branch to main, without letting anyonen know.
 4. Don't push to other peoples branches, without letting them know.
 
-Most important rule: If you are unsure about anything, don't be afraid to ask. There are no dumb questions.
+MOST IMPORTANT RULE: If you are unsure about anything, don't be afraid to ask. There are no dumb questions.
 
 ---------------------------------------------
 | https://github.com/riko-efendi/NaN-Air-H7 |

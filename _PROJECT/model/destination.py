@@ -1,7 +1,12 @@
 from datetime import time
 
+"""
+Destination base class. Here we give the destination all its variables, and behaviours.
+"""
+
 class Destination:
     def __init__(self, name:str="", airport:str="", numeric_id:int=0) -> None:
+
         self.name = name
         self.airport = airport
         self.numeric_id = numeric_id
