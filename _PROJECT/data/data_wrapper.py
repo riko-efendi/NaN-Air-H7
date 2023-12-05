@@ -10,9 +10,15 @@ class DataWrapper:
 
     def get_all_employees(self):
         return self.employee_data.read_all_employees()
-    
+
     def register_employee(self, employee):
         return self.employee_data.register_employee(employee)
+
+    def get_all_pilots(self):
+        return self.employee_data.read_all_pilots()
+    
+    def get_all_cabincrews(self):
+        return self.employee_data.read_all_cabincrews()
     
     def get_all_past_flights(self):
         return self.flight_data.read_all_past_flights()

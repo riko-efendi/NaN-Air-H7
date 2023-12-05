@@ -3,6 +3,9 @@ from model.employee import Employee
 from utils.utils import UIUtils
 from ui.pilot_ui import PilotUI
 from ui.register_employee_ui import RegisterEmployeeUI
+from ui.cabincrew_ui import CabinCrewUI
+
+
 
 class EmployeeUI:
     def __init__(self, wrapper) -> None:
@@ -46,6 +49,12 @@ class EmployeeUI:
             elif user_input == "3":
                 pilot_menu = PilotUI(self.logic_wrapper)
                 back_method = pilot_menu.input_prompt()
+                if back_method == "q":
+                    return "q"
+                pass
+            elif user_input == "3":
+                cabincrew_menu = CabinCrewUI(self.logic_wrapper)
+                back_method = cabincrew_menu.input_prompt()
                 if back_method == "q":
                     return "q"
                 pass

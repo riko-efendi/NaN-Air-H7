@@ -14,9 +14,15 @@ class LogicWrapper:
 
     def get_all_employees(self):
         return self.employee_logic.get_all_employees()
-    
+
     def register_employee(self, employee):
         return self.employee_logic.register_employee(employee)
+
+    def get_all_pilots(self):
+        return self.employee_logic.get_all_pilots()
+    
+    def get_all_cabincrews(self):
+        return self.employee_logic.get_all_cabincrews()
 
     def get_all_destinations(self):
         return self.destination_logic.get_all_destinations()

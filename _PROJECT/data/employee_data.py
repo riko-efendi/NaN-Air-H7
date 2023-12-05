@@ -16,6 +16,7 @@ class EmployeeData:
                 employee_list.append(Employee(row["nid"], row["name"], row["role"]))
         return employee_list
     
+
     def register_employee(self, employee):
 
         with open(self.file_name, 'a', newline='', encoding="utf-8") as csvfile:
@@ -31,3 +32,21 @@ class EmployeeData:
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
             writer.writerow({"nid": employee.kennitala, "name": employee.name, "role": employee.role, "address": employee.address})
+
+    def read_all_pilots(self):
+        pilot_list = []
+        with open(self.file_name, newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                if row["role"] == "Pilot":
+                    pilot_list.append(Employee(row["nid"], row["name"], row["role"]))
+        return pilot_list
+    
+    def read_all_cabincrews(self):
+        cabincrew_list = []
+        with open(self.file_name, newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                if row["role"] == "Cabincrew":
+                    cabincrew_list.append(Employee(row["nid"], row["name"], row["role"]))
+        return cabincrew_list
