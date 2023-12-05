@@ -2,7 +2,8 @@
 
 Welcome to the git handbook, here I will provide all the rules of our git eco system!
 The system we are currently using, is that each member has their own assigned branch, and works on their tasks there.
-To prevent us from doing the same things, we'll have to assign ourselves distinct tasks.
+Never work directly on main.
+To prevent us from working on the same things, we'll have to assign ourselves distinct tasks.
 
 [Codebase]
 We are heavily following the example from the pre-recorded lecture, about the setup of the project.
