@@ -5,10 +5,10 @@ Destination base class. Here we give the destination all its variables, and beha
 """
 
 class Destination:
-    def __init__(self, name:str="", airport:str="", numeric_id:int=0) -> None:
+    def __init__(self, id:str="", destination:str="", numeric_id:int=0) -> None:
 
-        self.name = name
-        self.airport = airport
+        self.id = id
+        self.destination = destination
         self.numeric_id = numeric_id
         # self.flight_time = flight_time
         # self.flight_distance = flight_distance

@@ -17,4 +17,6 @@ class LogicWrapper:
 
     def get_all_destinations(self):
         return self.destination_logic.get_all_destinations()
-
+    
+    def create_destination(self, destination):
+        return self.destination_logic.create_destination(destination)
