@@ -19,6 +19,9 @@ class DataWrapper:
     def get_all_cabincrews(self):
         return self.employee_data.read_all_cabincrews()
     
+    def get_all_aircrafts(self):
+        return self.aircraft_data.read_all_aicrafts()
+    
     def get_all_past_flights(self):
         return self.flight_data.read_all_past_flights()
     

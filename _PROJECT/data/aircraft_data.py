@@ -3,7 +3,7 @@ from model.aircraft import Aircraft
 
 class AircraftData:
     def __init__(self) -> None:
-        self.file_name = 'aircraft.csv'
+        self.file_name = "_PROJECT/filesaircraft.csv"
 
     def read_all_aicrafts(self):
         aicraft_list = []
