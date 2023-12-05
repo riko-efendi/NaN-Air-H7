@@ -1,5 +1,5 @@
 from logic.employee_logic import EmployeeLogic
-
+from logic.aircraft_logic import AircraftLogic
 from data.data_wrapper import DataWrapper
 
 class LogicWrapper:
@@ -12,4 +12,6 @@ class LogicWrapper:
 
     def get_all_employees(self):
         return self.employee_logic.get_all_employees()
-
+    
+    def get_all_aicrafts(self):
+        return self.aircraft_logic.get_all_aicraft()

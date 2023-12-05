@@ -1,6 +1,6 @@
 import csv
 
-from model.flight import Flight
+#from model.flight import Flight
 
 class FlightData:
     def __init__(self) -> None:

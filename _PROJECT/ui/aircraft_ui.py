@@ -1,3 +1,5 @@
+
+
 class AircraftUI:
     def __init__(self, wrapper) -> None:
         self.logic_wrapper = wrapper
@@ -13,11 +15,16 @@ class AircraftUI:
         print(f"q. Quit")
 
     def input_prompt(self):
+        """This takes the input of the user"""
         while True:
             self.menu_output()
             user_input = input("\nEnter your choice: ").lower()
             if user_input == "q":
                 print("Quitting")
                 break
+            elif user_input == "1":
+                pass
+            elif user_input == "2":
+                pass
             else:
                 print("Invalid")
