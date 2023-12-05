@@ -3,7 +3,6 @@ from model.employee import Employee
 from utils.utils import UIUtils
 from ui.pilot_ui import PilotUI
 
-
 class EmployeeUI:
     def __init__(self, wrapper) -> None:
        self.logic_wrapper = wrapper
@@ -39,24 +38,8 @@ class EmployeeUI:
                     print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
 
             elif user_input == "2":
-                # This registers an employ to crew.csv
-                print("\n[REGISTER EMPLOYEE]\n")
                 e = Employee()
-                e.name = input("Input the employee name: ")
-                e.kennitala = int(input("Input the employee kennitala: "))
-                e_role = ""
-                e_rank = ""
-                while e_role != "1" and e_role != "2":
-                    e_role = input("Is the employee: 1. Pilot or 2. Cabincrew? 1/2: ").lower()
-                if e_role == "1":
-                    e.role = "Pilot"
-                    #e_rank = input("Is the Pilot a [C]aptain")
-                elif e_role == "2":
-                    e.role = "Cabincrew"
-
-                e.address = input("Input the employees address: ")
-                self.logic_wrapper.register_employee(e)
-                print(f"\n{e.name} is successfully created.")
+                self.register_employee(e)
 
             elif user_input == "3":
                 pilot_menu = PilotUI(self.logic_wrapper)
@@ -66,3 +49,22 @@ class EmployeeUI:
                 pass
             else:
                 print("Invalid")
+
+
+    def register_employee(self, employee):
+
+        print("\n[REGISTER EMPLOYEE]\n")
+        employee.name = input("Input the employee name: ")
+        employee.kennitala = int(input("Input the employee kennitala: "))
+        e_role = ""
+        e_rank = ""
+        while e_role != "1" and e_role != "2":
+            e_role = input("Is the employee: 1. Pilot or 2. Cabincrew? 1/2: ").lower()
+        if e_role == "1":
+            employee.role = "Pilot"
+        elif e_role == "2":
+            employee.role = "Cabincrew"
+
+        employee.address = input("Input the employees address: ")
+        self.logic_wrapper.register_employee(employee)
+        print(f"\n{employee.name} is successfully created.")
