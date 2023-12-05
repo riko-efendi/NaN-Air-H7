@@ -1,20 +1,19 @@
 from logic.logic_wrapper import LogicWrapper
-from ui.register_pilot_ui import RegisterPilotUI
 
 
-class PilotUI:
+class CabinCrewUI:
     def __init__(self, wrapper) -> None:
        self.logic_wrapper = LogicWrapper()
 
     def menu_output(self):
-        header = f"[PILOTS]"
+        header = f"[CABIN CREW]"
         
         print()
         print(header)
         print()
-        print(f"1. Register pilot")
-        print(f"2. List pilots")
-        print(f"3. View specific pilot")
+        print(f"1. Register cabin crew")
+        print(f"2. List cabin crew")
+        print(f"3. View specific cabin crew employee")
         print(f"q. Quit")
 
     def input_prompt(self):
@@ -27,8 +26,3 @@ class PilotUI:
             if user_input == "q":
                 print("Quitting")
                 break
-            elif user_input == "1":
-                register_pilot_menu = RegisterPilotUI(self.logic_wrapper)
-                back_method = register_pilot_menu.input_prompt()
-                if back_method == "q":
-                    return "q"

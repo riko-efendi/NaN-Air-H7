@@ -2,6 +2,7 @@ from logic.employee_logic import EmployeeLogic
 from model.employee import Employee
 from utils.utils import UIUtils
 from ui.pilot_ui import PilotUI
+from ui.cabin_crew_ui import CabinCrewUI
 
 
 class EmployeeUI:
@@ -40,6 +41,12 @@ class EmployeeUI:
             elif user_input == "2":
                 pilot_menu = PilotUI(self.logic_wrapper)
                 back_method = pilot_menu.input_prompt()
+                if back_method == "q":
+                    return "q"
+                pass
+            elif user_input == "3":
+                cabin_crew_menu = CabinCrewUI(self.logic_wrapper)
+                back_method = cabin_crew_menu.input_prompt()
                 if back_method == "q":
                     return "q"
                 pass
