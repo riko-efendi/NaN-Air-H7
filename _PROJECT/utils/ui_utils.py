@@ -2,7 +2,11 @@ import os
 import shutil
 
 class UIUtils:
-    
+    def __init__(self) -> None:
+        self.terminal_size = shutil.get_terminal_size()
+        self.terminal_columns = self.terminal_size.columns
+        self.terminal_rows = self.terminal_size.lines
+
     def clear_screen(self):
         """Clears the screen"""
 
@@ -14,23 +18,21 @@ class UIUtils:
 
     def get_boarder(self, header_str="", options="",x_offset=0, y_offset=0):
         """Returns a boarder that goes around the dimensions of your terminal window."""
-
-        terminal_size = shutil.get_terminal_size()
-        columns, rows = terminal_size.columns, terminal_size.lines
         
         header_str_offset = 4
-        header = "╔" + "═"*header_str_offset + header_str + "═" * (columns - len(header_str) - 2 - header_str_offset) + "╗"
-        footer = "╚" + "═" * (columns - 2) + "╝"
+        header = "╔" + "═"*header_str_offset + header_str + "═" * (self.terminal_columns - len(header_str) - 2 - header_str_offset) + "╗"
+        footer = "╚" + "═" * (self.terminal_columns - 2) + "╝"
         boarder = header + "\n"
 
-        for i in range(int((rows - 2))-2):
-            boarder += "║" + " " * (columns - 2) + "║" + "\n"
+        for _ in range(int((self.terminal_rows - 2))-2):
+            boarder += "║" + " " * (self.terminal_columns - 2) + "║" + "\n"
         boarder += footer
         boarder = self.append_string(boarder, options, x_offset, y_offset)
-        
+
         return boarder
     
     def append_string(self, backgrnd, overlay, x_offset=0, y_offset=0):
+        """Appends two strings; a background string and a foreground string, together"""
 
         backgrnd_list = backgrnd.split("\n")
         overlay_list = overlay.split("\n")

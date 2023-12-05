@@ -10,7 +10,7 @@ class PilotUI:
 
     def menu_output(self):
 
-        options = "1. Register Pilot\n2. List All Pilots\n3. View Specific Pilot\nq. Quit"
+        options = "1. Register Pilot\n2. List All Pilots\n3. View Specific Pilot\n\n[B]ack"
         boarder = self.ui_utils.get_boarder("[PILOTS MENU]", options, 0, 5)
         self.ui_utils.clear_screen()
         print(boarder)
@@ -20,8 +20,7 @@ class PilotUI:
         while True:
             self.menu_output()
             user_input = input("Enter your choice: ").lower()
-            if user_input == "q":
-                print("Quitting")
+            if user_input == "b":
                 break
 
             elif user_input == "1":
@@ -31,8 +30,9 @@ class PilotUI:
 
             elif user_input == "2":
                 pilots = self.logic_wrapper.get_all_pilots()
-                print()
+                self.ui_utils.clear_screen()
                 print("[All Pilots]\n")
                 for index, pilot in enumerate(pilots):
                     print(f"{index+1:>2}.{' name: ':^2}{pilot.name:<}, {'Role: '}{pilot.role}")
+                input("\nPress any key to exit: ")
 

@@ -14,7 +14,7 @@ class EmployeeUI:
 
     def menu_output(self):
 
-        options = "1. List All Employees\n2. Pilot\n3. Cabin Crew\n\nEnter a number or [B]ack"
+        options = "1. List All Employees\n2. Pilot\n3. Cabin Crew\n\n[B]ack"
         boarder = self.ui_utils.get_boarder("[EMPLOYEE MENU]", options, 0, 5)
         self.ui_utils.clear_screen()
         print(boarder)
