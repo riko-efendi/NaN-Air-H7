@@ -21,5 +21,12 @@ class DestinationUI:
             if user_input == "q":
                 print("Quitting")
                 break
+            elif user_input == "2":
+                destinations = self.logic_wrapper.get_all_destinations()
+                print()
+                print("[All Destinations]")
+                print()
+                for index, destination in enumerate(destinations):
+                    print(f"{index+1:>2}.{' name: ':^2}{destination.airport:<}, {'Airport: '}{destination.name}, {destination.numeric_id}")
             else:
                 print("Invalid")
