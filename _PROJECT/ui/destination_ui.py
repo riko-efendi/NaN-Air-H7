@@ -18,6 +18,8 @@ class DestinationUI:
         while True:
             self.menu_output()
             user_input = input("\nEnter your choice: ").lower()
+            if user_input == "b":
+                return
             if user_input == "q":
                 print("Quitting")
                 break
