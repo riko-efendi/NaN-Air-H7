@@ -15,6 +15,9 @@ class LogicWrapper:
     def get_all_employees(self):
         return self.employee_logic.get_all_employees()
     
+    def get_employee_by_nid(self, kennitala):
+        return self.employee_logic.get_employee_by_nid(kennitala)
+    
     def get_all_pilots(self):
         return self.employee_logic.get_all_pilots()
     

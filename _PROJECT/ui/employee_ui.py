@@ -3,6 +3,7 @@ from model.employee import Employee
 from utils.utils import UIUtils
 from ui.pilot_ui import PilotUI
 from ui.cabincrew_ui import CabinCrewUI
+from ui.list_employee_ui import ListEmployeeUI
 
 
 class EmployeeUI:
@@ -16,9 +17,9 @@ class EmployeeUI:
         print()
         print(header)
         print()
-        print(f"1. List all employees")
+        print(f"1. View Employees Options")
         print(f"2. Pilot")
-        print(f"3. Cabin crew")
+        print(f"3. Cabin Crew")
         print(f"q. Quit")
 
     def input_prompt(self):
@@ -32,12 +33,11 @@ class EmployeeUI:
                 print("Quitting")
                 break
             elif user_input == "1":
-                employees = self.logic_wrapper.get_all_employees()
-                print()
-                print("[ALL EMPLOYEES]")
-                print()
-                for index, employee in enumerate(employees):
-                    print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
+                list_employees_menu = ListEmployeeUI(self.logic_wrapper)
+                back_method = list_employees_menu.input_prompt()
+                if back_method == "q":
+                    return "q"
+                pass
             elif user_input == "2":
                 pilot_menu = PilotUI(self.logic_wrapper)
                 back_method = pilot_menu.input_prompt()
