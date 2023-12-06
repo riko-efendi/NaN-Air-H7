@@ -50,3 +50,4 @@ class EmployeeData:
                 if row["role"] == "Cabincrew":
                     cabincrew_list.append(Employee(row["nid"], row["name"], row["role"]))
         return cabincrew_list
+    

@@ -1,6 +1,6 @@
 import csv
 
-# from model.flight import Flight
+from model.flight import Flight
 
 class FlightData:
     def __init__(self) -> None:
@@ -12,7 +12,7 @@ class FlightData:
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                past_flight_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["aircraft_id"]))
+                past_flight_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure"], row["arrival"], row["aircraft_id"]))
         return past_flight_list
         
     def read_all_upcoming_flights(self):
@@ -20,5 +20,6 @@ class FlightData:
         with open(self.file_name2, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                upcoming_flight_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure"], row["arrival"]))
+                upcoming_flight_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure"], row["arrival"], row["aircraft_id"]))
+        
         return upcoming_flight_list

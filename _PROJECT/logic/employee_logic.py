@@ -1,4 +1,3 @@
-from data.employee_data import EmployeeData
 from model.employee import Employee
 
 class EmployeeLogic:

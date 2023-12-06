@@ -1,25 +1,24 @@
 from logic.logic_wrapper import LogicWrapper
 from ui.destination_ui import DestinationUI
 from ui.aircraft_ui import AircraftUI
-#from funclibrary.functions import clear_screen
+from utils.ui_utils import UIUtils
 
 
 class VoyageUI:
     def __init__(self, wrapper) -> None:
+        self.ui_utils = UIUtils()
         self.logic_wrapper = wrapper
 
     def menu_output(self):
-        header = f"[VOYAGE]"
-        
-        print()
-        print(header)
-        print()
+        self.ui_utils.clear_screen()
+        print(f"[VOYAGE]\n")
         print(f"1. Create Voyage")
         print(f"2. List Voyage")
         print(f"3. Destination")
         print(f"4. Flight")
         print(f"5. Aircraft")
-        print(f"q. Quit")
+        print(f"6. List Flights")
+        print(f"\n[B]ack")
 
     def input_prompt(self):
         while True:
@@ -40,5 +39,11 @@ class VoyageUI:
                 if back_method == "q":
                     return "q"
                 pass
+
+            elif user_input == "6":
+                self.ui_utils.clear_screen()
+                for i in self.logic_wrapper.get_all_upcoming_flights():
+                    print(i)
+                input("Press [ENTER] to exit: ")
             else:
                 print("Invalid")

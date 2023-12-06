@@ -1,5 +1,6 @@
 from logic.employee_logic import EmployeeLogic
 from logic.destination_logic import DestinationLogic
+from logic.flight_logic import FlightLogic
 from data.data_wrapper import DataWrapper
 
 """
@@ -11,6 +12,7 @@ class LogicWrapper:
         self.data_wrapper = DataWrapper()
         self.employee_logic = EmployeeLogic(self.data_wrapper)
         self.destination_logic = DestinationLogic(self.data_wrapper)
+        self.flight_logic = FlightLogic(self.data_wrapper)
 
     def get_all_employees(self):
         return self.employee_logic.get_all_employees()
@@ -32,3 +34,12 @@ class LogicWrapper:
     
     def create_destination(self, destination):
         return self.destination_logic.create_destination(destination)
+    
+    # FLIGHTS
+
+    def get_all_upcoming_flights(self):
+        return self.flight_logic.get_all_upcoming_flights()
+    
+    def get_all_past_flights(self):
+        return self.flight_logic.get_all_past_flights()
+
