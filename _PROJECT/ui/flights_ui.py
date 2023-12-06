@@ -17,22 +17,24 @@ class FlightsUI:
     def input_prompt(self):
         while True:
             self.menu_output()
-
             user_input = input("\n" + self.input_string).lower()
 
             if user_input == "1":
                 self.ui_utils.clear_screen()
+                print(f"[ALL UPCOMING FLIGHTS]\n")
                 self.logic_wrapper.print_all_upcoming_flights()
-                
                 input("\nPress [ENTER] to exit: ")
             
-            if user_input == "2":
+            elif user_input == "2":
                 self.ui_utils.clear_screen()
+                print(f"[ALL PAST FLIGHTS]\n")
                 self.logic_wrapper.print_all_past_flights()
-
                 input("\nPress [ENTER] to exit: ")
                 
-
-
-            if user_input == "b":
+            elif user_input == "b":
                 break
+
+            else:
+                self.input_string = "Invalid. Enter another choice: "
+
+            

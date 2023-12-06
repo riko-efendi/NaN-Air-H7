@@ -27,6 +27,6 @@ class Flight:
         self.arr_dest = None
 
     def __str__(self) -> str:
-        return_str = f"Flight number: {self.flight_nr}. Departing from {self.dep_from} and arriving at {self.arr_at}."
+        return_str = f"Flight number: {self.flight_nr}.\nDeparting from:\t{self.dep_from} \t[{self.depart_date} {self.depart_time}]\nArriving at:\t{self.arr_at} \t[{self.arr_date} {self.arr_time}]"
 
         return return_str
