@@ -1,7 +1,9 @@
 from logic.logic_wrapper import LogicWrapper
 from utils.ui_utils import UIUtils
+from ui.create_voyage_ui import CreateVoyageUI
 from ui.destination_ui import DestinationUI
 from ui.aircraft_ui import AircraftUI
+from model.voyage import Voyage
 #from funclibrary.functions import clear_screen
 
 
@@ -34,6 +36,11 @@ class VoyageUI:
 
             if user_input == "b":
                 break
+            elif user_input == "1":
+                create_voyage_menu = CreateVoyageUI(self.logic_wrapper)
+                e = Voyage()
+                create_voyage_menu.create_voyage(e)
+                
             elif user_input == "3":
                 destination_menu = DestinationUI(self.logic_wrapper)
                 back_method = destination_menu.input_prompt()

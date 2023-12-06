@@ -1,5 +1,5 @@
 from datetime import time
-from destination import Destination
+from model.destination import Destination
 
 """
 Flight base class. Here we give the flight all its variables, and behaviours.
