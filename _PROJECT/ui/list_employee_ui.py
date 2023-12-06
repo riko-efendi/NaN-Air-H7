@@ -6,12 +6,8 @@ class ListEmployeeUI:
         self.ui_utils = UIUtils()
 
     def menu_output(self):
-        header = f"[View Employee Options]"
 
-
-        print(header)
-        print()
-
+        print(f"[View Employee Options]\n")
         print(f"1. View all employees")
         print(f"2. View Employee By Kennitala")
         print(f"3. View Off Duty Employees")
@@ -42,7 +38,7 @@ class ListEmployeeUI:
                 print(self.logic_wrapper.get_employee_by_nid(kennitala_input))
 
                 print("[U]pdate Info            [W]ork Schedule")
-                option_input = input("Enter your command: ")
+                option_input = input("Enter your command: ").lower()
                 if option_input == "U":
                     print("[UPDATE EMPLOYEE INFO]\n")
                     new_address = input("New Address or press [K] to keep old address: ")
