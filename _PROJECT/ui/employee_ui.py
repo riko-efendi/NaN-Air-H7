@@ -43,12 +43,6 @@ class EmployeeUI:
 
 
             elif user_input == "2":
-                register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
-                e = Employee()
-                register_employee_menu.register_employee(e)
-
-
-            elif user_input == "2":
                 pilot_menu = PilotUI(self.logic_wrapper)
                 back_method = pilot_menu.input_prompt()
                 if back_method == "b":
