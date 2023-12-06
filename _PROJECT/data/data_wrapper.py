@@ -1,12 +1,15 @@
 from data.employee_data import EmployeeData
 from data.flight_data import FlightData
 from data.destination_data import DestinationData
+from data.voyages_data import VoyageData
+
 
 class DataWrapper:
     def __init__(self) -> None:
         self.employee_data = EmployeeData()
         self.flight_data = FlightData()
         self.destination_data = DestinationData()
+        self.voyage_data = VoyageData()
 
     def get_all_employees(self):
         return self.employee_data.read_all_employees()
@@ -31,3 +34,6 @@ class DataWrapper:
     
     def create_destination(self, destination):
         return self.destination_data.create_destination(destination)
+    
+    def create_voyage(self, voyage):
+        return self.voyage_data.create_voyage(voyage)
