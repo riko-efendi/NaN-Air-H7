@@ -11,15 +11,7 @@ class EmployeeLogic:
     def get_employee_by_nid(self, kennitala):
         for employee in self.data_wrapper.get_all_employees():
             if kennitala == employee.kennitala:
-                print(f"\nShowing result for {kennitala}\n")
-                return f"""Name: {employee.name}
-Kt: {employee.print_kennitala}
-Address: {employee.address}
-Role: {employee.role}
-Rank: {employee.rank}
-"""
-            else:
-                return f"\nNo Result for '{kennitala}'"
+                return employee
             
     def update_employee_info(self, kennitala, address, phone_number):
         employee = self.data_wrapper.get_employee_by_nid(kennitala)
@@ -40,3 +32,11 @@ Rank: {employee.rank}
     
     def get_all_cabincrews(self):
         return self.data_wrapper.get_all_cabincrews()
+    
+    def print_employee(self, employee):
+        print(f"""Name: {employee.name}
+Kt: {employee.print_kennitala}
+Address: {employee.address}
+Role: {employee.role}
+Rank: {employee.rank}
+""")
