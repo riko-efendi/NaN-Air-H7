@@ -1,4 +1,5 @@
 from logic.logic_wrapper import LogicWrapper
+from ui.register_cabin_crew import RegisterCabinCrewUI
 
 
 class CabinCrewUI:
@@ -26,3 +27,8 @@ class CabinCrewUI:
             if user_input == "q":
                 print("Quitting")
                 break
+            elif user_input == "1":
+                register_cabin_crew_menu = RegisterCabinCrewUI(self.logic_wrapper)
+                back_method = register_cabin_crew_menu.input_prompt()
+                if back_method == "q":
+                    return "q"

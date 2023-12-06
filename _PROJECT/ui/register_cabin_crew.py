@@ -1,11 +1,11 @@
 from logic.logic_wrapper import LogicWrapper
 
-class RegisterPilotUI:
+class RegisterCabinCrewUI:
     def __init__(self, wrapper) -> None:
        self.logic_wrapper = LogicWrapper()
 
     def menu_output(self):
-        header = f"[REGISTER PILOT]"
+        header = f"[REGISTER CABIN CREW]"
 
         print()
         print(header)
