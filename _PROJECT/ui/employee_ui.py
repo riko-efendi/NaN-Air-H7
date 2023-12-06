@@ -10,7 +10,7 @@ class EmployeeUI:
 
     def menu_output(self):
 
-        options = "1. List All Employees\n2. Pilot\n3. Cabin Crew\n\n[B]ack"
+        options = "1. List All Employees\n2. Pilot\n3. Cabin Crew\n4. View Specific Employee\n\n[B]ack"
         boarder = self.ui_utils.get_boarder("[EMPLOYEE MENU]", options, 0, 5)
         self.ui_utils.clear_screen()
         print(boarder)
@@ -47,5 +47,12 @@ class EmployeeUI:
                 if back_method == "q":
                     return "q"
                 pass
+
+            elif user_input == "4":
+                self.ui_utils.clear_screen()
+                kennitala_input = input("Enter a kennitala: ")
+                print(self.logic_wrapper.view_employee(kennitala_input))
+                input("Press ENTER to exit: ")
+
             else:
                 print("Invalid")

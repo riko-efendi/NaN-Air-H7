@@ -7,6 +7,11 @@ class EmployeeLogic:
     
     def register_employee(self, employee):
         return self.data_wrapper.register_employee(employee)
+    
+    def view_employee(self, kennitala):
+        for employee in self.data_wrapper.get_all_employees():
+            if kennitala == employee.kennitala:
+                return employee.name
 
     def get_all_pilots(self):
         return self.data_wrapper.get_all_pilots()
