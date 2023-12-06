@@ -12,7 +12,7 @@ class DestinationUI:
     def menu_output(self):
         self.ui_utils.clear_screen()
 
-        print(f"\n[Destination]\n")
+        print(f"[Destination]\n")
         print(f"1. Register Destination")
         print(f"2. List all destinations")
         print(f"\n[B]ack")
@@ -40,6 +40,6 @@ class DestinationUI:
                 print("[All Destinations]\n")
                 for index, destination in enumerate(destinations):
                     print(f"{index+1:>2}.{' name: ':^2}{destination.destination:<}, {'id: '}{destination.id}, {destination.numeric_id}")
-                input("Press [ENTER] to exit: ")
+                input("\nPress [ENTER] to exit: ")
             else:
                 self.input_str = "Invalid. Enter another choice: "

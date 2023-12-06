@@ -1,6 +1,5 @@
 from model.employee import Employee
 from utils.ui_utils import UIUtils
-from ui.register_employee_ui import RegisterEmployeeUI
 from ui.cabincrew_ui import CabinCrewUI
 
 from ui.pilot_ui import PilotUI
@@ -42,14 +41,14 @@ class EmployeeUI:
             elif user_input == "2":
                 pilot_menu = PilotUI(self.logic_wrapper)
                 back_method = pilot_menu.input_prompt()
-                if back_method == "q":
-                    return "q"
-                pass
+                if back_method == "b":
+                    break
+                
             elif user_input == "3":
                 cabincrew_menu = CabinCrewUI(self.logic_wrapper)
                 back_method = cabincrew_menu.input_prompt()
                 if back_method == "q":
                     return "q"
-                pass
+                
             else:
                 self.input_str = "Invalid. Enter another choice: "
