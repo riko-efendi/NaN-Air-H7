@@ -1,8 +1,9 @@
 from logic.logic_wrapper import LogicWrapper
-from ui.register_employee_ui import RegisterEmployeeUI
 from model.employee import Employee
+from ui.register_employee_ui import RegisterEmployeeUI
 
-class PilotUI:
+
+class CabinCrewUI:
     def __init__(self, wrapper) -> None:
        self.logic_wrapper = LogicWrapper()
 
@@ -12,9 +13,9 @@ class PilotUI:
         print()
         print(header)
         print()
-        print(f"1. Register pilot")
-        print(f"2. List All pilots")
-        print(f"3. View specific pilot")
+        print(f"1. Register cabin crew")
+        print(f"2. List All cabin crews")
+        print(f"3. View specific cabin crew")
         print(f"q. Quit")
 
     def input_prompt(self):
@@ -29,12 +30,11 @@ class PilotUI:
             elif user_input == "1":
                 register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
                 e = Employee()
-                register_employee_menu.register_pilot(e)   
+                register_employee_menu.register_cabin_crew(e)   
 
             elif user_input == "2":
-                pilots = self.logic_wrapper.get_all_pilots()
+                cabincrews = self.logic_wrapper.get_all_cabincrews()
                 print()
                 print("[All Pilots]\n")
-                for index, pilot in enumerate(pilots):
-                    print(f"{index+1:>2}.{' name: ':^2}{pilot.name:<}, {'Role: '}{pilot.role}")
-
+                for index, cabincrew in enumerate(cabincrews):
+                    print(f"{index+1:>2}.{' Name: ':^2}{cabincrew.name:<}, {'Role: '}{cabincrew.role}")
