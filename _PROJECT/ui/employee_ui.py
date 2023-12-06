@@ -1,8 +1,10 @@
 from model.employee import Employee
 from utils.ui_utils import UIUtils
 from ui.cabincrew_ui import CabinCrewUI
-
+from ui.list_employee_ui import ListEmployeeUI
+from ui.register_employee_ui import RegisterEmployeeUI
 from ui.pilot_ui import PilotUI
+
 
 
 class EmployeeUI:
@@ -12,12 +14,15 @@ class EmployeeUI:
        self.input_str = "Enter your choice: "
 
     def menu_output(self):
+
         self.ui_utils.clear_screen()
         print(f"[EMPLOYEES]\n")
-        print(f"1. List all employees")
+
+        print(f"1. View Employees Options")
         print(f"2. Pilot")
-        print(f"3. Cabin crew")
+        print(f"3. Cabin Crew")
         print(f"\n[B]ack")
+
 
     def input_prompt(self):
         """ Takes in input from user """
@@ -29,14 +34,19 @@ class EmployeeUI:
                 break
 
             elif user_input == "1":
+
                 self.ui_utils.clear_screen()
-                employees = self.logic_wrapper.get_all_employees()
-                print("[ALL EMPLOYEES]\n")
+                list_employees_menu = ListEmployeeUI(self.logic_wrapper)
+                back_method = list_employees_menu.input_prompt()
+                if back_method == "q":
+                    return "q"
 
-                for index, employee in enumerate(employees):
-                    print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
 
-                input("\nPress [ENTER] to exit: ")
+            elif user_input == "2":
+                register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
+                e = Employee()
+                register_employee_menu.register_employee(e)
+
 
             elif user_input == "2":
                 pilot_menu = PilotUI(self.logic_wrapper)
