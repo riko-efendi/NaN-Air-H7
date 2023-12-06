@@ -14,7 +14,7 @@ class ListEmployeeUI:
         print(f"2. View Employee By Kennitala")
         print(f"3. View Off Duty Employees")
         print(f"4. View On Duty Employees")
-        print(f"q. Quit")
+        print(f"\n[B]ack")
 
     def input_prompt(self):
         """ Takes in input from user """
@@ -23,9 +23,9 @@ class ListEmployeeUI:
             user_input = input("\nEnter your choice: ").lower()
 
 
-            if user_input == "q":
-                print("Quitting")
+            if user_input == "b":
                 break
+            
             elif user_input == "1":
                 employees = self.logic_wrapper.get_all_employees()
                 print()
