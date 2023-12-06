@@ -16,7 +16,11 @@ class EmployeeUI:
     def menu_output(self):
 
         self.ui_utils.clear_screen()
-        print(f"[EMPLOYEES]\n")
+        header = f"[EMPLOYEE]"
+        
+        print()
+        print(header)
+        print()
 
         print(f"1. View Employees Options")
         print(f"2. Pilot")
