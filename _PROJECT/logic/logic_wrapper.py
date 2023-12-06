@@ -42,4 +42,12 @@ class LogicWrapper:
     
     def get_all_past_flights(self):
         return self.flight_logic.get_all_past_flights()
+    
+    def print_all_upcoming_flights(self):
+        return self.flight_logic.print_upcoming_flights()
+    
+    def print_all_past_flights(self):
+        return self.flight_logic.print_past_flights()
+
+
 

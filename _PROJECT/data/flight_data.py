@@ -20,6 +20,6 @@ class FlightData:
         with open(self.file_name2, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                upcoming_flight_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure"], row["arrival"], row["aircraft_id"]))
+                upcoming_flight_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure"], row["arrival"]))
         
         return upcoming_flight_list
