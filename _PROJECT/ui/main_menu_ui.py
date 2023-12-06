@@ -1,3 +1,4 @@
+#from logic.logic_wrapper import LogicWrapper
 from logic.logic_wrapper import LogicWrapper
 from ui.employee_ui import EmployeeUI
 from ui.voyage_ui import VoyageUI

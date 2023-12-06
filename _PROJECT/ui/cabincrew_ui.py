@@ -1,4 +1,6 @@
 from logic.logic_wrapper import LogicWrapper
+from model.employee import Employee
+from ui.register_employee_ui import RegisterEmployeeUI
 
 
 class CabinCrewUI:
@@ -24,6 +26,12 @@ class CabinCrewUI:
             if user_input == "q":
                 print("Quitting")
                 break
+
+            elif user_input == "1":
+                register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
+                e = Employee()
+                register_employee_menu.register_cabin_crew(e)   
+
             elif user_input == "2":
                 cabincrews = self.logic_wrapper.get_all_cabincrews()
                 print()

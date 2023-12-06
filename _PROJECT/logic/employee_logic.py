@@ -19,7 +19,10 @@ Rank: {employee.rank}
 """
             else:
                 return f"\nNo Result for '{kennitala}'"
-    
+            
+    def register_employee(self, employee):
+        return self.data_wrapper.register_employee(employee)
+
     def get_all_pilots(self):
         return self.data_wrapper.get_all_pilots()
     
