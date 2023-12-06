@@ -50,3 +50,24 @@ class EmployeeData:
                 if row["role"] == "Cabincrew":
                     cabincrew_list.append(Employee(row["nid"], row["name"], row["role"]))
         return cabincrew_list
+
+    def update_employee_info(self, nid):
+        with open(self.file_name, newline="", encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                return row['address'], row['phone_nr']
+            
+        with open(self.file_name, 'w', newline="", encoding="utf-8") as csvfile:
+            fieldnames = [
+                "role",
+                "rank",
+                "license",
+                "address",
+                "phone_nr",
+            ]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        with open(self.file_name, 'w', newline="", encoding="utf-8") as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(nid)

@@ -14,12 +14,24 @@ class EmployeeLogic:
                 print(f"\nShowing result for {kennitala}\n")
                 return f"""Name: {employee.name}
 Kt: {employee.print_kennitala}
+Address: {employee.address}
 Role: {employee.role}
 Rank: {employee.rank}
 """
             else:
                 return f"\nNo Result for '{kennitala}'"
             
+    def update_employee_info(self, kennitala, address, phone_number):
+        employee = self.data_wrapper.get_employee_by_nid(kennitala)
+        new_address = input("New Address or press [K] to keep old address: ")
+        new_phone_number = input("New Phone Number or press [K] to keep old phone number: ")
+        if new_address != "K":
+            address = new_address
+            return f"{self.employee.address}'s Address is updated successfully."
+        if new_phone_number != "K":
+            phone_number = new_phone_number
+            return f"{self.employee.phone_number}'s Phone Number is updated successfully."
+
     def register_employee(self, employee):
         return self.data_wrapper.register_employee(employee)
 
