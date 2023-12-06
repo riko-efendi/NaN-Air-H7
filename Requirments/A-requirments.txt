@@ -36,6 +36,22 @@ Flight related stuff:
 		- List all voyages for a specific day, and check if they are fully manned
 		- List all voyages for a specific week and check if they are fully manned
 
+
+
+
+CHECK LIST; What has been completed.
+------------------------------------------------------------------------------ |
+Register Cabin Crew ✅                                                          |
+Register Pilot ✅															   |
+List all cabin crew / flight attentand ✅									   |
+List all pilots ✅															   |
+Change employee info -> Incomplete 											    |
+List all non working employees for a specific day -> Incomplete
+List all employees for a specific day and their destination -> Incomplete
+Register destination -> Incomplete
+Register voyage -> Incomplete
+		- # And assign employees, there can be no employees be assigned.
+
 	
 
 
