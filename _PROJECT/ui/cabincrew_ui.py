@@ -6,7 +6,7 @@ from utils.ui_utils import UIUtils
 
 class CabinCrewUI:
     def __init__(self, wrapper) -> None:
-       self.logic_wrapper = LogicWrapper()
+       self.logic_wrapper = wrapper
        self.ui_utils = UIUtils()
 
     def menu_output(self):        
