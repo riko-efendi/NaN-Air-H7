@@ -15,13 +15,3 @@ class Employee:
 
     def __str__(self) -> str:
         return f"{self.name}: {self.role}"
-
-class Pilot(Employee):
-    def __init__(self, rank):
-        super().__init__()
-        self.rank = rank
-
-class CabinCrew(Employee):
-    def __init__(self, rank):
-        super().__init__()
-        self.rank = rank

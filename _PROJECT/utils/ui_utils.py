@@ -1,9 +1,8 @@
 import os
 
-
 class UIUtils:
     
-    def clear_screen():
+    def clear_screen(self):
         os_name = os.name.lower()
         if os_name == 'posix':  # Unix/Linux/MacOS
             os.system("clear")

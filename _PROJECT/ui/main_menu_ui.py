@@ -1,31 +1,30 @@
-#from logic.logic_wrapper import LogicWrapper
 from logic.logic_wrapper import LogicWrapper
 from ui.employee_ui import EmployeeUI
 from ui.voyage_ui import VoyageUI
-#from funclibrary.functions import clear_screen
+
+from utils.ui_utils import UIUtils
 
 class MainMenuUI:
     def __init__(self) -> None:
-       self.logic_wrapper = LogicWrapper()
+        self.logic_wrapper = LogicWrapper()
+        self.ui_utils = UIUtils()
+        self.input_str = "Enter your choice: "
 
     def menu_output(self):
-        header = f"[MAIN]"
-        
-        print()
-        print(header)
-        print()
+        self.ui_utils.clear_screen()
+        print(f"[MAIN]\n")
         print(f"1. Employees")
         print(f"2. Voyage")
-        print(f"q. Quit")
+        print(f"\n[Q]uit")
 
     def input_prompt(self):
         while True:
             self.menu_output()
-            user_input = input("\nEnter your choice: ").lower()
-            #clear_screen()
+            user_input = input("\n" + self.input_str).lower()
             if user_input == "q":
-                print("Quitting")
+                print("\nQUITTING\n")
                 break
+
             elif user_input == "1":
                 employee_menu = EmployeeUI(self.logic_wrapper)
                 back_method = employee_menu.input_prompt()
@@ -39,4 +38,4 @@ class MainMenuUI:
                     return "q"
                 pass
             else:
-                print("Invalid")
+                self. input_str = "Invalid. Enter another choice: "
