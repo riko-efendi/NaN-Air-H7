@@ -35,8 +35,8 @@ class CabinCrewUI:
             elif user_input == "2":
                 cabincrews = self.logic_wrapper.get_all_cabincrews()
                 self.ui_utils.clear_screen()
-                print("[All Pilots]\n")
+                print("[ALL CABIN CREW]\n")
                 for index, cabincrew in enumerate(cabincrews):
                     print(f"{index+1:>2}.{' Name: ':^2}{cabincrew.name:<}, {'Role: '}{cabincrew.role}")
-                input("Press [ENTER] to exit: ")
+                input("\nPress [ENTER] to exit: ")
                 

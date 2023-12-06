@@ -33,7 +33,7 @@ class PilotUI:
             elif user_input == "2":
                 self.ui_utils.clear_screen()
                 pilots = self.logic_wrapper.get_all_pilots()
-                print("[All Pilots]\n")
+                print("[ALL PILOTS]\n")
                 for index, pilot in enumerate(pilots):
                     print(f"{index+1:>2}.{' name: ':^2}{pilot.name:<}, {'Role: '}{pilot.role}")
                 input("\nPress [ENTER] to exit: ")
