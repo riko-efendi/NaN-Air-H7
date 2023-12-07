@@ -6,8 +6,8 @@ class ListEmployeeUI:
         self.ui_utils = UIUtils()
 
     def menu_output(self):
-
-        print(f"[View Employee Options]\n")
+        self.ui_utils.clear_screen()
+        print(f"[VIEW EMPLOYEE OPTIONS]\n")
         print(f"1. View all employees")
         print(f"2. View Employee By Kennitala")
         print(f"3. View Off Duty Employees")
