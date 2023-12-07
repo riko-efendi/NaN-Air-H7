@@ -11,7 +11,6 @@ class DestinationUI:
 
     def menu_output(self):
         self.ui_utils.clear_screen()
-
         print(f"[Destination]\n")
         print(f"1. Register Destination")
         print(f"2. List all destinations")
@@ -27,15 +26,15 @@ class DestinationUI:
 
             elif user_input == "1":
                 d = Destination()
-                print()
-                print("[Create a New Destination]")
-                print()
+                self.ui_utils.clear_screen()
+                print("[Create a New Destination]\n")
                 d.id = input("Enter new destination's id: ")
                 d.destination = input("Enter destination's name: ")
                 d.numeric_id = input("Enter destination's numeric id: ")
                 self.logic_wrapper.create_destination(d)
                 print(f"\n{d.destination} is successfully created.")
             elif user_input == "2":
+                self.ui_utils.clear_screen()
                 destinations = self.logic_wrapper.get_all_destinations()
                 print("[All Destinations]\n")
                 for index, destination in enumerate(destinations):
