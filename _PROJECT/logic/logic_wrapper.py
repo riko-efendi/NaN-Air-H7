@@ -33,9 +33,23 @@ class LogicWrapper:
     def get_all_cabincrews(self):
         return self.employee_logic.get_all_cabincrews()
     
+    def get_all_flightservicemanagers(self):
+        return self.employee_logic.get_all_flightservicemanagers()
+    
+    def get_all_flightattendants(self):
+        return self.employee_logic.get_all_flightattendants()
+    
     def update_employee_info(self, kennitala, address, phone_number):
         return self.employee_logic.update_employee_info(kennitala, address, phone_number)
     
+    def get_all_captain_pilots(self):
+        return self.employee_logic.get_all_captain_pilots()
+    
+    def get_all_pilots_by_license(self, license):
+        return self.employee_logic.get_all_pilots_by_license(license)
+    
+    def get_all_copilots(self):
+        return self.employee_logic.get_all_copilots()
     # DESTINATIONS
 
     def get_all_destinations(self):
@@ -62,5 +76,6 @@ class LogicWrapper:
     def get_all_aircrafts(self):
         return self.aircraft_logic.get_all_aircrafts()
     
-    def get_all_pilots_by_license(self, plane_type):
-        return self.employee_logic.get_all_pilots_by_license(plane_type)
+    
+    
+    

@@ -33,12 +33,13 @@ class DestinationUI:
                 d.numeric_id = input("Enter destination's numeric id: ")
                 self.logic_wrapper.create_destination(d)
                 print(f"\n{d.destination} is successfully created.")
+            
             elif user_input == "2":
                 self.ui_utils.clear_screen()
                 destinations = self.logic_wrapper.get_all_destinations()
                 print("[All Destinations]\n")
                 for index, destination in enumerate(destinations):
-                    print(f"{index+1:>2}.{' name: ':^2}{destination.destination:<}, {'id: '}{destination.id}, {destination.numeric_id}")
+                    print(f"{index+1:>2}. {'id: '}{destination.id}, {destination.destination}, {destination.numeric_id}")
                 input("\nPress [ENTER] to exit: ")
             else:
                 self.input_str = "Invalid. Enter another choice: "
