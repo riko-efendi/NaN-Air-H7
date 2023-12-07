@@ -66,23 +66,18 @@ class ListEmployeeUI:
 
         if option_input == "u":
             self.print_update_employee_info(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
-
             new_address = input("\nNew Address or press [K] to keep old address: ")
+
             if new_address.lower() == "k":
                 new_address = employee.address
-
             self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, employee.phone_number)
-
             new_phone_number = input("\nNew Phone Number or press [K] to keep old phone number: ").lower()
+
             if new_phone_number.lower() == "k":
                 new_phone_number = employee.phone_number
-
             self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, new_phone_number.upper())
-
             self.logic_wrapper.update_employee_info(kennitala_input, new_address, new_phone_number)
-
             print("\nSuccess!")
-
             input("\nPress [ENTER] to confirm: ")
             
         elif option_input == "w":
