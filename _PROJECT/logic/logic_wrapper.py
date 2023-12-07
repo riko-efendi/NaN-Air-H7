@@ -40,3 +40,6 @@ class LogicWrapper:
 
     def get_all_aircrafts(self):
         return self.aircraft_logic.get_all_aircrafts()
+    
+    def get_all_pilots_by_license(self, plane_type):
+        return self.employee_logic.get_all_pilots_by_license(plane_type)

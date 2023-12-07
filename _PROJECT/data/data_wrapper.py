@@ -39,3 +39,6 @@ class DataWrapper:
     
     def get_all_aircrafts(self):
         return self.aircraft_data.read_all_aircrafts()
+    
+    def get_all_pilots_by_license(self, license):
+        return self.employee_data.read_all_pilots_by_license(license)
