@@ -31,3 +31,9 @@ class FlightLogic:
     def print_flights(self, flights):
         for flight in flights:
             print(flight)
+
+    def get_all_flights_from_one_airport(self, airport):
+        return self.data_wrapper.get_all_flights_from_one_airport(airport)
+    
+    def get_employee_past_schedule_by_nid(self, kennitala):
+        return self.data_wrapper.get_employee_past_schedule_by_nid(kennitala)

@@ -40,6 +40,9 @@ class DataWrapper:
     def get_all_flightattendants(self):
         return self.employee_data.read_all_flightattendants()
     
+    def get_employee_past_schedule_by_nid(self, kennitala):
+        return self.flight_data.read_employee_past_schedule_by_nid(kennitala)
+    
     # FLIGHTS
 
     def get_all_past_flights(self):
@@ -47,6 +50,9 @@ class DataWrapper:
     
     def get_all_upcoming_flights(self):
         return self.flight_data.read_all_upcoming_flights()
+    
+    def get_all_flights_from_one_airport(self, airport):
+        return self.flight_data.read_all_flights_from_one_airport(airport)
     
     # DESTINATIONS
     
