@@ -23,7 +23,7 @@ class PilotUI:
         while True:
             self.menu_output()
             user_input = input("\n" + self.input_str).lower()
-            if user_input == "B":
+            if user_input == "b":
                 break
 
             elif user_input == "1":
