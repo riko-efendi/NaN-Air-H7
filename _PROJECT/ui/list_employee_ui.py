@@ -61,17 +61,17 @@ class ListEmployeeUI:
         print(f"[EMPLOYEE INFO]\n")
         self.print_employee(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
 
-        print("\n[U]pdate Info\t[W]ork Schedule\t[B]ack")
-        option_input = input("\nEnter your command: ").lower()
+        print("\n[U]pdate Info\t[W]ork Schedule\t  [B]ack")
+        option_input = input("\nEnter your choice: ").lower()
 
         if option_input == "u":
             self.print_update_employee_info(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
-            new_address = input("\nNew Address or press [K] to keep old address: ")
+            new_address = input("\nEnter a new address or [K]eep old address: ")
 
             if new_address.lower() == "k":
                 new_address = employee.address
             self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, employee.phone_number)
-            new_phone_number = input("\nNew Phone Number or press [K] to keep old phone number: ").lower()
+            new_phone_number = input("\nEnter a new phone number or [K]eep old phone number: ").lower()
 
             if new_phone_number.lower() == "k":
                 new_phone_number = employee.phone_number
