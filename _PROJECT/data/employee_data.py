@@ -5,6 +5,7 @@ from model.employee import Employee
 class EmployeeData:
     def __init__(self) -> None:
         self.file_name = "_PROJECT/files/crew.csv"
+        self.aircraft_file = "_PROJECT/files/aircraft_type.csv"
 
     def read_all_employees(self):
         """Reads names and info from the "crew.csv" file, and returns a list containing that information."""
@@ -50,3 +51,41 @@ class EmployeeData:
                 if row["role"] == "Cabincrew":
                     cabincrew_list.append(Employee(row["nid"], row["name"], row["role"]))
         return cabincrew_list
+    
+    def read_all_pilots_by_license(self, license):
+        pilot_list = []
+        with open(self.file_name, newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                if row["license"] == license:
+                    pilot_list.append(row["name"])
+        
+
+        # aircraft_list = []
+        # with open(self.aircraft_file, newline='', encoding="utf-8") as csvfile:
+        #     reader = csv.DictReader(csvfile)
+        #     for row in reader:
+        #         aircraft_list.append(row["plane_type_id"])
+        
+        return pilot_list
+
+    def update_employee_info(self, nid):
+        with open(self.file_name, newline="", encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                return row['address'], row['phone_nr']
+            
+        with open(self.file_name, 'w', newline="", encoding="utf-8") as csvfile:
+            fieldnames = [
+                "role",
+                "rank",
+                "license",
+                "address",
+                "phone_nr",
+            ]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        with open(self.file_name, 'w', newline="", encoding="utf-8") as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(nid)

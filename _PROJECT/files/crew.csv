@@ -1,4 +1,4 @@
-nid,name,role,rank,licence,address,phone_nr,pref_nr,slot_param
+nid,name,role,rank,license,address,phone_nr,pref_nr,slot_param
 3009907461,William Carillo,Pilot,Captain,NAFokkerF100,Fellsmúli 1,8998801,6,lv70
 2910858778,Virginia Ho,Pilot,Captain,NABAE146,Fellsmúli 2,8998802,2,lv70
 2706838569,Gerard Norris,Pilot,Captain,NAFokkerF100,Fellsmúli 3,8998803,0,pn47
@@ -34,6 +34,3 @@ nid,name,role,rank,licence,address,phone_nr,pref_nr,slot_param
 1110732819,Arthur Karr,Cabincrew,Flight Attendant,N/A,Fellsmúli 33,8998833,1,xc20
 2602806942,Teresa Thruman,Cabincrew,Flight Attendant,N/A,Fellsmúli 34,8998834,1,lv70
 1107951952,Elizabeth Mcfadden,Cabincrew,Flight Attendant,N/A,Fellsmúli 35,8998835,5,au16,
-12312,Rikooo,Pilot,,,sadhfkdsaf,,
-12312123,sakfjsadlk,Pilot,,,ssdjf,,
-132131,gugugu,Pilot,Captain,,sdkalfjsad,329428094,

@@ -19,14 +19,14 @@ class VoyageUI:
         print(f"3. Destination")
         print(f"4. Flight")
         print(f"5. Aircraft")
-        print(f"q. Quit")
+        print(f"\n[B]ack")
+
 
     def input_prompt(self):
         while True:
             self.menu_output()
             user_input = input("\nEnter your choice: ").lower()
-            if user_input == "q":
-                print("Quitting")
+            if user_input == "b":
                 break
             elif user_input == "3":
                 destination_menu = DestinationUI(self.logic_wrapper)

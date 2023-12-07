@@ -1,18 +1,23 @@
 from data.employee_data import EmployeeData
 from data.flight_data import FlightData
 from data.destination_data import DestinationData
+from data.aircraft_data import AircraftData
 
 class DataWrapper:
     def __init__(self) -> None:
         self.employee_data = EmployeeData()
         self.flight_data = FlightData()
         self.destination_data = DestinationData()
+        self.aircraft_data = AircraftData()
 
     def get_all_employees(self):
         return self.employee_data.read_all_employees()
 
     def register_employee(self, employee):
         return self.employee_data.register_employee(employee)
+    
+    def update_employee_info(self, kennitala):
+        return self.employee_data.update_employee_info(kennitala)
 
     def get_all_pilots(self):
         return self.employee_data.read_all_pilots()
@@ -31,3 +36,9 @@ class DataWrapper:
     
     def create_destination(self, destination):
         return self.destination_data.create_destination(destination)
+    
+    def get_all_aircrafts(self):
+        return self.aircraft_data.read_all_aircrafts()
+    
+    def get_all_pilots_by_license(self, license):
+        return self.employee_data.read_all_pilots_by_license(license)
