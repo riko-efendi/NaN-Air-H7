@@ -8,7 +8,7 @@ class EmployeeUI:
     def __init__(self, wrapper) -> None:
        self.logic_wrapper = wrapper
        self.ui_utils = UIUtils()
-       self.input_str = "Enter your choice: "
+       self.input_prompt_str = "Enter your choice: "
 
     def menu_output(self) -> None:
         """Prints out the options for the Employee UI"""
@@ -27,7 +27,7 @@ class EmployeeUI:
 
         while user_input != "b":
             self.menu_output()
-            user_input = input("\n" + self.input_str).lower()
+            user_input = input("\n" + self.input_prompt_str).lower()
 
             if user_input == "1":
                 self.ui_utils.clear_screen()
@@ -43,4 +43,4 @@ class EmployeeUI:
                 cabincrew_menu.input_prompt()
 
             else:
-                self.input_str = "Invalid. Enter another choice: "
+                self.input_prompt_str = "Invalid. Enter another choice: "

@@ -4,7 +4,7 @@ class FlightsUI:
     def __init__(self, logic_connection) -> None:
         self.ui_utils = UIUtils()
         self.logic_wrapper = logic_connection
-        self.input_string = "Enter your choice: "
+        self.input_prompt_str = "Enter your choice: "
 
     def menu_output(self):
         self.ui_utils.clear_screen()
@@ -17,7 +17,7 @@ class FlightsUI:
     def input_prompt(self):
         while True:
             self.menu_output()
-            user_input = input("\n" + self.input_string).lower()
+            user_input = input("\n" + self.input_prompt_str).lower()
 
             if user_input == "1":
                 self.ui_utils.clear_screen()
@@ -35,6 +35,6 @@ class FlightsUI:
                 break
 
             else:
-                self.input_string = "Invalid. Enter another choice: "
+                self.input_prompt_str = "Invalid. Enter another choice: "
 
             

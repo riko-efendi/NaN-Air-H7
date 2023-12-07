@@ -32,7 +32,7 @@ class EmployeeData:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 if row["role"] == "Pilot":
-                    pilot_list.append(Employee(row["nid"], row["name"], row["role"]))
+                    pilot_list.append(Employee(row["nid"], row["name"], row["role"], row["rank"]))
         return pilot_list
     
     def read_all_cabincrews(self):

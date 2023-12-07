@@ -8,7 +8,7 @@ class VoyageUI:
     def __init__(self, logic_connection) -> None:
         self.ui_utils = UIUtils()
         self.logic_wrapper = logic_connection
-        self.input_string = "Enter your choice: "
+        self.input_prompt_str = "Enter your choice: "
 
     def menu_output(self) -> None:
         """Prints out the options for the Voyage UI"""
@@ -29,7 +29,7 @@ class VoyageUI:
 
         while user_input != "b":
             self.menu_output()
-            user_input = input("\n" + self.input_string).lower()
+            user_input = input("\n" + self.input_prompt_str).lower()
 
             if user_input == "3":
                 destination_menu = DestinationUI(self.logic_wrapper)
@@ -44,4 +44,4 @@ class VoyageUI:
                 aircraft_menu.input_prompt()
 
             else:
-                self.input_string = "Invalid. Enter another choice: "
+                self.input_prompt_str = "Invalid. Enter another choice: "

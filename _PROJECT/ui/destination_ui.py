@@ -7,11 +7,11 @@ class DestinationUI:
     def __init__(self, wrapper) -> None:
         self.logic_wrapper = wrapper
         self.ui_utils = UIUtils()
-        self.input_str = "Enter your choice: "
+        self.input_prompt_str = "Enter your choice: "
 
 
     def menu_output(self):
-        """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
+        """Prints out the options for the Destination UI"""
 
         self.ui_utils.clear_screen()
         print(f"[DESTINATION]\n")
@@ -27,14 +27,14 @@ class DestinationUI:
 
         while user_input != "b":
             self.menu_output()
-            user_input = input("\n" + self.input_str).lower()
+            user_input = input("\n" + self.input_prompt_str).lower()
 
             if user_input == "1":
                 self.register_destination()
             elif user_input == "2":
                 self.list_all_destinations()
             else:
-                self.input_str = "Invalid. Enter another choice: "
+                self.input_prompt_str = "Invalid. Enter another choice: "
 
 
     def register_destination(self):
