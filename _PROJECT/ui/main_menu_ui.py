@@ -24,7 +24,7 @@ class MainMenuUI:
 
         user_input = ""
 
-        while user_input != "b":
+        while user_input != "q":
             self.menu_output()
             user_input = input("\n" + self.input_str).lower()
 
