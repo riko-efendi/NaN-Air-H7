@@ -10,7 +10,7 @@ class VoyageUI:
         self.logic_wrapper = logic_connection
         self.input_string = "Enter your choice: "
 
-    def menu_output(self):
+    def menu_output(self) -> None:
         """Prints out the options for the Voyage UI"""
 
         self.ui_utils.clear_screen()
@@ -22,7 +22,7 @@ class VoyageUI:
         print(f"5. Aircraft")
         print(f"\n[B]ack")
 
-    def input_prompt(self):
+    def input_prompt(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
 
         user_input = ""
