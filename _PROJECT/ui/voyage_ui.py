@@ -28,6 +28,10 @@ class VoyageUI:
             user_input = input("\n" + self.input_string).lower()
             if user_input == "q":
                 print("Quitting")
+
+            user_input = input("\nEnter your choice: ").lower()
+            if user_input == "b":
+
                 break
             elif user_input == "3":
                 destination_menu = DestinationUI(self.logic_wrapper)

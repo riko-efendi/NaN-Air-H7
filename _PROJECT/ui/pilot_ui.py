@@ -38,3 +38,9 @@ class PilotUI:
                     print(f"{index+1:>2}.{' name: ':^2}{pilot.name:<}, {'Role: '}{pilot.role}")
                 input("\nPress [ENTER] to exit: ")
 
+            elif user_input == "3":
+                self.ui_utils.clear_screen()
+                plane_type_input = input("Enter Plane Type: ")
+                print(f"\nShowing pilot(s) for {plane_type_input}\n")
+                print(self.logic_wrapper.get_all_pilots_by_license(plane_type_input))
+                input("\nPress [ENTER] to exit: ")
