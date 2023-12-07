@@ -26,7 +26,7 @@ class CabinCrewUI:
 
         user_input = ""
 
-        while user_input != "q":
+        while user_input != "b":
             self.menu_output()
             user_input = input("\nEnter your choice: ").lower()
 

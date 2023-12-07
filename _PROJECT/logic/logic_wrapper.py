@@ -58,9 +58,14 @@ class LogicWrapper:
     
     def print_all_past_flights(self):
         return self.flight_logic.print_past_flights()
+    
+    # AIRCRAFTS
 
     def get_all_aircrafts(self):
         return self.aircraft_logic.get_all_aircrafts()
     
     def get_all_pilots_by_license(self, plane_type):
         return self.employee_logic.get_all_pilots_by_license(plane_type)
+    
+    def get_all_aircraft_type(self):
+        return self.aircraft_logic.get_all_aircraft_type()

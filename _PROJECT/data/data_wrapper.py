@@ -40,6 +40,8 @@ class DataWrapper:
     
     def create_destination(self, destination):
         return self.destination_data.create_destination(destination)
+    
+    # AIRCRAFTS
 
     def get_all_aircrafts(self):
         return self.aircraft_data.read_all_aircrafts()
