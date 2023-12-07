@@ -10,7 +10,9 @@ class CabinCrewUI:
        self.ui_utils = UIUtils()
        
 
-    def menu_output(self):        
+    def menu_output(self) -> None:
+        """Prints out the options for the Cabin Crew UI"""
+        
         self.ui_utils.clear_screen()
         print(f"[CABIN CREW]\n")
         print(f"1. Register cabin crew")
@@ -19,7 +21,7 @@ class CabinCrewUI:
         print(f"\n[B]ack")
 
 
-    def input_prompt(self):
+    def input_prompt(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
 
         user_input = ""
@@ -30,12 +32,11 @@ class CabinCrewUI:
 
             if user_input == "1":
                 self.regist_cabin_crew()
-
             elif user_input == "2":
                 self.list_all_cabin_crew()
 
 
-    def regist_cabin_crew(self):
+    def regist_cabin_crew(self) -> None:
         """Creates an employee and passes it to the Register Employee UI, where it is registered in the crew.csv file"""
 
         e = Employee()
@@ -43,7 +44,7 @@ class CabinCrewUI:
         register_employee_menu.register_cabin_crew(e)   
 
 
-    def list_all_cabin_crew(self):
+    def list_all_cabin_crew(self) -> None:
         """Prints out all cabin crew"""
 
         self.ui_utils.clear_screen()

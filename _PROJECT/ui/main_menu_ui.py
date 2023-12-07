@@ -8,7 +8,7 @@ class MainMenuUI:
     def __init__(self) -> None:
         self.logic_wrapper = LogicWrapper()
         self.ui_utils = UIUtils()
-        self.input_str = "Enter your choice: "
+        self.input_prompt_str = "Enter your choice: "
 
     def menu_output(self) -> None:
         """Prints out the options for the Main Menu UI"""
@@ -26,7 +26,7 @@ class MainMenuUI:
 
         while user_input != "q":
             self.menu_output()
-            user_input = input("\n" + self.input_str).lower()
+            user_input = input("\n" + self.input_prompt_str).lower()
 
             if user_input == "1":
                 employee_menu = EmployeeUI(self.logic_wrapper)
@@ -37,6 +37,6 @@ class MainMenuUI:
                 voyage_menu.input_prompt()
                
             else:
-                self. input_str = "Invalid. Enter another choice: "
+                self. input_prompt_str = "Invalid. Enter another choice: "
 
         print("\nQUITTING")
