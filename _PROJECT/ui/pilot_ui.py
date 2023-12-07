@@ -40,7 +40,22 @@ class PilotUI:
 
             elif user_input == "3":
                 self.ui_utils.clear_screen()
-                plane_type_input = input("Enter Plane Type: ")
-                print(f"\nShowing pilot(s) for {plane_type_input}\n")
-                print(self.logic_wrapper.get_all_pilots_by_license(plane_type_input))
+                license_types = {
+                    "1": "NAFokkerF28",
+                    "2": "NAFokkerF100",
+                    "3": "NABAE146"
+                }
+                print("[Pilot(s) List by License]\n")
+
+                while True:
+                    print("1. NAFokkerF28 2. NAFokkerF100 3. NABAE146")
+                    license_type_input = input("\nEnter License Type (1, 2, or 3): ")
+                    if license_type_input in license_types:
+                        license_type_input = license_types[license_type_input]
+                        break
+                    else:
+                        print("Invalid input. Please enter 1, 2, or 3.")
+
+                print(f"\nShowing pilot(s) for {license_type_input}\n")
+                print(self.logic_wrapper.get_all_pilots_by_license(license_type_input))
                 input("\nPress [ENTER] to exit: ")
