@@ -72,9 +72,17 @@ class LogicWrapper:
     
     def print_all_past_flights(self):
         return self.flight_logic.print_past_flights()
+    
+    def get_all_flights_from_one_airport(self, airport):
+        return self.flight_logic.get_all_flights_from_one_airport(airport)
 
     def get_all_aircrafts(self):
         return self.aircraft_logic.get_all_aircrafts()
+    
+    def get_employee_past_schedule_by_nid(self, kennitala):
+        return self.flight_logic.get_employee_past_schedule_by_nid(kennitala)
+    
+    
     
     
     

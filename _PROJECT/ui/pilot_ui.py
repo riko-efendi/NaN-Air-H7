@@ -15,7 +15,7 @@ class PilotUI:
         print(f"[PILOTS]\n")
         print(f"1. Register pilot")
         print(f"2. List All pilots")
-        print(f"3. View specific pilot")
+        print(f"3. View Pilots by License")
         print(f"4. View All Captain Pilots")
         print(f"5. View All Co-Pilots")
         print(f"\n[B]ack")
@@ -52,16 +52,18 @@ class PilotUI:
                 print("[Pilot(s) List by License]\n")
 
                 while True:
-                    print("1. NAFokkerF28 2. NAFokkerF100 3. NABAE146")
-                    license_type_input = input("\nEnter License Type (1, 2, 3 or b): ")
+                    print("[License Types]\n\n1. NAFokkerF28 2. NAFokkerF100 3. NABAE146")
+                    license_type_input = input("\nEnter License Type (1, 2, or 3): ")
                     if license_type_input in license_types:
                         license_type_input = license_types[license_type_input]
                         break
                     else:
                         print("Invalid input. Please enter 1, 2, or 3.")
 
-                print(f"\nShowing pilot(s) for {license_type_input}\n")
-                print(self.logic_wrapper.get_all_pilots_by_license(license_type_input))
+                print(f"\nShowing pilot(s) for {license_type_input} license\n")
+                licensed_pilots = self.logic_wrapper.get_all_pilots_by_license(license_type_input)
+                for index, licensed_pilot in enumerate(licensed_pilots):
+                    print(f"{index+1:>2}. {licensed_pilot}")
                 input("\nPress [ENTER] to exit: ")
 
             elif user_input == "4":
