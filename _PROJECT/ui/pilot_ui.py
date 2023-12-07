@@ -8,6 +8,7 @@ class PilotUI:
     def __init__(self, wrapper) -> None:
        self.logic_wrapper = wrapper
        self.ui_utils = UIUtils()
+       self.input_str = "Enter your choice: "
 
     def menu_output(self):
         self.ui_utils.clear_screen()
@@ -21,7 +22,7 @@ class PilotUI:
         """ Takes in input from user """
         while True:
             self.menu_output()
-            user_input = input("\nEnter your choice: ").lower()
+            user_input = input("\n" + self.input_str).lower()
             if user_input == "B":
                 break
 
@@ -44,3 +45,6 @@ class PilotUI:
                 print(f"\nShowing pilot(s) for {plane_type_input}\n")
                 print(self.logic_wrapper.get_all_pilots_by_license(plane_type_input))
                 input("\nPress [ENTER] to exit: ")
+            
+            else:
+                self.input_str = "Invaild. Enter another choice: "
