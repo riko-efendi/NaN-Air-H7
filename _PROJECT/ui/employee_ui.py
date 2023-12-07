@@ -10,7 +10,7 @@ class EmployeeUI:
        self.ui_utils = UIUtils()
        self.input_str = "Enter your choice: "
 
-    def menu_output(self):
+    def menu_output(self) -> None:
         """Prints out the options for the Employee UI"""
         
         self.ui_utils.clear_screen()
@@ -20,7 +20,7 @@ class EmployeeUI:
         print(f"3. Cabin Crew")
         print(f"\n[B]ack")
 
-    def input_prompt(self):
+    def input_prompt(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
 
         user_input = ""

@@ -1,9 +1,7 @@
 from ui.destination_ui import DestinationUI
 from ui.aircraft_ui import AircraftUI
 from ui.flights_ui import FlightsUI
-
 from utils.ui_utils import UIUtils
-
 
 
 class VoyageUI:
@@ -13,6 +11,8 @@ class VoyageUI:
         self.input_string = "Enter your choice: "
 
     def menu_output(self):
+        """Prints out the options for the Voyage UI"""
+
         self.ui_utils.clear_screen()
         print(f"[VOYAGE]\n")
         print(f"1. Create Voyage")
@@ -23,32 +23,25 @@ class VoyageUI:
         print(f"\n[B]ack")
 
     def input_prompt(self):
-        while True:
+        """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
+
+        user_input = ""
+
+        while user_input != "b":
             self.menu_output()
             user_input = input("\n" + self.input_string).lower()
-            if user_input == "q":
-                print("Quitting")
 
-            if user_input == "b":
-
-                break
-            elif user_input == "3":
+            if user_input == "3":
                 destination_menu = DestinationUI(self.logic_wrapper)
-                back_method = destination_menu.input_prompt()
-                if back_method == "q":
-                    return "q"
-                pass
+                destination_menu.input_prompt()
 
             elif user_input == "4":
                 flights_menu = FlightsUI(self.logic_wrapper)
-                back_method = flights_menu.input_prompt()
+                flights_menu.input_prompt()
 
             elif user_input == "5":
                 aircraft_menu = AircraftUI(self.logic_wrapper)
-                back_method = aircraft_menu.input_prompt()
-                if back_method == "q":
-                    return "q"
-                pass
+                aircraft_menu.input_prompt()
 
             else:
                 self.input_string = "Invalid. Enter another choice: "
