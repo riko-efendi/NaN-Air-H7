@@ -30,8 +30,9 @@ class VoyageUI:
                 print("Quitting")
 
             if user_input == "b":
-
                 break
+            elif user_input == "1":
+                pass
             elif user_input == "3":
                 destination_menu = DestinationUI(self.logic_wrapper)
                 back_method = destination_menu.input_prompt()

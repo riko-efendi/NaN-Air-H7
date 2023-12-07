@@ -13,9 +13,10 @@ class CabinCrewUI:
         self.ui_utils.clear_screen()
 
         print(f"[CABIN CREW]\n")
-        print(f"1. Register cabin crew")
-        print(f"2. List All cabin crews")
-        print(f"3. View specific cabin crew")
+        print(f"1. Register Cabin Crew")
+        print(f"2. List All Cabin Crews")
+        print(f"3. View All Flight Service Managers")
+        print(f"4. View All Flight Attendants")
         print(f"\n[B]ack")
 
     def input_prompt(self):
@@ -38,5 +39,21 @@ class CabinCrewUI:
                 print("[ALL CABIN CREW]\n")
                 for index, cabincrew in enumerate(cabincrews):
                     print(f"{index+1:>2}.{' Name: ':^2}{cabincrew.name:<}, {'Role: '}{cabincrew.role}")
+                input("\nPress [ENTER] to exit: ")
+
+            elif user_input == "3":
+                managers = self.logic_wrapper.get_all_flightservicemanagers()
+                self.ui_utils.clear_screen()
+                print("[ALL FLIGHT SERVICE MANAGERS]\n")
+                for index, manager in enumerate(managers):
+                    print(f"{index+1:>2}. {manager}")
+                input("\nPress [ENTER] to exit: ")
+
+            elif user_input == "4":
+                attendants = self.logic_wrapper.get_all_flightattendants()
+                self.ui_utils.clear_screen()
+                print("[ALL FLIGHT ATTENDANTS]\n")
+                for index, attendant in enumerate(attendants):
+                    print(f"{index+1:>2}. {attendant}")
                 input("\nPress [ENTER] to exit: ")
                 
