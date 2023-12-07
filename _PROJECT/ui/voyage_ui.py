@@ -29,7 +29,6 @@ class VoyageUI:
             if user_input == "q":
                 print("Quitting")
 
-            user_input = input("\nEnter your choice: ").lower()
             if user_input == "b":
 
                 break
