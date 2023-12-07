@@ -52,7 +52,6 @@ class EmployeeData:
             for row in reader:
                 if row["license"] == license:
                     pilot_list.append(row["name"])
-               
         return pilot_list
 
     def update_employee_info(self, kennitala, address, phone_number):
