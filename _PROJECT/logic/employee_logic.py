@@ -1,5 +1,7 @@
 from data.employee_data import EmployeeData
+from logic.aircraft_logic import AircraftLogic
 from model.employee import Employee
+from model.aircraft import Aircraft
 
 class EmployeeLogic:
     def __init__(self, data_connection) -> None:
@@ -25,3 +27,7 @@ class EmployeeLogic:
     def get_all_cabincrews(self):
         return self.data_wrapper.get_all_cabincrews()
 
+    def get_all_pilots_by_license(self, license):
+        return self.data_wrapper.get_all_pilots_by_license(license)
+
+                    
