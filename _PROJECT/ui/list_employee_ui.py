@@ -34,17 +34,34 @@ class ListEmployeeUI:
 
                 input("\nPress [ENTER] to exit: ")
             elif user_input == "2":
+                self.ui_utils.clear_screen()
                 kennitala_input = input("Enter Employee' Kennitala: ")
-                print(self.logic_wrapper.get_employee_by_nid(kennitala_input))
-
-                print("[U]pdate Info            [W]ork Schedule")
+                employee = self.logic_wrapper.get_employee_by_nid(kennitala_input)
+                employee_name = employee.name
+                self.print_employee(employee)
+                
+                print("[U]pdate Info\t[W]ork Schedule")
                 option_input = input("Enter your command: ").lower()
-                if option_input == "U":
+
+                if option_input == "u":
                     print("[UPDATE EMPLOYEE INFO]\n")
                     new_address = input("New Address or press [K] to keep old address: ")
                     new_phone_number = input("New Phone Number or press [K] to keep old phone number: ")
-                    return self.logic_wrapper.update_employee_info(kennitala_input, new_address, new_phone_number)
+                    self.logic_wrapper.update_employee_info(employee_name, kennitala_input, new_address, new_phone_number)
+                    
+                if option_input == "w":
+                    self.ui_utils.clear_screen()
+                    print("Insert beautiful work schedule here")
+                    input("Press [ENTER] to exit")
             else:
                 print("Invalid")
 
+
+    def print_employee(self, employee):
+        print(f"""Name: {employee.name}
+Kt: {employee.print_kennitala}
+Address: {employee.address}
+Role: {employee.role}
+Rank: {employee.rank}
+""")
     

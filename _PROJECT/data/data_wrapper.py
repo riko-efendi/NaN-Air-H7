@@ -16,8 +16,8 @@ class DataWrapper:
     def register_employee(self, employee):
         return self.employee_data.register_employee(employee)
     
-    def update_employee_info(self, kennitala):
-        return self.employee_data.update_employee_info(kennitala)
+    def update_employee_info(self, employee_name, kennitala, address, phone_number):
+        return self.employee_data.update_employee_info(employee_name, kennitala, address, phone_number)
 
     def get_all_pilots(self):
         return self.employee_data.read_all_pilots()
@@ -39,3 +39,4 @@ class DataWrapper:
     
     def get_all_aircrafts(self):
         return self.aircraft_data.read_all_aircrafts()
+    

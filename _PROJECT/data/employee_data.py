@@ -17,20 +17,12 @@ class EmployeeData:
         return employee_list
     
 
-    def register_employee(self, employee):
+    def register_employee(self, employee) -> None:
+        """Writes employee info oto the crew.csv file"""
 
+        fieldnames = ["nid", "name", "role", "rank", "licence", "address","phone_nr","slot_param"]
         with open(self.file_name, 'a', newline='', encoding="utf-8") as csvfile:
-            fieldnames = ["nid", 
-                          "name", 
-                          "role", 
-                          "rank", 
-                          "licence", 
-                          "address",
-                          "phone_nr",
-                          "slot_param"]
-            
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
             writer.writerow({"nid": employee.kennitala, "name": employee.name, "role": employee.role, "rank":employee.rank, "address": employee.address, "phone_nr": employee.phone_number})
 
     def read_all_pilots(self):
@@ -51,23 +43,20 @@ class EmployeeData:
                     cabincrew_list.append(Employee(row["nid"], row["name"], row["role"]))
         return cabincrew_list
 
-    def update_employee_info(self, nid):
-        with open(self.file_name, newline="", encoding="utf-8") as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                return row['address'], row['phone_nr']
-            
-        with open(self.file_name, 'w', newline="", encoding="utf-8") as csvfile:
-            fieldnames = [
-                "role",
-                "rank",
-                "license",
-                "address",
-                "phone_nr",
-            ]
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-        with open(self.file_name, 'w', newline="", encoding="utf-8") as csvfile:
+    def update_employee_info(self, employee_name, kennitala, address, phone_number):
+        """Updates the info of a specific employee, then re-writes the whole document"""
+        employees = self.read_all_employees()
+        fieldnames = ["nid", "name", "role", "rank", "licence", "address","phone_nr","slot_param"]
+        
+        with open(self.file_name, 'w', newline='', encoding="utf-8") as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            writer.writerows(nid)
+
+        for employee in employees:
+            if employee.kennitala == kennitala:
+                employee.address = address
+                employee.phone_number = phone_number
+            self.register_employee(employee)
+            
+
+            

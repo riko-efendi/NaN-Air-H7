@@ -14,6 +14,8 @@ class LogicWrapper:
         self.destination_logic = DestinationLogic(self.data_wrapper)
         self.aircraft_logic = AircraftLogic(self.data_wrapper)
 
+    # EMPLOYEE
+
     def get_all_employees(self):
         return self.employee_logic.get_all_employees()
 
@@ -28,15 +30,17 @@ class LogicWrapper:
     
     def get_all_cabincrews(self):
         return self.employee_logic.get_all_cabincrews()
+    
+    def update_employee_info(self, employee_name, kennitala, address, phone_number):
+        return self.employee_logic.update_employee_info(employee_name, kennitala, address, phone_number)
+    
+    # DESTINATIONS
 
     def get_all_destinations(self):
         return self.destination_logic.get_all_destinations()
     
     def create_destination(self, destination):
         return self.destination_logic.create_destination(destination)
-    
-    def update_employee_info(self, kennitala, address, phone_number):
-        return self.employee_logic.update_employee_info(kennitala, address, phone_number)
 
     def get_all_aircrafts(self):
         return self.aircraft_logic.get_all_aircrafts()
