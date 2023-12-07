@@ -1,4 +1,4 @@
-nid,name,role,rank,licence,address,phone_nr,slot_param
+nid,name,role,rank,licence,address,phone_nr,
 3009907461,William Carillo,Pilot,Captain,,Fellsmúli 1,8998801,
 2910858778,Virginia Ho,Pilot,Captain,,Fellsmúli 2,8998802,
 2706838569,Gerard Norris,Pilot,Captain,,Fellsmúli 3,8998803,
@@ -35,3 +35,4 @@ nid,name,role,rank,licence,address,phone_nr,slot_param
 2602806942,Teresa Thruman,Cabincrew,Flight Attendant,,Fellsmúli 34,8998834,
 1107951952,Elizabeth Mcfadden,Cabincrew,Flight Attendant,,Fellsmúli 35,8998835,
 1,Elizabeth Mcfadden,Cabincrew,Flight Attendant,,slkdjlksdf,123123,
+2,Blublub,Cabincrew,Flight Attendant,,Skáladklf,1312321,

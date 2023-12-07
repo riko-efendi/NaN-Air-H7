@@ -8,6 +8,7 @@ class CabinCrewUI:
     def __init__(self, wrapper) -> None:
        self.logic_wrapper = wrapper
        self.ui_utils = UIUtils()
+       
 
     def menu_output(self):        
         self.ui_utils.clear_screen()
@@ -18,25 +19,40 @@ class CabinCrewUI:
         print(f"3. View specific cabin crew")
         print(f"\n[B]ack")
 
+
     def input_prompt(self):
-        """ Takes in input from user """
-        while True:
+        """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
+
+        user_input = ""
+
+        while user_input != "q":
             self.menu_output()
             user_input = input("\nEnter your choice: ").lower()
 
-            if user_input == "b":
-                break
-
-            elif user_input == "1":
-                register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
-                e = Employee()
-                register_employee_menu.register_cabin_crew(e)   
+            if user_input == "1":
+                self.regist_cabin_crew()
 
             elif user_input == "2":
-                cabincrews = self.logic_wrapper.get_all_cabincrews()
-                self.ui_utils.clear_screen()
-                print("[ALL CABIN CREW]\n")
-                for index, cabincrew in enumerate(cabincrews):
-                    print(f"{index+1:>2}.{' Name: ':^2}{cabincrew.name:<}, {'Role: '}{cabincrew.role}")
-                input("\nPress [ENTER] to exit: ")
+                self.list_all_cabin_crew()
+
+
+    def regist_cabin_crew(self):
+        """Creates an employee and passes it to the Register Employee UI, where it is registered in the crew.csv file"""
+
+        e = Employee()
+        register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
+        register_employee_menu.register_cabin_crew(e)   
+
+
+    def list_all_cabin_crew(self):
+        """Prints out all cabin crew"""
+
+        self.ui_utils.clear_screen()
+        cabincrews = self.logic_wrapper.get_all_cabincrews()
+
+        print("[ALL CABIN CREW]\n")
+        for index, cabincrew in enumerate(cabincrews):
+            print(f"{index + 1:>2}.{' Name: ':^2}{cabincrew.name:<}, {'Role: '}{cabincrew.role}")
+        input("\nPress [ENTER] to exit: ")
+        
                 
