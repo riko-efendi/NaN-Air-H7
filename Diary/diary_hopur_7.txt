@@ -138,3 +138,31 @@ Today's checklist:
 - get everyone up to speed on git
 - get everyone up to speed on the project
 - error handling?
+
+Attendance:
+ - Gestur Pálsson
+ - Guðni Hrafn Guðlaugsson
+ - Manwin Georg Edselsson
+ - Riko Efendi
+ - Sindri Rafn Bjarkason
+
+---------------------------------------------------------------------------
+
+[6/12/2023 - wed]
+
+Today Guðni worked on the flight, in preperation for the final boss that are the voyages. I created a system that assigns 2 destination classes, one departing and one arriving to a single flight. Which was harder than I ever expected. Meanwhile Riko dwelled into the updating employee info. I (Guðni) helped him at the end fo the day.
+
+Attendance:
+ - Gestur Pálsson
+ - Guðni Hrafn Guðlaugsson
+ - Manwin Georg Edselsson
+ - Riko Efendi
+ - Sindri Rafn Bjarkason
+
+---------------------------------------------------------------------------
+
+[6/12/2023 - thu]
+
+Me and Riko started the day off by succesfully updating employee info!
+
+
