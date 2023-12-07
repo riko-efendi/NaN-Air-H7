@@ -11,7 +11,8 @@ class EmployeeUI:
        self.input_str = "Enter your choice: "
 
     def menu_output(self):
-
+        """Prints out the options for the Employee UI"""
+        
         self.ui_utils.clear_screen()
         print(f"[EMPLOYEES]\n")
         print(f"1. View Employees Options")
