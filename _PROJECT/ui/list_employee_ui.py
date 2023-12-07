@@ -46,8 +46,6 @@ class ListEmployeeUI:
         self.print_employee(name, kennitala, address, role, rank, phone_number)
 
     def print_employee(self, name, kennitala, address, role, rank, phone_number):
-        self.ui_utils.clear_screen()
-        print(f"[EMPLOYEE INFO]\n")
         print(f"Name: {name}")
         print(f"Kt: {kennitala}")
         print(f"Address: {address}")
@@ -59,9 +57,11 @@ class ListEmployeeUI:
         self.ui_utils.clear_screen()
         kennitala_input = input("Enter Employee Kennitala: ")
         employee = self.logic_wrapper.get_employee_by_nid(kennitala_input)
+        self.ui_utils.clear_screen()
+        print(f"[EMPLOYEE INFO]\n")
         self.print_employee(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
 
-        print("\n[U]pdate Info\t[W]ork Schedule")
+        print("\n[U]pdate Info\t[W]ork Schedule\t[B]ack")
         option_input = input("\nEnter your command: ").lower()
 
         if option_input == "u":
@@ -85,3 +85,6 @@ class ListEmployeeUI:
             print(f"[WORK SCHEDULE]\n")
             print("Insert beautiful work schedule here")
             input("Press [ENTER] to exit")
+        
+        elif option_input == "b":
+            return None
