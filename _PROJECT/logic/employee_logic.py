@@ -13,8 +13,8 @@ class EmployeeLogic:
             if kennitala == employee.kennitala:
                 return employee
             
-    def update_employee_info(self, employee_name, kennitala, address, phone_number):
-        return self.data_wrapper.update_employee_info(employee_name, kennitala, address, phone_number)
+    def update_employee_info(self, kennitala, address, phone_number):
+        return self.data_wrapper.update_employee_info(kennitala, address, phone_number)
 
     def register_employee(self, employee):
         return self.data_wrapper.register_employee(employee)

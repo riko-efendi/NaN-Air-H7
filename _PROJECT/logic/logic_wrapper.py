@@ -31,8 +31,8 @@ class LogicWrapper:
     def get_all_cabincrews(self):
         return self.employee_logic.get_all_cabincrews()
     
-    def update_employee_info(self, employee_name, kennitala, address, phone_number):
-        return self.employee_logic.update_employee_info(employee_name, kennitala, address, phone_number)
+    def update_employee_info(self, kennitala, address, phone_number):
+        return self.employee_logic.update_employee_info(kennitala, address, phone_number)
     
     # DESTINATIONS
 

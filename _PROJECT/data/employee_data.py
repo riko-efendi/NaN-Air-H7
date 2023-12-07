@@ -13,7 +13,7 @@ class EmployeeData:
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                employee_list.append(Employee(row["nid"], row["name"], row["role"]))
+                employee_list.append(Employee(row["nid"], row["name"], row["role"], row["rank"], row["address"], row["phone_nr"]))
         return employee_list
     
 
@@ -43,11 +43,11 @@ class EmployeeData:
                     cabincrew_list.append(Employee(row["nid"], row["name"], row["role"]))
         return cabincrew_list
 
-    def update_employee_info(self, employee_name, kennitala, address, phone_number):
+    def update_employee_info(self, kennitala, address, phone_number):
         """Updates the info of a specific employee, then re-writes the whole document"""
         employees = self.read_all_employees()
         fieldnames = ["nid", "name", "role", "rank", "licence", "address","phone_nr","slot_param"]
-        
+
         with open(self.file_name, 'w', newline='', encoding="utf-8") as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
@@ -57,6 +57,4 @@ class EmployeeData:
                 employee.address = address
                 employee.phone_number = phone_number
             self.register_employee(employee)
-            
-
             
