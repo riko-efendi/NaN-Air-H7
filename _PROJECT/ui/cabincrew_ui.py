@@ -12,7 +12,6 @@ class CabinCrewUI:
 
     def menu_output(self):        
         self.ui_utils.clear_screen()
-
         print(f"[CABIN CREW]\n")
         print(f"1. Register cabin crew")
         print(f"2. List All cabin crews")
@@ -49,10 +48,7 @@ class CabinCrewUI:
 
         self.ui_utils.clear_screen()
         cabincrews = self.logic_wrapper.get_all_cabincrews()
-
         print("[ALL CABIN CREW]\n")
         for index, cabincrew in enumerate(cabincrews):
             print(f"{index + 1:>2}.{' Name: ':^2}{cabincrew.name:<}, {'Role: '}{cabincrew.role}")
         input("\nPress [ENTER] to exit: ")
-        
-                
