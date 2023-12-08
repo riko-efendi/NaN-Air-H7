@@ -14,14 +14,10 @@ class LogicWrapper:
         self.data_wrapper = DataWrapper()
         self.employee_logic = EmployeeLogic(self.data_wrapper)
         self.destination_logic = DestinationLogic(self.data_wrapper)
-<<<<<<< HEAD
-        self.aircraft_logic = AircraftLogic(self.data_wrapper)
-=======
         self.flight_logic = FlightLogic(self.data_wrapper)
         self.aircraft_logic = AircraftLogic(self.data_wrapper)
 
     # EMPLOYEE
->>>>>>> 50f6add73441a8db699aaa422da6b0dfba2cce87
 
     
     def get_all_employees(self):

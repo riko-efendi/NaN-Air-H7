@@ -34,11 +34,6 @@ class DataWrapper:
     def get_all_cabincrews(self):
         return self.employee_data.read_all_cabincrews()
     
-<<<<<<< HEAD
-    def get_all_aircrafts(self):
-        return self.aircraft_data.read_all_aicrafts()
-    
-=======
     def get_all_flightservicemanagers(self):
         return self.employee_data.reaf_all_flightservicemanagers()
     
@@ -50,7 +45,6 @@ class DataWrapper:
     
     # FLIGHTS
 
->>>>>>> 50f6add73441a8db699aaa422da6b0dfba2cce87
     def get_all_past_flights(self):
         return self.flight_data.read_all_past_flights()
     
