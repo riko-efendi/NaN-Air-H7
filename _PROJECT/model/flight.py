@@ -6,7 +6,7 @@ Flight base class. Here we give the flight all its variables, and behaviours.
 """
 
 class Flight:
-    def init(self, flight_nr, dep_from, arr_at, departure, arrival, aircraft_id=None) -> None:
+    def __init__(self, flight_nr, dep_from, arr_at, departure, arrival, aircraft_id=None) -> None:
 
         depart_date, depart_time = departure.split(" ")
         arr_date, arr_time = arrival.split(" ")
@@ -25,7 +25,7 @@ class Flight:
         self.arr_time = arr_time
         self.arr_dest = None
 
-    def str(self) -> str:
+    def __str__(self) -> str:
         return_str = f"Flight number: {self.flight_nr}.\nDeparting from:\t{self.dep_from} \t[{self.depart_date} {self.depart_time}]\nArriving at:\t{self.arr_at} \t[{self.arr_date} {self.arr_time}]"
 
         return return_str

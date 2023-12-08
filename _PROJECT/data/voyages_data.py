@@ -1,30 +1,20 @@
 import csv
 
-from model.voyage import Voyage
-
-class VoyageData:
+class VoyagesData:
     def __init__(self) -> None:
-        self.file_name = "_PROJECT/files/voyages.csv"
-
-    def read_all_voyages(self):
-        """Reads names and info from the "voyages.csv" file, and returns a list containing that information."""
-
-        voyage_list = []
-        with open(self.file_name, newline='', encoding="utf-8") as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                voyage_list.append(Voyage(row["name"], row["flight out"], row["flight in"]))
-        return voyage_list
-    
-
-    def create_voyage(self, voyage):
+        self.file_name = "_Projekkdfdlksfj"
+    def register_employee(self, employee):
 
         with open(self.file_name, 'a', newline='', encoding="utf-8") as csvfile:
-            fieldnames = ["name", 
-                          "flight out", 
-                          "flight in"] 
-                          
+            fieldnames = ["nid", 
+                          "name", 
+                          "role", 
+                          "rank", 
+                          "licence", 
+                          "address",
+                          "phone_nr",
+                          "slot_param"]
             
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-            writer.writerow({"name": voyage.name, "flight out": voyage.flight_out, "flight in": voyage.flight_in})
+            writer.writerow({"nid": employee.kennitala, "name": employee.name, "role": employee.role, "rank":employee.rank, "address": employee.address, "phone_nr": employee.phone_number})

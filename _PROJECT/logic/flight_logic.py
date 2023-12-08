@@ -1,5 +1,5 @@
 class FlightLogic:
-    def init(self, data_connection) -> None:
+    def __init__(self, data_connection) -> None:
         self.data_wrapper = data_connection
 
     def get_all_upcoming_flights(self):
@@ -21,7 +21,7 @@ class FlightLogic:
 
 
         return flights
-
+    
     def print_upcoming_flights(self):
         self.print_flights(self.get_all_upcoming_flights())
 
@@ -31,3 +31,9 @@ class FlightLogic:
     def print_flights(self, flights):
         for flight in flights:
             print(flight)
+
+    def get_all_flights_from_one_airport(self, airport):
+        return self.data_wrapper.get_all_flights_from_one_airport(airport)
+    
+    def get_employee_past_schedule_by_nid(self, kennitala):
+        return self.data_wrapper.get_employee_past_schedule_by_nid(kennitala)
