@@ -1,6 +1,3 @@
-from utils.ui_utils import UIUtils
-from model.voyage import Voyage
-
 class CreateVoyageUI():
     def __init__(self, wrapper) -> None:
         self.logic_wrapper = wrapper
@@ -9,10 +6,16 @@ class CreateVoyageUI():
         """Creates a voyage"""
 
         print("\n[CREATE VOYAGE]\n")
-        self.flight_out = input("Input the flight out: ")
-        self.flight_in = input("Input the flight in: ")
-        self.pilot = input("Input the pilot: ")
-        self.cabincrew = input("Input the cabin crew: ")
-        #Add crew(optional?)
+        voyage.flight_out = input("Input the flight out: ")
+        voyage.flight_in = input("Input the flight in: ")
 
-        print(f"\n{self.flight_out}-{self.flight_in} is successfully created.")
+        pilot = input("Input the pilot: ")
+        cabincrew = input("Input the cabin crew: ")
+        if pilot != None: 
+            pass
+        if cabincrew != None:
+            pass
+
+        #Add crew(optional?)
+        self.logic_wrapper.create_voyage(voyage)
+        print(f"\n{voyage.flight_out}-{voyage.flight_in} is successfully created.")

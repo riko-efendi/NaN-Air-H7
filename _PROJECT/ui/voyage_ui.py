@@ -1,6 +1,8 @@
 from ui.destination_ui import DestinationUI
 from ui.aircraft_ui import AircraftUI
 from ui.flights_ui import FlightsUI
+from ui.create_voyage_ui import CreateVoyageUI
+from model.voyage import Voyage
 
 from utils.ui_utils import UIUtils
 
@@ -32,7 +34,11 @@ class VoyageUI:
             if user_input == "b":
                 break
             elif user_input == "1":
-                pass
+                voyage_menu = CreateVoyageUI(self.logic_wrapper)
+                e = Voyage()
+                voyage_menu.create_voyage(e)
+
+
             elif user_input == "3":
                 destination_menu = DestinationUI(self.logic_wrapper)
                 back_method = destination_menu.input_prompt()

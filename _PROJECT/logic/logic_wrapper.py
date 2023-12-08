@@ -4,7 +4,7 @@ from logic.flight_logic import FlightLogic
 from logic.aircraft_logic import AircraftLogic
 from data.data_wrapper import DataWrapper
 from logic.aircraft_logic import AircraftLogic
-
+from logic.voyage_logic import VoyagesLogic
 """
 Employee base class. Here we give the employee all its variables, and behaviours.
 """
@@ -16,10 +16,9 @@ class LogicWrapper:
         self.destination_logic = DestinationLogic(self.data_wrapper)
         self.flight_logic = FlightLogic(self.data_wrapper)
         self.aircraft_logic = AircraftLogic(self.data_wrapper)
+        self.voyage_logic = VoyagesLogic(self.data_wrapper)
 
     # EMPLOYEE
-
-    
     def get_all_employees(self):
         return self.employee_logic.get_all_employees()
 
@@ -52,8 +51,8 @@ class LogicWrapper:
     
     def get_all_copilots(self):
         return self.employee_logic.get_all_copilots()
-    # DESTINATIONS
 
+    # DESTINATIONS
     def get_all_destinations(self):
         return self.destination_logic.get_all_destinations()
     
@@ -65,7 +64,6 @@ class LogicWrapper:
 
     
     # FLIGHTS
-
     def get_all_upcoming_flights(self):
         return self.flight_logic.get_all_upcoming_flights()
     
@@ -86,6 +84,19 @@ class LogicWrapper:
     
     def get_employee_past_schedule_by_nid(self, kennitala):
         return self.flight_logic.get_employee_past_schedule_by_nid(kennitala)
+    
+    #Voyage
+    def find_flight_out():
+        pass
+    
+    def find_flight_in():
+        pass
+
+    def choose_pilot():
+        pass
+
+    def choose_cabin_crew():
+        pass
     
     
     

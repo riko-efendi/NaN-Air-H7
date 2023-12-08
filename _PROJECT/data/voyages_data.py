@@ -1,20 +1,17 @@
-import csv
+from model.employee import Employee
+from model.flight import Flight
 
-class VoyagesData:
+from model.voyage import Voyage
+
+class VoyageData():
     def __init__(self) -> None:
-        self.file_name = "_Projekkdfdlksfj"
-    def register_employee(self, employee):
+        self.filename = "voyages.csv"
+    
+    def list_all_voyages():
+        pass
 
-        with open(self.file_name, 'a', newline='', encoding="utf-8") as csvfile:
-            fieldnames = ["nid", 
-                          "name", 
-                          "role", 
-                          "rank", 
-                          "licence", 
-                          "address",
-                          "phone_nr",
-                          "slot_param"]
-            
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    def create_new_voyage():
+        pass
 
-            writer.writerow({"nid": employee.kennitala, "name": employee.name, "role": employee.role, "rank":employee.rank, "address": employee.address, "phone_nr": employee.phone_number})
+    
+        
