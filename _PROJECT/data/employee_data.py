@@ -52,8 +52,43 @@ class EmployeeData:
             for row in reader:
                 if row["license"] == license:
                     pilot_list.append(row["name"])
-               
         return pilot_list
+    
+    def read_all_captain_pilots(self):
+        captain_list = []
+        with open(self.file_name, newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                if row["rank"] == "Captain":
+                    captain_list.append(row["name"])
+        return captain_list
+    
+    def read_all_copilots(self):
+        copilot_list = []
+        with open(self.file_name, newline="", encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                if row["rank"] == "Copilot":
+                    copilot_list.append(row["name"])
+        return copilot_list
+    
+    def reaf_all_flightservicemanagers(self):
+        flightservice_manager_list = []
+        with open(self.file_name, newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                if row["rank"] == "Flight Service Manager":
+                    flightservice_manager_list.append(row["name"])
+        return flightservice_manager_list
+    
+    def read_all_flightattendants(self):
+        flightattendant_list = []
+        with open(self.file_name, newline='', encoding="utf=8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                if row["rank"] == "Flight Attendant":
+                    flightattendant_list.append(row["name"])
+        return flightattendant_list
 
     def update_employee_info(self, kennitala, address, phone_number):
         """Updates the info of a specific employee, then re-writes the whole document"""

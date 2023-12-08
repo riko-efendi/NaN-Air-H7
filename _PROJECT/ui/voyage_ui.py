@@ -31,7 +31,10 @@ class VoyageUI:
             self.menu_output()
             user_input = input("\n" + self.input_prompt_str).lower()
 
-            if user_input == "3":
+            if user_input == "b":
+                break
+
+            elif user_input == "3":
                 destination_menu = DestinationUI(self.logic_wrapper)
                 destination_menu.input_prompt()
 

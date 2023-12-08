@@ -26,10 +26,20 @@ class EmployeeLogic:
     def get_all_pilots(self):
         return self.data_wrapper.get_all_pilots()
     
+    def get_all_pilots_by_license(self, license):
+        return self.data_wrapper.get_all_pilots_by_license(license)
+    
+    def get_all_captain_pilots(self):
+        return self.data_wrapper.get_all_captain_pilots()
+
+    def get_all_copilots(self):
+        return self.data_wrapper.get_all_copilots()     
+    
     def get_all_cabincrews(self):
         return self.data_wrapper.get_all_cabincrews()
 
-    def get_all_pilots_by_license(self, license):
-        return self.data_wrapper.get_all_pilots_by_license(license)
-
-                    
+    def get_all_flightservicemanagers(self):
+        return self.data_wrapper.get_all_flightservicemanagers()
+    
+    def get_all_flightattendants(self):
+        return self.data_wrapper.get_all_flightattendants()
