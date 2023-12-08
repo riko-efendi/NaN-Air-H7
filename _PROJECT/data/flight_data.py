@@ -1,7 +1,7 @@
 import csv
 
 from model.flight import Flight
->>>>>>> 50f6add73441a8db699aaa422da6b0dfba2cce87
+
 
 class FlightData:
     def __init__(self) -> None:
