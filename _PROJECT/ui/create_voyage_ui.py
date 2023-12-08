@@ -17,5 +17,5 @@ class CreateVoyageUI():
             pass
 
         #Add crew(optional?)
-        self.logic_wrapper.create_voyage(voyage)
+        self.logic_wrapper.create_voyage()
         print(f"\n{voyage.flight_out}-{voyage.flight_in} is successfully created.")

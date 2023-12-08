@@ -86,17 +86,8 @@ class LogicWrapper:
         return self.flight_logic.get_employee_past_schedule_by_nid(kennitala)
     
     #Voyage
-    def find_flight_out():
-        pass
-    
-    def find_flight_in():
-        pass
-
-    def choose_pilot():
-        pass
-
-    def choose_cabin_crew():
-        pass
+    def create_voyage(self):
+        return self.voyage_logic.create_voyage()
     
     
     
