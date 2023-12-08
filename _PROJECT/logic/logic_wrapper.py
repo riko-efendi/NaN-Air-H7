@@ -1,5 +1,7 @@
 from logic.employee_logic import EmployeeLogic
 from logic.destination_logic import DestinationLogic
+from logic.flight_logic import FlightLogic
+from logic.aircraft_logic import AircraftLogic
 from data.data_wrapper import DataWrapper
 from logic.aircraft_logic import AircraftLogic
 
@@ -12,7 +14,14 @@ class LogicWrapper:
         self.data_wrapper = DataWrapper()
         self.employee_logic = EmployeeLogic(self.data_wrapper)
         self.destination_logic = DestinationLogic(self.data_wrapper)
+<<<<<<< HEAD
         self.aircraft_logic = AircraftLogic(self.data_wrapper)
+=======
+        self.flight_logic = FlightLogic(self.data_wrapper)
+        self.aircraft_logic = AircraftLogic(self.data_wrapper)
+
+    # EMPLOYEE
+>>>>>>> 50f6add73441a8db699aaa422da6b0dfba2cce87
 
     
     def get_all_employees(self):
@@ -29,6 +38,25 @@ class LogicWrapper:
     
     def get_all_cabincrews(self):
         return self.employee_logic.get_all_cabincrews()
+    
+    def get_all_flightservicemanagers(self):
+        return self.employee_logic.get_all_flightservicemanagers()
+    
+    def get_all_flightattendants(self):
+        return self.employee_logic.get_all_flightattendants()
+    
+    def update_employee_info(self, kennitala, address, phone_number):
+        return self.employee_logic.update_employee_info(kennitala, address, phone_number)
+    
+    def get_all_captain_pilots(self):
+        return self.employee_logic.get_all_captain_pilots()
+    
+    def get_all_pilots_by_license(self, license):
+        return self.employee_logic.get_all_pilots_by_license(license)
+    
+    def get_all_copilots(self):
+        return self.employee_logic.get_all_copilots()
+    # DESTINATIONS
 
     def get_all_destinations(self):
         return self.destination_logic.get_all_destinations()
@@ -38,3 +66,33 @@ class LogicWrapper:
 
     def create_destination(self, destination):
         return self.destination_logic.create_destination(destination)
+
+    
+    # FLIGHTS
+
+    def get_all_upcoming_flights(self):
+        return self.flight_logic.get_all_upcoming_flights()
+    
+    def get_all_past_flights(self):
+        return self.flight_logic.get_all_past_flights()
+    
+    def print_all_upcoming_flights(self):
+        return self.flight_logic.print_upcoming_flights()
+    
+    def print_all_past_flights(self):
+        return self.flight_logic.print_past_flights()
+    
+    def get_all_flights_from_one_airport(self, airport):
+        return self.flight_logic.get_all_flights_from_one_airport(airport)
+
+    def get_all_aircrafts(self):
+        return self.aircraft_logic.get_all_aircrafts()
+    
+    def get_employee_past_schedule_by_nid(self, kennitala):
+        return self.flight_logic.get_employee_past_schedule_by_nid(kennitala)
+    
+    
+    
+    
+    
+    
