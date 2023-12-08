@@ -1,15 +1,12 @@
 import csv
 
-<<<<<<< HEAD
-#from model.flight import Flight
-=======
 from model.flight import Flight
 >>>>>>> 50f6add73441a8db699aaa422da6b0dfba2cce87
 
 class FlightData:
     def __init__(self) -> None:
-        self.file_name = "_PROJECT/files/past_flights.csv"
-        self.file_name2 = "_PROJECT/files/upcoming_flights.csv"
+        self.file_name = "past_flights.csv"
+        self.file_name2 = "upcoming_flights.csv"
 
     def read_all_past_flights(self):
         past_flight_list = []

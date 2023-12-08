@@ -1,7 +1,6 @@
 from datetime import time
 
 
-
 """
 Flight base class. Here we give the flight all its variables, and behaviours.
 """

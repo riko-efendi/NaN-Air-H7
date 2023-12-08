@@ -1,24 +1,18 @@
 from utils.ui_utils import UIUtils
 from model.voyage import Voyage
 
-
-
-class CreateVoyageUI:
+class CreateVoyageUI():
     def __init__(self, wrapper) -> None:
-        self.logic_wapper = wrapper
-        self.ui_utils = UIUtils
-    def menu_output():
-        header = f"[CREATING VOYAGES]"
-        """We start by giving the user 2 options of either creating or editing the voyage"""
-        print()
-        print(header)
-        print()
-        print(f"1. Create new voyage")
-        print(f"2. Edit voyage")
+        self.logic_wrapper = wrapper
 
-    
-    def input_promt(self):
-        while True: 
-            self.menu_output()
-            user_input =  input("\nEnter your choice: ").lower()
-            # Clears screen ==> self.ui_utils.clear_screen() m  
+    def create_voyage(self, voyage):
+        """Creates a voyage"""
+
+        print("\n[CREATE VOYAGE]\n")
+        self.flight_out = input("Input the flight out: ")
+        self.flight_in = input("Input the flight in: ")
+        self.pilot = input("Input the pilot: ")
+        self.cabincrew = input("Input the cabin crew: ")
+        #Add crew(optional?)
+
+        print(f"\n{self.flight_out}-{self.flight_in} is successfully created.")
