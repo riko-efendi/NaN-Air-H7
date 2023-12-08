@@ -12,32 +12,32 @@ class RegisterEmployeeUI():
         """Registers an employee"""
         
         self.ui_utils.print_employee(employee, header)
-        employee.name = input("Input the employee name: ")
+        employee.name = input(f"Input the {employee.role}'s name: ")
         self.ui_utils.print_employee(employee, header)
-        employee.kennitala = (input("Input the employee kennitala: "))
+        employee.kennitala = (input(f"Input the {employee.role}'s kennitala: "))
         self.ui_utils.print_employee(employee, header)
-        employee.address = input("Input the employees address: ").capitalize()
+        employee.address = input(f"Input the {employee.role}'s address: ").capitalize()
         self.ui_utils.print_employee(employee, header)
 
         if employee.role == "Pilot":
-            e_rank = input("Is the employee: \n1. Captain\n2. Copilot\nEnter your choice: ")
+            e_rank = input(f"Is the {employee.role}: \n1. Captain\n2. Copilot\nEnter your choice: ")
             while e_rank != "1" and e_rank != "2":
-                e_rank = input("Is the employee: \n1. Captain\n2. Copilot\nInvalid. Choose either 1 or 2: ")
+                e_rank = input(f"Is the {employee.role}'s: \n1. Captain\n2. Copilot\nInvalid. Choose either 1 or 2: ")
             if e_rank == "1":
                 employee.rank = "Captain"
             elif e_rank == "2":
                 employee.rank = "Copilot"
         else:
-            e_rank = input("Is the employee: \n1. Flight Service Manager\n2. Flight Attendant\nEnter your choice: ")
+            e_rank = input(f"Is the {employee.role}: \n1. Flight Service Manager\n2. Flight Attendant\nEnter your choice: ")
             while e_rank != "1" and e_rank != "2":
-                e_rank = input("Is the employee: \n1. Flight Service Manager\n2. Flight Attendant\nInvalid. Choose either 1 or 2: ")
+                e_rank = input(f"Is the {employee.role}: \n1. Flight Service Manager\n2. Flight Attendant\nInvalid. Choose either 1 or 2: ")
             if e_rank == "1":
                 employee.rank = "Flight Service Manager"
             elif e_rank == "2":
                 employee.rank = "Flight Attendant"
                 
         self.ui_utils.print_employee(employee, header)
-        employee.phone_number = input("Input the employees phone number: ")
+        employee.phone_number = input(f"Input the {employee.role}'s phone number: ")
         self.ui_utils.print_employee(employee, header)
         self.logic_wrapper.register_employee(employee)
         input(f"{employee.name} is successfully created! Press [ENTER] to exit: ")
