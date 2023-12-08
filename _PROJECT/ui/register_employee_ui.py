@@ -9,7 +9,7 @@ class RegisterEmployeeUI():
         self.ui_utils = UIUtils()
 
     def register_employee(self, employee:Employee, header:str):
-        """Registers a pilot"""
+        """Registers an employee"""
         
         self.ui_utils.print_employee(employee, header)
         employee.name = input("Input the employee name: ")
@@ -41,4 +41,3 @@ class RegisterEmployeeUI():
         self.ui_utils.print_employee(employee, header)
         self.logic_wrapper.register_employee(employee)
         input(f"{employee.name} is successfully created! Press [ENTER] to exit: ")
-
