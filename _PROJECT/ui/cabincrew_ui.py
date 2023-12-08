@@ -30,8 +30,8 @@ class CabinCrewUI:
 
             elif user_input == "1":
                 register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
-                e = Employee()
-                register_employee_menu.register_cabin_crew(e)   
+                e = Employee(role="Cabincrew")
+                register_employee_menu.register_employee(e, "[REGISTER CABIN CREW]")   
 
             elif user_input == "2":
                 cabincrews = self.logic_wrapper.get_all_cabincrews()

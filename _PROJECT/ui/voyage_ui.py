@@ -16,7 +16,7 @@ class VoyageUI:
         self.ui_utils.clear_screen()
         print(f"[VOYAGE]\n")
         print(f"1. Create Voyage")
-        print(f"2. List Voyage")
+        print(f"2. List Past Voyages")
         print(f"3. Destination")
         print(f"4. Flights")
         print(f"5. Aircraft")
@@ -31,25 +31,32 @@ class VoyageUI:
 
             if user_input == "b":
                 break
-            elif user_input == "1":
-                pass
+
+            elif user_input == "2":
+                self.ui_utils.clear_screen()
+                voyages = self.logic_wrapper.get_all_past_voyages()
+                print("[ALL PAST VOYAGES]\n")
+
+                for voyage in voyages:
+                    print(voyage)
+                input("\nPress [ENTER] to exit: ")
+
             elif user_input == "3":
                 destination_menu = DestinationUI(self.logic_wrapper)
-                back_method = destination_menu.input_prompt()
-                if back_method == "q":
-                    return "q"
-                pass
+                destination_menu.input_prompt()
 
             elif user_input == "4":
                 flights_menu = FlightsUI(self.logic_wrapper)
-                back_method = flights_menu.input_prompt()
+                flights_menu.input_prompt()
 
             elif user_input == "5":
                 aircraft_menu = AircraftUI(self.logic_wrapper)
-                back_method = aircraft_menu.input_prompt()
-                if back_method == "q":
-                    return "q"
-                pass
+                aircraft_menu.input_prompt()
 
             else:
                 self.input_string = "Invalid. Enter another choice: "
+
+            
+
+
+

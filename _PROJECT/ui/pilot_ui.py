@@ -30,8 +30,8 @@ class PilotUI:
 
             elif user_input == "1":
                 register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
-                e = Employee()
-                register_employee_menu.register_pilot(e)   
+                e = Employee(role="Pilot")
+                register_employee_menu.register_employee(e, "[REGISTER PILOT]")   
 
             elif user_input == "2":
                 self.ui_utils.clear_screen()
