@@ -31,15 +31,8 @@ class VoyageUI:
 
             if user_input == "b":
                 break
-<<<<<<< HEAD
-            elif user_input == "2":
-                pass
-
-            
-=======
             elif user_input == "1":
                 pass
->>>>>>> 50f6add73441a8db699aaa422da6b0dfba2cce87
             elif user_input == "3":
                 destination_menu = DestinationUI(self.logic_wrapper)
                 back_method = destination_menu.input_prompt()

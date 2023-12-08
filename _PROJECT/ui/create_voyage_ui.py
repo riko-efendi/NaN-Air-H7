@@ -1,4 +1,4 @@
-from utils.utils import UIUtils
+from utils.ui_utils import UIUtils
 from model.voyage import Voyage
 
 
