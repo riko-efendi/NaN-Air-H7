@@ -1,10 +1,4 @@
 
-from data.employee_data import EmployeeData
-from logic.aircraft_logic import AircraftLogic
-
-
-from model.employee import Employee
-from model.aircraft import Aircraft
 
 class EmployeeLogic:
     def __init__(self, data_connection) -> None:
