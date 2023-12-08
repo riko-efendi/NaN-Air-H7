@@ -1,7 +1,7 @@
 from logic.logic_wrapper import LogicWrapper
 from ui.employee_ui import EmployeeUI
 from ui.voyage_ui import VoyageUI
-
+from ui.NaN_Air_Ascii import ART # þetta er Logo-ið
 from utils.ui_utils import UIUtils
 
 class MainMenuUI:
@@ -9,9 +9,11 @@ class MainMenuUI:
         self.logic_wrapper = LogicWrapper()
         self.ui_utils = UIUtils()
         self.input_str = "Enter your choice: "
+        self.ascii = ART
 
     def menu_output(self):
         self.ui_utils.clear_screen()
+        print(f"{ART}") # Hér er logo-ið að printast, getum alltaf breytt logo-inu. 
         print(f"[MAIN]\n")
         print(f"1. Employees")
         print(f"2. Voyage")

@@ -1,6 +1,6 @@
 from logic.logic_wrapper import LogicWrapper
 from ui.destination_ui import DestinationUI
-from ui.aircraft_ui import AircraftUI
+from ui.all_lists_UI import List
 #from funclibrary.functions import clear_screen
 
 
@@ -8,7 +8,10 @@ class VoyageUI:
     def __init__(self, wrapper) -> None:
         self.logic_wrapper = wrapper
 
+
     def menu_output(self):
+       
+
         header = f"[VOYAGE]"
         
         print()
@@ -28,6 +31,11 @@ class VoyageUI:
             if user_input == "q":
                 print("Quitting")
                 break
+            elif user_input == "2":
+                file_name = "_PROJECT/files/destinations.csv"
+                list_instance = List(file_name)
+                
+
             elif user_input == "3":
                 destination_menu = DestinationUI(self.logic_wrapper)
                 back_method = destination_menu.input_prompt()

@@ -1,59 +1,49 @@
 Employee related stuff:
 
-	Register employee
-		Register either as a pilot or a flight attentand
-	Register pilot
-	Register cabin crew / fligth attentand
+	Register employee 
+		Register either as a pilot or a flight attentand 
+	Register pilot 
+	Register cabin crew / fligth attentand 
 
-	List all employees
-	List all pilots
-	List all cabin crew / flight attentand
+	List all employees 
+	List all pilots 
+	List all cabin crew / flight attentand 
 
-	List info for a given employee (by kennitala?)
+	List info for a given employee (by kennitala?) -> in the works
 
-	Change employee info
+	Change employee info -> in the works
 
-	List all non working employees for a specific day
-	List all employees for a specific day and their destination
+	List all non working employees for a specific day -> Not Done, happens after voyages are created
+	List all employees for a specific day and their destination -> Not Done, happens after voyages are created
 
 	Print out work schedule, showing all voyages for said employee of a certain week (would that be a part of info?)
-	Calendar?
+	Calendar? -> Not Done, happens after voyages are created
 
 ------------------------------------------------------------------------
 
 Flight related stuff:
 
-	Register destination (how?)
-	Register voyage
+	Register destination (how?) 
+	Register voyage -> in the works
 		- And assign employees, there can be no employees be assigned.
 	
-	Edit voyage
-		- Add employees
+	Edit voyage -> Not Done, happens after voyages are created
+		- Add employees -> Not Done, happens after voyages are created
 
-	List voyage with following condition:
+	Create Flight -> Not Done
+
+
+	List voyage with following condition: -> Not Done, happens after voyages are created
 		- Employees can only take one voyage per day. Not possible to assign the same employee for two voyages per day
 		- Each voyage should have at least 2 pilots (one chief and one co-pilot).
 		- List all voyages for a specific day, and check if they are fully manned
 		- List all voyages for a specific week and check if they are fully manned
 
 
-
-
-CHECK LIST; What has been completed.
------------------------------------------------------------------------------- |
-Register Cabin Crew ✅                                                          |
-Register Pilot ✅															   |
-List all cabin crew / flight attentand ✅									   |
-List all pilots ✅															   |
-Change employee info -> Incomplete 											    |
-List all non working employees for a specific day -> Incomplete
-List all employees for a specific day and their destination -> Incomplete
-Register destination -> Incomplete
-Register voyage -> Incomplete
-		- # And assign employees, there can be no employees be assigned.
-
-	
-
-
-
-
+USER INTERFACE; 
+Ascii art when appropriate 
+all data should be laid out in a way that is appealing to the eye
+from every frame there should be functions that allow the user to go back one page and also restart the program
+if the program is restarted the data already registered should not be deleted but rather saved
+when all voyages have been created we should be able to give out a list of all off and on duty employees
+color scheme?
