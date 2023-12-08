@@ -37,7 +37,6 @@ class AircraftUI:
     def list_all_aircarfts(self):
         """Lists all aircrafts from the aircraft.csv file"""
 
-
         self.ui_utils.clear_screen()
         aircrafts = self.logic_wrapper.get_all_aircrafts()
         print("[ALL AIRCRAFTS]\n")
