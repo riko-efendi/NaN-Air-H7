@@ -13,7 +13,7 @@ class VoyageData:
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                voyage_list_list.append(Employee(row["name"], row["flight out"], row["flight in"]))
+                voyage_list.append(Voyage(row["name"], row["flight out"], row["flight in"]))
         return voyage_list
     
 

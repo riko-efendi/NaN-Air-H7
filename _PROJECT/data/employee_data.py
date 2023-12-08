@@ -4,7 +4,7 @@ from model.employee import Employee
 
 class EmployeeData:
     def __init__(self) -> None:
-        self.file_name = "_PROJECT/files/crew.csv"
+        self.file_name = "crew.csv"
 
     def read_all_employees(self):
         """Reads names and info from the "crew.csv" file, and returns a list containing that information."""

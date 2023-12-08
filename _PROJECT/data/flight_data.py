@@ -3,8 +3,8 @@ from model.flight import Flight
 
 class FlightData:
     def __init__(self) -> None:
-        self.file_name = "_PROJECT/files/past_flights.csv"
-        self.file_name2 = "_PROJECT/files/upcoming_flights.csv"
+        self.file_name = "past_flights.csv"
+        self.file_name2 = "upcoming_flights.csv"
 
     def read_all_past_flights(self):
         past_flight_list = []
@@ -27,7 +27,7 @@ class FlightData:
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader():
-                flight_out_id = 
+                pass
         #find flight out ID
 
 
