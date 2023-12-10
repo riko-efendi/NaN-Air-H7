@@ -4,6 +4,8 @@ from logic.flight_logic import FlightLogic
 from logic.aircraft_logic import AircraftLogic
 from data.data_wrapper import DataWrapper
 
+from model.destination import Destination
+
 """
 Employee base class. Here we give the employee all its variables, and behaviours.
 """
@@ -38,8 +40,9 @@ class LogicWrapper:
     
     # DESTINATIONS
 
-    def get_all_destinations(self):
-        return self.destination_logic.get_all_destinations()
+    def get_all_destinations(self, include_kef:bool=True, as_dict=False) -> list[Destination]:
+        """Returns all destinations, with an optional arguement to include KEF airport or not"""
+        return self.destination_logic.get_all_destinations(include_kef, as_dict)
     
     def create_destination(self, destination):
         return self.destination_logic.create_destination(destination)
@@ -58,6 +61,10 @@ class LogicWrapper:
     
     def print_all_past_flights(self):
         return self.flight_logic.print_past_flights()
+    
+    def generate_flight_nr(self):
+        """Generates a unique random flight number"""
+        return self.flight_logic.generate_flight_nr()
     
     # AIRCRAFTS
 

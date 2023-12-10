@@ -1,5 +1,11 @@
+from data.data_wrapper import DataWrapper
+
+from model.flight import Flight
+
+import random
+
 class FlightLogic:
-    def __init__(self, data_connection) -> None:
+    def __init__(self, data_connection:DataWrapper) -> None:
         self.data_wrapper = data_connection
 
     def get_all_upcoming_flights(self):
@@ -37,3 +43,17 @@ class FlightLogic:
     
     def get_employee_past_schedule_by_nid(self, kennitala):
         return self.data_wrapper.get_employee_past_schedule_by_nid(kennitala)
+    
+
+    def generate_flight_nr(self):
+        """Generates a unique random flight number"""
+
+        four_digit_random_number = random.randrange(1000, 10000)
+        four_digit_random_number = "WRONGNA" + str(four_digit_random_number)
+        all_flight_nr = self.data_wrapper.get_all_flight_nr()
+
+        while four_digit_random_number in all_flight_nr:
+            four_digit_random_number = random.randrange(1000, 10000)
+            four_digit_random_number = "WRONGNA" + str(four_digit_random_number)
+
+        return four_digit_random_number

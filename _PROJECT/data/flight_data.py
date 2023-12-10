@@ -4,8 +4,8 @@ from model.flight import Flight
 
 class FlightData:
     def __init__(self) -> None:
-        self.file_name = "_PROJECT/files/past_flights.csv"
-        self.file_name2 = "_PROJECT/files/upcoming_flights.csv"
+        self.file_name_past = "_PROJECT/files/past_flights.csv"
+        self.file_name_upcoming = "_PROJECT/files/upcoming_flights.csv"
 
     def read_all_past_flights(self):
         past_flight_list = []
@@ -17,7 +17,7 @@ class FlightData:
         
     def read_all_upcoming_flights(self):
         upcoming_flight_list = []
-        with open(self.file_name2, newline="", encoding="utf-8") as csvfile:
+        with open(self.file_name_upcoming, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 upcoming_flight_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure"], row["arrival"]))
@@ -26,7 +26,7 @@ class FlightData:
     
     def read_all_flights_from_one_airport(self, airport):
         all_flights_from_one_airport_list = []
-        with open(self.file_name2, newline='', encoding="utf-8") as csvfile:
+        with open(self.file_name_upcoming, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 if row["dep_from"] == airport:
@@ -41,3 +41,23 @@ class FlightData:
                 if row["captain"] == kennitala or row["copilot"] == kennitala or row["fsm"] == kennitala or row["fa1"] == kennitala or row["fa2"] == kennitala:
                     schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure"], row["arrival"], row["aircraft_id"]))
         return schedule_list
+    
+
+    
+    # def register_flight(self, flight:Flight) -> None:
+    #     """Writes employee info onto the crew.csv file"""
+
+    #     with open(self.file_name_upcoming, 'a', newline='', encoding="utf-8") as csvfile:
+    #         writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
+    #         writer.writerow({"flight_nr": flight.flight_nr, "dep_from": flight.dep_from, "arr_at": flight.arr_at, "departure": flight.})
+
+
+    def read_all_flight_nr(self):
+        """Returns a list of all flight numbers"""
+        flight_nrs = []
+
+        with open(self.file_name_upcoming, newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                flight_nrs.append(row["flight_nr"])
+        return flight_nrs

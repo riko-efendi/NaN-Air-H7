@@ -11,7 +11,7 @@ class DestinationData:
         with open(self.file_name, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                destination_list.append(Destination(row["id"], row["destination"], row["numeric_id"]))
+                destination_list.append(Destination(row["id"], row["destination"], row["numeric_id"], row["flight_time_from_kef"]))
         return destination_list
     
     def create_destination(self, destination):

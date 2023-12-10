@@ -54,6 +54,10 @@ class DataWrapper:
     def get_all_flights_from_one_airport(self, airport):
         return self.flight_data.read_all_flights_from_one_airport(airport)
     
+    def get_all_flight_nr(self):
+        return self.flight_data.read_all_flight_nr()
+    
+    
     # DESTINATIONS
     
     def get_all_destinations(self):

@@ -21,7 +21,7 @@ class EmployeeData:
     
 
     def register_employee(self, employee) -> None:
-        """Writes employee info oto the crew.csv file"""
+        """Writes employee info onto the crew.csv file"""
 
         with open(self.file_name, 'a', newline='', encoding="utf-8") as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
