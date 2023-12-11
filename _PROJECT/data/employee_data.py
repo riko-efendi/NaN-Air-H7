@@ -80,7 +80,7 @@ class EmployeeData:
         with open(self.past_flight_file, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                depart_date, _ = row["departure"].split(" ")
+                depart_date = row["departure_date"]
                 if depart_date == date:
-                    past_schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure"], row["arrival"], row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"], row["aircraft_id"]))
+                    past_schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure_date"], row["departure_time"], row["arrival_date"], row["arrival_time"], row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"], row["aircraft_id"]))
         return past_schedule_list

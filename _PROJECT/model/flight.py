@@ -7,10 +7,8 @@ Flight base class. Here we give the flight all its variables, and behaviours.
 """
 
 class Flight:
-    def __init__(self, flight_nr, dep_from, arr_at, departure, arrival, captain, copilot, fsm, fa1, fa2, aircraft_id=None) -> None:
+    def __init__(self, flight_nr="", dep_from="", arr_at="", departure_date="", departure_time="", arrival_date="", arrival_time="", captain="", copilot="", fsm="", fa1="", fa2="", aircraft_id=None) -> None:
 
-        depart_date, depart_time = departure.split(" ")
-        arr_date, arr_time = arrival.split(" ")
        
         self.flight_nr = flight_nr
         self.aircraft_id = aircraft_id
@@ -19,15 +17,15 @@ class Flight:
         # DEPARTURE
         
         self.dep_from = dep_from
-        self.depart_date = depart_date
-        self.depart_time = depart_time
+        self.depart_date = departure_date
+        self.depart_time = departure_time
         self.depart_dest = None
 
         # ARRIVAL
         
         self.arr_at = arr_at
-        self.arr_date = arr_date
-        self.arr_time = arr_time
+        self.arr_date = arrival_date
+        self.arr_time = arrival_time
         self.arr_dest = None
 
         #FLIGHT CREW
