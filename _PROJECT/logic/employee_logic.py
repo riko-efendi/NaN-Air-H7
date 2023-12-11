@@ -2,7 +2,7 @@ class EmployeeLogic:
     def __init__(self, data_connection) -> None:
         self.data_wrapper = data_connection
 
-    def get_all_employees(self) -> list[Employee]:
+    def get_all_employees(self):
         """returns a list of all employees, as well as injects previous flights into the employee class."""
         past_flights = self.data_wrapper.get_all_past_flights()
         employees = self.data_wrapper.get_all_employees()

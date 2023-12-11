@@ -5,15 +5,10 @@ from model.aircraft import Aircraft
 
 class EmployeeData:
     def __init__(self) -> None:
-<<<<<<< HEAD
         self.file_name = "crew.csv"
         self.aircraft_file = "aircraft_type.csv"
-=======
-        self.file_name = "_PROJECT/files/crew.csv"
-        self.aircraft_file = "_PROJECT/files/aircraft_type.csv"
         self.fieldnames = ["nid", "name", "role", "rank", "licence", "address","phone_nr","slot_param"]
 
->>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
 
     def read_all_employees(self):
         """Reads names and info from the "crew.csv" file, and returns a list containing that information."""

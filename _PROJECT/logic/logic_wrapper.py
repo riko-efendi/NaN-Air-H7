@@ -4,15 +4,10 @@ from logic.flight_logic import FlightLogic
 from logic.aircraft_logic import AircraftLogic
 from logic.voyages_logic import VoyageLogic
 from data.data_wrapper import DataWrapper
-<<<<<<< HEAD
 from logic.aircraft_logic import AircraftLogic
 from logic.voyage_logic import VoyagesLogic
-=======
 from model.destination import Destination
 
-from model.destination import Destination
-
->>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
 """
 Employee base class. Here we give the employee all its variables, and behaviours.
 """
@@ -24,11 +19,8 @@ class LogicWrapper:
         self.destination_logic = DestinationLogic(self.data_wrapper)
         self.flight_logic = FlightLogic(self.data_wrapper)
         self.aircraft_logic = AircraftLogic(self.data_wrapper)
-<<<<<<< HEAD
         self.voyage_logic = VoyagesLogic(self.data_wrapper)
-=======
         self.voyage_logic = VoyageLogic(self.data_wrapper)
->>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
 
     # EMPLOYEE
     def get_all_employees(self):
@@ -49,26 +41,6 @@ class LogicWrapper:
     def update_employee_info(self, kennitala, address, phone_number):
         return self.employee_logic.update_employee_info(kennitala, address, phone_number)
     
-<<<<<<< HEAD
-    def get_all_captain_pilots(self):
-        return self.employee_logic.get_all_captain_pilots()
-    
-    def get_all_pilots_by_license(self, license):
-        return self.employee_logic.get_all_pilots_by_license(license)
-    
-    def get_all_copilots(self):
-        return self.employee_logic.get_all_copilots()
-
-    # DESTINATIONS
-    def get_all_destinations(self):
-        return self.destination_logic.get_all_destinations()
-    
-    def get_all_aircrafts(self):
-        return self.aircraft_logic.get_all_aircrafts()
-
-    def create_destination(self, destination):
-        return self.destination_logic.create_destination(destination)
-=======
     # DESTINATIONS
 
     def get_all_destinations(self, include_kef:bool=True, as_dict=False) -> list[Destination]:
@@ -77,7 +49,6 @@ class LogicWrapper:
     
     def register_destination(self, destination:Destination):
         return self.destination_logic.register_destination(destination)
->>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
 
     
     # FLIGHTS
@@ -106,7 +77,6 @@ class LogicWrapper:
     def get_all_aircrafts(self):
         return self.aircraft_logic.get_all_aircrafts()
     
-<<<<<<< HEAD
     def get_employee_past_schedule_by_nid(self, kennitala):
         return self.flight_logic.get_employee_past_schedule_by_nid(kennitala)
     
@@ -117,10 +87,8 @@ class LogicWrapper:
     
     
     
-=======
     def get_all_pilots_by_license(self, plane_type):
         return self.employee_logic.get_all_pilots_by_license(plane_type)
->>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
     
     def get_all_aircraft_type(self):
         return self.aircraft_logic.get_all_aircraft_type()

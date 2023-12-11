@@ -4,12 +4,8 @@ from model.flight import Flight
 
 class FlightData:
     def __init__(self) -> None:
-<<<<<<< HEAD
-        self.file_name = "past_flights.csv"
-        self.file_name2 = "upcoming_flights.csv"
-=======
-        self.file_name_past = "_PROJECT/files/past_flights.csv"
-        self.file_name_upcoming = "_PROJECT/files/upcoming_flights.csv"
+        self.file_name_past = "past_flights.csv"
+        self.file_name_upcoming = "upcoming_flights.csv"
         self.fieldnames = ["flight_nr", 
                            "dep_from", 
                            "arr_at", 
@@ -17,7 +13,6 @@ class FlightData:
                            "departure_time", 
                            "arrival_date", 
                            "arrival_time"]
->>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
 
     def read_all_past_flights(self):
         past_flight_list = []
@@ -70,10 +65,6 @@ class FlightData:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 if row["captain"] == kennitala or row["copilot"] == kennitala or row["fsm"] == kennitala or row["fa1"] == kennitala or row["fa2"] == kennitala:
-<<<<<<< HEAD
-                    schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure"], row["arrival"], row["aircraft_id"]))
-        return schedule_list
-=======
                     schedule_list.append(Flight(row["flight_nr"], 
                                                 row["dep_from"], 
                                                 row["arr_at"], 
@@ -107,4 +98,3 @@ class FlightData:
             for row in reader:
                 flight_nrs.append(row["flight_nr"])
         return flight_nrs
->>>>>>> eead74ee80ec091cc353a879a80a68552811e54a

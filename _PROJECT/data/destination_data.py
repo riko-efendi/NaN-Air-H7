@@ -4,12 +4,8 @@ from model.destination import Destination
 
 class DestinationData:
     def __init__(self) -> None:
-<<<<<<< HEAD
         self.file_name = "destinations.csv"
-=======
-        self.file_name = "_PROJECT/files/destinations.csv"
         self.fieldnames = ["id", "destination", "numeric_id", "flight_time_from_kef"]
->>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
 
     def read_all_destinations(self):
         destination_list = []

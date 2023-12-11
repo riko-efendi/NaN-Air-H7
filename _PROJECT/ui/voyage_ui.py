@@ -2,12 +2,9 @@ from ui.destination_ui import DestinationUI
 from ui.aircraft_ui import AircraftUI
 from ui.flights_ui import FlightsUI
 from ui.create_voyage_ui import CreateVoyageUI
-<<<<<<< HEAD
 from model.voyage import Voyage
 
-=======
 from ui.voyage_list_ui import VoyageListUI
->>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
 from utils.ui_utils import UIUtils
 
 from logic.logic_wrapper import LogicWrapper
@@ -35,22 +32,6 @@ class VoyageUI:
     def input_prompt(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
 
-<<<<<<< HEAD
-            if user_input == "b":
-                break
-            elif user_input == "1":
-                voyage_menu = CreateVoyageUI(self.logic_wrapper)
-                e = Voyage()
-                voyage_menu.create_voyage(e)
-
-
-            elif user_input == "3":
-                destination_menu = DestinationUI(self.logic_wrapper)
-                back_method = destination_menu.input_prompt()
-                if back_method == "q":
-                    return "q"
-                pass
-=======
         user_input = ""
 
         while user_input != "b":
@@ -64,7 +45,6 @@ class VoyageUI:
             elif user_input =="2":
                 voyage_list_ui = VoyageListUI(self.logic_wrapper)
                 voyage_list_ui.input_prompt()
->>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
 
             elif user_input == "4":
                 destination_menu = DestinationUI(self.logic_wrapper)

@@ -14,16 +14,7 @@ class EmployeeUI:
         """Prints out the options for the Employee UI"""
         
         self.ui_utils.clear_screen()
-<<<<<<< HEAD
-        header = f"[EMPLOYEE]"
-        
-        print()
-        print(header)
-        print()
-
-=======
         print(f"[EMPLOYEES]\n")
->>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
         print(f"1. View Employees Options")
         print(f"2. Pilot")
         print(f"3. Cabin Crew")

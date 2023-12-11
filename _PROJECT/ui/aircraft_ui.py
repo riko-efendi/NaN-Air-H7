@@ -18,11 +18,6 @@ class AircraftUI:
         print(f"2. List all aircrafts")
         print(f"\n[B]ack")
 
-<<<<<<< HEAD
-    def input_prompt(self):
-        """This takes the input of the user"""
-        while True:
-=======
 
     def input_prompt(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
@@ -30,7 +25,6 @@ class AircraftUI:
         user_input = ""
 
         while user_input != "b":
->>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
             self.menu_output()
             user_input = input("\n" + self.input_prompt_str).lower()
 
