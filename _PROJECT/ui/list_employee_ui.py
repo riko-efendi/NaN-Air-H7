@@ -1,5 +1,6 @@
 from utils.ui_utils import UIUtils
 from logic.logic_wrapper import LogicWrapper
+from ui.input_validation import LengthERROR, validate_length_kt, validate_integers
 
 class ListEmployeeUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -69,8 +70,31 @@ class ListEmployeeUI:
 
     def view_employee_by_kennitala(self):
         self.ui_utils.clear_screen()
-        kennitala_input = input("Enter Employee Kennitala: ")
-        employee = self.logic_wrapper.get_employee_by_nid(kennitala_input)
+        
+        
+        while True:
+            try:
+                kennitala_input = input("Enter Employee Kennitala: ")
+                validate_integers(kennitala_input)
+                validate_length_kt(kennitala_input)
+                employee = self.logic_wrapper.get_employee_by_nid(kennitala_input)
+                if employee != None:
+                    break
+                else:
+                    print("Employeee not found")
+
+            except ValueError:
+                print("invalid value, please enter a valid kennitala")
+            except LengthERROR:
+                print("Invalid length, please enter a valid kennitala")
+
+                    
+        
+             
+        
+        
+        
+        
         self.ui_utils.clear_screen()
         print(f"[EMPLOYEE INFO]\n")
         self.print_employee(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)

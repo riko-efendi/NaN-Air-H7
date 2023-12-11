@@ -5,9 +5,9 @@ from model.flight import Flight
 
 class EmployeeData:
     def __init__(self) -> None:
-        self.file_name = "_PROJECT/files/crew.csv"
-        self.aircraft_file = "_PROJECT/files/aircraft_type.csv"
-        self.past_flight_file= "_PROJECT/files/past_flights.csv"
+        self.file_name = "crew.csv"
+        self.aircraft_file = "aircraft_type.csv"
+        self.past_flight_file= "past_flights.csv"
         self.fieldnames = ["nid", "name", "role", "rank", "licence", "address","phone_nr","slot_param"]
 
 
