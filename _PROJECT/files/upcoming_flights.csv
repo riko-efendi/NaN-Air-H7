@@ -1,4 +1,4 @@
-flight_nr,dep_from,arr_at,departure_date,departure_time,arrival_date,arrival_time
+flight_nr,dep_from,arr_at,departure_date,departure_time,arrival_date,arrival_time,captain,copilot,fsm,fa1,fa2
 WRONGNA5638,KEF,LYR,2023-12-20,06:45:00,2023-12-20,10:45:00
 WRONGNA3525,LYR,KEF,2023-12-20,11:45:00,2023-12-20,15:45:00
 WRONGNA9228,KEF,LYR,2023-12-22,06:16:00,2023-12-22,10:16:00
