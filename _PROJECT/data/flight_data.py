@@ -16,7 +16,7 @@ class FlightData:
 
     def read_all_past_flights(self):
         past_flight_list = []
-        with open(self.file_name, newline='', encoding="utf-8") as csvfile:
+        with open(self.file_name_past, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 past_flight_list.append(Flight(row["flight_nr"], 
@@ -61,7 +61,7 @@ class FlightData:
     
     def read_employee_past_schedule_by_nid(self, kennitala):
         schedule_list = []
-        with open(self.file_name, newline='', encoding="utf-8") as csvfile:
+        with open(self.file_name_past, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 if row["captain"] == kennitala or row["copilot"] == kennitala or row["fsm"] == kennitala or row["fa1"] == kennitala or row["fa2"] == kennitala:

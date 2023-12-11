@@ -1,7 +1,8 @@
-
 from utils.ui_utils import UIUtils
 
 from logic.logic_wrapper import LogicWrapper
+
+from model.voyage import Voyage
 
 
 class VoyageListUI:
@@ -30,26 +31,23 @@ class VoyageListUI:
             user_input = input("\n" + self.input_prompt_str).lower()
 
             if user_input == "1":
-                self.list_upcoming_voyages()
+                upcoming_voyages = self.logic_wrapper.get_upcoming_voyages()
+                self.list_voyages(upcoming_voyages, "[UPCOMING VOYAGES]")
+            
+            if user_input == "2":
+                past_voyages = self.logic_wrapper.get_past_voyages()
+                self.list_voyages(past_voyages, "[PAST VOYAGES]")
 
             else:
                 self.input_prompt_str = "Invalid. Enter another choice: "
 
 
+    def list_voyages(self, voyages:list[Voyage], header:str=""):
 
-    def list_upcoming_voyages(self):
-        upcoming_voyages = self.logic_wrapper.get_upcoming_voyages()
+        self.ui_utils.clear_screen()
+        print(f"{header}\n")
 
-        for voyage in upcoming_voyages:
-            print(voyage)
-
-        input("Press [ENTER] to exit: ")
-
-
-    def list_past_voyages(self):
-        past_voyages = self.logic_wrapper.get_past_voyages()
-
-        for voyage in past_voyages:
-            print(voyage)
+        for voyage in voyages:
+            print(voyage, end="\n\n")
 
         input("Press [ENTER] to exit: ")

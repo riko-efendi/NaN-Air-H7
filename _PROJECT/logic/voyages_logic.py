@@ -22,7 +22,7 @@ class VoyageLogic:
     def get_past_voyages(self):
         """Returns a list of past voyages, read from the past_flights.csv file"""
 
-        past_flights = self.data_wrapper.get_all_past_flights
+        past_flights = self.data_wrapper.get_all_past_flights()
         voyages = []
 
         for index in range(0,len(past_flights), 2):
