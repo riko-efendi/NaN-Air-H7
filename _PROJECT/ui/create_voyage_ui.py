@@ -29,13 +29,22 @@ class CreateVoyageUI:
     def create_voyage(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
    
-        if not self.assign_destination():
+        # This if statements are a way to break out of the class
+        if self.assign_destination():
             return None
-        if not self.assign_times(self.flight_1):
+        
+        # This if statements are a way to break out of the class
+        if self.assign_times(self.flight_1):
             return None
+        
         input("\nPress [ENTER] to confirm: ")
-        if not self.assign_times(self.flight_2):
+
+        # This if statements are a way to break out of the class
+        if self.assign_times(self.flight_2):
             return None
+        
+        
+
         self.logic_wrapper.register_flight(self.flight_1)
         self.logic_wrapper.register_flight(self.flight_2)
         input("Voyage succesfully created. Press [ENTER] to exit: ")
@@ -66,11 +75,11 @@ class CreateVoyageUI:
 
                         self.flight_2.dep_from = destinations_dict[int(user_input) - 1].id
                         self.flight_2.duration = destinations_dict[int(user_input) - 1].flight_time_from_kef
-                        return True
+                        return False
                     
                 except ValueError:
                     input_prompt_str = "Invalid. Choose again: " # Needs error handling for values that go beyond
-        return False
+        return True
 
 
     def print_destinations(self, destinations:dict) -> None:
@@ -92,7 +101,7 @@ class CreateVoyageUI:
         dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower()
 
         if dep_date == "c":
-            return False
+            return True
         
         flight.depart_date = dep_date
 
@@ -101,7 +110,7 @@ class CreateVoyageUI:
         dep_time = input(f"\nAt what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower()
 
         if dep_time == "c":
-            return False
+            return True
 
         # Add the date and time togheter to work as a single variable when going into the add hours function
         dep_datetime = dep_date + " " + dep_time
@@ -111,7 +120,7 @@ class CreateVoyageUI:
         # Update flight info 
         self.print_flight_info(flight)
 
-        return True
+        return False
 
 
     def add_hours_to_datetime(self, datetime_str, hours_to_add):
@@ -137,6 +146,9 @@ class CreateVoyageUI:
         print(f"Time of Arrival: {flight.arr_time}")
         print(f"\n[C]ancel")
 
+
+    def assign_crew(self):
+        pass
 
 
 

@@ -1,4 +1,4 @@
-
+from data.data_wrapper import DataWrapper
 from data.employee_data import EmployeeData
 from logic.aircraft_logic import AircraftLogic
 
@@ -6,7 +6,7 @@ from model.employee import Employee
 from model.aircraft import Aircraft
 
 class EmployeeLogic:
-    def __init__(self, data_connection) -> None:
+    def __init__(self, data_connection:DataWrapper) -> None:
         self.data_wrapper = data_connection
 
     def get_all_employees(self) -> list[Employee]:
@@ -38,5 +38,7 @@ class EmployeeLogic:
 
     def get_all_pilots_by_license(self, license):
         return self.data_wrapper.get_all_pilots_by_license(license)
-
+    
+    def get_available_crew(self):
+        pass
                     
