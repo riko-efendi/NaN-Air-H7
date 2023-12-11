@@ -2,6 +2,7 @@ from logic.employee_logic import EmployeeLogic
 from logic.destination_logic import DestinationLogic
 from logic.flight_logic import FlightLogic
 from logic.aircraft_logic import AircraftLogic
+from logic.voyages_logic import VoyageLogic
 from data.data_wrapper import DataWrapper
 
 from model.destination import Destination
@@ -17,6 +18,7 @@ class LogicWrapper:
         self.destination_logic = DestinationLogic(self.data_wrapper)
         self.flight_logic = FlightLogic(self.data_wrapper)
         self.aircraft_logic = AircraftLogic(self.data_wrapper)
+        self.voyage_logic = VoyageLogic(self.data_wrapper)
 
     # EMPLOYEE
 
@@ -66,6 +68,10 @@ class LogicWrapper:
         """Generates a unique random flight number"""
         return self.flight_logic.generate_flight_nr()
     
+    def register_flight(self, flight):
+        """Registers a flight in the upcoming_flights.csv"""
+        return self.flight_logic.register_flight(flight)
+    
     # AIRCRAFTS
 
     def get_all_aircrafts(self):
@@ -76,3 +82,15 @@ class LogicWrapper:
     
     def get_all_aircraft_type(self):
         return self.aircraft_logic.get_all_aircraft_type()
+    
+    # VOYAGES
+
+    def get_upcoming_voyages(self):
+        """Returns a list of upcoming voyages, read from the upcoming_fligths.csv file"""
+        return self.voyage_logic.get_upcoming_voyages()
+
+
+
+
+    def get_past_voyages(self):
+        return self.voyage_logic.get_past_voyages()

@@ -38,6 +38,7 @@ class Flight:
         return_str += f"\nThe duration of the flight is {self.flight_dur}\n"
         return return_str
     
+    
     def calculate_flight_duration(self, time_1, time_2):
         time_format = "%H:%M:%S"
         time_1 = datetime.strptime(time_1, time_format)

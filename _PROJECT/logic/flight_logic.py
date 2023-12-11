@@ -38,6 +38,10 @@ class FlightLogic:
         for flight in flights:
             print(flight)
 
+    def register_flight(self, flight):
+        """Registers flight in the upcoming_flights.csv"""
+        return self.data_wrapper.register_flight(flight)
+
     def get_all_flights_from_one_airport(self, airport):
         return self.data_wrapper.get_all_flights_from_one_airport(airport)
     

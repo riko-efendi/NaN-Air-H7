@@ -11,11 +11,13 @@ class CreateVoyageUI:
         self.logic_wrapper = logic_connection
         self.destination_ui = DestinationUI(self.logic_wrapper)
         self.input_prompt_str = "Enter your choice: "
+
+        # 2 Flight classes created, combined they make a single voyage.
         flight_1_nr = self.logic_wrapper.generate_flight_nr()
         flight_2_nr = self.logic_wrapper.generate_flight_nr()
 
+        # At the offchance of them being handed the same flight_nr
         while flight_2_nr == flight_1_nr:
-            # Just so these two flight numbers won't be the same
             flight_2_nr = self.logic_wrapper.generate_flight_nr()
 
         self.flight_1 = Flight(flight_nr=flight_1_nr, dep_from="KEF")
@@ -25,11 +27,14 @@ class CreateVoyageUI:
 
     def input_prompt(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
-
    
         self.assign_destination()
         self.assign_times(self.flight_1)
         self.assign_times(self.flight_2)
+        self.logic_wrapper.register_flight(self.flight_1)
+        self.logic_wrapper.register_flight(self.flight_2)
+
+        input("Voyage succesfully created. Press [ENTER] to exit: ")
             
 
     def assign_destination(self):
@@ -72,29 +77,38 @@ class CreateVoyageUI:
 
 
     def assign_times(self, flight:Flight) -> None:
+        """Assign date and time in the correct format to a flight"""
 
-        self.ui_utils.clear_screen()
-        print(f"[SELECT DESTINATION]\n")
-        #dep_date = input(f"At what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD)")
-        dep_date = "2023-12-31"
-        #dep_time = input(f"When do you want to depart from {flight.dep_from}? (HH:MM:SS) ")
-        dep_time = "23:59:00"
+        self.print_flight_info(flight)
+        dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD)")
+        dep_time = input(f"\nWhen do you want to depart from {flight.dep_from}? (HH:MM:SS) ")
         dep_datetime = dep_date + " " + dep_time
-
         flight.dep = dep_datetime
         flight.arr = self.add_hours_to_datetime(dep_datetime, flight.duration)
+        self.print_flight_info(flight)
+        input("\nPress [ENTER] to exit: ")
 
-
-        
 
     def add_hours_to_datetime(self, datetime_str, hours_to_add):
-        datetime_format = "%Y-%m-%d %H:%M:%S"
+        """Adds the durations of the flight to the departing time"""
         
+        datetime_format = "%Y-%m-%d %H:%M:%S"
         original_datetime = datetime.strptime(datetime_str, datetime_format)
         new_datetime = original_datetime + timedelta(hours=int(hours_to_add))
         new_datetime_str = new_datetime.strftime("%Y-%m-%d %H:%M:%S")
 
         return new_datetime_str
+    
+    def print_flight_info(self, flight:Flight):
+        """Prints out for user info on current flight"""
+
+        self.ui_utils.clear_screen()
+        print(f"[ASSIGN DATE AND TIME]\n")
+        print(f"Departing Destination: {flight.dep_from}")
+        print(f"Arriving Destination: {flight.arr_at}")
+        print(f"Time of Departure: {flight.dep}")
+        print(f"Time of Arrival: {flight.arr}")
+
 
 
 

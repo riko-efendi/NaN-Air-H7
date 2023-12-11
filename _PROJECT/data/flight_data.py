@@ -6,6 +6,7 @@ class FlightData:
     def __init__(self) -> None:
         self.file_name_past = "_PROJECT/files/past_flights.csv"
         self.file_name_upcoming = "_PROJECT/files/upcoming_flights.csv"
+        self.fieldnames = ["flight_nr", "dep_from", "arr_at", "departure", "arrival"]
 
     def read_all_past_flights(self):
         past_flight_list = []
@@ -44,12 +45,12 @@ class FlightData:
     
 
     
-    # def register_flight(self, flight:Flight) -> None:
-    #     """Writes employee info onto the crew.csv file"""
+    def register_flight(self, flight:Flight) -> None:
+        """Writes employee info onto the crew.csv file"""
 
-    #     with open(self.file_name_upcoming, 'a', newline='', encoding="utf-8") as csvfile:
-    #         writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
-    #         writer.writerow({"flight_nr": flight.flight_nr, "dep_from": flight.dep_from, "arr_at": flight.arr_at, "departure": flight.})
+        with open(self.file_name_upcoming, 'a', newline='', encoding="utf-8") as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
+            writer.writerow({"flight_nr": flight.flight_nr, "dep_from": flight.dep_from, "arr_at": flight.arr_at, "departure": flight.dep, "arrival": flight.arr})
 
 
     def read_all_flight_nr(self):

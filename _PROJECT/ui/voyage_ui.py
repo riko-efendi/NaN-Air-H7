@@ -2,6 +2,7 @@ from ui.destination_ui import DestinationUI
 from ui.aircraft_ui import AircraftUI
 from ui.flights_ui import FlightsUI
 from ui.create_voyage_ui import CreateVoyageUI
+from ui.voyage_list_ui import VoyageListUI
 from utils.ui_utils import UIUtils
 
 from logic.logic_wrapper import LogicWrapper
@@ -38,6 +39,10 @@ class VoyageUI:
                 create_coyage_menu = CreateVoyageUI(self.logic_wrapper)
                 create_coyage_menu.input_prompt()
 
+            elif user_input =="2":
+                voyage_list_ui = VoyageListUI(self.logic_wrapper)
+                voyage_list_ui.input_prompt()
+
             elif user_input == "3":
                 destination_menu = DestinationUI(self.logic_wrapper)
                 destination_menu.input_prompt()
@@ -52,3 +57,4 @@ class VoyageUI:
 
             else:
                 self.input_prompt_str = "Invalid. Enter another choice: "
+

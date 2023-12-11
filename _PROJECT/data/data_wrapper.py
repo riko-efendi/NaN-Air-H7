@@ -57,6 +57,9 @@ class DataWrapper:
     def get_all_flight_nr(self):
         return self.flight_data.read_all_flight_nr()
     
+    def register_flight(self, flight):
+        return self.flight_data.register_flight(flight)
+    
     
     # DESTINATIONS
     
