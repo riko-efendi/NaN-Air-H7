@@ -1,8 +1,9 @@
 from utils.ui_utils import UIUtils
+from logic.logic_wrapper import LogicWrapper
 
 class ListEmployeeUI:
-    def __init__(self, wrapper) -> None:
-        self.logic_wrapper = wrapper
+    def __init__(self, logic_connection:LogicWrapper) -> None:
+        self.logic_wrapper = logic_connection
         self.ui_utils = UIUtils()
         self.input_prompt_str = "Enter your choice: "
 

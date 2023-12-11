@@ -2,21 +2,16 @@
 from data.employee_data import EmployeeData
 from logic.aircraft_logic import AircraftLogic
 
+from data.data_wrapper import DataWrapper
+
 from model.employee import Employee
 from model.aircraft import Aircraft
 
 class EmployeeLogic:
-    def __init__(self, data_connection) -> None:
+    def __init__(self, data_connection:DataWrapper) -> None:
         self.data_wrapper = data_connection
 
-    def get_all_employees(self) -> list[Employee]:
-        """returns a list of all employees, as well as injects previous flights into the employee class."""
-        past_flights = self.data_wrapper.get_all_past_flights()
-        employees = self.data_wrapper.get_all_employees()
-
-        for flight in range(0,len(past_flights), 2):
-            flight.flight_nr
-
+    def get_all_employees(self) -> list[Employee]:  
         return self.data_wrapper.get_all_employees()
     
     def get_employee_by_nid(self, kennitala):
