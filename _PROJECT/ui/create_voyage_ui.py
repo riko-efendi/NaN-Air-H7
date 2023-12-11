@@ -31,9 +31,9 @@ class CreateVoyageUI:
    
         self.assign_destination()
         self.assign_times(self.flight_1)
+        input("\nPress [ENTER] to confirm: ")
         self.assign_times(self.flight_2)
         self.logic_wrapper.register_flight(self.flight_1)
-        input("\nPress [ENTER] to exit: ")
         self.logic_wrapper.register_flight(self.flight_2)
         input("Voyage succesfully created. Press [ENTER] to exit: ")
             
@@ -76,7 +76,7 @@ class CreateVoyageUI:
         self.ui_utils.clear_screen()
         print(f"[ASSIGN DESTINATION TO VOYAGE]\n")
         for index, destination in destinations.items():
-            print(f"{index + 1}. {destination.id}")
+            print(f"{index + 1}. {destination.id}. Flight Time from KEF: {destination.flight_time_from_kef} hrs")
         
         print(f"\n[C]ancel\t[M]ake new Destination")
 

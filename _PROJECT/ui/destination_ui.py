@@ -47,8 +47,8 @@ class DestinationUI:
         d.id = input("Enter destination three letter id: ").upper()         # Needs error handling
         d.destination = input("Enter destination name: ").capitalize()
         d.numeric_id = input("Enter destination numeric id: ")
-        d.duration_from_kef = input("Enter flight time in hrs, from KEF airport: ")
-        self.logic_wrapper.create_destination(d)
+        d.flight_time_from_kef = input("Enter flight time in hrs, from KEF airport: ")
+        self.logic_wrapper.register_destination(d)
         print(f"\n{d.destination} is successfully created.")
         input("\nPress [ENTER] to exit: ")
 

@@ -19,6 +19,8 @@ class DestinationLogic:
         destinations_dict = {index: value for index, value in enumerate(destinations)}
         return destinations_dict if as_dict else destinations
     
-    def create_destination(self, destination):
-        self.data_wrapper.create_destination(destination)
+    def register_destination(self, destination:Destination):
+        return self.data_wrapper.register_destination(destination)
+
+
 

@@ -4,6 +4,7 @@ from logic.flight_logic import FlightLogic
 from logic.aircraft_logic import AircraftLogic
 from logic.voyages_logic import VoyageLogic
 from data.data_wrapper import DataWrapper
+from model.destination import Destination
 
 from model.destination import Destination
 
@@ -46,8 +47,8 @@ class LogicWrapper:
         """Returns all destinations, with an optional arguement to include KEF airport or not"""
         return self.destination_logic.get_all_destinations(include_kef, as_dict)
     
-    def create_destination(self, destination):
-        return self.destination_logic.create_destination(destination)
+    def register_destination(self, destination:Destination):
+        return self.destination_logic.register_destination(destination)
 
     
     # FLIGHTS
