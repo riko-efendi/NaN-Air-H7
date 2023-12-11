@@ -4,8 +4,8 @@ from model.destination import Destination
 from utils.ui_utils import UIUtils
 
 class DestinationUI:
-    def __init__(self, wrapper) -> None:
-        self.logic_wrapper = wrapper
+    def __init__(self, logic_connection:LogicWrapper) -> None:
+        self.logic_wrapper = logic_connection
         self.ui_utils = UIUtils()
         self.input_prompt_str = "Enter your choice: "
 
@@ -47,7 +47,8 @@ class DestinationUI:
         d.id = input("Enter destination three letter id: ").upper()         # Needs error handling
         d.destination = input("Enter destination name: ").capitalize()
         d.numeric_id = input("Enter destination numeric id: ")
-        self.logic_wrapper.create_destination(d)
+        d.flight_time_from_kef = input("Enter flight time in hrs, from KEF airport: ")
+        self.logic_wrapper.register_destination(d)
         print(f"\n{d.destination} is successfully created.")
         input("\nPress [ENTER] to exit: ")
 
