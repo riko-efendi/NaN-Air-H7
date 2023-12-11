@@ -4,8 +4,11 @@ class ListEmployeeUI:
     def __init__(self, wrapper) -> None:
         self.logic_wrapper = wrapper
         self.ui_utils = UIUtils()
+        self.input_prompt_str = "Enter your choice: "
 
-    def menu_output(self):
+    def menu_output(self) -> None:
+        """Prints out the options for the Employee Options Menu UI"""
+
         self.ui_utils.clear_screen()
         print(f"[VIEW EMPLOYEE OPTIONS]\n")
         print(f"1. View all employees")
@@ -14,44 +17,46 @@ class ListEmployeeUI:
         print(f"4. View On Duty Employees")
         print(f"\n[B]ack")
 
-    def input_prompt(self):
-        """ Takes in input from user """
-        while True:
+    def input_prompt(self) -> None:
+        """"Takes in an input from user, and jumpst to a specific UI/function based on that input."""
+
+        user_input = ""
+
+        while user_input != "b":
             self.menu_output()
-            user_input = input("\nEnter your choice: ").lower()
-
-
-            if user_input == "b":
-                break
-
-            elif user_input == "1":
-                employees = self.logic_wrapper.get_all_employees()
-                self.ui_utils.clear_screen()
-                print("[ALL EMPLOYEES]\n")
-
-                for index, employee in enumerate(employees):
-                    print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
-
-                input("\nPress [ENTER] to exit: ")
-
+            user_input = input("\n" + self.input_prompt_str).lower()
+            if user_input == "1":
+                self.view_all_employees()
             elif user_input == "2":
                 self.view_employee_by_kennitala()
-
             else:
-                print("Invalid")
+                self.input_prompt_str = "Invalid. Enter another choice: "
+
+    def view_all_employees(self) -> None:
+        """Prints out every employee registered in the crew.csv file."""
+
+        employees = self.logic_wrapper.get_all_employees()
+        self.ui_utils.clear_screen()
+        print("[ALL EMPLOYEES]\n")
+        for index, employee in enumerate(employees):
+            print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
+        input("\nPress [ENTER] to exit: ")
+
 
     def print_update_employee_info(self, name, kennitala, address, role, rank, phone_number):
         self.ui_utils.clear_screen()
         print("[UPDATE EMPLOYEE INFO]\n")
         self.print_employee(name, kennitala, address, role, rank, phone_number)
 
-    def print_employee(self, name, kennitala, address, role, rank, phone_number):
+
+    def print_employee(self, name, kennitala, address, role, rank, phone_number) -> None:
         print(f"Name: {name}")
         print(f"Kt: {kennitala}")
         print(f"Address: {address}")
         print(f"Role: {role}")
         print(f"Rank: {rank}")
         print(f"Phone number: {phone_number}")
+
 
     def view_employee_by_kennitala(self):
         self.ui_utils.clear_screen()
