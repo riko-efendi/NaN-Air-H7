@@ -5,7 +5,7 @@ from logic.aircraft_logic import AircraftLogic
 from logic.voyages_logic import VoyageLogic
 from data.data_wrapper import DataWrapper
 from logic.aircraft_logic import AircraftLogic
-from logic.voyage_logic import VoyagesLogic
+from logic.voyage_logic import VoyageLogic
 from model.destination import Destination
 
 """
@@ -19,7 +19,6 @@ class LogicWrapper:
         self.destination_logic = DestinationLogic(self.data_wrapper)
         self.flight_logic = FlightLogic(self.data_wrapper)
         self.aircraft_logic = AircraftLogic(self.data_wrapper)
-        self.voyage_logic = VoyagesLogic(self.data_wrapper)
         self.voyage_logic = VoyageLogic(self.data_wrapper)
 
     # EMPLOYEE
