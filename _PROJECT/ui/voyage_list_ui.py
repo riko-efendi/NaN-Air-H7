@@ -33,10 +33,12 @@ class VoyageListUI:
             if user_input == "1":
                 upcoming_voyages = self.logic_wrapper.get_upcoming_voyages()
                 self.list_voyages(upcoming_voyages, "[UPCOMING VOYAGES]")
+                self.input_prompt_str = "Enter your choice: "
             
             if user_input == "2":
                 past_voyages = self.logic_wrapper.get_past_voyages()
                 self.list_voyages(past_voyages, "[PAST VOYAGES]")
+                self.input_prompt_str = "Enter your choice: "
 
             else:
                 self.input_prompt_str = "Invalid. Enter another choice: "
