@@ -84,14 +84,14 @@ class CreateVoyageUI:
         dep_time = input(f"\nWhen do you want to depart from {flight.dep_from}? (HH:MM:SS) ")
         dep_datetime = dep_date + " " + dep_time
         flight.dep = dep_datetime
-        flight.arr = self.add_hours_to_datetime(dep_datetime, flight.duration)
+        flight.arr = self.add_hours_to_datetime(dep_datetime, str(flight.duration))
         self.print_flight_info(flight)
         input("\nPress [ENTER] to exit: ")
 
 
     def add_hours_to_datetime(self, datetime_str, hours_to_add):
         """Adds the durations of the flight to the departing time"""
-        
+
         datetime_format = "%Y-%m-%d %H:%M:%S"
         original_datetime = datetime.strptime(datetime_str, datetime_format)
         new_datetime = original_datetime + timedelta(hours=int(hours_to_add))
