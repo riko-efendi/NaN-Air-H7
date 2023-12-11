@@ -59,5 +59,8 @@ class VoyageUI:
                 aircraft_menu.input_prompt()
 
             else:
+
                 self.input_prompt_str = "Invalid. Enter another choice: "
+
+            
 

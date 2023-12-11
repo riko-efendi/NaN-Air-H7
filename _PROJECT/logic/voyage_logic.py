@@ -1,28 +1,20 @@
 from model.voyage import Voyage
-from logic.employee_logic import EmployeeLogic
-from logic.flight_logic import FlightLogic
 
-class VoyagesLogic:
-    def __init__(self, voyage) -> None:
-        self.file_name = "voyages.csv"
-        self.flight_logic = FlightLogic(voyage)
-        self.employee_logic = EmployeeLogic(voyage)
+class VoyageLogic:
+    def __init__(self, data_connection) -> None:
+        self.wrapper = data_connection
 
-    def create_voyage(self):
-        flight_list = self.flight_logic.get_all_upcoming_flights()
-        print(flight_list)
-        return print(flight_list)
+    def get_all_past_voyages(self):
+        past_flights = self.wrapper.get_all_past_flights()
+        past_voyages = []
 
-    def search_flights(self):     
-        flight_list = self.flight_logic.get_all_upcoming_flights()
-        print(flight_list)
+        for index in range(0, len(past_flights), 2):
+            flight_1 = past_flights[index]
+            flight_2 = past_flights[index + 1]
+            past_voyages.append(Voyage(flight_1, flight_2))
 
-        return 
-        
+        return past_voyages
+
+    def read_past_voyages(self):
+        return self.wrapper.read_past_voyages()
     
-    def search_employees(self):
-        cabin_crew_list = self.employee_logic.get_all_cabincrews()
-        pilot_list = self.employee_logic.get_all_pilots()
-        print(pilot_list)
-
-        return

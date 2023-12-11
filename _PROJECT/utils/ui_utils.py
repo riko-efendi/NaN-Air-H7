@@ -23,4 +23,3 @@ class UIUtils:
         print(f"Rank: {employee.rank}")
         print(f"Phone number: {employee.phone_number}")
         print()
-

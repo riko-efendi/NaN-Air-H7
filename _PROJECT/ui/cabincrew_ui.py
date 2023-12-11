@@ -32,6 +32,7 @@ class CabinCrewUI:
 
             if user_input == "1":
                 self.regist_cabin_crew()
+
             elif user_input == "2":
                 self.list_all_cabin_crew()
 

@@ -78,5 +78,8 @@ nid,name,role,rank,licence,address,phone_nr,
 2602806942,Teresa Thruman,Cabincrew,Flight Attendant,,Fellsmúli 34,8998834,
 1107951952,Elizabeth Mcfadden,Cabincrew,Flight Attendant,,Fellsmúli 35,8998835,
 1,Elizabeth Mcfadden,Cabincrew,Flight Attendant,,slkdjlksdf,123123,
+<<<<<<< HEAD
 2,Blublub,Cabincrew,Flight Attendant,,Skáladklf,1312321,
 >>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
+=======
+>>>>>>> 9e745ea3c82992965a28b1cc2afebcb03cbb7ce3
