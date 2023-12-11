@@ -2,7 +2,7 @@ from logic.employee_logic import EmployeeLogic
 from logic.destination_logic import DestinationLogic
 from logic.flight_logic import FlightLogic
 from logic.aircraft_logic import AircraftLogic
-from logic.voyages_logic import VoyageLogic
+from logic.voyage_logic import VoyageLogic
 from data.data_wrapper import DataWrapper
 from model.destination import Destination
 

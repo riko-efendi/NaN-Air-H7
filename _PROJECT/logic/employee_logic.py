@@ -49,8 +49,6 @@ class EmployeeLogic:
     def get_all_employees_by_role_rank(self, role:str="", rank:str=""):
         """Gets all employees by an inputed role and rank"""
 
-        role = role.capitalize()
-        rank = rank.capitalize()
         all_employees = self.data_wrapper.get_all_employees()
         returned_employees = []
        

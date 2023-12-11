@@ -31,16 +31,32 @@ class CreateVoyageUI:
     def create_voyage(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
    
-        # if not self.assign_destination():
-        #     return None
-        # if not self.assign_times(self.flight_1):
-        #     return None
-        # input("\nPress [ENTER] to confirm: ")
-        # if not self.assign_times(self.flight_2):
-        #     return None
+        if not self.assign_destination():
+            return None
+        if not self.assign_times(self.flight_1):
+            return None
+        input("\nPress [ENTER] to confirm: ")
+        if not self.assign_times(self.flight_2):
+            return None
+        input("\nPress [ENTER] to confirm: ")
+
+        captain = self.assign_crew("Pilot", "Captain")
+        copilot = self.assign_crew("Pilot", "Copilot")
+        fsm = self.assign_crew("Cabincrew", "Flight Service Manager")
+        fa1 = self.assign_crew("Cabincrew", "Flight Attendant")
+
+
+        self.flight_1.captain = captain
+        self.flight_2.captain = captain
         
-        print(self.assign_crew("pilot", "captain"))
-        input("sldfjkd")
+        self.flight_1.copilot = copilot        
+        self.flight_2.copilot = copilot
+
+        self.flight_1.fsm = fsm
+        self.flight_2.fsm = fsm
+
+        self.flight_1.fa1 = fa1
+        self.flight_2.fa1 = fa1
 
         self.logic_wrapper.register_flight(self.flight_1)
         self.logic_wrapper.register_flight(self.flight_2)
@@ -145,14 +161,15 @@ class CreateVoyageUI:
 
 
     def assign_crew(self, role, rank):
-        employees = self.logic_wrapper.get_all_employees_by_role_rank(role, rank)
 
+        employees = self.logic_wrapper.get_all_employees_by_role_rank(role, rank)
+        self.ui_utils.clear_screen()
+        print(f"[SELECT {rank.upper()}]\n")
         for index, employee in enumerate(employees):
             print(f"{index + 1}. {employee.name}")
 
-        user_input = input("Select your choice: ")
-
-
+        print("\n[S]kip assigning Crew\n")
+        user_input = input("\nEnter your choice: ")
 
         return employees[int(user_input) - 1].kennitala
 

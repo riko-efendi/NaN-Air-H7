@@ -12,7 +12,12 @@ class FlightData:
                            "departure_date", 
                            "departure_time", 
                            "arrival_date", 
-                           "arrival_time"]
+                           "arrival_time",
+                           "captain",
+                           "copilot",
+                           "fsm",
+                           "fa1",
+                           "fa2"]
 
     def read_all_past_flights(self):
         past_flight_list = []
@@ -82,7 +87,11 @@ class FlightData:
                              "departure_date": flight.depart_date, 
                              "departure_time": flight.depart_time, 
                              "arrival_date": flight.arr_date, 
-                             "arrival_time": flight.arr_time})
+                             "arrival_time": flight.arr_time,
+                             "captain": flight.captain, 
+                             "copilot": flight.copilot,
+                             "fsm": flight.fsm,
+                             "fa1": flight.fa1})
 
 
     def read_all_flight_nr(self):
