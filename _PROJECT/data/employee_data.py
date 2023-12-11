@@ -1,11 +1,13 @@
 import csv
 
 from model.employee import Employee
+from model.flight import Flight
 
 class EmployeeData:
     def __init__(self) -> None:
         self.file_name = "_PROJECT/files/crew.csv"
         self.aircraft_file = "_PROJECT/files/aircraft_type.csv"
+        self.past_flight_file= "_PROJECT/files/past_flights.csv"
 
     def read_all_employees(self):
         """Reads names and info from the "crew.csv" file, and returns a list containing that information."""
@@ -16,8 +18,14 @@ class EmployeeData:
             for row in reader:
                 employee_list.append(Employee(row["nid"], row["name"], row["role"], row["rank"], row["address"], row["phone_nr"]))
         return employee_list
+        # employee_dict = {}
+        # with open(self.file_name, newline='', encoding="utf-8") as csvfile:
+        #     reader = csv.DictReader(csvfile)
+        #     for row in reader:
+        #         employee_dict[row["nid"]] = Employee(row["nid"], row["name"], row["role"], row["rank"], row["address"], row["phone_nr"])
+        # return employee_dict
+        
     
-
     def register_employee(self, employee) -> None:
         """Writes employee info oto the crew.csv file"""
 
@@ -44,7 +52,6 @@ class EmployeeData:
                     cabincrew_list.append(Employee(row["nid"], row["name"], row["role"]))
         return cabincrew_list
     
-
     def read_all_pilots_by_license(self, license):
         pilot_list = []
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
@@ -104,3 +111,14 @@ class EmployeeData:
                 employee.address = address
                 employee.phone_number = phone_number
             self.register_employee(employee)
+
+    def read_employees_past_schedule_by_date(self, date):
+        past_schedule_list = []
+        employees = self.read_all_employees()
+        with open(self.past_flight_file, newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                depart_date, _ = row["departure"].split(" ")
+                if depart_date == date:
+                    past_schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure"], row["arrival"], row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"], row["aircraft_id"]))
+        return past_schedule_list

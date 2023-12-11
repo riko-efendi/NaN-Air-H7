@@ -79,10 +79,13 @@ class LogicWrapper:
     def get_all_aircrafts(self):
         return self.aircraft_logic.get_all_aircrafts()
     
+    # SCHEDULE
+    
     def get_employee_past_schedule_by_nid(self, kennitala):
         return self.flight_logic.get_employee_past_schedule_by_nid(kennitala)
     
-    
+    def get_employees_past_schedule_by_date(self, date):
+        return self.employee_logic.get_employees_past_schedule_by_date(date)
     
     
     

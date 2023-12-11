@@ -62,9 +62,10 @@ class FlightsUI:
             elif user_input == "5":
                 self.ui_utils.clear_screen()
                 kennitala_input = input("Enter Employee Kennitala: ")
+                print(f"\nShowing flight trip(s) for {kennitala_input}\n")
                 schedules = self.logic_wrapper.get_employee_past_schedule_by_nid(kennitala_input)
                 for index, schedule in enumerate(schedules):
-                    print(f"{index+1:>2}. {schedule}")
+                    print(f"{index+1:>2}. {schedule}\n")
                 input("\nPress [ENTER] to exit: ")
                 
             elif user_input == "b":

@@ -37,6 +37,12 @@ class ListEmployeeUI:
             elif user_input == "2":
                 self.view_employee_by_kennitala()
 
+            elif user_input == "3":
+                self.view_all_absent_employees()
+
+            elif user_input == "4":
+                self.view_employees_past_schedule_by_date()
+
             else:
                 print("Invalid")
 
@@ -84,7 +90,50 @@ class ListEmployeeUI:
             self.ui_utils.clear_screen()
             print(f"[WORK SCHEDULE]\n")
             print("Insert beautiful work schedule here")
+            
             input("Press [ENTER] to exit")
         
         elif option_input == "b":
             return None
+
+    def view_employees_past_schedule_by_date(self):
+        self.ui_utils.clear_screen()
+        date_input = input("Enter Date [YYYY-MM-DD]: ")
+        flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
+        self.ui_utils.clear_screen()
+        print(f"ALL ON DUTY EMPLOYEES on {date_input}\n")
+
+        employees_printed = set() 
+
+        for flight in flights:
+            unique_employees = {flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2}
+
+            for employee_nid in unique_employees:
+                if employee_nid not in employees_printed:
+                    employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
+                    if employee: 
+                        print(f"{employee.name}, \tDestination: {flight.arr_at}")
+                    employees_printed.add(employee_nid) 
+
+        input("\nPress [ENTER] to exit: ")
+
+    def view_all_absent_employees(self):
+        self.ui_utils.clear_screen()
+        date_input = input("Enter Date [YYYY-MM-DD]: ")
+        all_employees = set(employee.kennitala for employee in self.logic_wrapper.get_all_employees())
+
+        on_duty_employees = set()
+        flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
+        for flight in flights:
+            on_duty_employees.update({flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2})
+        
+        absent_employees = all_employees - on_duty_employees  
+
+        self.ui_utils.clear_screen()
+        print(f"Off Duty Employees on {date_input}:\n")
+        for employee_nid in absent_employees:
+            employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
+            if employee:
+                print(f"{employee.name}, \tRole: {employee.rank}")
+
+        input("\nPress [ENTER] to exit: ")
