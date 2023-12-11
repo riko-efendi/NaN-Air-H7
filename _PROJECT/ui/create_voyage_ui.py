@@ -12,31 +12,40 @@ class CreateVoyageUI():
         print("\n[CREATE VOYAGE]\n")
         while True:
             flights = self.logic_wrapper.get_all_upcoming_flights()
-            fid_dict = []
-            for index, flights in enumerate(flights):
-                fid_dict.append(flights.flight_nr)
+            fid_list = [flight.flight_nr for flight in flights]
 
-
-            voyage.flight_out = input("Input the flight out:")
-            voyage.flight_in = input("Input the flight in: ")
-            #if there was a pilot :) 
-            find_pilot = input("Input the pilot: ")
-            pilots = self.logic_wrapper.get_all_pilots()
-            voyage.name = ""
-            for index, pilot in enumerate(pilots):
-                if find_pilot == pilot.name:
-                #then add this pilot to the csv file :) 
-                    print("yes :)")
-                    break
-                elif find_pilot == "":
+            while True: 
+                #First we need a valid id for the first flight out(i need to somehow find a way as they
+                # input the flight out code, there would be another individual list that are flights available to flight back in)
+                voyage.flight_out = input("Input the flight out:")
+                if voyage.flight_out in fid_list:
+                    print("Valid ID!")
                     break
                 else:
-                    pass
+                    print("Please enter a valid ID.")
+            #We iterate through the list of id (but i still need to somehow find the flights after 
+            # they have inputed the first flight out. )
+            while True:
+                voyage.flight_in = input("Input the flight in:")
+                if voyage.flight_in in fid_list:
+                    print("Valid ID for flight in!")
+                    break
+                else:
+                    print("Please enter a valid ID for flight in.")
 
-            if voyage.name:
-                print("")
+            #if there was a pilot :) (This is optional)
+            while True:
+
+                find_pilot = input("Input the pilot: ")
+                pilots = self.logic_wrapper.get_all_pilots()
+                pilot_list = [pilot.name for pilot in pilots]
                 
-            stop =input("press enter to continue")
+                if find_pilot in pilot_list or find_pilot == "":
+                #then add this pilot to the csv file :) 
+                    return
+                else:
+                    print("please enter a valid Pilot")
+
 
 
 
