@@ -2,6 +2,7 @@ from data.employee_data import EmployeeData
 from data.flight_data import FlightData
 from data.destination_data import DestinationData
 from data.aircraft_data import AircraftData
+from data.voyages_data import VoyageData
 
 class DataWrapper:
     def __init__(self) -> None:
@@ -9,7 +10,8 @@ class DataWrapper:
         self.flight_data = FlightData()
         self.destination_data = DestinationData()
         self.aircraft_data = AircraftData()
-
+        self.voyage_data = VoyageData
+    #Employees
     def get_all_employees(self):
         return self.employee_data.read_all_employees()
 
@@ -43,6 +45,9 @@ class DataWrapper:
     def get_employee_past_schedule_by_nid(self, kennitala):
         return self.flight_data.read_employee_past_schedule_by_nid(kennitala)
     
+    def get_employees_past_schedule_by_date(self, date):
+        return self.employee_data.read_employees_past_schedule_by_date(date)
+    
     # FLIGHTS
 
     def get_all_past_flights(self):
@@ -73,5 +78,12 @@ class DataWrapper:
 
     def get_all_aircrafts(self):
         return self.aircraft_data.read_all_aircrafts()
+    
+    #Voyages
+    def get_all_voyages(self):
+        return self.voyage_data.get_all_voyages()
 
+    def create_new_voyage(self):
+        return self.voyage_data.create_new_voyage()
+    
     

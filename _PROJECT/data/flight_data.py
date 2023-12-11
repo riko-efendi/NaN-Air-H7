@@ -4,8 +4,8 @@ from model.flight import Flight
 
 class FlightData:
     def __init__(self) -> None:
-        self.file_name_past = "_PROJECT/files/past_flights.csv"
-        self.file_name_upcoming = "_PROJECT/files/upcoming_flights.csv"
+        self.file_name_past = "past_flights.csv"
+        self.file_name_upcoming = "upcoming_flights.csv"
         self.fieldnames = ["flight_nr", 
                            "dep_from", 
                            "arr_at", 
@@ -65,12 +65,8 @@ class FlightData:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 if row["captain"] == kennitala or row["copilot"] == kennitala or row["fsm"] == kennitala or row["fa1"] == kennitala or row["fa2"] == kennitala:
-                    schedule_list.append(Flight(row["flight_nr"], 
-                                                row["dep_from"], 
-                                                row["arr_at"], 
-                                                row["departure"], 
-                                                row["arrival"], 
-                                                row["aircraft_id"]))
+                    schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure"], row["arrival"], row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"], row["aircraft_id"]))
+
         return schedule_list
     
 
@@ -98,3 +94,4 @@ class FlightData:
             for row in reader:
                 flight_nrs.append(row["flight_nr"])
         return flight_nrs
+

@@ -1,5 +1,6 @@
 from utils.ui_utils import UIUtils
 from logic.logic_wrapper import LogicWrapper
+from ui.input_validation import LengthERROR, validate_length_kt, validate_integers
 
 class ListEmployeeUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -28,8 +29,16 @@ class ListEmployeeUI:
             user_input = input("\n" + self.input_prompt_str).lower()
             if user_input == "1":
                 self.view_all_employees()
+                
             elif user_input == "2":
                 self.view_employee_by_kennitala()
+
+            elif user_input == "3":
+                self.view_all_absent_employees()
+
+            elif user_input == "4":
+                self.view_employees_past_schedule_by_date()
+
             else:
                 self.input_prompt_str = "Invalid. Enter another choice: "
 
@@ -61,8 +70,31 @@ class ListEmployeeUI:
 
     def view_employee_by_kennitala(self):
         self.ui_utils.clear_screen()
-        kennitala_input = input("Enter Employee Kennitala: ")
-        employee = self.logic_wrapper.get_employee_by_nid(kennitala_input)
+        
+        
+        while True:
+            try:
+                kennitala_input = input("Enter Employee Kennitala: ")
+                validate_integers(kennitala_input)
+                validate_length_kt(kennitala_input)
+                employee = self.logic_wrapper.get_employee_by_nid(kennitala_input)
+                if employee != None:
+                    break
+                else:
+                    print("Employeee not found")
+
+            except ValueError:
+                print("invalid value, please enter a valid kennitala")
+            except LengthERROR:
+                print("Invalid length, please enter a valid kennitala")
+
+                    
+        
+             
+        
+        
+        
+        
         self.ui_utils.clear_screen()
         print(f"[EMPLOYEE INFO]\n")
         self.print_employee(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
@@ -90,7 +122,50 @@ class ListEmployeeUI:
             self.ui_utils.clear_screen()
             print(f"[WORK SCHEDULE]\n")
             print("Insert beautiful work schedule here")
+            
             input("Press [ENTER] to exit")
         
         elif option_input == "b":
             return None
+
+    def view_employees_past_schedule_by_date(self):
+        self.ui_utils.clear_screen()
+        date_input = input("Enter Date [YYYY-MM-DD]: ")
+        flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
+        self.ui_utils.clear_screen()
+        print(f"ALL ON DUTY EMPLOYEES on {date_input}\n")
+
+        employees_printed = set() 
+
+        for flight in flights:
+            unique_employees = {flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2}
+
+            for employee_nid in unique_employees:
+                if employee_nid not in employees_printed:
+                    employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
+                    if employee: 
+                        print(f"{employee.name}, \tDestination: {flight.arr_at}")
+                    employees_printed.add(employee_nid) 
+
+        input("\nPress [ENTER] to exit: ")
+
+    def view_all_absent_employees(self):
+        self.ui_utils.clear_screen()
+        date_input = input("Enter Date [YYYY-MM-DD]: ")
+        all_employees = set(employee.kennitala for employee in self.logic_wrapper.get_all_employees())
+
+        on_duty_employees = set()
+        flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
+        for flight in flights:
+            on_duty_employees.update({flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2})
+        
+        absent_employees = all_employees - on_duty_employees  
+
+        self.ui_utils.clear_screen()
+        print(f"Off Duty Employees on {date_input}:\n")
+        for employee_nid in absent_employees:
+            employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
+            if employee:
+                print(f"{employee.name}, \tRole: {employee.rank}")
+
+        input("\nPress [ENTER] to exit: ")

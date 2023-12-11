@@ -4,8 +4,8 @@ from logic.flight_logic import FlightLogic
 from logic.aircraft_logic import AircraftLogic
 from logic.voyages_logic import VoyageLogic
 from data.data_wrapper import DataWrapper
-from model.destination import Destination
-
+from logic.aircraft_logic import AircraftLogic
+from logic.voyage_logic import VoyageLogic
 from model.destination import Destination
 
 """
@@ -22,7 +22,6 @@ class LogicWrapper:
         self.voyage_logic = VoyageLogic(self.data_wrapper)
 
     # EMPLOYEE
-
     def get_all_employees(self):
         return self.employee_logic.get_all_employees()
 
@@ -52,7 +51,6 @@ class LogicWrapper:
 
     
     # FLIGHTS
-
     def get_all_upcoming_flights(self):
         return self.flight_logic.get_all_upcoming_flights()
     
@@ -78,9 +76,18 @@ class LogicWrapper:
     def get_all_aircrafts(self):
         return self.aircraft_logic.get_all_aircrafts()
     
+
+    # SCHEDULE
+    
+    def get_employee_past_schedule_by_nid(self, kennitala):
+        return self.flight_logic.get_employee_past_schedule_by_nid(kennitala)
+    
+    def get_employees_past_schedule_by_date(self, date):
+        return self.employee_logic.get_employees_past_schedule_by_date(date)
+    
     def get_all_pilots_by_license(self, plane_type):
         return self.employee_logic.get_all_pilots_by_license(plane_type)
-    
+
     def get_all_aircraft_type(self):
         return self.aircraft_logic.get_all_aircraft_type()
     

@@ -1,11 +1,13 @@
 import csv
 
 from model.employee import Employee
+from model.flight import Flight
 
 class EmployeeData:
     def __init__(self) -> None:
-        self.file_name = "_PROJECT/files/crew.csv"
-        self.aircraft_file = "_PROJECT/files/aircraft_type.csv"
+        self.file_name = "crew.csv"
+        self.aircraft_file = "aircraft_type.csv"
+        self.past_flight_file= "past_flights.csv"
         self.fieldnames = ["nid", "name", "role", "rank", "licence", "address","phone_nr","slot_param"]
 
 
@@ -18,9 +20,9 @@ class EmployeeData:
             for row in reader:
                 employee_list.append(Employee(row["nid"], row["name"], row["role"], row["rank"], row["address"], row["phone_nr"]))
         return employee_list
+        
     
-
-    def register_employee(self, employee) -> None:
+    def register_employee(self, employee:Employee) -> None:
         """Writes employee info onto the crew.csv file"""
 
         with open(self.file_name, 'a', newline='', encoding="utf-8") as csvfile:
@@ -47,7 +49,6 @@ class EmployeeData:
                     cabincrew_list.append(Employee(row["nid"], row["name"], row["role"], row["rank"], row["address"], row["phone_nr"]))
         return cabincrew_list
     
-
     def read_all_pilots_by_license(self, license):
         pilot_list = []
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
@@ -72,3 +73,14 @@ class EmployeeData:
                 employee.address = address
                 employee.phone_number = phone_number
             self.register_employee(employee)
+
+    def read_employees_past_schedule_by_date(self, date):
+        past_schedule_list = []
+        employees = self.read_all_employees()
+        with open(self.past_flight_file, newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                depart_date = row["departure_date"]
+                if depart_date == date:
+                    past_schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure_date"], row["departure_time"], row["arrival_date"], row["arrival_time"], row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"], row["aircraft_id"]))
+        return past_schedule_list

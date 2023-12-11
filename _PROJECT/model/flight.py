@@ -1,16 +1,13 @@
 from datetime import datetime
 
 
-
 """
 Flight base class. Here we give the flight all its variables, and behaviours.
 """
 
 class Flight:
-    def __init__(self, flight_nr:str="", dep_from:str="", arr_at:str="", departure_date:str="", departure_time:str="", arrival_date:str="",arrival_time:str="", aircraft_id=None) -> None:
+    def __init__(self, flight_nr="", dep_from="", arr_at="", departure_date="", departure_time="", arrival_date="", arrival_time="", captain="", copilot="", fsm="", fa1="", fa2="", aircraft_id=None) -> None:
 
-
-        
        
         self.flight_nr = flight_nr
         self.aircraft_id = aircraft_id
@@ -30,7 +27,12 @@ class Flight:
         self.arr_time = arrival_time
         self.arr_dest = None
 
-
+        #FLIGHT CREW
+        self.captain = captain
+        self.copilot = copilot
+        self.fsm = fsm
+        self.fa1 = fa1
+        self.fa2 = fa2
 
     
     def __str__(self) -> str:
@@ -45,7 +47,3 @@ class Flight:
 
         return time_2 - time_1
     
-    # def __str__(self) -> str:
-    #     return_str = f"Flight number: {self.flight_nr}.\nDeparting from:\t{self.dep_from} \t[{self.depart_date} {self.depart_time}]\nArriving at:\t{self.arr_at} \t[{self.arr_date} {self.arr_time}]"
-    #     return_str += f"\nThe duration of the flight is {self.flight_dur}\n"
-    #     return return_str
