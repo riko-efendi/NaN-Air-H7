@@ -7,6 +7,7 @@ from model.voyage import Voyage
 
 class VoyageData():
     def __init__(self) -> None:
+<<<<<<< HEAD
         self.file_name = "voyages.csv"
     
     def get_all_voyages():
@@ -19,6 +20,16 @@ class VoyageData():
         with open(self.file_name, 'a', newline='', encoding="utf-8") as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writerow({"fid":voyage.fid,"flight_out":voyage.flights,"flight_in":voyage.flight, "pilot":voyage.pilot,"cabincrew":voyage.cabincrew})
+=======
+        self.file_name = "_Projekkdfdlksfj"
+        self.fieldnames = ["nid", "name", "role", "rank", "licence", "address", "phone_nr", "slot_param"]
+        
+    def register_employee(self, employee):
+
+        with open(self.file_name, 'a', newline='', encoding="utf-8") as csvfile:
+
+            writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
+>>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
 
 
     

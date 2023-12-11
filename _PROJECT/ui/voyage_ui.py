@@ -2,35 +2,40 @@ from ui.destination_ui import DestinationUI
 from ui.aircraft_ui import AircraftUI
 from ui.flights_ui import FlightsUI
 from ui.create_voyage_ui import CreateVoyageUI
+<<<<<<< HEAD
 from model.voyage import Voyage
 
+=======
+from ui.voyage_list_ui import VoyageListUI
+>>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
 from utils.ui_utils import UIUtils
 
+from logic.logic_wrapper import LogicWrapper
 
 
 class VoyageUI:
-    def __init__(self, logic_connection) -> None:
+    def __init__(self, logic_connection:LogicWrapper) -> None:
         self.ui_utils = UIUtils()
         self.logic_wrapper = logic_connection
-        self.input_string = "Enter your choice: "
+        self.input_prompt_str = "Enter your choice: "
 
-    def menu_output(self):
+    def menu_output(self) -> None:
+        """Prints out the options for the Voyage UI"""
+
         self.ui_utils.clear_screen()
         print(f"[VOYAGE]\n")
         print(f"1. Create Voyage")
-        print(f"2. List Voyage")
-        print(f"3. Destination")
-        print(f"4. Flights")
-        print(f"5. Aircraft")
+        print(f"2. List Voyages")
+        print(f"3. Edit Voyage")
+        print(f"4. Destination")
+        print(f"5. Flights")
+        print(f"6. Aircraft")
         print(f"\n[B]ack")
 
-    def input_prompt(self):
-        while True:
-            self.menu_output()
-            user_input = input("\n" + self.input_string).lower()
-            if user_input == "q":
-                print("Quitting")
+    def input_prompt(self) -> None:
+        """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
 
+<<<<<<< HEAD
             if user_input == "b":
                 break
             elif user_input == "1":
@@ -45,17 +50,34 @@ class VoyageUI:
                 if back_method == "q":
                     return "q"
                 pass
+=======
+        user_input = ""
+
+        while user_input != "b":
+            self.menu_output()
+            user_input = input("\n" + self.input_prompt_str).lower()
+
+            if user_input == "1":
+                create_coyage_menu = CreateVoyageUI(self.logic_wrapper)
+                create_coyage_menu.create_voyage()
+
+            elif user_input =="2":
+                voyage_list_ui = VoyageListUI(self.logic_wrapper)
+                voyage_list_ui.input_prompt()
+>>>>>>> eead74ee80ec091cc353a879a80a68552811e54a
 
             elif user_input == "4":
-                flights_menu = FlightsUI(self.logic_wrapper)
-                back_method = flights_menu.input_prompt()
+                destination_menu = DestinationUI(self.logic_wrapper)
+                destination_menu.input_prompt()
 
             elif user_input == "5":
+                flights_menu = FlightsUI(self.logic_wrapper)
+                flights_menu.input_prompt()
+
+            elif user_input == "6":
                 aircraft_menu = AircraftUI(self.logic_wrapper)
-                back_method = aircraft_menu.input_prompt()
-                if back_method == "q":
-                    return "q"
-                pass
+                aircraft_menu.input_prompt()
 
             else:
-                self.input_string = "Invalid. Enter another choice: "
+                self.input_prompt_str = "Invalid. Enter another choice: "
+
