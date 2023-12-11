@@ -41,6 +41,9 @@ class LogicWrapper:
     def update_employee_info(self, kennitala, address, phone_number):
         return self.employee_logic.update_employee_info(kennitala, address, phone_number)
     
+    def get_all_employees_by_role_rank(self, role:str="", rank:str=""):
+        return self.employee_logic.get_all_employees_by_role_rank(role, rank)
+    
     # DESTINATIONS
 
     def get_all_destinations(self, include_kef:bool=True, as_dict=False) -> list[Destination]:

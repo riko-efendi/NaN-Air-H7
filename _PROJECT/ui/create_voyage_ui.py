@@ -26,22 +26,28 @@ class CreateVoyageUI:
 
 
 
+
+
     def create_voyage(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
    
-        if not self.assign_destination():
-            return None
-        if not self.assign_times(self.flight_1):
-            return None
-        input("\nPress [ENTER] to confirm: ")
-        if not self.assign_times(self.flight_2):
-            return None
+        # if not self.assign_destination():
+        #     return None
+        # if not self.assign_times(self.flight_1):
+        #     return None
+        # input("\nPress [ENTER] to confirm: ")
+        # if not self.assign_times(self.flight_2):
+        #     return None
+        
+        print(self.assign_crew("pilot", "captain"))
+        input("sldfjkd")
+
         self.logic_wrapper.register_flight(self.flight_1)
         self.logic_wrapper.register_flight(self.flight_2)
         input("Voyage succesfully created. Press [ENTER] to exit: ")
             
 
-    def assign_destination(self):
+    def assign_destination(self) -> bool:
         "Window to select which destination you want to assign to a voyage"
 
         destinations_dict = self.logic_wrapper.get_all_destinations(False, True)
@@ -84,7 +90,7 @@ class CreateVoyageUI:
         print(f"\n[C]ancel\t[M]ake new Destination")
 
 
-    def assign_times(self, flight:Flight) -> None:
+    def assign_times(self, flight:Flight) -> bool:
         """Assign date and time in the correct format to a flight"""
 
         # Update flight info
@@ -124,7 +130,7 @@ class CreateVoyageUI:
 
         return new_datetime_str.split(" ")
     
-    def print_flight_info(self, flight:Flight):
+    def print_flight_info(self, flight:Flight) -> None:
         """Prints out for user info on current flight"""
 
         self.ui_utils.clear_screen()
@@ -136,6 +142,19 @@ class CreateVoyageUI:
         print(f"Date of Arrival: {flight.arr_date}")
         print(f"Time of Arrival: {flight.arr_time}")
         print(f"\n[C]ancel")
+
+
+    def assign_crew(self, role, rank):
+        employees = self.logic_wrapper.get_all_employees_by_role_rank(role, rank)
+
+        for index, employee in enumerate(employees):
+            print(f"{index + 1}. {employee.name}")
+
+        user_input = input("Select your choice: ")
+
+
+
+        return employees[int(user_input) - 1].kennitala
 
 
 

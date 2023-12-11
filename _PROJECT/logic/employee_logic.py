@@ -44,4 +44,23 @@ class EmployeeLogic:
 
     def get_all_pilots_by_license(self, license):
         return self.data_wrapper.get_all_pilots_by_license(license)
+    
+
+    def get_all_employees_by_role_rank(self, role:str="", rank:str=""):
+        """Gets all employees by an inputed role and rank"""
+
+        role = role.capitalize()
+        rank = rank.capitalize()
+        all_employees = self.data_wrapper.get_all_employees()
+        returned_employees = []
+       
+        for employee in all_employees:
+            if employee.role == role or role == "":
+                if employee.rank == rank or rank == "":
+                    returned_employees.append(employee)
+
+        return returned_employees
+
+
+
 
