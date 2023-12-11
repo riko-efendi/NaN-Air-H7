@@ -21,6 +21,8 @@ class PilotUI:
         print(f"\n[B]ack")
 
 
+
+
     def input_prompt(self):
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
 
@@ -31,9 +33,9 @@ class PilotUI:
             user_input = input("\n" + self.input_prompt_str).lower()
 
             if user_input == "1":
-                e = Employee()
                 register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
-                register_employee_menu.register_pilot(e)   
+                e = Employee(role="Pilot")
+                register_employee_menu.register_employee(e, "[REGISTER PILOT]")   
 
             elif user_input == "2":
                 self.list_all_pilots()

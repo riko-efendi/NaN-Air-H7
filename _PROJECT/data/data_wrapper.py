@@ -54,13 +54,20 @@ class DataWrapper:
     def get_all_flights_from_one_airport(self, airport):
         return self.flight_data.read_all_flights_from_one_airport(airport)
     
+    def get_all_flight_nr(self):
+        return self.flight_data.read_all_flight_nr()
+    
+    def register_flight(self, flight):
+        return self.flight_data.register_flight(flight)
+    
+    
     # DESTINATIONS
     
     def get_all_destinations(self):
         return self.destination_data.read_all_destinations()
     
-    def create_destination(self, destination):
-        return self.destination_data.create_destination(destination)
+    def register_destination(self, destination):
+        return self.destination_data.register_destination(destination)
     
     # AIRCRAFTS
 

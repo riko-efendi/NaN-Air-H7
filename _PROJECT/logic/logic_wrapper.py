@@ -2,7 +2,11 @@ from logic.employee_logic import EmployeeLogic
 from logic.destination_logic import DestinationLogic
 from logic.flight_logic import FlightLogic
 from logic.aircraft_logic import AircraftLogic
+from logic.voyages_logic import VoyageLogic
 from data.data_wrapper import DataWrapper
+from model.destination import Destination
+
+from model.destination import Destination
 
 """
 Employee base class. Here we give the employee all its variables, and behaviours.
@@ -15,6 +19,7 @@ class LogicWrapper:
         self.destination_logic = DestinationLogic(self.data_wrapper)
         self.flight_logic = FlightLogic(self.data_wrapper)
         self.aircraft_logic = AircraftLogic(self.data_wrapper)
+        self.voyage_logic = VoyageLogic(self.data_wrapper)
 
     # EMPLOYEE
 
@@ -38,11 +43,12 @@ class LogicWrapper:
     
     # DESTINATIONS
 
-    def get_all_destinations(self):
-        return self.destination_logic.get_all_destinations()
+    def get_all_destinations(self, include_kef:bool=True, as_dict=False) -> list[Destination]:
+        """Returns all destinations, with an optional arguement to include KEF airport or not"""
+        return self.destination_logic.get_all_destinations(include_kef, as_dict)
     
-    def create_destination(self, destination):
-        return self.destination_logic.create_destination(destination)
+    def register_destination(self, destination:Destination):
+        return self.destination_logic.register_destination(destination)
 
     
     # FLIGHTS
@@ -59,6 +65,14 @@ class LogicWrapper:
     def print_all_past_flights(self):
         return self.flight_logic.print_past_flights()
     
+    def generate_flight_nr(self):
+        """Generates a unique random flight number"""
+        return self.flight_logic.generate_flight_nr()
+    
+    def register_flight(self, flight):
+        """Registers a flight in the upcoming_flights.csv"""
+        return self.flight_logic.register_flight(flight)
+    
     # AIRCRAFTS
 
     def get_all_aircrafts(self):
@@ -69,3 +83,15 @@ class LogicWrapper:
     
     def get_all_aircraft_type(self):
         return self.aircraft_logic.get_all_aircraft_type()
+    
+    # VOYAGES
+
+    def get_upcoming_voyages(self):
+        """Returns a list of upcoming voyages, read from the upcoming_fligths.csv file"""
+        return self.voyage_logic.get_upcoming_voyages()
+
+
+
+
+    def get_past_voyages(self):
+        return self.voyage_logic.get_past_voyages()
