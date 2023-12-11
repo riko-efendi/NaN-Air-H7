@@ -21,9 +21,10 @@ class VoyageUI:
         print(f"[VOYAGE]\n")
         print(f"1. Create Voyage")
         print(f"2. List Voyages")
-        print(f"3. Destination")
-        print(f"4. Flights")
-        print(f"5. Aircraft")
+        print(f"3. Edit Voyage")
+        print(f"4. Destination")
+        print(f"5. Flights")
+        print(f"6. Aircraft")
         print(f"\n[B]ack")
 
     def input_prompt(self) -> None:
@@ -43,15 +44,15 @@ class VoyageUI:
                 voyage_list_ui = VoyageListUI(self.logic_wrapper)
                 voyage_list_ui.input_prompt()
 
-            elif user_input == "3":
+            elif user_input == "4":
                 destination_menu = DestinationUI(self.logic_wrapper)
                 destination_menu.input_prompt()
 
-            elif user_input == "4":
+            elif user_input == "5":
                 flights_menu = FlightsUI(self.logic_wrapper)
                 flights_menu.input_prompt()
 
-            elif user_input == "5":
+            elif user_input == "6":
                 aircraft_menu = AircraftUI(self.logic_wrapper)
                 aircraft_menu.input_prompt()
 

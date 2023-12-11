@@ -29,10 +29,13 @@ class CreateVoyageUI:
     def create_voyage(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
    
-        self.assign_destination()
-        self.assign_times(self.flight_1)
+        if not self.assign_destination():
+            return None
+        if not self.assign_times(self.flight_1):
+            return None
         input("\nPress [ENTER] to confirm: ")
-        self.assign_times(self.flight_2)
+        if not self.assign_times(self.flight_2):
+            return None
         self.logic_wrapper.register_flight(self.flight_1)
         self.logic_wrapper.register_flight(self.flight_2)
         input("Voyage succesfully created. Press [ENTER] to exit: ")
@@ -86,12 +89,19 @@ class CreateVoyageUI:
 
         # Update flight info
         self.print_flight_info(flight)
-        dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ")
+        dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower()
+
+        if dep_date == "c":
+            return False
+        
         flight.depart_date = dep_date
 
         #Update flight info
         self.print_flight_info(flight)
-        dep_time = input(f"\nAt what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ")
+        dep_time = input(f"\nAt what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower()
+
+        if dep_time == "c":
+            return False
 
         # Add the date and time togheter to work as a single variable when going into the add hours function
         dep_datetime = dep_date + " " + dep_time
@@ -100,6 +110,8 @@ class CreateVoyageUI:
 
         # Update flight info 
         self.print_flight_info(flight)
+
+        return True
 
 
     def add_hours_to_datetime(self, datetime_str, hours_to_add):
@@ -123,6 +135,7 @@ class CreateVoyageUI:
         print(f"Time of Departure: {flight.depart_time}")
         print(f"Date of Arrival: {flight.arr_date}")
         print(f"Time of Arrival: {flight.arr_time}")
+        print(f"\n[C]ancel")
 
 
 
