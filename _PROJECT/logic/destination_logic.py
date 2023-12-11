@@ -12,7 +12,7 @@ class DestinationLogic:
 
         if not include_kef:
             for index, destination in enumerate(destinations):
-                if destination.id != "KEF":
+                if destination.id == "KEF":
                     destinations.pop(index)
                     break
             

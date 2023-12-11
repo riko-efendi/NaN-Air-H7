@@ -1,6 +1,7 @@
 from utils.ui_utils import UIUtils
 from ui.destination_ui import DestinationUI
 from model.flight import Flight
+from model.destination import Destination
 from datetime import datetime, timedelta
 from logic.logic_wrapper import LogicWrapper
 
@@ -25,15 +26,15 @@ class CreateVoyageUI:
 
 
 
-    def input_prompt(self) -> None:
+    def create_voyage(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
    
         self.assign_destination()
         self.assign_times(self.flight_1)
         self.assign_times(self.flight_2)
         self.logic_wrapper.register_flight(self.flight_1)
+        input("\nPress [ENTER] to exit: ")
         self.logic_wrapper.register_flight(self.flight_2)
-
         input("Voyage succesfully created. Press [ENTER] to exit: ")
             
 
@@ -41,14 +42,18 @@ class CreateVoyageUI:
         "Window to select which destination you want to assign to a voyage"
 
         destinations_dict = self.logic_wrapper.get_all_destinations(False, True)
+        input_prompt_str = "Enter your choice: "
         user_input = ""
 
         while user_input != "c":
             self.print_destinations(destinations_dict)
-            user_input = input("\n" + self.input_prompt_str).lower()
+            user_input = input("\n" + input_prompt_str).lower()
 
             if user_input == "m":
+                # Open the register destination window
                 self.destination_ui.register_destination()
+
+                # Update the destination dictionary
                 destinations_dict = self.logic_wrapper.get_all_destinations(False, True) # Update destination_dict after adding a new element
             else:
                 try: 
@@ -61,11 +66,11 @@ class CreateVoyageUI:
                         return True
                     
                 except ValueError:
-                    self.input_prompt_str = "Invalid. Choose again: " # Needs error handling for values that go beyond
+                    input_prompt_str = "Invalid. Choose again: " # Needs error handling for values that go beyond
         return False
 
 
-    def print_destinations(self, destinations):
+    def print_destinations(self, destinations:dict) -> None:
         """Prints destinations from a dictionary"""
 
         self.ui_utils.clear_screen()
@@ -79,14 +84,22 @@ class CreateVoyageUI:
     def assign_times(self, flight:Flight) -> None:
         """Assign date and time in the correct format to a flight"""
 
+        # Update flight info
         self.print_flight_info(flight)
-        dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD)")
-        dep_time = input(f"\nWhen do you want to depart from {flight.dep_from}? (HH:MM:SS) ")
+        dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ")
+        flight.depart_date = dep_date
+
+        #Update flight info
+        self.print_flight_info(flight)
+        dep_time = input(f"\nAt what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ")
+
+        # Add the date and time togheter to work as a single variable when going into the add hours function
         dep_datetime = dep_date + " " + dep_time
-        flight.dep = dep_datetime
-        flight.arr = self.add_hours_to_datetime(dep_datetime, str(flight.duration))
+        flight.depart_time = dep_time
+        flight.arr_date, flight.arr_time = self.add_hours_to_datetime(dep_datetime, str(flight.duration))
+
+        # Update flight info 
         self.print_flight_info(flight)
-        input("\nPress [ENTER] to exit: ")
 
 
     def add_hours_to_datetime(self, datetime_str, hours_to_add):
@@ -97,7 +110,7 @@ class CreateVoyageUI:
         new_datetime = original_datetime + timedelta(hours=int(hours_to_add))
         new_datetime_str = new_datetime.strftime("%Y-%m-%d %H:%M:%S")
 
-        return new_datetime_str
+        return new_datetime_str.split(" ")
     
     def print_flight_info(self, flight:Flight):
         """Prints out for user info on current flight"""
@@ -106,8 +119,10 @@ class CreateVoyageUI:
         print(f"[ASSIGN DATE AND TIME]\n")
         print(f"Departing Destination: {flight.dep_from}")
         print(f"Arriving Destination: {flight.arr_at}")
-        print(f"Time of Departure: {flight.dep}")
-        print(f"Time of Arrival: {flight.arr}")
+        print(f"Date of Departure: {flight.depart_date}")
+        print(f"Time of Departure: {flight.depart_time}")
+        print(f"Date of Arrival: {flight.arr_date}")
+        print(f"Time of Arrival: {flight.arr_time}")
 
 
 

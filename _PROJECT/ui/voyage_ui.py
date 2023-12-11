@@ -37,7 +37,7 @@ class VoyageUI:
 
             if user_input == "1":
                 create_coyage_menu = CreateVoyageUI(self.logic_wrapper)
-                create_coyage_menu.input_prompt()
+                create_coyage_menu.create_voyage()
 
             elif user_input =="2":
                 voyage_list_ui = VoyageListUI(self.logic_wrapper)
