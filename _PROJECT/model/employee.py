@@ -15,5 +15,5 @@ class Employee:
         self.email = email
         self.license = license
 
-    def __str__(self) -> str:
-        return f"{self.name}: {self.role}"
+    # def __str__(self) -> str:
+    #     return f"{self.name}: {self.role}"

@@ -45,6 +45,9 @@ class DataWrapper:
     def get_employee_past_schedule_by_nid(self, kennitala):
         return self.flight_data.read_employee_past_schedule_by_nid(kennitala)
     
+    def get_employees_past_schedule_by_date(self, date):
+        return self.employee_data.read_employees_past_schedule_by_date(date)
+    
     # FLIGHTS
 
     def get_all_past_flights(self):

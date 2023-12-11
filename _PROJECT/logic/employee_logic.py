@@ -1,11 +1,13 @@
 
 from data.employee_data import EmployeeData
 from logic.aircraft_logic import AircraftLogic
+from logic.flight_logic import FlightLogic
 
 from data.data_wrapper import DataWrapper
 
 from model.employee import Employee
 from model.aircraft import Aircraft
+
 
 class EmployeeLogic:
     def __init__(self, data_connection:DataWrapper) -> None:
@@ -31,7 +33,15 @@ class EmployeeLogic:
     def get_all_cabincrews(self):
         return self.data_wrapper.get_all_cabincrews()
 
+    def get_all_flightservicemanagers(self):
+        return self.data_wrapper.get_all_flightservicemanagers()
+    
+    def get_all_flightattendants(self):
+        return self.data_wrapper.get_all_flightattendants()
+    
+    def get_employees_past_schedule_by_date(self, date):
+        return self.data_wrapper.get_employees_past_schedule_by_date(date)
+
     def get_all_pilots_by_license(self, license):
         return self.data_wrapper.get_all_pilots_by_license(license)
 
-                    
