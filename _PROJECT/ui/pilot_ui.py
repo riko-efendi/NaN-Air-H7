@@ -41,7 +41,7 @@ class PilotUI:
                 self.list_all_pilots()
 
             elif user_input == "3":
-                self.view_pilots_by_licence()
+                self.view_pilots_by_license()
             
             else:
                 self.input_prompt_str = "Invaild. Enter another choice: "
@@ -58,15 +58,15 @@ class PilotUI:
         input("\nPress [ENTER] to exit: ")
 
 
-    def view_pilots_by_licence(self):
+    def view_pilots_by_license(self):
         """Gets the aircraft types, prints pilots by the inputed aircraft type"""
         
         aircrafts = self.logic_wrapper.get_all_aircraft_type()
         aircrafts_dict = {str(index + 1): value for index, value in enumerate(aircrafts)}
-        license_type_input = self.print_pilot_list_by_licence("Enter in a choice: ", aircrafts_dict)
+        license_type_input = self.print_pilot_list_by_license("Enter in a choice: ", aircrafts_dict)
 
         while license_type_input not in aircrafts_dict:
-            license_type_input = self.print_pilot_list_by_licence("Invalid. Enter another choice: ", aircrafts_dict)
+            license_type_input = self.print_pilot_list_by_license("Invalid. Enter another choice: ", aircrafts_dict)
             
         aircraft_type = aircrafts_dict[license_type_input]
         print(f"\nShowing pilot(s) for {aircraft_type}\n")
@@ -74,7 +74,7 @@ class PilotUI:
         input("\nPress [ENTER] to exit: ")
 
 
-    def print_pilot_list_by_licence(self, input_str, a_dict):
+    def print_pilot_list_by_license(self, input_str, a_dict):
         """Prints out different aircraft types based on an inputed dictinoary"""
 
         self.ui_utils.clear_screen()
