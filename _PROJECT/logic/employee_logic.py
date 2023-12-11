@@ -3,15 +3,17 @@ from data.employee_data import EmployeeData
 from logic.aircraft_logic import AircraftLogic
 from logic.flight_logic import FlightLogic
 
+from data.data_wrapper import DataWrapper
+
 from model.employee import Employee
 from model.aircraft import Aircraft
 
 
 class EmployeeLogic:
-    def __init__(self, data_connection) -> None:
+    def __init__(self, data_connection:DataWrapper) -> None:
         self.data_wrapper = data_connection
 
-    def get_all_employees(self):
+    def get_all_employees(self) -> list[Employee]:  
         return self.data_wrapper.get_all_employees()
     
     def get_employee_by_nid(self, kennitala):
@@ -28,15 +30,6 @@ class EmployeeLogic:
     def get_all_pilots(self):
         return self.data_wrapper.get_all_pilots()
     
-    def get_all_pilots_by_license(self, license):
-        return self.data_wrapper.get_all_pilots_by_license(license)
-    
-    def get_all_captain_pilots(self):
-        return self.data_wrapper.get_all_captain_pilots()
-
-    def get_all_copilots(self):
-        return self.data_wrapper.get_all_copilots()     
-    
     def get_all_cabincrews(self):
         return self.data_wrapper.get_all_cabincrews()
 
@@ -48,3 +41,7 @@ class EmployeeLogic:
     
     def get_employees_past_schedule_by_date(self, date):
         return self.data_wrapper.get_employees_past_schedule_by_date(date)
+
+    def get_all_pilots_by_license(self, license):
+        return self.data_wrapper.get_all_pilots_by_license(license)
+
