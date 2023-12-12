@@ -2,6 +2,7 @@ from logic.logic_wrapper import LogicWrapper
 from ui.employee_ui import EmployeeUI
 from ui.voyage_ui import VoyageUI
 from utils.ui_utils import UIUtils
+from ui.NaN_Air_art import ART
 
 
 class MainMenuUI:
@@ -14,6 +15,7 @@ class MainMenuUI:
         """Prints out the options for the Main Menu UI"""
 
         self.ui_utils.clear_screen()
+        print(f"{ART}")
         print(f"[MAIN]\n")
         print(f"1. Employees")
         print(f"2. Voyage")
