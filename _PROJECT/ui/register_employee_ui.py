@@ -12,6 +12,8 @@ class RegisterEmployeeUI():
         """Registers an employee"""
         
         self.ui_utils.print_employee(employee, header)
+        #so the first check is for them to enter a valid name
+        #name must contain only letters and have a set length for them as well
         while True:
             try:
                 employee.name = input(f"Input the {employee.role}'s name: ").capitalize()
@@ -26,7 +28,7 @@ class RegisterEmployeeUI():
             except ValueError:
                 print("Invalid name, please only use letters")
 
-
+        #this checks the kennitala if the user inputs the right numbers for a kennitala and nothing random. 
         while True:
             try: 
                 employee.kennitala = (input(f"Input the {employee.role}'s kennitala: "))
@@ -41,7 +43,8 @@ class RegisterEmployeeUI():
             except ValueError:
                 print("invalid value, please enter a valid kennitala")
 
-        
+        #this checks the address. the validation of the address is that
+        # first must contain a name for the adress and the 1 or 2 numbers for the number of that address 
         while True:
             try:
                 employee.address = input(f"Input the {employee.role}'s address: ").capitalize()
@@ -52,7 +55,6 @@ class RegisterEmployeeUI():
             except ValueError:
                 print('Invalid address, please use format "streetname streetnumber"')
         
-
         if employee.role == "Pilot":
             e_rank = input(f"Is the {employee.role}: \n1. Captain\n2. Copilot\nEnter your choice: ")
             while e_rank != "1" and e_rank != "2":
@@ -71,6 +73,8 @@ class RegisterEmployeeUI():
                 employee.rank = "Flight Attendant"
                 
         self.ui_utils.print_employee(employee, header)
+        #finally this checks the phone number if its valid numbers and length
+        #instead of something random that the user inputs.
         while True: 
             try:
                 employee.phone_number = input(f"Input the {employee.role}'s phone number: ")
@@ -85,7 +89,5 @@ class RegisterEmployeeUI():
             except LengthERROR:
                 print("Please inpout a valid phone number")
             
-            
         self.logic_wrapper.register_employee(employee)
-        
         input(f"{employee.name} is successfully created! Press [ENTER] to exit: ")

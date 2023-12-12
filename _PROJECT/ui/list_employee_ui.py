@@ -69,7 +69,8 @@ class ListEmployeeUI:
 
     def view_employee_by_kennitala(self):
         self.ui_utils.clear_screen()
-
+        #first we have to make sure the user ONLY puts a valid kennitala and see if the user inputs
+        #the right values for the kennitala
         while True:
             try:
                 kennitala_input = input("Enter Employee Kennitala: ")
@@ -92,8 +93,8 @@ class ListEmployeeUI:
         self.print_employee(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
 
         print("\n[U]pdate Info\t[W]ork Schedule\t  [B]ack\n")
-
-        
+        #this checks the option that the user inputs. usually if this wasnt here it would bring the user back to the previous
+        #menu so I decided to add this to make sure the user choses the options that were given to them.
         while True:
             try:    
                 option_input = input("Enter your choice: ").lower()
@@ -107,11 +108,14 @@ class ListEmployeeUI:
                 print("\n[U]pdate Info\t[W]ork Schedule\t  [B]ack\n")
                 print("Invalid input.")
 
-
         if option_input == "u":
             self.ui_utils.clear_screen()
             self.print_update_employee_info(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
             print()
+            #now if the user wishes to update the info they are given a couple of options.
+            #first option is to change the address but the addres have to be somewhat valid with 
+            #a street name first and then 2 numbers afterwards. this loop prevents them inputting something else
+            #like numbers first and then letters later or the length of the address. 
             while True:
                 try:
                     new_address = input("Enter a new address or [K]eep old address: ")
@@ -132,7 +136,8 @@ class ListEmployeeUI:
                     self.print_update_employee_info(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
                     print("\nInvalid length")
 
-
+            #this check prevents the user adding something random into the phone number
+            #this validates then the phone number and checks if it fits the right amount of numbers 
             while True:
                 try:
                     
