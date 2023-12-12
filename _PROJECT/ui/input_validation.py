@@ -1,6 +1,9 @@
 class LengthERROR(Exception):
     pass
 
+class DateError(Exception):
+    pass
+
 def validate_length(name):
     if 0 < len(name) <= 20:
         pass
@@ -31,3 +34,15 @@ def validate_address(address):
         raise ValueError()
     elif address_list[1].isdigit() == False:
         raise ValueError()  
+
+def validate_year_format(date):
+    date_list = date.split("-")
+    for element in date_list:
+        if element.isdigit == False:
+            raise ValueError
+    if len(date_list) != 3:
+        raise LengthERROR
+    elif len(date_list[0]) != 4 or len(date_list[1]) != 2 or len(date_list[2]) != 2:
+        raise LengthERROR
+    elif int(date_list[1]) > 12 or int(date_list[2]) > 31:
+        raise DateError
