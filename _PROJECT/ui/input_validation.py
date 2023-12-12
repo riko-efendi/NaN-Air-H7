@@ -1,10 +1,5 @@
-
 class LengthERROR(Exception):
     pass
-
-
-
-
 
 def validate_length(name):
     if 0 < len(name) <= 20:
