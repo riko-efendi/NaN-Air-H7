@@ -12,7 +12,7 @@ class FlightsUI:
         print(f"1. List Upcoming Flights")
         print(f"2. List Past Flights")
         print(f"3. Create Flight")
-        print(f"4. List Flights From One Airport")
+        print(f"4. View Flights From One Airport")
         print(f"\n[B]ack")
     
     def input_prompt(self):
@@ -33,31 +33,7 @@ class FlightsUI:
                 input("\nPress [ENTER] to exit: ")
 
             elif user_input == "4":
-                self.ui_utils.clear_screen()
-                
-                airport_id = {
-                    "1": "KEF",
-                    "2": "LYR",
-                    "3": "GOH",
-                    "4": "KUS",
-                    "5": "FAE",
-                    "6": "LWK"
-                }
-                print("[Flight(s) List from Airport]\n")
-                while True:
-                    print("[Airport ID]\n\n1. KEF 2. LYR 3. GOH 4. KUS 5. FAE 6. LWK")
-                    airport_id_input = input("\nEnter License Type (1, 2, 3, 4, 5, or 6): ")
-                    if airport_id_input in airport_id:
-                        airport_id_input = airport_id[airport_id_input]
-                        break
-                    else:
-                        print("Invalid input. Please enter 1, 2, 3, 4, 5, or 6.")
-
-                print(f"\nShowing flight(s) from {airport_id_input}\n")
-                airport_flights = self.logic_wrapper.get_all_flights_from_one_airport(airport_id_input)
-                for index, airport_flight in enumerate(airport_flights):
-                    print(f"{index+1:>2}. {airport_flight}")
-                input("\nPress [ENTER] to exit: ")
+                self.view_flights_from_one_airport()
 
             elif user_input == "5":
                 self.ui_utils.clear_screen()
@@ -74,4 +50,29 @@ class FlightsUI:
             else:
                 self.input_prompt_str = "Invalid. Enter another choice: "
 
-            
+    def view_flights_from_one_airport(self):
+        self.ui_utils.clear_screen()
+                
+        airport_id = {
+            "1": "KEF",
+            "2": "LYR",
+            "3": "GOH",
+            "4": "KUS",
+            "5": "FAE",
+            "6": "LWK"
+        }
+        print("[Flight(s) List from Airport]\n")
+        while True:
+            print("[Airport ID]\n\n1. KEF 2. LYR 3. GOH 4. KUS 5. FAE 6. LWK")
+            airport_id_input = input("\nEnter License Type (1, 2, 3, 4, 5, or 6): ")
+            if airport_id_input in airport_id:
+                airport_id_input = airport_id[airport_id_input]
+                break
+            else:
+                print("Invalid input. Please enter 1, 2, 3, 4, 5, or 6.")
+
+        print(f"\nShowing flight(s) from {airport_id_input}\n")
+        airport_flights = self.logic_wrapper.get_all_flights_from_one_airport(airport_id_input)
+        for index, airport_flight in enumerate(airport_flights):
+            print(f"{index+1:>2}. {airport_flight}")
+        input("\nPress [ENTER] to exit: ")
