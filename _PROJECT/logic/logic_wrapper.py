@@ -111,10 +111,8 @@ class LogicWrapper:
 
     def get_upcoming_voyages(self):
         """Returns a list of upcoming voyages, read from the upcoming_fligths.csv file"""
-        return self.voyage_logic.get_upcoming_voyages()
-
-
+        return self.voyage_logic.get_all_upcoming_voyages()
 
 
     def get_past_voyages(self):
-        return self.voyage_logic.get_past_voyages()
+        return self.voyage_logic.get_all_past_voyages()

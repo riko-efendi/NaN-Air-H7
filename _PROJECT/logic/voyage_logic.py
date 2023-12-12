@@ -1,7 +1,8 @@
 from model.voyage import Voyage
+from data.data_wrapper import DataWrapper
 
 class VoyageLogic:
-    def __init__(self, data_connection) -> None:
+    def __init__(self, data_connection:DataWrapper) -> None:
         self.wrapper = data_connection
 
     def get_all_past_voyages(self):
