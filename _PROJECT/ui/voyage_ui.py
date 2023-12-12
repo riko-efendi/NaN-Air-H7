@@ -2,7 +2,7 @@ from ui.destination_ui import DestinationUI
 from ui.aircraft_ui import AircraftUI
 from ui.flights_ui import FlightsUI
 from utils.ui_utils import UIUtils
-
+from ui.voyage_ascii import VOYAGE_ASCII
 
 class VoyageUI:
     def __init__(self, logic_connection) -> None:
@@ -14,6 +14,7 @@ class VoyageUI:
         """Prints out the options for the Voyage UI"""
 
         self.ui_utils.clear_screen()
+        print(f"{VOYAGE_ASCII}")
         print(f"[VOYAGE]\n")
         print(f"1. Create Voyage")
         print(f"2. List Voyage")

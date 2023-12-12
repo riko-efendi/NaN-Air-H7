@@ -1,5 +1,5 @@
 from utils.ui_utils import UIUtils
-
+from prettytable import PrettyTable
 class ListEmployeeUI:
     def __init__(self, wrapper) -> None:
         self.logic_wrapper = wrapper
@@ -38,9 +38,24 @@ class ListEmployeeUI:
         employees = self.logic_wrapper.get_all_employees()
         self.ui_utils.clear_screen()
         print("[ALL EMPLOYEES]\n")
+        
+    
+
+        # Create a PrettyTable instance and define columns
+        table = PrettyTable()
+        table.field_names = ["Index", "Name", "Role", "Rank", "Kennitala", "Heimilisfang"]
+
+        # Populate the table with data
         for index, employee in enumerate(employees):
-            print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
+            table.add_row([index+1, employee.name, employee.role, employee.rank, employee.print_kennitala, employee.address])
+
+        # Print the formatted table
+        print(table)
+
         input("\nPress [ENTER] to exit: ")
+        """for index, employee in enumerate(employees):
+            print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
+        input("\nPress [ENTER] to exit: ")"""
 
 
     def print_update_employee_info(self, name, kennitala, address, role, rank, phone_number):

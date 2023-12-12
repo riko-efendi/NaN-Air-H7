@@ -1,7 +1,7 @@
 from logic.logic_wrapper import LogicWrapper
 from ui.register_employee_ui import RegisterEmployeeUI
 from model.employee import Employee
-
+from prettytable import PrettyTable
 from utils.ui_utils import UIUtils
 
 class PilotUI:
@@ -51,8 +51,16 @@ class PilotUI:
         self.ui_utils.clear_screen()
         pilots = self.logic_wrapper.get_all_pilots()
         print("[ALL PILOTS]\n")
+         # Create a PrettyTable instance and define columns
+        table = PrettyTable()
+        table.field_names = ["Index", "Name", "Role", "Rank", "Kennitala", "Heimilisfang"]
+
+        # Populate the table with data
         for index, pilot in enumerate(pilots):
-            print(f"{index + 1:>2}.{' Name: ':^2}{pilot.name:<}, {'Rank: '}{pilot.rank}")
+            table.add_row([index+1, pilot.name, pilot.role, pilot.rank, pilot.print_kennitala, pilot.address])
+
+        # Print the formatted table
+        print(table)
         input("\nPress [ENTER] to exit: ")
 
 

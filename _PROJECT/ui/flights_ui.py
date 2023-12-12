@@ -1,4 +1,5 @@
 from utils.ui_utils import UIUtils
+from prettytable import PrettyTable
 
 class FlightsUI:
     def __init__(self, logic_connection) -> None:
@@ -22,14 +23,28 @@ class FlightsUI:
 
             if user_input == "1":
                 self.ui_utils.clear_screen()
-                print(f"[ALL UPCOMING FLIGHTS]\n")
-                self.logic_wrapper.print_all_upcoming_flights()
+                print(f"[ALL PAST FLIGHTS]\n")
+                flights = self.logic_wrapper.get_all_upcoming_flights()
+                table = PrettyTable()
+                table.field_names = ["Index", "Flight_number", "Departure_from", "Arrival_at", "Aircraft_id"]
+
+                # Populate the table with data
+                for index, flight in enumerate(flights):
+                    table.add_row([index+1, flight.flight_nr, flight.dep_from, flight.arr_at, flight.aircraft_id])
+                print(table)
                 input("\nPress [ENTER] to exit: ")
             
             elif user_input == "2":
                 self.ui_utils.clear_screen()
                 print(f"[ALL PAST FLIGHTS]\n")
-                self.logic_wrapper.print_all_past_flights()
+                flights = self.logic_wrapper.get_all_past_flights()
+                table = PrettyTable()
+                table.field_names = ["Index", "Flight_number", "Departure_from", "Arrival_at", "Aircraft_id"]
+
+                # Populate the table with data
+                for index, flight in enumerate(flights):
+                    table.add_row([index+1, flight.flight_nr, flight.dep_from, flight.arr_at, flight.aircraft_id])
+                print(table)
                 input("\nPress [ENTER] to exit: ")
 
             elif user_input == "4":
