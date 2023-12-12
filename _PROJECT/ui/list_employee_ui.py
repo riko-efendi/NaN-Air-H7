@@ -52,12 +52,10 @@ class ListEmployeeUI:
             print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
         input("\nPress [ENTER] to exit: ")
 
-
     def print_update_employee_info(self, name, kennitala, address, role, rank, phone_number):
         self.ui_utils.clear_screen()
         print("[UPDATE EMPLOYEE INFO]\n")
         self.print_employee(name, kennitala, address, role, rank, phone_number)
-
 
     def print_employee(self, name, kennitala, address, role, rank, phone_number) -> None:
         print(f"Name: {name}")
@@ -66,7 +64,6 @@ class ListEmployeeUI:
         print(f"Role: {role}")
         print(f"Rank: {rank}")
         print(f"Phone number: {phone_number}")
-
 
     def view_employee_by_kennitala(self):
         self.ui_utils.clear_screen()
@@ -123,7 +120,7 @@ class ListEmployeeUI:
         
         elif option_input == "b":
             return None
-        
+    
     def view_work_schedule_by_week(self, kennitala):
         self.ui_utils.clear_screen()
         print(f"[WORK SUMMARY]\n")

@@ -35,7 +35,7 @@ class MainMenuUI:
             elif user_input == "2":
                 voyage_menu = VoyageUI(self.logic_wrapper)
                 voyage_menu.input_prompt()
-               
+            
             else:
                 self. input_prompt_str = "Invalid. Enter another choice: "
 

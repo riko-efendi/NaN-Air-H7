@@ -8,6 +8,7 @@ class DestinationData:
         self.fieldnames = ["id", "destination", "numeric_id", "flight_time_from_kef"]
 
     def read_all_destinations(self):
+        """Read destinations.csv and return list of all destinations"""
         destination_list = []
         with open(self.file_name, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)

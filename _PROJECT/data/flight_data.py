@@ -15,6 +15,7 @@ class FlightData:
                            "arrival_time"]
 
     def read_all_past_flights(self):
+        """Read past_flights.csv file and return all past flights"""
         past_flight_list = []
         with open(self.file_name_past, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
@@ -30,6 +31,7 @@ class FlightData:
         return past_flight_list
         
     def read_all_upcoming_flights(self):
+        """Read upcoming_flights.csv file and return all upcoming flights"""
         upcoming_flight_list = []
         with open(self.file_name_upcoming, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
@@ -45,6 +47,7 @@ class FlightData:
         return upcoming_flight_list
     
     def read_all_flights_from_one_airport(self, airport):
+        """Read upcoming_flights.csv and return list of flights from chosen airport."""
         all_flights_from_one_airport_list = []
         with open(self.file_name_upcoming, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
@@ -60,12 +63,13 @@ class FlightData:
         return all_flights_from_one_airport_list
     
     def read_employee_past_schedule_by_nid(self, kennitala):
+        """Read past_flights.csv and retrieve the past flight schedule for an employee based on Kennitala"""
         schedule_list = []
         with open(self.file_name_past, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 if row["captain"] == kennitala or row["copilot"] == kennitala or row["fsm"] == kennitala or row["fa1"] == kennitala or row["fa2"] == kennitala:
-                    schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure"], row["arrival"], row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"], row["aircraft_id"]))
+                    schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure_date"], row["departure_time"], row["arrival_date"], row["arrival_time"], row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"], row["aircraft_id"]))
 
         return schedule_list
     
