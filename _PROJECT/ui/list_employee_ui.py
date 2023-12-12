@@ -1,6 +1,6 @@
 from utils.ui_utils import UIUtils
 from logic.logic_wrapper import LogicWrapper
-from ui.input_validation import LengthERROR, validate_length_kt, validate_integers, validate_address, validate_input_view_by_kt
+from ui.input_validation import LengthERROR, validate_length_kt, validate_integers, validate_address,validate_length_phone, validate_input_view_by_kt
 
 class ListEmployeeUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -85,7 +85,6 @@ class ListEmployeeUI:
             except ValueError:
                 print("invalid value, please enter a valid kennitala")
             except LengthERROR:
-                
                 print("Invalid length, please enter a valid kennitala")
         
         self.ui_utils.clear_screen()
@@ -120,21 +119,47 @@ class ListEmployeeUI:
                         new_address = employee.address
                     validate_address(new_address)
                     self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, employee.phone_number)
-                    break       
+                    print()
+                    break
+
                 except ValueError:
                     self.ui_utils.clear_screen()
                     self.print_update_employee_info(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
-                    print("\nInvalid address")
+                    print("\nInvalid values")
 
-            while True:               
-                new_phone_number = input("\nEnter a new phone number or [K]eep old phone number: ").lower()
-                break     
-            if new_phone_number.lower() == "k":
-                new_phone_number = employee.phone_number
+                except LengthERROR:
+                    self.ui_utils.clear_screen()
+                    self.print_update_employee_info(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
+                    print("\nInvalid length")
+
+
+            while True:
+                try:
+                    
+                    new_phone_number = input("Enter a new phone number or [K]eep old phone number: ").lower()
+                    if new_phone_number.lower() == "k":
+                        new_phone_number = employee.phone_number
+                    validate_integers(new_phone_number)
+                    validate_length_phone(new_phone_number)
+                    
+                    break
+
+                except ValueError:
+                    self.ui_utils.clear_screen()
+                    self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, employee.phone_number)
+                    print("\nInvalid values, please only use numbers")
+                except LengthERROR:
+                    self.ui_utils.clear_screen()
+                    self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, employee.phone_number)
+                    print("\nInvalid number.")
+
             self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, new_phone_number.upper())
             self.logic_wrapper.update_employee_info(kennitala_input, new_address, new_phone_number)
             print("\nSuccess!")
-            input("\nPress [ENTER] to confirm: ")       
+            input("\nPress [ENTER] to confirm: ") 
+
+
+
         elif option_input == "w":
             self.view_work_schedule_by_week(employee.kennitala)     
         elif option_input == "b":

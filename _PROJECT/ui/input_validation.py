@@ -31,11 +31,13 @@ def validate_length_phone(phone_number):
 def validate_address(address):
     address_list = address.split()
     if len(address_list) != 2:
+        raise LengthERROR
+    first, second=address_list
+    if first.isdigit() or second.isalpha():
         raise ValueError
-    elif address_list[0].isalpha() == False and 0 < address_list[0] <= 25 == False:
-        raise ValueError
-    elif address_list[1].isdigit() == False and 0 < address_list[0] <= 2 == False:
-        raise ValueError
+    if not (1 <= len(first) <= 25 and 1 <= len(second) <= 2):
+        raise LengthERROR
+    
 
 
 def validate_input_view_by_kt(user_input):
