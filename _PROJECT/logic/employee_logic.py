@@ -18,11 +18,15 @@ class EmployeeLogic:
         self.flight_logic = FlightLogic(self.data_wrapper)
         self.voyage_logic = VoyageLogic(self.data_wrapper)
 
-    def get_all_employees(self) -> list[Employee]:  
+    def get_all_employees(self) -> list[Employee]:
+        """Gets all employees and injects the work schedule"""
+        
         employees = []
 
         for employee in self.data_wrapper.get_all_employees():
             employee_working_days =  self.get_working_days_of_employee(employee)
+
+            # The value outputed from get_working_days_of_employees can be None
             if employee_working_days != None:
                 employee.work_days = employee_working_days
             else:
@@ -81,30 +85,28 @@ class EmployeeLogic:
         
         all_upcoming_voyages = self.voyage_logic.get_all_upcoming_voyages()
 
-        # working_employees = []
-
-        # I get all the flights
+        # I get all the voyages
         for voyage in all_upcoming_voyages:
-            # Get all nids from flight
+            # Get all nids from crew
             for crew in voyage.all_crew:
-                # Create employee from nid
+                # if the crew is the injected employee
                 if crew == employee.kennitala:
-                        # Put working days in work days, using the dates of the flight
+                    # Get the date range from a logic util method
                     return self.logic_utils.generate_date_range(voyage.depart_date, voyage.arr_date)
-                        # working_employees.append(e)
 
-        # return working_employees
     
     def get_available_employees(self, depart_date, arr_date, role, rank):
+        """Returns a list of available employees based on inputed dates"""
+
         employee_of_role = self.get_all_employees_by_role_rank(role, rank)
-        
         working_dates = self.logic_utils.generate_date_range(depart_date, arr_date)
         available_employees = []
 
         for employee in employee_of_role:
-            # If a date is not in work days is in working_dates
+            # Check for common days in personal schedule vs the inputed date raneg
             common_days = [days for days in employee.work_days if days in working_dates]
 
+            # If the list is empty then there are no common eliments, and thus employee is available
             if common_days == []:
                 available_employees.append(employee)
 
