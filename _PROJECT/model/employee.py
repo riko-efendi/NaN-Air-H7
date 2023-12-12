@@ -14,6 +14,7 @@ class Employee:
         self.phone_number = phone_number
         self.email = email
         self.license = license
+        self.work_days = []
 
     # def __str__(self) -> str:
     #     return f"{self.name}: {self.role}"

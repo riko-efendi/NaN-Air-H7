@@ -25,7 +25,6 @@ class FlightLogic:
                 elif destination.id.strip() == flight.arr_at.strip():
                     flight.arr_dest = destination
 
-
         return flights
     
     def print_upcoming_flights(self):
