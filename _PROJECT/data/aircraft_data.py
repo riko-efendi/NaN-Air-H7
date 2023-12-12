@@ -6,6 +6,7 @@ class AircraftData:
         self.file_name = "_PROJECT/files/aircraft.csv"
 
     def read_all_aircrafts(self):
+        """Read aircraft.csv and return list of all aircrafts information"""
         aircraft_list = []
         with open(self.file_name, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)

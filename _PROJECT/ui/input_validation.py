@@ -11,7 +11,7 @@ def validate_length(name):
         raise LengthERROR()
     
 def validate_length_kt(kennitala):
-    if len(kennitala) != 10:
+    if len(kennitala) > 10:
         raise LengthERROR()
 
 def validate_letters(name):
