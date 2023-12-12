@@ -175,7 +175,11 @@ Me and Riko started the day off by succesfully updating employee info!
 
 [8/12/2023 - thu]
 
-Today was the day of the final boss man. We had to find a way of creating a voyage in code, and letting the user create a voyage
+Today was the day of the final boss man. We had to find a way of creating a voyage in code, and letting the user create a voyage.
+We wanted to create the voyage from the flight.csv's insteda of creating some voyage file. So we only had to read from those files to get a voyage.
+The way our system works is that we read through either of the past_ or upcoming_flights 2 lines at a time. Assign the first flight as the flight from KEF and the latter as the flight back home. And that makes a whole Voyage.
+So we then have to create a system where, when a user creates a voyage, they create 2 flights: one from KEF to a destination, and then another for the way back.
+
 
  - Guðni Hrafn Guðlaugsson
  - Manwin Georg Edselsson
@@ -186,4 +190,12 @@ Today was the day of the final boss man. We had to find a way of creating a voya
 
 [11/12/2023 - thu]
 
+We started the day off by merging 2 branches into main, one of Riko's and one of mine (Guðni). Both 
+More voyage stuff was worked on today. 
+
+
+ - Gestur Pálsson
+ - Guðni Hrafn Guðlaugsson
+ - Manwin Georg Edselsson
+ - Riko Efendi
 
