@@ -40,10 +40,17 @@ class CreateVoyageUI:
             return None
         input("\nPress [ENTER] to confirm: ")
 
-        captain = self.assign_crew("Pilot", "Captain")
-        copilot = self.assign_crew("Pilot", "Copilot")
-        fsm = self.assign_crew("Cabincrew", "Flight Service Manager")
-        fa1 = self.assign_crew("Cabincrew", "Flight Attendant")
+
+        captain = self.assign_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Pilot", "Captain")
+        copilot = self.assign_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Pilot", "Copilot")
+        fsm = self.assign_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Cabincrew", "Flight Service Manager")
+        fa1 = self.assign_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Cabincrew", "Flight Attendant")
+
+
+        # captain = self.assign_crew("Pilot", "Captain")
+        # copilot = self.assign_crew("Pilot", "Copilot")
+        # fsm = self.assign_crew("Cabincrew", "Flight Service Manager")
+        # fa1 = self.assign_crew("Cabincrew", "Flight Attendant")
 
 
         self.flight_1.captain = captain
@@ -60,6 +67,9 @@ class CreateVoyageUI:
 
         self.logic_wrapper.register_flight(self.flight_1)
         self.logic_wrapper.register_flight(self.flight_2)
+
+
+
         input("Voyage succesfully created. Press [ENTER] to exit: ")
             
 
@@ -160,19 +170,25 @@ class CreateVoyageUI:
         print(f"\n[C]ancel")
 
 
-    def assign_crew(self, role, rank):
+    def assign_crew(self, dep_date, arr_date, role, rank):
 
-        employees = self.logic_wrapper.get_all_employees_by_role_rank(role, rank)
+        employees = self.logic_wrapper.get_available_employees(dep_date, arr_date, role, rank)
         self.ui_utils.clear_screen()
         print(f"[SELECT {rank.upper()}]\n")
         for index, employee in enumerate(employees):
             print(f"{index + 1}. {employee.name}")
 
-        print("\n[S]kip assigning Crew\n")
+        print("\n[S]kip assigning Crew")
         user_input = input("\nEnter your choice: ")
 
         return employees[int(user_input) - 1].kennitala
 
+
+    def list_available_employees(self, dep_date, arr_date, role, rank):
+        employees = self.logic_wrapper.get_available_employees(dep_date, arr_date, role, rank)
+
+        for employee in employees:
+            print(employee.name)
 
 
 

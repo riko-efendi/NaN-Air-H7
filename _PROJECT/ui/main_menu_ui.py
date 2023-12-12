@@ -35,7 +35,10 @@ class MainMenuUI:
             elif user_input == "2":
                 voyage_menu = VoyageUI(self.logic_wrapper)
                 voyage_menu.input_prompt()
-               
+
+            elif user_input =="3":
+                self.logic_wrapper.get_working_days_of_employees()
+                input("HIHIHI")
             else:
                 self. input_prompt_str = "Invalid. Enter another choice: "
 

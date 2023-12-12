@@ -44,6 +44,13 @@ class LogicWrapper:
     def get_all_employees_by_role_rank(self, role:str="", rank:str=""):
         return self.employee_logic.get_all_employees_by_role_rank(role, rank)
     
+    def get_working_days_of_employees(self):
+        return self.employee_logic.get_working_days_of_employee()
+    
+    def get_available_employees(self, depart_date, arr_date, role, rank):
+        # Returns a list of available employees by role, rank and date
+        return self.employee_logic.get_available_employees(depart_date, arr_date, role, rank)
+    
     # DESTINATIONS
 
     def get_all_destinations(self, include_kef:bool=True, as_dict=False) -> list[Destination]:

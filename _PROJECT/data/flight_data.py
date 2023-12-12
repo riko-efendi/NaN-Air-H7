@@ -39,14 +39,17 @@ class FlightData:
         with open(self.file_name_upcoming, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                upcoming_flight_list.append(Flight(row["flight_nr"], 
-                                                   row["dep_from"], 
-                                                   row["arr_at"], 
-                                                   row["departure_date"], 
-                                                   row["departure_time"], 
-                                                   row["arrival_date"], 
-                                                   row["arrival_time"]))
-        
+                f = Flight(row["flight_nr"], 
+                            row["dep_from"], 
+                            row["arr_at"], 
+                            row["departure_date"], 
+                            row["departure_time"], 
+                            row["arrival_date"], 
+                            row["arrival_time"])
+                f.all_crew = [row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"]]
+
+                upcoming_flight_list.append(f)
+                
         return upcoming_flight_list
     
     def read_all_flights_from_one_airport(self, airport):

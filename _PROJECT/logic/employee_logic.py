@@ -2,19 +2,35 @@
 from data.employee_data import EmployeeData
 from logic.aircraft_logic import AircraftLogic
 from logic.flight_logic import FlightLogic
+from logic.voyage_logic import VoyageLogic
 
 from data.data_wrapper import DataWrapper
 
 from model.employee import Employee
 from model.aircraft import Aircraft
 
+from utils.logic_utils import LogicUtils
 
 class EmployeeLogic:
     def __init__(self, data_connection:DataWrapper) -> None:
+        self.logic_utils = LogicUtils()
         self.data_wrapper = data_connection
+        self.flight_logic = FlightLogic(self.data_wrapper)
+        self.voyage_logic = VoyageLogic(self.data_wrapper)
 
     def get_all_employees(self) -> list[Employee]:  
-        return self.data_wrapper.get_all_employees()
+        employees = []
+
+        for employee in self.data_wrapper.get_all_employees():
+            employee_working_days =  self.get_working_days_of_employee(employee)
+            if employee_working_days != None:
+                employee.work_days = employee_working_days
+            else:
+                employee.work_days = []
+
+            employees.append(employee)
+
+        return employees
     
     def get_employee_by_nid(self, kennitala):
         for employee in self.data_wrapper.get_all_employees():
@@ -49,7 +65,7 @@ class EmployeeLogic:
     def get_all_employees_by_role_rank(self, role:str="", rank:str=""):
         """Gets all employees by an inputed role and rank"""
 
-        all_employees = self.data_wrapper.get_all_employees()
+        all_employees = self.get_all_employees()
         returned_employees = []
        
         for employee in all_employees:
@@ -58,7 +74,38 @@ class EmployeeLogic:
                     returned_employees.append(employee)
 
         return returned_employees
+    
 
+    def get_working_days_of_employee(self, employee):
+        """Inject work schedule in employee"""
+        
+        all_upcoming_voyages = self.voyage_logic.get_all_upcoming_voyages()
 
+        # working_employees = []
 
+        # I get all the flights
+        for voyage in all_upcoming_voyages:
+            # Get all nids from flight
+            for crew in voyage.all_crew:
+                # Create employee from nid
+                if crew == employee.kennitala:
+                        # Put working days in work days, using the dates of the flight
+                    return self.logic_utils.generate_date_range(voyage.depart_date, voyage.arr_date)
+                        # working_employees.append(e)
 
+        # return working_employees
+    
+    def get_available_employees(self, depart_date, arr_date, role, rank):
+        employee_of_role = self.get_all_employees_by_role_rank(role, rank)
+        
+        working_dates = self.logic_utils.generate_date_range(depart_date, arr_date)
+        available_employees = []
+
+        for employee in employee_of_role:
+            # If a date is not in work days is in working_dates
+            common_days = [days for days in employee.work_days if days in working_dates]
+
+            if common_days == []:
+                available_employees.append(employee)
+
+        return available_employees
