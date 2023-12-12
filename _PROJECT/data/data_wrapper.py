@@ -40,11 +40,16 @@ class DataWrapper:
     def get_all_flightattendants(self):
         return self.employee_data.read_all_flightattendants()
     
+    # SCHEDULE
+    
     def get_employee_past_schedule_by_nid(self, kennitala):
         return self.flight_data.read_employee_past_schedule_by_nid(kennitala)
     
     def get_employees_past_schedule_by_date(self, date):
         return self.employee_data.read_employees_past_schedule_by_date(date)
+    
+    def get_employees_past_schedule_by_date_range_and_kennitala(self, start_date, end_date, kennitala):
+        return self.employee_data.read_employees_past_schedule_by_date_range_and_kennitala(start_date, end_date, kennitala)
     
     # FLIGHTS
 

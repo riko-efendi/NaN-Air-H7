@@ -95,14 +95,30 @@ class ListEmployeeUI:
             input("\nPress [ENTER] to confirm: ")
             
         elif option_input == "w":
-            self.ui_utils.clear_screen()
-            print(f"[WORK SCHEDULE]\n")
-            print("Insert beautiful work schedule here")
-            
-            input("Press [ENTER] to exit")
+            self.view_work_schedule_by_week(employee.kennitala)
         
         elif option_input == "b":
             return None
+        
+    def view_work_schedule_by_week(self, kennitala):
+        self.ui_utils.clear_screen()
+        print(f"[WORK SUMMARY]\n")
+        start_date = input("Enter Start Date [YYYY-MM-DD]: ")
+        end_date = input("Enter End Date [YYYY-MM-DD]: ")
+
+        flights = self.logic_wrapper.get_employees_past_schedule_by_date_range_and_kennitala(start_date, end_date, kennitala)
+        employee = self.logic_wrapper.get_employee_by_nid(kennitala)
+        
+        self.ui_utils.clear_screen()
+        print(f"Work Schedule for {employee.name} from {start_date} to {end_date}\n")
+
+        if flights:
+            for flight in flights:
+                print(f"Flight Number: {flight['flight_nr']}, From: {flight['dep_from']} To: {flight['arr_at']}, Departure: {flight['departure_date']} {flight['departure_time']}, Arrival: {flight['arrival_date']} {flight['arrival_time']}")
+        else:
+            print("No flights scheduled for this employee within the specified date range.")
+
+        input("\nPress [ENTER] to exit: ")
 
     def view_employees_past_schedule_by_date(self):
         self.ui_utils.clear_screen()

@@ -44,4 +44,7 @@ class EmployeeLogic:
 
     def get_all_pilots_by_license(self, license):
         return self.data_wrapper.get_all_pilots_by_license(license)
+    
+    def get_employees_past_schedule_by_date_range_and_kennitala(self, start_date, end_date, kennitala=None):
+        return self.data_wrapper.get_employees_past_schedule_by_date_range_and_kennitala(start_date, end_date, kennitala)
 

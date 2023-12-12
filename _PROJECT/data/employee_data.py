@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 
 from model.employee import Employee
 from model.flight import Flight
@@ -56,7 +57,6 @@ class EmployeeData:
             for row in reader:
                 if row["license"] == license:
                     pilot_list.append(row["name"])
-               
         return pilot_list
 
 
@@ -84,3 +84,17 @@ class EmployeeData:
                 if depart_date == date:
                     past_schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure_date"], row["departure_time"], row["arrival_date"], row["arrival_time"], row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"], row["aircraft_id"]))
         return past_schedule_list
+    
+    def read_employees_past_schedule_by_date_range_and_kennitala(self, start_date, end_date, kennitala):
+        start_date = datetime.strptime(start_date, "%Y-%m-%d")
+        end_date = datetime.strptime(end_date, "%Y-%m-%d")
+        flights_in_range = []
+
+        with open(self.past_flight_file, newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                departure_date = datetime.strptime(row['departure_date'], "%Y-%m-%d")
+                if start_date <= departure_date <= end_date:
+                    if kennitala and (kennitala in [row['captain'], row['copilot'], row['fsm'], row['fa1'], row['fa2']]):
+                        flights_in_range.append(row)
+        return flights_in_range
