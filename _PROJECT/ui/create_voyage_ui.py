@@ -31,27 +31,23 @@ class CreateVoyageUI:
     def create_voyage(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
    
+        # Use this as a break statement
         if not self.assign_destination():
             return None
+        # Use this as a break statement
         if not self.assign_times(self.flight_1):
             return None
         input("\nPress [ENTER] to confirm: ")
+        # Use this as a break statement
         if not self.assign_times(self.flight_2):
             return None
         input("\nPress [ENTER] to confirm: ")
 
-
-        captain = self.assign_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Pilot", "Captain")
-        copilot = self.assign_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Pilot", "Copilot")
-        fsm = self.assign_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Cabincrew", "Flight Service Manager")
-        fa1 = self.assign_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Cabincrew", "Flight Attendant")
-
-
-        # captain = self.assign_crew("Pilot", "Captain")
-        # copilot = self.assign_crew("Pilot", "Copilot")
-        # fsm = self.assign_crew("Cabincrew", "Flight Service Manager")
-        # fa1 = self.assign_crew("Cabincrew", "Flight Attendant")
-
+        captain = self.print_available_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Pilot", "Captain")
+        copilot = self.print_available_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Pilot", "Copilot")
+        fsm = self.print_available_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Cabincrew", "Flight Service Manager")
+        fa1 = self.print_available_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Cabincrew", "Flight Attendant")
+        fa2 = self.print_available_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Cabincrew", "Flight Attendant")
 
         self.flight_1.captain = captain
         self.flight_2.captain = captain
@@ -65,12 +61,13 @@ class CreateVoyageUI:
         self.flight_1.fa1 = fa1
         self.flight_2.fa1 = fa1
 
+        self.flight_1.fa2 = fa2
+        self.flight_2.fa2 = fa2
+
         self.logic_wrapper.register_flight(self.flight_1)
         self.logic_wrapper.register_flight(self.flight_2)
 
-
-
-        input("Voyage succesfully created. Press [ENTER] to exit: ")
+        input("\nVoyage succesfully created. Press [ENTER] to exit: ")
             
 
     def assign_destination(self) -> bool:
@@ -121,7 +118,7 @@ class CreateVoyageUI:
 
         # Update flight info
         self.print_flight_info(flight)
-        dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower()
+        dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower() # Needs Error handling
 
         if dep_date == "c":
             return False
@@ -130,7 +127,7 @@ class CreateVoyageUI:
 
         #Update flight info
         self.print_flight_info(flight)
-        dep_time = input(f"\nAt what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower()
+        dep_time = input(f"\nAt what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower() # Needs error handling
 
         if dep_time == "c":
             return False
@@ -170,7 +167,8 @@ class CreateVoyageUI:
         print(f"\n[C]ancel")
 
 
-    def assign_crew(self, dep_date, arr_date, role, rank):
+    def print_available_crew(self, dep_date, arr_date, role, rank):
+        """Print available crew, by inputed date range and the role and rank of the employee. Returns the kennitala of a selected Employee"""
 
         employees = self.logic_wrapper.get_available_employees(dep_date, arr_date, role, rank)
         self.ui_utils.clear_screen()
@@ -184,11 +182,6 @@ class CreateVoyageUI:
         return employees[int(user_input) - 1].kennitala
 
 
-    def list_available_employees(self, dep_date, arr_date, role, rank):
-        employees = self.logic_wrapper.get_available_employees(dep_date, arr_date, role, rank)
-
-        for employee in employees:
-            print(employee.name)
 
 
 

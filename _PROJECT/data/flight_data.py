@@ -94,7 +94,8 @@ class FlightData:
                              "captain": flight.captain, 
                              "copilot": flight.copilot,
                              "fsm": flight.fsm,
-                             "fa1": flight.fa1})
+                             "fa1": flight.fa1,
+                             "fa2": flight.fa2})
 
 
     def read_all_flight_nr(self):
