@@ -4,6 +4,7 @@ from model.flight import Flight
 from model.destination import Destination
 from datetime import datetime, timedelta
 from logic.logic_wrapper import LogicWrapper
+from ui.input_validation import LengthERROR, DateError, validate_year_format, validate_time_format
 
 
 class CreateVoyageUI:
@@ -118,19 +119,36 @@ class CreateVoyageUI:
 
         # Update flight info
         self.print_flight_info(flight)
-        dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower() # Needs Error handling
-
-        if dep_date == "c":
-            return False
+        while True:
+            try:
+                dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower() # Needs Error handling
+                if dep_date == "c":
+                    return False
+                validate_year_format(dep_date)
+                break
+            except ValueError:
+                print("Invalid date, please only use digits")
+            except LengthERROR:
+                print("Invalid date, plesa use format (YYYY-MM-DD)")
+            except DateError:
+                print("Invalid date, month and/or day does not exist")
         
         flight.depart_date = dep_date
 
         #Update flight info
         self.print_flight_info(flight)
-        dep_time = input(f"\nAt what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower() # Needs error handling
-
-        if dep_time == "c":
-            return False
+        while True:
+            try:
+                dep_time = input(f"\nAt what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower() # Needs error handling
+                if dep_time == "c":
+                    return False
+                break
+            except ValueError:
+                print("Invalid time, please only use digits")
+            except LengthERROR:
+                print("Invalid time, plesa use format (HH:MM:SS)")
+            except DateError:
+                print("Invalid time, time does not exist")
 
         # Add the date and time togheter to work as a single variable when going into the add hours function
         dep_datetime = dep_date + " " + dep_time

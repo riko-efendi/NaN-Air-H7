@@ -46,3 +46,16 @@ def validate_year_format(date):
         raise LengthERROR
     elif int(date_list[1]) > 12 or int(date_list[2]) > 31:
         raise DateError
+    
+def validate_time_format(time):
+    time_list = time.split(":")
+    for element in time_list:
+        if element.isdigit == False:
+            raise ValueError
+    if len(time_list) != 3:
+        raise LengthERROR
+    for element in time_list:
+        if len(element) != 2:
+            raise LengthERROR
+    if int(time_list[0]) > 24 or int(time_list[1]) > 60 or int(time_list[2]) > 60:
+        raise DateError
