@@ -18,8 +18,8 @@ class VoyageListUI:
         print(f"[LIST VOYAGES]\n")
         print(f"1. List Upcoming Voyages")
         print(f"2. List Past Voyages")
-        print(f"2. List Voyage by date")
-        print(f"2. List Voyage by week")
+        print(f"3. List Voyage by date")
+        print(f"4. List Voyage by week")
 
         print(f"\n[B]ack")
 
