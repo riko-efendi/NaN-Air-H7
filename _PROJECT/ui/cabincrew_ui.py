@@ -41,7 +41,7 @@ class CabinCrewUI:
 
         e = Employee()
         register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
-        register_employee_menu.register_cabin_crew(e)   
+        register_employee_menu.register_employee(e, "[REGISTER CABIN CREW]")   
 
 
     def list_all_cabin_crew(self) -> None:

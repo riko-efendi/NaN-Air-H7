@@ -1,6 +1,6 @@
 from utils.ui_utils import UIUtils
 from logic.logic_wrapper import LogicWrapper
-from ui.input_validation import LengthERROR, validate_length_kt, validate_integers
+from ui.input_validation import LengthERROR, validate_length_kt, validate_integers, validate_address, validate_input_view_by_kt
 
 class ListEmployeeUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -67,14 +67,13 @@ class ListEmployeeUI:
         print(f"Rank: {rank}")
         print(f"Phone number: {phone_number}")
 
-
     def view_employee_by_kennitala(self):
         self.ui_utils.clear_screen()
-        
-        
+
         while True:
             try:
                 kennitala_input = input("Enter Employee Kennitala: ")
+                self.ui_utils.clear_screen()
                 validate_integers(kennitala_input)
                 validate_length_kt(kennitala_input)
                 employee = self.logic_wrapper.get_employee_by_nid(kennitala_input)
@@ -86,44 +85,63 @@ class ListEmployeeUI:
             except ValueError:
                 print("invalid value, please enter a valid kennitala")
             except LengthERROR:
+                
                 print("Invalid length, please enter a valid kennitala")
-
-                    
-        
-             
-        
-        
-        
         
         self.ui_utils.clear_screen()
         print(f"[EMPLOYEE INFO]\n")
         self.print_employee(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
 
-        print("\n[U]pdate Info\t[W]ork Schedule\t  [B]ack")
-        option_input = input("\nEnter your choice: ").lower()
+        print("\n[U]pdate Info\t[W]ork Schedule\t  [B]ack\n")
+
+        
+        while True:
+            try:    
+                option_input = input("Enter your choice: ").lower()
+                validate_input_view_by_kt(option_input)
+                break
+            except ValueError:
+                self.ui_utils.clear_screen()
+                print(f"[EMPLOYEE INFO]\n")
+                self.print_employee(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
+
+                print("\n[U]pdate Info\t[W]ork Schedule\t  [B]ack\n")
+                print("Invalid input.")
+
 
         if option_input == "u":
+            self.ui_utils.clear_screen()
             self.print_update_employee_info(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
-            new_address = input("\nEnter a new address or [K]eep old address: ")
+            print()
+            while True:
+                try:
+                    new_address = input("Enter a new address or [K]eep old address: ")
+                    if new_address.lower() == "k":
+                        new_address = employee.address
+                    validate_address(new_address)
+                    self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, employee.phone_number)
+                    break       
+                except ValueError:
+                    self.ui_utils.clear_screen()
+                    self.print_update_employee_info(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
+                    print("\nInvalid address")
 
-            if new_address.lower() == "k":
-                new_address = employee.address
-            self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, employee.phone_number)
-            new_phone_number = input("\nEnter a new phone number or [K]eep old phone number: ").lower()
-
+            while True:               
+                new_phone_number = input("\nEnter a new phone number or [K]eep old phone number: ").lower()
+                break     
             if new_phone_number.lower() == "k":
                 new_phone_number = employee.phone_number
             self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, new_phone_number.upper())
             self.logic_wrapper.update_employee_info(kennitala_input, new_address, new_phone_number)
             print("\nSuccess!")
-            input("\nPress [ENTER] to confirm: ")
-            
+            input("\nPress [ENTER] to confirm: ")       
         elif option_input == "w":
-            self.view_work_schedule_by_week(employee.kennitala)
-        
+            self.view_work_schedule_by_week(employee.kennitala)     
         elif option_input == "b":
             return None
+           
         
+
     def view_work_schedule_by_week(self, kennitala):
         self.ui_utils.clear_screen()
         print(f"[WORK SUMMARY]\n")
