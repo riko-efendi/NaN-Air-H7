@@ -1,5 +1,4 @@
 import csv
-
 from model.aircraft import Aircraft
 
 class AircraftData:

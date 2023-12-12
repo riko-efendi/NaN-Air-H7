@@ -15,9 +15,7 @@ class VoyageLogic:
 
         return past_voyages
 
-    def read_past_voyages(self):
-        return self.wrapper.read_past_voyages()
-    
+
     def get_all_upcoming_voyages(self):
         past_flights = self.wrapper.get_all_upcoming_flights()
         past_voyages = []
@@ -28,4 +26,3 @@ class VoyageLogic:
             past_voyages.append(Voyage(flight_1, flight_2))
 
         return past_voyages
-    

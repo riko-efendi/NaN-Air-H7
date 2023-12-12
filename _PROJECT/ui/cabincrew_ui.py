@@ -17,7 +17,6 @@ class CabinCrewUI:
         print(f"[CABIN CREW]\n")
         print(f"1. Register cabin crew")
         print(f"2. List All cabin crews")
-        print(f"3. View specific cabin crew")
         print(f"\n[B]ack")
 
 

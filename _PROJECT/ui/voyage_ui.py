@@ -2,6 +2,8 @@ from ui.destination_ui import DestinationUI
 from ui.aircraft_ui import AircraftUI
 from ui.flights_ui import FlightsUI
 from ui.create_voyage_ui import CreateVoyageUI
+from model.voyage import Voyage
+
 from ui.voyage_list_ui import VoyageListUI
 from utils.ui_utils import UIUtils
 

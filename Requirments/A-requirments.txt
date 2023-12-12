@@ -1,20 +1,20 @@
 Employee related stuff:
 
-	Register employee
-		Register either as a pilot or a flight attentand
-	Register pilot
-	Register cabin crew / fligth attentand
+	#Register employee
+	#Register either as a pilot or a flight attentand
+	#Register pilot
+	#Register cabin crew / fligth attentand
 
-	List all employees
-	List all pilots
-	List all cabin crew / flight attentand
+	#List all employees
+	#List all pilots
+	#List all cabin crew / flight attentand
 
-	List info for a given employee (by kennitala?)
+	#List info for a given employee (by kennitala?)
 
 	Change employee info
 
-	List all non working employees for a specific day
-	List all employees for a specific day and their destination
+	-List all non working employees for a specific day
+	-List all employees for a specific day and their destination
 
 	Print out work schedule, showing all voyages for said employee of a certain week (would that be a part of info?)
 	Calendar?
@@ -23,7 +23,7 @@ Employee related stuff:
 
 Flight related stuff:
 
-	Register destination (how?)
+	#Register destination (how?)
 	Register voyage
 		- And assign employees, there can be no employees be assigned.
 	
@@ -33,7 +33,7 @@ Flight related stuff:
 	List voyage with following condition:
 		- Employees can only take one voyage per day. Not possible to assign the same employee for two voyages per day
 		- Each voyage should have at least 2 pilots (one chief and one co-pilot).
-		- List all voyages for a specific day, and check if they are fully manned
+		- List all voyages' for a specific day, and check if they are fully manned
 		- List all voyages for a specific week and check if they are fully manned
 
 	

@@ -1,4 +1,9 @@
 from model.flight import Flight
+from model.employee import Employee
+
+"""
+Voyage base class. Here we give the voyage all its variables, and behaviours.
+"""
 
 class Voyage:
     def __init__(self, flight_1:Flight, flight_2:Flight) -> None:
