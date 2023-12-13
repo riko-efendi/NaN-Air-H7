@@ -1,41 +1,46 @@
 from logic.logic_wrapper import LogicWrapper
 from ui.employee_ui import EmployeeUI
 from ui.voyage_ui import VoyageUI
-
 from utils.ui_utils import UIUtils
 
 
 class MainMenuUI:
     def __init__(self) -> None:
-       self.logic_wrapper = LogicWrapper()
-       self.ui_utils = UIUtils()
+        self.logic_wrapper = LogicWrapper()
+        self.ui_utils = UIUtils()
+        self.input_prompt_str = "Enter your choice: "
 
-    def menu_output(self):
+    def menu_output(self) -> None:
+        """Prints out the options for the Main Menu UI"""
 
-        options = "1. Employees\n2. Voyage\n\n[Q]uit"
-        boarder = self.ui_utils.get_boarder("[MAIN MENU]", options, 0, 5)
         self.ui_utils.clear_screen()
-        print(boarder)
+        print(f"[MAIN]\n")
+        print(f"1. Employees")
+        print(f"2. Voyage")
+        print(f"\n[Q]uit")
 
-    def input_prompt(self):
+    def input_prompt(self) -> None:
+        """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
 
-        while True:
+        user_input = ""
+
+        while user_input != "q":
             self.menu_output()
-            user_input = input("Enter your choice: ").lower()
-            if user_input == "q":
-                print("Quitting")
-                break
-            elif user_input == "1":
+            user_input = input("\n" + self.input_prompt_str).lower()
+
+            if user_input == "1":
                 employee_menu = EmployeeUI(self.logic_wrapper)
-                back_method = employee_menu.input_prompt()
-                if back_method == "q":
-                    return "q"
-                pass
+                employee_menu.input_prompt()
+                self.input_prompt_str = "Enter your choice: "
+                
             elif user_input == "2":
                 voyage_menu = VoyageUI(self.logic_wrapper)
-                back_method = voyage_menu.input_prompt()
-                if back_method == "q":
-                    return "q"
-                pass
+                voyage_menu.input_prompt()
+                self.input_prompt_str = "Enter your choice: "
+
             else:
-                print("Invalid")
+                self. input_prompt_str = "Invalid. Enter another choice: "
+            
+            
+
+        print("\nQUITTING")
