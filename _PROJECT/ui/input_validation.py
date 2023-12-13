@@ -1,9 +1,10 @@
-from datetime import datetime
+from datetime import datetime, date
 
 class LengthError(Exception):
     pass
 
-
+class DateRangeError(Exception):
+    pass
 
 
 
@@ -40,7 +41,19 @@ def validate_address(address):
     
 def validate_date_format(date):
     datetime.strptime(date, '%Y-%m-%d')
-   
     
 def validate_time_format(time):
     datetime.strptime(time, '%H:%M:%S')
+
+
+
+def validate_date_range(start_date, end_date):
+    try:
+        start_date_time = datetime.strptime(start_date, '%Y-%m-%d').date()
+        end_date_time = datetime.strptime(end_date, '%Y-%m-%d').date()
+
+        if end_date_time < start_date_time:
+            raise DateRangeError()
+
+    except ValueError:
+        raise ValueError

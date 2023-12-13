@@ -153,7 +153,7 @@ class EditVoyageUI:
 
         flight.depart_date = dep_date
 
-        #Update flight info
+        # Update flight info
         self.print_flight_info(flight)
         dep_time = input(f"\nAt what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower()
         while True:
