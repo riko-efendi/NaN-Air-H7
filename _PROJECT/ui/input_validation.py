@@ -1,5 +1,9 @@
+from datetime import datetime
+
 class LengthERROR(Exception):
     pass
+
+
 
 def validate_length(name):
     if 0 < len(name) <= 20:
@@ -31,3 +35,10 @@ def validate_address(address):
         raise ValueError()
     elif address_list[1].isdigit() == False:
         raise ValueError()  
+    
+def validate_date_format(date):
+    datetime.strptime(date, '%Y-%m-%d')
+   
+    
+def validate_time_format(time):
+    datetime.strptime(time, '%H:%M:%S')

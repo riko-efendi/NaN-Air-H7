@@ -7,6 +7,8 @@ from model.destination import Destination
 from datetime import datetime, timedelta
 from logic.logic_wrapper import LogicWrapper
 
+from ui.input_validation import validate_date_format, validate_time_format
+
 
 class EditVoyageUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -138,19 +140,33 @@ class EditVoyageUI:
 
         # Update flight info
         self.print_flight_info(flight)
-        dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower() # Needs Error handling
 
-        if dep_date == "c":
-            return False
-        
+        dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower() # Needs Error handling
+        while True:
+            try:
+                validate_date_format(dep_date)
+                break
+            except ValueError:
+                if dep_date == "c":
+                    return False
+                self.print_flight_info(flight)
+                dep_date = input(f"\nWrong format! At what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower()
+
         flight.depart_date = dep_date
 
         #Update flight info
         self.print_flight_info(flight)
-        dep_time = input(f"\nAt what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower() # Needs error handling
+        dep_time = input(f"\nAt what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower()
+        while True:
+            try:
+                validate_time_format(dep_time)
+                break
+            except ValueError:
+                if dep_time == "c":
+                    return False
+                self.print_flight_info(flight)
+                dep_time = input(f"\nWrong format! At what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower()
 
-        if dep_time == "c":
-            return False
 
         # Add the date and time togheter to work as a single variable when going into the add hours function
         dep_datetime = dep_date + " " + dep_time
@@ -195,10 +211,10 @@ class EditVoyageUI:
         self.ui_utils.clear_screen()
         print(f"[ASSIGN DATE AND TIME]\n")
         print(f"Departing Destination: {flight.dep_from}")
-        print(f"Arriving Destination: {flight.arr_at}")
-        print(f"Date of Departure: {flight.depart_date}")
-        print(f"Time of Departure: {flight.depart_time}")
-        print(f"Date of Arrival: {flight.arr_date}")
-        print(f"Time of Arrival: {flight.arr_time}")
+        print(f"Arriving Destination:  {flight.arr_at}")
+        print(f"Date of Departure:     {flight.depart_date}")
+        print(f"Time of Departure:     {flight.depart_time}")
+        print(f"Date of Arrival:       {flight.arr_date}")
+        print(f"Time of Arrival:       {flight.arr_time}")
         print(f"\n[C]ancel")
     

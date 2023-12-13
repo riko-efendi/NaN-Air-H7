@@ -86,12 +86,6 @@ class ListEmployeeUI:
                 print("Invalid length, please enter a valid kennitala")
 
                     
-        
-             
-        
-        
-        
-        
         self.ui_utils.clear_screen()
         print(f"[EMPLOYEE INFO]\n")
         self.print_employee(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
