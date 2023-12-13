@@ -62,3 +62,5 @@ class VoyageUI:
 
             else:
                 self.input_prompt_str = "Invalid. Enter another choice: "
+            
+            self.input_prompt_str = "Enter your choice: "

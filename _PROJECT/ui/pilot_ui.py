@@ -36,12 +36,15 @@ class PilotUI:
                 register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
                 e = Employee(role="Pilot")
                 register_employee_menu.register_employee(e, "[REGISTER PILOT]")   
+                self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "2":
                 self.list_all_pilots()
+                self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "3":
                 self.view_pilots_by_license()
+                self.input_prompt_str = "Enter your choice: "
             
             else:
                 self.input_prompt_str = "Invaild. Enter another choice: "

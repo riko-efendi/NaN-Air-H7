@@ -46,12 +46,16 @@ class VoyageListUI:
 
             elif user_input == "3":
                 self.list_voyage_by_date()
+                self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "4":
                 self.list_voyage_by_week()
+                self.input_prompt_str = "Enter your choice: "
 
             else:
                 self.input_prompt_str = "Invalid. Enter another choice: "
+
+            
 
     def list_voyage_by_date(self):
         """Gets date as input from user, and lists all voyages on that date"""
