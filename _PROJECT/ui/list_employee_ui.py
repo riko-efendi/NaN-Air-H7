@@ -1,6 +1,6 @@
 from utils.ui_utils import UIUtils
 from logic.logic_wrapper import LogicWrapper
-from ui.input_validation import LengthERROR, validate_length_kt, validate_integers, validate_address,validate_length_phone, validate_input_view_by_kt
+from ui.input_validation import LengthERROR, DateError, validate_kennitala, validate_address,validate_phone_number, validate_input_view_by_kt, validate_year_format
 
 class ListEmployeeUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -75,8 +75,7 @@ class ListEmployeeUI:
             try:
                 kennitala_input = input("Enter Employee Kennitala: ")
                 self.ui_utils.clear_screen()
-                validate_integers(kennitala_input)
-                validate_length_kt(kennitala_input)
+                validate_kennitala(kennitala_input)
                 employee = self.logic_wrapper.get_employee_by_nid(kennitala_input)
                 if employee != None:
                     break
@@ -144,8 +143,7 @@ class ListEmployeeUI:
                     new_phone_number = input("Enter a new phone number or [K]eep old phone number: ").lower()
                     if new_phone_number.lower() == "k":
                         new_phone_number = employee.phone_number
-                    validate_integers(new_phone_number)
-                    validate_length_phone(new_phone_number)
+                    validate_phone_number(new_phone_number)
                     
                     break
 
@@ -175,8 +173,32 @@ class ListEmployeeUI:
     def view_work_schedule_by_week(self, kennitala):
         self.ui_utils.clear_screen()
         print(f"[WORK SUMMARY]\n")
-        start_date = input("Enter Start Date [YYYY-MM-DD]: ")
-        end_date = input("Enter End Date [YYYY-MM-DD]: ")
+        while True:
+            #this loops is repeated in the following loooops this is to just make sure the user inputs a valid date and if the date makes sense
+            #it will let them continue. 
+            try:
+                start_date = input("Enter Date [YYYY-MM-DD]: ")
+                self.ui_utils.clear_screen()
+                validate_year_format(start_date)
+                break
+            except ValueError:
+                print("Invalid date, please only use digits")
+            except LengthERROR:
+                print("Invalid date, pleasa use format [YYYY-MM-DD]")
+            except DateError:
+                print("Invalid date, month and/or day does not exist")
+
+        while True:
+            try:
+                end_date = input("Enter Date [YYYY-MM-DD]: ")
+                validate_year_format(start_date)
+                break
+            except ValueError:
+                print("Invalid date, please only use digits")
+            except LengthERROR:
+                print("Invalid date, pleasa use format [YYYY-MM-DD]")
+            except DateError:
+                print("Invalid date, month and/or day does not exist")
 
         flights = self.logic_wrapper.get_employees_past_schedule_by_date_range_and_kennitala(start_date, end_date, kennitala)
         employee = self.logic_wrapper.get_employee_by_nid(kennitala)
@@ -194,7 +216,19 @@ class ListEmployeeUI:
 
     def view_employees_past_schedule_by_date(self):
         self.ui_utils.clear_screen()
-        date_input = input("Enter Date [YYYY-MM-DD]: ")
+        while True:
+            try:
+                date_input = input("Enter Date [YYYY-MM-DD]: ")
+                self.ui_utils.clear_screen()
+                validate_year_format(date_input)
+                break
+            except ValueError:
+                print("Invalid date, please only use digits")
+            except LengthERROR:
+                print("Invalid date, please use format [YYYY-MM-DD]")
+            except DateError:
+                print("Invalid date, month and/or day does not exist")
+
         flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
         self.ui_utils.clear_screen()
         print(f"ALL ON DUTY EMPLOYEES on {date_input}\n")
@@ -215,8 +249,22 @@ class ListEmployeeUI:
 
     def view_all_absent_employees(self):
         self.ui_utils.clear_screen()
-        date_input = input("Enter Date [YYYY-MM-DD]: ")
+        while True:
+            try:
+                date_input = input("Enter Date [YYYY-MM-DD]: ")
+                self.ui_utils.clear_screen()
+                validate_year_format(date_input)
+                break
+            except ValueError:
+                print("Invalid date, please only use digits")
+            except LengthERROR:
+                print("Invalid date, pleasa use format [YYYY-MM-DD]")
+            except DateError:
+                print("Invalid date, month and/or day does not exist")
+
+
         all_employees = set(employee.kennitala for employee in self.logic_wrapper.get_all_employees())
+
 
         on_duty_employees = set()
         flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)

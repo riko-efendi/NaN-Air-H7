@@ -1,7 +1,7 @@
 from model.employee import Employee
 from data.data_wrapper import DataWrapper
 from utils.ui_utils import UIUtils
-from ui.input_validation import LengthERROR, validate_length, validate_length_kt, validate_integers, validate_letters,validate_length_phone, validate_address
+from ui.input_validation import LengthERROR, validate_name, validate_kennitala,   validate_phone_number, validate_address
 
 class RegisterEmployeeUI():
     def __init__(self, data_connection:DataWrapper) -> None:
@@ -17,30 +17,35 @@ class RegisterEmployeeUI():
         while True:
             try:
                 employee.name = input(f"Input the {employee.role}'s name: ").capitalize()
-                validate_letters(employee.name)
-                validate_length(employee.name)
+                validate_name(employee.name)
                 self.ui_utils.print_employee(employee, header)
                 break
             
             except LengthERROR:
+                self.ui_utils.clear_screen()
+                self.ui_utils.print_employee(employee, header)
                 print("Name is out of range, please enter a valid length")
             
             except ValueError:
+                self.ui_utils.clear_screen()
+                self.ui_utils.print_employee(employee, header)
                 print("Invalid name, please only use letters")
 
         #this checks the kennitala if the user inputs the right numbers for a kennitala and nothing random. 
         while True:
             try: 
                 employee.kennitala = (input(f"Input the {employee.role}'s kennitala: "))
-                validate_integers(employee.kennitala)
-                validate_length_kt(employee.kennitala)
+                validate_kennitala(employee.kennitala)
                 self.ui_utils.print_employee(employee, header)
                 break
             
             except LengthERROR:
+                self.ui_utils.clear_screen()
+                self.ui_utils.print_employee(employee, header)
                 print("Invalid length, please enter a valid kennitala")
-
             except ValueError:
+                self.ui_utils.clear_screen()
+                self.ui_utils.print_employee(employee, header)
                 print("invalid value, please enter a valid kennitala")
 
         #this checks the address. the validation of the address is that
@@ -53,6 +58,8 @@ class RegisterEmployeeUI():
                 break
 
             except ValueError:
+                self.ui_utils.clear_screen()
+                self.ui_utils.print_employee(employee, header)
                 print('Invalid address, please use format "streetname streetnumber"')
         
         if employee.role == "Pilot":
@@ -78,15 +85,17 @@ class RegisterEmployeeUI():
         while True: 
             try:
                 employee.phone_number = input(f"Input the {employee.role}'s phone number: ")
-                validate_integers(employee.phone_number)
-                validate_length_phone(employee.phone_number)
+                validate_phone_number(employee.phone_number)
                 self.ui_utils.print_employee(employee, header)
                 break
             
             except ValueError:
+                self.ui_utils.clear_screen()
+                self.ui_utils.print_employee(employee, header)
                 print("Invalid value, please enter a valid phone number")
-
             except LengthERROR:
+                self.ui_utils.clear_screen()
+                self.ui_utils.print_employee(employee, header)
                 print("Please inpout a valid phone number")
             
         self.logic_wrapper.register_employee(employee)

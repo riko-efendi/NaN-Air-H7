@@ -2,36 +2,35 @@
 class LengthERROR(Exception):
     pass
 
+class DateError(Exception):
+    pass
 
 
 
 
-def validate_length(name):
-    if 0 < len(name) <= 20:
-        pass
-    else:
+def validate_name(name):
+    if name.isalpha() == False:
+        raise ValueError
+    if (0 < len(name) <= 20) == False:
         raise LengthERROR
-    #validates the length of the name 
-def validate_length_kt(kennitala):
+    #validates the length of the name and if the name only contains letters 
+
+def validate_kennitala(kennitala):
+    if kennitala.isdigit() == False:
+        raise ValueError
     if len(kennitala) != 10 and len(kennitala) != 9:
         raise LengthERROR
     #this validates the kennitala length i saw that there were some that were 10 and some that were 9
-def validate_letters(name):
-    if name.isalpha() == False:
-         raise ValueError
-    #this checks if the input was just letters
-def validate_integers(number):
-    if number.isdigit() == False:
+
+
+
+def validate_phone_number(phone_number):
+    if phone_number.isdigit() == False:
         raise ValueError
-    #this individuall checks if what the user inputed was a number
-
-    ### i might mix these later with the others to clean it out better.
-
-
-def validate_length_phone(phone_number):
     if len(phone_number) != 7:
         raise LengthERROR
     #this checks the length of the phone number
+
 def validate_address(address):
     address_list = address.split()
     if len(address_list) != 2:
@@ -50,3 +49,15 @@ def validate_input_view_by_kt(user_input):
     if user_input.lower() not in valid_input:
         raise ValueError
     #this was used for the list employee via kennitala. 
+
+def validate_year_format(date):
+    date_list = date.split("-")
+    for element in date_list:
+        if element.isdigit == False:
+            raise ValueError
+    if len(date_list) != 3:
+        raise LengthERROR
+    elif len(date_list[0]) != 4 or len(date_list[1]) != 2 or len(date_list[2]) != 2:
+        raise LengthERROR
+    elif int(date_list[1]) > 12 or int(date_list[2]) > 31:
+        raise DateError
