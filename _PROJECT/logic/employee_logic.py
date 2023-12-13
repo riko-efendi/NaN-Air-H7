@@ -21,7 +21,7 @@ class EmployeeLogic:
         employees = []
 
         for employee in self.data_wrapper.get_all_employees():
-            employee_working_days =  self.get_working_days_of_employee(employee)
+            employee_working_days = self.get_working_days_of_employee(employee)
 
             # The value outputed from get_working_days_of_employees can be None
             if employee_working_days != None:
@@ -88,7 +88,7 @@ class EmployeeLogic:
         # I get all the voyages
         for voyage in all_upcoming_voyages:
             # Get all nids from crew
-            for crew in voyage.all_crew:
+            for crew in voyage.crew.values():
                 # if the crew is the injected employee
                 if crew == employee.kennitala:
                     # Get the date range from a logic util method

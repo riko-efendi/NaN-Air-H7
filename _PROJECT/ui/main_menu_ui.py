@@ -36,6 +36,9 @@ class MainMenuUI:
                 voyage_menu = VoyageUI(self.logic_wrapper)
                 voyage_menu.input_prompt()
 
+            elif user_input == "d":
+                self.logic_wrapper.get_all_upcoming_flights()
+
             else:
                 self. input_prompt_str = "Invalid. Enter another choice: "
 

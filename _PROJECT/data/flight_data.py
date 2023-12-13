@@ -39,17 +39,27 @@ class FlightData:
         """Read upcoming_flights.csv file and return all upcoming flights"""
         upcoming_flight_list = []
         with open(self.file_name_upcoming, newline="", encoding="utf-8") as csvfile:
+            header = next(csv.DictReader(csvfile))
+            # if there are more then one fa's then I create thist list
+            fa_row = [col for col in header if col.startswith("fa")]
+            
+        with open(self.file_name_upcoming, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
+                f_crew = {"captain": row["captain"], "copilot": row["copilot"], "fsm": row["fsm"]}
+
+                for fa in fa_row:
+                    f_crew[fa] = row[fa]
+
                 f = Flight(row["flight_nr"], 
                             row["dep_from"], 
                             row["arr_at"], 
                             row["departure_date"], 
                             row["departure_time"], 
                             row["arrival_date"], 
-                            row["arrival_time"])
-                f.all_crew = [row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"]]
-
+                            row["arrival_time"],
+                            f_crew)
+                
                 upcoming_flight_list.append(f)
                 
         return upcoming_flight_list
@@ -95,11 +105,11 @@ class FlightData:
                              "departure_time": flight.depart_time, 
                              "arrival_date": flight.arr_date, 
                              "arrival_time": flight.arr_time,
-                             "captain": flight.captain, 
-                             "copilot": flight.copilot,
-                             "fsm": flight.fsm,
-                             "fa1": flight.fa1,
-                             "fa2": flight.fa2})
+                             "captain": flight.crew["captain"], 
+                             "copilot": flight.crew["copilot"],
+                             "fsm": flight.crew["fsm"],
+                             "fa1": flight.crew["fa1"],
+                             "fa2": flight.crew["fa2"]})
 
 
     def read_all_flight_nr(self):

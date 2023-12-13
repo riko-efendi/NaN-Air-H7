@@ -19,15 +19,15 @@ class VoyageLogic:
 
 
     def get_all_upcoming_voyages(self):
-        past_flights = self.wrapper.get_all_upcoming_flights()
-        past_voyages = []
+        upcoming_flights = self.wrapper.get_all_upcoming_flights()
+        upcoming_voyages = []
 
-        for index in range(0, len(past_flights), 2):
-            flight_1 = past_flights[index]
-            flight_2 = past_flights[index + 1]
-            past_voyages.append(Voyage(flight_1, flight_2))
+        for index in range(0, len(upcoming_flights), 2):
+            flight_1 = upcoming_flights[index]
+            flight_2 = upcoming_flights[index + 1]
+            upcoming_voyages.append(Voyage(flight_1, flight_2))
 
-        return past_voyages
+        return upcoming_voyages
     
     def update_voyage(self, voyage):
         return self.wrapper.update_voyage(voyage)

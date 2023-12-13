@@ -25,6 +25,7 @@ class EditVoyageUI:
 
         self.flight_1 = Flight(flight_nr=flight_1_nr, dep_from="KEF")
         self.flight_2 = Flight(flight_nr=flight_2_nr, arr_at="KEF")
+        self.crew = {}
 
 
     def create_voyage(self) -> None:
@@ -49,26 +50,14 @@ class EditVoyageUI:
 
     def assign_crew(self, flight_1:Flight, flight_2:Flight):
 
-        captain = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Captain")
-        copilot = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Copilot")
-        fsm = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Service Manager")
-        fa1 = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Attendant")
-        fa2 = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Attendant")
+        self.crew["captain"] = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Captain")
+        self.crew["copilot"] = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Copilot")
+        self.crew["fsm"] = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Service Manager")
 
-        flight_1.captain = captain
-        flight_2.captain = captain
-    
-        flight_1.copilot = copilot        
-        flight_2.copilot = copilot
+        self.assign_fa(flight_1.depart_date, flight_2.arr_date)
 
-        flight_1.fsm = fsm
-        flight_2.fsm = fsm
-
-        flight_1.fa1 = fa1
-        flight_2.fa1 = fa1
-
-        flight_1.fa2 = fa2
-        flight_2.fa2 = fa2
+        self.flight_1.crew = self.crew
+        self.flight_2.crew = self.crew
 
         self.logic_wrapper.register_flight(self.flight_1)
         self.logic_wrapper.register_flight(self.flight_2)
@@ -216,6 +205,16 @@ class EditVoyageUI:
             # print(f"\tFlight Attendant: {crew_dict['Captain']}")
             # print()
 
+
+
+    def assign_fa(self, depart_date, arr_date):
+        fa = "fa"
+        index = 1
+        user_input = input("Do you want to assign Flight Attendants? (Y/N): ").lower()
+        while user_input != "n":
+            fa_row = fa + str(index)
+            self.crew[fa_row] = self.print_available_crew(depart_date, arr_date, "Cabincrew", "Flight Attendant")
+            user_input = input("Do you want to continue assigning? (Y/N): ").lower()
 
 
 
