@@ -59,3 +59,29 @@ def validate_time_format(time):
             raise LengthERROR
     if int(time_list[0]) > 24 or int(time_list[1]) > 60 or int(time_list[2]) > 60:
         raise DateError
+    
+def validate_dest_id(dest):
+    if dest.isalpha() == False:
+        raise ValueError
+    if len(dest) != 3:
+        raise LengthERROR
+    
+def validate_destination(dest):
+    dest_list = dest.split()
+    for element in dest_list:
+        if element.isalpha() == False:
+            raise ValueError
+    if len(dest_list) > 1:
+        raise LengthERROR
+    
+def validate_numeric_id(numeric_id):
+    if numeric_id.isdigit() == False:
+        raise ValueError
+    if len(numeric_id) != 4:
+        raise LengthERROR
+    
+def validate_flight_time(flight_time):
+    if flight_time.isdigit() == False:
+        raise ValueError
+    if int(flight_time) > 21:
+        raise LengthERROR
