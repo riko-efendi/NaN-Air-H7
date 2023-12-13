@@ -1,5 +1,5 @@
 from utils.ui_utils import UIUtils
-
+from utils.logic_utils import LogicUtils
 from logic.logic_wrapper import LogicWrapper
 
 from model.voyage import Voyage
@@ -10,6 +10,7 @@ from ui.input_validation import validate_date_format, validate_date_range, DateR
 class VoyageListUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
         self.ui_utils = UIUtils()
+        self.logic_utils = LogicUtils()
         self.logic_wrapper = logic_connection
         self.input_prompt_str = "Enter your choice: "
 
@@ -21,7 +22,7 @@ class VoyageListUI:
         print(f"1. List Upcoming Voyages")
         print(f"2. List Past Voyages")
         print(f"3. List Voyage by date")
-        print(f"4. List Voyage by week")
+        print(f"4. List Voyage by time range")
 
         print(f"\n[B]ack")
 
@@ -68,13 +69,15 @@ class VoyageListUI:
                 self.ui_utils.clear_screen()
                 user_input = input("Wrong Format. Enter a date YYYY-MM-DD: ")
 
-        voyages = self.logic_wrapper.get_voyages_of_date(user_input)
-        self.ui_utils.print_voyages(voyages, f"[VOYAGES FLYING ON {user_input}]")
+        voyages = self.logic_wrapper.get_voyages_of_date([user_input])
+        self.ui_utils.print_voyages(voyages, f"[VOYAGES FLYING ON {user_input[0]}]")
         input("Press [ENTER] to exit: ")
         self.input_prompt_str = "Enter your choice: "
 
     
     def list_voyage_by_week(self):
+
+        self.ui_utils.clear_screen()
         start_date = input("Enter a start date YYYY-MM-DD: ")
         while True:
             try:
@@ -83,8 +86,9 @@ class VoyageListUI:
             except ValueError:
                 self.ui_utils.clear_screen()
                 start_date = input("Wrong Format. Enter a date YYYY-MM-DD: ")
+                
 
-        end_date = input("Enter an end date YYYY-MM-DD: ")
+        end_date = input("\nEnter an end date YYYY-MM-DD: ")
         
         while True:
             try:
@@ -95,7 +99,16 @@ class VoyageListUI:
                 end_date = input("Wrong Format. Enter a date YYYY-MM-DD: ")
             except DateRangeError:
                 self.ui_utils.clear_screen()
-                end_date = input("The end date is ahead of start date. Enter a date YYYY-MM-DD: ")
+                end_date = input("The end date is before the start date. Enter a date YYYY-MM-DD: ")
+
+        dates = self.logic_utils.generate_date_range(start_date, end_date)
+        voyages = self.logic_wrapper.get_voyages_of_date(dates)
+        self.ui_utils.print_voyages(voyages, f"[VOYAGES FLYING IN THE SELECTED RANGE]")
+        input("Press [ENTER] to exit: ")
+        self.input_prompt_str = "Enter your choice: "
+
+
+        
 
 
         

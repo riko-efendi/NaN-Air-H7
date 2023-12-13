@@ -7,7 +7,7 @@ from model.destination import Destination
 from datetime import datetime, timedelta
 from logic.logic_wrapper import LogicWrapper
 
-from ui.input_validation import validate_date_format, validate_time_format
+from ui.input_validation import validate_date_format, validate_time_format, validate_date_range
 
 
 class EditVoyageUI:

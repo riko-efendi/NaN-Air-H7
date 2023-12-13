@@ -65,9 +65,10 @@ class ListEmployeeUI:
         print(f"Rank: {rank}")
         print(f"Phone number: {phone_number}")
 
+
     def view_employee_by_kennitala(self):
+
         self.ui_utils.clear_screen()
-        
         
         while True:
             try:

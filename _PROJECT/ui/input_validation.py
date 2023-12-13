@@ -47,13 +47,14 @@ def validate_time_format(time):
 
 
 
-def validate_date_range(start_date, end_date):
+def validate_date_range(start_date, end_date, start_time="00:00:00", end_time="00:00:00"):
     try:
-        start_date_time = datetime.strptime(start_date, '%Y-%m-%d').date()
-        end_date_time = datetime.strptime(end_date, '%Y-%m-%d').date()
+        start_datetime = datetime.strptime(f"{start_date} {start_time}", '%Y-%m-%d %H:%M:%S')
+        end_datetime = datetime.strptime(f"{end_date} {end_time}", '%Y-%m-%d %H:%M:%S')
 
-        if end_date_time < start_date_time:
-            raise DateRangeError()
+
+        if end_datetime < start_datetime:
+            raise DateRangeError
 
     except ValueError:
         raise ValueError

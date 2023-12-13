@@ -41,16 +41,16 @@ class VoyageLogic:
         return self.wrapper.update_voyage(voyage)
     
 
-    def get_voyages_of_date(self, date):
-        """Takes in a date and returns voyages that are flying during that date"""
+    def get_voyages_of_date(self, dates):
+        """Takes in a list of dates and returns voyages that are flying during that date"""
         
         voyages_of_date = []
         voyages = self.get_all_voyages()
-
-        for voyage in voyages:
-            voyage_dates = self.logic_util.generate_date_range(voyage.depart_date, voyage.arr_date)
-            if date in voyage_dates:
-                voyages_of_date.append(voyage)
+        for date in dates:
+            for voyage in voyages:
+                voyage_dates = self.logic_util.generate_date_range(voyage.depart_date, voyage.arr_date)
+                if date in voyage_dates:
+                    voyages_of_date.append(voyage)
 
         return voyages_of_date
     
