@@ -42,17 +42,23 @@ class EditVoyageUI:
             return None
         input("\nPress [ENTER] to confirm: ")
 
-        self.assign_crew(self.flight_1, self.flight_2)
+        user_input = input("Do you want to assign Crew now?: (Y/N)").lower()
+
+        if user_input =="y":
+            self.assign_crew(self.flight_1, self.flight_2)
 
         input("\nVoyage succesfully created. Press [ENTER] to exit: ")
 
         self.logic_wrapper.register_flight(self.flight_1)
         self.logic_wrapper.register_flight(self.flight_2)
+        
 
     def assign_crew(self, flight_1:Flight, flight_2:Flight):
+        """Assignes crew to a voyage"""
 
         captain = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Captain")
         copilot = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Copilot")
+
         fsm = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Service Manager")
         fa1 = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Attendant")
         fa2 = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Attendant")
@@ -76,15 +82,12 @@ class EditVoyageUI:
     def edit_voyage(self):
         """User selects a voyage to assign new crew to"""
 
-        
-
         voyages = self.logic_wrapper.get_upcoming_voyages()
         self.ui_utils.print_voyages(voyages, "[EDIT VOYAGE]")
         user_input = input("Select Voyage to edit: ")
         voyage = voyages[int(user_input) - 1]
         self.assign_crew(voyage.flight_1, voyage.flight_2)
         self.logic_wrapper.update_voyage(voyage)
-
 
 
     def assign_destination(self) -> bool:
@@ -170,19 +173,6 @@ class EditVoyageUI:
 
         return new_datetime_str.split(" ")
     
-    def print_flight_info(self, flight:Flight) -> None:
-        """Prints out for user info on current flight"""
-
-        self.ui_utils.clear_screen()
-        print(f"[ASSIGN DATE AND TIME]\n")
-        print(f"Departing Destination: {flight.dep_from}")
-        print(f"Arriving Destination: {flight.arr_at}")
-        print(f"Date of Departure: {flight.depart_date}")
-        print(f"Time of Departure: {flight.depart_time}")
-        print(f"Date of Arrival: {flight.arr_date}")
-        print(f"Time of Arrival: {flight.arr_time}")
-        print(f"\n[C]ancel")
-
 
     def print_available_crew(self, dep_date, arr_date, role, rank):
         """Print available crew, by inputed date range and the role and rank of the employee. Returns the kennitala of a selected Employee"""
@@ -199,31 +189,16 @@ class EditVoyageUI:
         return employees[int(user_input) - 1].kennitala
     
 
-    # def print_voyages(self, voyages:Voyage):
-    #     """Prints voyages and their crews"""
-    #     self.ui_utils.clear_screen()
-    #     print("[EDIT VOYAGE]\n")
+    def print_flight_info(self, flight:Flight) -> None:
+        """Prints out for user info on current flight"""
 
-
-    #     for index, voyage in enumerate(voyages):
-    #         captain = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.captain)
-    #         captain = captain.name if captain != None else "No Crew Assigned"
-    #         copilot = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.copilot)
-    #         copilot = copilot.name if copilot != None else "No Crew Assigned"
-    #         fsm = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.fsm)
-    #         fsm = fsm.name if fsm != None else "No Crew Assigned"
-    #         fa1 = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.fa1)
-    #         fa1 = fa1.name if fa1 != None else "No Crew Assigned"
-    #         fa2 = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.fa2)
-    #         fa2 = fa2.name if fa2 != None else "No Crew Assigned"
-
-    #         print(f"{index + 1}. Voyage id:[{voyage.id}]")
-    #         print(f"\tGoing a round trip from {voyage.flight_1.dep_from} to {voyage.flight_1.arr_at}.")
-    #         print(f"\t[{voyage.depart_date}] - [{voyage.arr_date}]")
-    #         print(f"\tCaptain:                {captain}")
-    #         print(f"\tCopilot:                {copilot}")
-    #         print(f"\tFlight Service Manager: {fsm}")
-    #         print(f"\tFlight Attendant 1:     {fa1}")
-    #         print(f"\tFlight Attendant 2:     {fa2}")
-    #         print()
-
+        self.ui_utils.clear_screen()
+        print(f"[ASSIGN DATE AND TIME]\n")
+        print(f"Departing Destination: {flight.dep_from}")
+        print(f"Arriving Destination: {flight.arr_at}")
+        print(f"Date of Departure: {flight.depart_date}")
+        print(f"Time of Departure: {flight.depart_time}")
+        print(f"Date of Arrival: {flight.arr_date}")
+        print(f"Time of Arrival: {flight.arr_time}")
+        print(f"\n[C]ancel")
+    
