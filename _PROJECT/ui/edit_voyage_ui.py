@@ -125,17 +125,6 @@ class EditVoyageUI:
         return False
 
 
-    def print_destinations(self, destinations:dict) -> None:
-        """Prints destinations from a dictionary"""
-
-        self.ui_utils.clear_screen()
-        print(f"[ASSIGN DESTINATION TO VOYAGE]\n")
-        for index, destination in destinations.items():
-            print(f"{index + 1}. {destination.id}. Flight Time from KEF: {destination.flight_time_from_kef} hrs")
-        
-        print(f"\n[C]ancel\t[M]ake new Destination")
-
-
     def assign_times(self, flight:Flight) -> bool:
         """Assign date and time in the correct format to a flight"""
 
@@ -166,7 +155,7 @@ class EditVoyageUI:
         return True
 
 
-    def add_hours_to_datetime(self, datetime_str, hours_to_add):
+    def add_hours_to_datetime(self, datetime_str, hours_to_add): # This might need to be in the logic layer
         """Adds the durations of the flight to the departing time"""
 
         datetime_format = "%Y-%m-%d %H:%M:%S"
@@ -203,3 +192,13 @@ class EditVoyageUI:
         print(f"Time of Arrival: {flight.arr_time}")
         print(f"\n[C]ancel")
     
+
+    def print_destinations(self, destinations:dict) -> None:
+        """Prints destinations from a dictionary"""
+
+        self.ui_utils.clear_screen()
+        print(f"[ASSIGN DESTINATION TO VOYAGE]\n")
+        for index, destination in destinations.items():
+            print(f"{index + 1}. {destination.id}. Flight Time from KEF: {destination.flight_time_from_kef} hrs")
+        
+        print(f"\n[C]ancel\t[M]ake new Destination")
