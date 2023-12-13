@@ -1,7 +1,9 @@
 from datetime import datetime
 
-class LengthERROR(Exception):
+class LengthError(Exception):
     pass
+
+
 
 
 
@@ -9,11 +11,11 @@ def validate_length(name):
     if 0 < len(name) <= 20:
         pass
     else:
-        raise LengthERROR()
+        raise LengthError()
     
 def validate_length_kt(kennitala):
     if len(kennitala) > 10:
-        raise LengthERROR()
+        raise LengthError()
 
 def validate_letters(name):
     if name.isalpha() == False:
@@ -25,7 +27,7 @@ def validate_integers(number):
 
 def validate_length_phone(phone_number):
     if len(phone_number) != 7:
-        raise LengthERROR()
+        raise LengthError()
     
 def validate_address(address):
     address_list = address.split()

@@ -1,6 +1,6 @@
 from utils.ui_utils import UIUtils
 from logic.logic_wrapper import LogicWrapper
-from ui.input_validation import LengthERROR, validate_length_kt, validate_integers
+from ui.input_validation import LengthError, validate_length_kt, validate_integers
 
 class ListEmployeeUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -82,7 +82,7 @@ class ListEmployeeUI:
 
             except ValueError:
                 print("invalid value, please enter a valid kennitala")
-            except LengthERROR:
+            except LengthError:
                 print("Invalid length, please enter a valid kennitala")
 
                     

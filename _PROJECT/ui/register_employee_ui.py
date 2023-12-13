@@ -1,7 +1,7 @@
 from model.employee import Employee
 from data.data_wrapper import DataWrapper
 from utils.ui_utils import UIUtils
-from ui.input_validation import LengthERROR, validate_length, validate_length_kt, validate_integers, validate_letters,validate_length_phone, validate_address
+from ui.input_validation import LengthError, validate_length, validate_length_kt, validate_integers, validate_letters,validate_length_phone, validate_address
 
 class RegisterEmployeeUI():
     def __init__(self, data_connection:DataWrapper) -> None:
@@ -20,7 +20,7 @@ class RegisterEmployeeUI():
                 self.ui_utils.print_employee(employee, header)
                 break
             
-            except LengthERROR:
+            except LengthError:
                 print("Name is out of range, please enter a valid length")
             
             except ValueError:
@@ -35,7 +35,7 @@ class RegisterEmployeeUI():
                 self.ui_utils.print_employee(employee, header)
                 break
             
-            except LengthERROR:
+            except LengthError:
                 print("Invalid length, please enter a valid kennitala")
 
             except ValueError:
@@ -82,7 +82,7 @@ class RegisterEmployeeUI():
             except ValueError:
                 print("Invalid value, please enter a valid phone number")
 
-            except LengthERROR:
+            except LengthError:
                 print("Please inpout a valid phone number")
             
             
