@@ -50,7 +50,7 @@ class DestinationUI:
         d.flight_time_from_kef = input("Enter flight time in hrs, from KEF airport: ")
         self.logic_wrapper.register_destination(d)
         print(f"\n{d.destination} is successfully created.")
-        input("\nPress [ENTER] to exit: ")
+        input("\nPress \033[34m[ENTER]\033[0m to exit: ")
 
 
     def list_all_destinations(self):
@@ -62,4 +62,4 @@ class DestinationUI:
         print("[All DESTINATIONS]\n")
         for index, destination in enumerate(destinations):
             print(f"{index+1:>2}.{' name: ':^2}{destination.destination:<}, {'id: '}{destination.id}, {destination.numeric_id}")
-        input("\nPress [ENTER] to exit: ")
+        input("\nPress \033[34m[ENTER]\033[0m to exit: ")

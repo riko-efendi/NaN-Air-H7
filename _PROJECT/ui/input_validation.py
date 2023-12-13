@@ -31,3 +31,4 @@ def validate_address(address):
         raise ValueError()
     elif address_list[1].isdigit() == False:
         raise ValueError()  
+    

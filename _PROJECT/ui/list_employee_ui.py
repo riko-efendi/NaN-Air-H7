@@ -1,6 +1,9 @@
+from datetime import datetime
 from utils.ui_utils import UIUtils
 from logic.logic_wrapper import LogicWrapper
 from ui.input_validation import LengthERROR, validate_length_kt, validate_integers
+
+import time
 
 class ListEmployeeUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -13,7 +16,7 @@ class ListEmployeeUI:
 
         self.ui_utils.clear_screen()
         print(f"[VIEW EMPLOYEE OPTIONS]\n")
-        print(f"1. View all employees")
+        print(f"1. View All employees")
         print(f"2. View Employee By Kennitala")
         print(f"3. View Off Duty Employees")
         print(f"4. View On Duty Employees")
@@ -50,7 +53,7 @@ class ListEmployeeUI:
         print("[ALL EMPLOYEES]\n")
         for index, employee in enumerate(employees):
             print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
-        input("\nPress [ENTER] to exit: ")
+        input("\nPress \033[34m[ENTER]\033[0m to exit: ")
 
     def print_update_employee_info(self, name, kennitala, address, role, rank, phone_number):
         self.ui_utils.clear_screen()
@@ -68,7 +71,6 @@ class ListEmployeeUI:
     def view_employee_by_kennitala(self):
         self.ui_utils.clear_screen()
         
-        
         while True:
             try:
                 kennitala_input = input("Enter Employee Kennitala: ")
@@ -78,20 +80,19 @@ class ListEmployeeUI:
                 if employee != None:
                     break
                 else:
-                    print("Employeee not found")
+                    print("\033[31mEmployee not found\033[0m")
+                    time.sleep(1.5)
+                    self.ui_utils.clear_screen()
 
             except ValueError:
-                print("invalid value, please enter a valid kennitala")
+                print("\033[31mInvalid value, please enter a valid kennitala\033[0m")
+                time.sleep(1.5)
+                self.ui_utils.clear_screen()
             except LengthERROR:
-                print("Invalid length, please enter a valid kennitala")
+                print("\033[31mInvalid length, please enter a valid kennitala\033[0m")
+                time.sleep(1.5)
+                self.ui_utils.clear_screen()
 
-                    
-        
-             
-        
-        
-        
-        
         self.ui_utils.clear_screen()
         print(f"[EMPLOYEE INFO]\n")
         self.print_employee(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
@@ -116,12 +117,13 @@ class ListEmployeeUI:
             input("\nPress [ENTER] to confirm: ")
             
         elif option_input == "w":
-            self.view_work_schedule_by_week(employee.kennitala)
+            self.view_work_schedule_by_date_range(employee.kennitala)
         
         elif option_input == "b":
             return None
     
-    def view_work_schedule_by_week(self, kennitala):
+    def view_work_schedule_by_date_range(self, kennitala):
+        """Takes start_date and end_date inputs, then check kennitala using logic wrapper to print out employee's name"""
         self.ui_utils.clear_screen()
         print(f"[WORK SUMMARY]\n")
         start_date = input("Enter Start Date [YYYY-MM-DD]: ")
@@ -139,7 +141,7 @@ class ListEmployeeUI:
         else:
             print("No flights scheduled for this employee within the specified date range.")
 
-        input("\nPress [ENTER] to exit: ")
+        input("\nPress \033[34m[ENTER]\033[0m to exit: ")
 
     def view_employees_past_schedule_by_date(self):
         self.ui_utils.clear_screen()
@@ -160,25 +162,33 @@ class ListEmployeeUI:
                         print(f"{employee.name}, \tDestination: {flight.arr_at}")
                     employees_printed.add(employee_nid) 
 
-        input("\nPress [ENTER] to exit: ")
+        input("\nPress \033[34m[ENTER]\033[0m to exit: ")
 
     def view_all_absent_employees(self):
         self.ui_utils.clear_screen()
-        date_input = input("Enter Date [YYYY-MM-DD]: ")
-        all_employees = set(employee.kennitala for employee in self.logic_wrapper.get_all_employees())
+        while True:
+            date_input = input("Enter Date [YYYY-MM-DD]: ")
+            try:
+                valid_date_input = datetime.strptime(date_input, "%Y-%m-%d")
+                
+                all_employees = set(employee.kennitala for employee in self.logic_wrapper.get_all_employees())
 
-        on_duty_employees = set()
-        flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
-        for flight in flights:
-            on_duty_employees.update({flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2})
-        
-        absent_employees = all_employees - on_duty_employees  
+                on_duty_employees = set()
+                flights = self.logic_wrapper.get_employees_past_schedule_by_date(valid_date_input)
+                for flight in flights:
+                    on_duty_employees.update({flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2})
+                
+                absent_employees = all_employees - on_duty_employees  
 
-        self.ui_utils.clear_screen()
-        print(f"Off Duty Employees on {date_input}:\n")
-        for employee_nid in absent_employees:
-            employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
-            if employee:
-                print(f"{employee.name}, \tRole: {employee.rank}")
-
-        input("\nPress [ENTER] to exit: ")
+                self.ui_utils.clear_screen()
+                print(f"Off Duty Employees on {valid_date_input}:\n")
+                for employee_nid in absent_employees:
+                    employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
+                    if employee:
+                        print(f"{employee.name}, \tRole: {employee.rank}")
+                
+                input("\nPress \033[34m[ENTER]\033[0m to exit: ")
+            except ValueError:
+                print("\033[31mInvalid input.\033[0m Enter a valid format date")
+                time.sleep(1.5)
+                self.ui_utils.clear_screen()

@@ -25,18 +25,17 @@ class MainMenuUI:
         user_input = ""
 
         while user_input != "q":
-            self.menu_output()
-            user_input = input("\n" + self.input_prompt_str).lower()
+                self.menu_output()
+                user_input = input("\n" + self.input_prompt_str).lower()
 
-            if user_input == "1":
-                employee_menu = EmployeeUI(self.logic_wrapper)
-                employee_menu.input_prompt()
-                
-            elif user_input == "2":
-                voyage_menu = VoyageUI(self.logic_wrapper)
-                voyage_menu.input_prompt()
-
-            else:
-                self. input_prompt_str = "Invalid. Enter another choice: "
+                if user_input == "1":
+                    employee_menu = EmployeeUI(self.logic_wrapper)
+                    employee_menu.input_prompt()
+                    
+                elif user_input == "2":
+                    voyage_menu = VoyageUI(self.logic_wrapper)
+                    voyage_menu.input_prompt()
+                else:
+                    self. input_prompt_str = "\033[31mInvalid input.\033[0m Enter another choice: "
 
         print("\nQUITTING")
