@@ -31,8 +31,12 @@ class FlightData:
                                                row["departure_date"], 
                                                row["departure_time"], 
                                                row["arrival_date"], 
-                                               row["arrival_time"], 
-                                               row["aircraft_id"]))
+                                               row["arrival_time"],
+                                               row["captain"],
+                                               row["copilot"],
+                                               row["fsm"],
+                                               row["fa1"], 
+                                               row["fa2"]))
         return past_flight_list
         
     def read_all_upcoming_flights(self):
@@ -47,7 +51,12 @@ class FlightData:
                             row["departure_date"], 
                             row["departure_time"], 
                             row["arrival_date"], 
-                            row["arrival_time"])
+                            row["arrival_time"],
+                            row["captain"],
+                            row["copilot"],
+                            row["fsm"],
+                            row["fa1"], 
+                            row["fa2"])
                 f.all_crew = [row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"]]
 
                 upcoming_flight_list.append(f)
@@ -111,4 +120,22 @@ class FlightData:
             for row in reader:
                 flight_nrs.append(row["flight_nr"])
         return flight_nrs
+
+
+    def update_flight(self, flight_to_update):
+        flights = self.read_all_upcoming_flights()
+
+        with open(self.file_name_upcoming, 'w', newline='', encoding="utf-8") as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
+            writer.writeheader()
+
+        for flight in flights:
+            if flight.flight_nr == flight_to_update.flight_nr:
+                flight.captain = flight_to_update.captain
+                flight.copilot = flight_to_update.copilot
+                flight.fsm = flight_to_update.fsm
+                flight.fa1 = flight_to_update.fa1
+                flight.fa2 = flight_to_update.fa2
+            self.register_flight(flight)
+
 

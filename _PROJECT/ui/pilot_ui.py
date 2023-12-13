@@ -36,12 +36,34 @@ class PilotUI:
                 register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
                 e = Employee(role="Pilot")
                 register_employee_menu.register_employee(e, "[REGISTER PILOT]")   
+                self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "2":
                 self.list_all_pilots()
+                self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "3":
+                self.ui_utils.clear_screen()
+                license_types = {
+                    "1": "NAFokkerF28",
+                    "2": "NAFokkerF100",
+                    "3": "NABAE146"
+                }
+
+                print("1. NAFokkerF28 2. NAFokkerF100 3. NABAE146\n")
+                while True:
+                    license_type_input = input("Enter Plane Type (1, 2, or 3): ")
+                    if license_type_input in license_types:
+                        license_type_input = license_types[license_type_input]
+                        break
+                    else:
+                        print("\nInvalid input. Please enter 1, 2, or 3.\n")
+                
+                print(f"\nShowing pilot(s) for {license_type_input}\n")
+                print(self.logic_wrapper.get_all_pilots_by_license(license_type_input))
+                input("\nPress [ENTER] to exit: ")
                 self.view_pilots_by_license()
+                self.input_prompt_str = "Enter your choice: "
             
             else:
                 self.input_prompt_str = "Invaild. Enter another choice: "

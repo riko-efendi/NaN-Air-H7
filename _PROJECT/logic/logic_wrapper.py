@@ -7,6 +7,7 @@ from data.data_wrapper import DataWrapper
 from logic.aircraft_logic import AircraftLogic
 from logic.voyage_logic import VoyageLogic
 from model.destination import Destination
+from model.voyage import Voyage
 
 """
 Employee base class. Here we give the employee all its variables, and behaviours.
@@ -50,6 +51,9 @@ class LogicWrapper:
         # Returns a list of available employees by role, rank and date
         return self.employee_logic.get_available_employees(depart_date, arr_date, role, rank)
     
+    def get_crew_from_voyages(self, voyage):
+        return self.employee_logic.get_crew_from_voyages(voyage)
+    
     # DESTINATIONS
 
     def get_all_destinations(self, include_kef:bool=True, as_dict=False) -> list[Destination]:
@@ -89,6 +93,8 @@ class LogicWrapper:
     def get_all_aircrafts(self):
         return self.aircraft_logic.get_all_aircrafts()
     
+    def get_all_pilots_by_license(self, license):
+        return self.employee_logic.get_all_pilots_by_license(license)
 
     # SCHEDULE
     
@@ -115,4 +121,15 @@ class LogicWrapper:
 
 
     def get_past_voyages(self):
+        """Returns a list of a past voyages, read from the past_flights.csv file"""
         return self.voyage_logic.get_all_past_voyages()
+    
+    def get_pilots_of_voyages(self, voyage:Voyage):
+        """Returns a dictionary of crew for a specific voyage"""
+        return self.voyage_logic.get_pilots_of_voyages(voyage)
+    
+    def update_voyage(self, voyage):
+        return self.voyage_logic.update_voyage(voyage)
+    
+    def get_voyages_of_date(self, date):
+        return self.voyage_logic.get_voyages_of_date(date)

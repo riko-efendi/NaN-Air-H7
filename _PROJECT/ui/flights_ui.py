@@ -21,15 +21,19 @@ class FlightsUI:
 
             if user_input == "1":
                 self.view_all_upcoming_flights()
+                self.input_prompt_str = "Enter your choice: "
             
             elif user_input == "2":
                 self.view_all_past_flights()
+                self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "3":
                 self.view_flights_from_one_airport()
+                self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "5":
                 self.view_flights_by_kennitala()
+                self.input_prompt_str = "Enter your choice: "
                 
             elif user_input == "b":
                 break

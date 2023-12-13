@@ -1,7 +1,7 @@
 from datetime import datetime
 from utils.ui_utils import UIUtils
 from logic.logic_wrapper import LogicWrapper
-from ui.input_validation import LengthERROR, validate_length_kt, validate_integers
+from ui.input_validation import LengthError, validate_length_kt, validate_integers
 
 import time
 
@@ -68,7 +68,9 @@ class ListEmployeeUI:
         print(f"Rank: {rank}")
         print(f"Phone number: {phone_number}")
 
+
     def view_employee_by_kennitala(self):
+
         self.ui_utils.clear_screen()
         
         while True:
@@ -88,11 +90,11 @@ class ListEmployeeUI:
                 print("\033[31mInvalid value, please enter a valid kennitala\033[0m")
                 time.sleep(1.5)
                 self.ui_utils.clear_screen()
-            except LengthERROR:
+            except LengthError:
                 print("\033[31mInvalid length, please enter a valid kennitala\033[0m")
                 time.sleep(1.5)
                 self.ui_utils.clear_screen()
-
+                
         self.ui_utils.clear_screen()
         print(f"[EMPLOYEE INFO]\n")
         self.print_employee(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)

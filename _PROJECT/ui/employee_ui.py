@@ -33,14 +33,17 @@ class EmployeeUI:
                 self.ui_utils.clear_screen()
                 list_employees_menu = ListEmployeeUI(self.logic_wrapper)
                 list_employees_menu.input_prompt()
+                self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "2":
                 pilot_menu = PilotUI(self.logic_wrapper)
                 pilot_menu.input_prompt()
+                self.input_prompt_str = "Enter your choice: "
                 
             elif user_input == "3":
                 cabincrew_menu = CabinCrewUI(self.logic_wrapper)
                 cabincrew_menu.input_prompt()
+                self.input_prompt_str = "Enter your choice: "
 
             else:
                 self.input_prompt_str = "\033[31mInvalid input.\033[0m Enter another choice: "
