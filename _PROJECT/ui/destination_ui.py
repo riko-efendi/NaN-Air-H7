@@ -31,8 +31,10 @@ class DestinationUI:
 
             if user_input == "1":
                 self.register_destination()
+                self.input_prompt_str = "Enter your choice: "
             elif user_input == "2":
                 self.list_all_destinations()
+                self.input_prompt_str = "Enter your choice: "
             else:
                 self.input_prompt_str = "Invalid. Enter another choice: "
 

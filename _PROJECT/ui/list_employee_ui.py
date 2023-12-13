@@ -29,15 +29,19 @@ class ListEmployeeUI:
             user_input = input("\n" + self.input_prompt_str).lower()
             if user_input == "1":
                 self.view_all_employees()
+                self.input_prompt_str = "Enter your choice: "
                 
             elif user_input == "2":
                 self.view_employee_by_kennitala()
+                self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "3":
                 self.view_all_absent_employees()
+                self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "4":
                 self.view_employees_past_schedule_by_date()
+                self.input_prompt_str = "Enter your choice: "
 
             else:
                 self.input_prompt_str = "Invalid. Enter another choice: "
