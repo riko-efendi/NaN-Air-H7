@@ -1,12 +1,20 @@
-from flight import Flight
+from model.flight import Flight
+from model.employee import Employee
 
 """
 Voyage base class. Here we give the voyage all its variables, and behaviours.
 """
 
 class Voyage:
-    def __init__(self, name:str="", airport:str="", flight_out:"Flight"=None, flight_in:"Flight"=None) -> None:
-        self.name = name
-        self.airport = airport
-        self.flight_out = flight_out
-        self.flight_in = flight_in
+    def __init__(self, flight_1:Flight, flight_2:Flight) -> None:
+        self.id = flight_1.flight_nr + flight_2.flight_nr[7:]
+        self.flight_1 = flight_1
+        self.flight_2 = flight_2
+
+        self.depart_date = flight_1.depart_date
+        self.arr_date = flight_2.arr_date
+
+        self.all_crew = flight_1.all_crew
+
+    def __str__(self) -> str:
+        return f"Voyage id: {self.id}\n\tGoing from KEF to {self.flight_1.arr_at}"
