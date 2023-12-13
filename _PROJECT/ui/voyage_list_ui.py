@@ -22,7 +22,7 @@ class VoyageListUI:
         print(f"1. List Upcoming Voyages")
         print(f"2. List Past Voyages")
         print(f"3. List Voyage by date")
-        print(f"4. List Voyage by time range")
+        print(f"4. List Voyage by date range")
 
         print(f"\n[B]ack")
 
