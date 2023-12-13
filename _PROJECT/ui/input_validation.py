@@ -1,4 +1,3 @@
-
 class LengthERROR(Exception):
     pass
 

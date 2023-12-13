@@ -11,8 +11,7 @@ class FlightsUI:
         print(f"[FLIGHTS]\n")
         print(f"1. List Upcoming Flights")
         print(f"2. List Past Flights")
-        print(f"3. Create Flight")
-        print(f"4. View Flights From One Airport")
+        print(f"3. View Flights From One Airport")
         print(f"\n[B]ack")
     
     def input_prompt(self):
@@ -21,34 +20,34 @@ class FlightsUI:
             user_input = input("\n" + self.input_prompt_str).lower()
 
             if user_input == "1":
-                self.ui_utils.clear_screen()
-                print(f"[ALL UPCOMING FLIGHTS]\n")
-                self.logic_wrapper.print_all_upcoming_flights()
-                input("\nPress [ENTER] to exit: ")
+                self.view_all_upcoming_flights()
             
             elif user_input == "2":
-                self.ui_utils.clear_screen()
-                print(f"[ALL PAST FLIGHTS]\n")
-                self.logic_wrapper.print_all_past_flights()
-                input("\nPress [ENTER] to exit: ")
+                self.view_all_past_flights()
 
-            elif user_input == "4":
+            elif user_input == "3":
                 self.view_flights_from_one_airport()
 
             elif user_input == "5":
-                self.ui_utils.clear_screen()
-                kennitala_input = input("Enter Employee Kennitala: ")
-                print(f"\nShowing flight trip(s) for {kennitala_input}\n")
-                schedules = self.logic_wrapper.get_employee_past_schedule_by_nid(kennitala_input)
-                for index, schedule in enumerate(schedules):
-                    print(f"{index+1:>2}. {schedule}\n")
-                input("\nPress [ENTER] to exit: ")
+                self.view_flights_by_kennitala()
                 
             elif user_input == "b":
                 break
 
             else:
                 self.input_prompt_str = "Invalid. Enter another choice: "
+
+    def view_all_upcoming_flights(self):
+        self.ui_utils.clear_screen()
+        print(f"[ALL UPCOMING FLIGHTS]\n")
+        self.logic_wrapper.print_all_upcoming_flights()
+        input("\nPress [ENTER] to exit: ")
+
+    def view_all_past_flights(self):
+        self.ui_utils.clear_screen()
+        print(f"[ALL PAST FLIGHTS]\n")
+        self.logic_wrapper.print_all_past_flights()
+        input("\nPress [ENTER] to exit: ")
 
     def view_flights_from_one_airport(self):
         self.ui_utils.clear_screen()
@@ -75,4 +74,13 @@ class FlightsUI:
         airport_flights = self.logic_wrapper.get_all_flights_from_one_airport(airport_id_input)
         for index, airport_flight in enumerate(airport_flights):
             print(f"{index+1:>2}. {airport_flight}")
+        input("\nPress [ENTER] to exit: ")
+
+    def view_flights_by_kennitala(self):
+        self.ui_utils.clear_screen()
+        kennitala_input = input("Enter Employee Kennitala: ")
+        print(f"\nShowing All flight trip(s) for {kennitala_input}\n")
+        schedules = self.logic_wrapper.get_employee_past_schedule_by_nid(kennitala_input)
+        for index, schedule in enumerate(schedules):
+            print(f"{index+1:>2}. {schedule}\n")
         input("\nPress [ENTER] to exit: ")

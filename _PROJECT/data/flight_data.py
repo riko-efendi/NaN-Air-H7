@@ -4,17 +4,23 @@ from model.flight import Flight
 
 class FlightData:
     def __init__(self) -> None:
-        self.file_name_past = "past_flights.csv"
-        self.file_name_upcoming = "upcoming_flights.csv"
+        self.file_name_past = "_PROJECT/files/past_flights.csv"
+        self.file_name_upcoming = "_PROJECT/files/upcoming_flights.csv"
         self.fieldnames = ["flight_nr", 
                            "dep_from", 
                            "arr_at", 
                            "departure_date", 
                            "departure_time", 
                            "arrival_date", 
-                           "arrival_time"]
+                           "arrival_time",
+                           "captain",
+                           "copilot",
+                           "fsm",
+                           "fa1",
+                           "fa2"]
 
     def read_all_past_flights(self):
+        """Read past_flights.csv file and return all past flights"""
         past_flight_list = []
         with open(self.file_name_past, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
@@ -30,21 +36,26 @@ class FlightData:
         return past_flight_list
         
     def read_all_upcoming_flights(self):
+        """Read upcoming_flights.csv file and return all upcoming flights"""
         upcoming_flight_list = []
         with open(self.file_name_upcoming, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                upcoming_flight_list.append(Flight(row["flight_nr"], 
-                                                   row["dep_from"], 
-                                                   row["arr_at"], 
-                                                   row["departure_date"], 
-                                                   row["departure_time"], 
-                                                   row["arrival_date"], 
-                                                   row["arrival_time"]))
-        
+                f = Flight(row["flight_nr"], 
+                            row["dep_from"], 
+                            row["arr_at"], 
+                            row["departure_date"], 
+                            row["departure_time"], 
+                            row["arrival_date"], 
+                            row["arrival_time"])
+                f.all_crew = [row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"]]
+
+                upcoming_flight_list.append(f)
+                
         return upcoming_flight_list
     
     def read_all_flights_from_one_airport(self, airport):
+        """Read upcoming_flights.csv and return list of flights from chosen airport."""
         all_flights_from_one_airport_list = []
         with open(self.file_name_upcoming, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
@@ -60,12 +71,13 @@ class FlightData:
         return all_flights_from_one_airport_list
     
     def read_employee_past_schedule_by_nid(self, kennitala):
+        """Read past_flights.csv and retrieve the past flight schedule for an employee based on Kennitala"""
         schedule_list = []
         with open(self.file_name_past, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 if row["captain"] == kennitala or row["copilot"] == kennitala or row["fsm"] == kennitala or row["fa1"] == kennitala or row["fa2"] == kennitala:
-                    schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure"], row["arrival"], row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"], row["aircraft_id"]))
+                    schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure_date"], row["departure_time"], row["arrival_date"], row["arrival_time"], row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"], row["aircraft_id"]))
 
         return schedule_list
     
@@ -82,7 +94,12 @@ class FlightData:
                              "departure_date": flight.depart_date, 
                              "departure_time": flight.depart_time, 
                              "arrival_date": flight.arr_date, 
-                             "arrival_time": flight.arr_time})
+                             "arrival_time": flight.arr_time,
+                             "captain": flight.captain, 
+                             "copilot": flight.copilot,
+                             "fsm": flight.fsm,
+                             "fa1": flight.fa1,
+                             "fa2": flight.fa2})
 
 
     def read_all_flight_nr(self):

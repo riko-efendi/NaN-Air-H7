@@ -6,9 +6,9 @@ from model.flight import Flight
 
 class EmployeeData:
     def __init__(self) -> None:
-        self.file_name = "crew.csv"
-        self.aircraft_file = "aircraft_type.csv"
-        self.past_flight_file= "past_flights.csv"
+        self.file_name = "_PROJECT/files/crew.csv"
+        self.aircraft_file = "_PROJECT/files/aircraft_type.csv"
+        self.past_flight_file= "_PROJECT/files/past_flights.csv"
         self.fieldnames = ["nid", "name", "role", "rank", "licence", "address","phone_nr","slot_param"]
 
 
@@ -32,6 +32,7 @@ class EmployeeData:
 
 
     def read_all_pilots(self):
+        """Read role row 'Pilot' from crew.csv and return list of all pilots"""
         pilot_list = []
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
@@ -42,6 +43,7 @@ class EmployeeData:
     
 
     def read_all_cabincrews(self):
+        """Read role row 'Cabincrew' from crew.csv and return list of all cabin crews"""
         cabincrew_list = []
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
@@ -51,6 +53,7 @@ class EmployeeData:
         return cabincrew_list
     
     def read_all_pilots_by_license(self, license):
+        """Read license row from crew.csv and return list of pilots with chosen license"""
         pilot_list = []
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
@@ -75,6 +78,7 @@ class EmployeeData:
             self.register_employee(employee)
 
     def read_employees_past_schedule_by_date(self, date):
+        """Read past_flights.csv file and return all employees past schedule based on chosen date. View All on and off Duty Employees function"""
         past_schedule_list = []
         employees = self.read_all_employees()
         with open(self.past_flight_file, newline='', encoding="utf-8") as csvfile:
@@ -86,6 +90,7 @@ class EmployeeData:
         return past_schedule_list
     
     def read_employees_past_schedule_by_date_range_and_kennitala(self, start_date, end_date, kennitala):
+        """Read specific kennitala, departure date as start_date and end_date from past_flights.csv file and return a list of chosen employee's work schedule"""
         start_date = datetime.strptime(start_date, "%Y-%m-%d")
         end_date = datetime.strptime(end_date, "%Y-%m-%d")
         flights_in_range = []

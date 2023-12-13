@@ -30,19 +30,18 @@ class CabinCrewUI:
             user_input = input("\nEnter your choice: ").lower()
 
             if user_input == "1":
-                self.regist_cabin_crew()
+                self.register_cabin_crew()
 
             elif user_input == "2":
                 self.list_all_cabin_crew()
 
 
-    def regist_cabin_crew(self) -> None:
+    def register_cabin_crew(self) -> None:
         """Creates an employee and passes it to the Register Employee UI, where it is registered in the crew.csv file"""
 
-        e = Employee()
+        e = Employee(role="Cabincrew")
         register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
         register_employee_menu.register_employee(e, "[REGISTER CABIN CREW]")   
-
 
     def list_all_cabin_crew(self) -> None:
         """Prints out all cabin crew"""
