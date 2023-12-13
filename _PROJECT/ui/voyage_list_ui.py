@@ -4,6 +4,8 @@ from logic.logic_wrapper import LogicWrapper
 
 from model.voyage import Voyage
 
+from ui.input_validation import validate_date_format
+
 
 class VoyageListUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -38,13 +40,16 @@ class VoyageListUI:
                 input("Press [ENTER] to exit: ")
                 self.input_prompt_str = "Enter your choice: "
             
-            if user_input == "2":
+            elif user_input == "2":
                 voyages = self.logic_wrapper.get_past_voyages()
                 self.ui_utils.print_voyages(voyages, "[PAST VOYAGES]")
                 input("Press [ENTER] to exit: ")
                 self.input_prompt_str = "Enter your choice: "
 
-            if user_input == "3":
+            elif user_input == "3":
+                self.list_voyage_by_date()
+
+            elif user_input == "4":
                 user_input = input("Enter a date YYYY-MM-DD: ")
                 voyages = self.logic_wrapper.get_voyages_of_date(user_input)
                 self.ui_utils.print_voyages(voyages, f"[VOYAGES FLYING ON {user_input}]")
@@ -54,3 +59,20 @@ class VoyageListUI:
 
             else:
                 self.input_prompt_str = "Invalid. Enter another choice: "
+
+    def list_voyage_by_date(self):
+        
+        self.ui_utils.clear_screen()
+        user_input = input("Enter a date YYYY-MM-DD: ")
+        while True:
+            try:
+                validate_date_format(user_input)
+                break
+            except ValueError:
+                self.ui_utils.clear_screen()
+                user_input = input("Wrong Format. Enter a date YYYY-MM-DD: ")
+
+        voyages = self.logic_wrapper.get_voyages_of_date(user_input)
+        self.ui_utils.print_voyages(voyages, f"[VOYAGES FLYING ON {user_input}]")
+        input("Press [ENTER] to exit: ")
+        self.input_prompt_str = "Enter your choice: "

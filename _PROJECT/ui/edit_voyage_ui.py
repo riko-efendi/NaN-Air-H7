@@ -140,7 +140,6 @@ class EditVoyageUI:
 
         # Update flight info
         self.print_flight_info(flight)
-
         dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower() # Needs Error handling
         while True:
             try:
