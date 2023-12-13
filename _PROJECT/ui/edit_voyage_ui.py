@@ -49,7 +49,7 @@ class EditVoyageUI:
         if user_input =="y":
             self.assign_crew(self.flight_1, self.flight_2)
 
-        input("\nVoyage succesfully created. Press [ENTER] to exit: ")
+        input("\n\033[32mVoyage succesfully created.\033[0m Press [ENTER] to exit: ")
 
         self.logic_wrapper.register_flight(self.flight_1)
         self.logic_wrapper.register_flight(self.flight_2)
@@ -149,7 +149,7 @@ class EditVoyageUI:
                 if dep_date == "c":
                     return False
                 self.print_flight_info(flight)
-                dep_date = input(f"\nWrong format! At what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower()
+                dep_date = input(f"\n\033[31mWrong format!\033[0m At what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower()
 
         flight.depart_date = dep_date
 
@@ -164,7 +164,7 @@ class EditVoyageUI:
                 if dep_time == "c":
                     return False
                 self.print_flight_info(flight)
-                dep_time = input(f"\nWrong format! At what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower()
+                dep_time = input(f"\n\033[31mWrong format!\033[0m At what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower()
 
 
         # Add the date and time togheter to work as a single variable when going into the add hours function

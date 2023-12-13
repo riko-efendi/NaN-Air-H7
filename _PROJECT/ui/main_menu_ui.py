@@ -31,10 +31,12 @@ class MainMenuUI:
                 if user_input == "1":
                     employee_menu = EmployeeUI(self.logic_wrapper)
                     employee_menu.input_prompt()
+                    self.input_prompt_str = "Enter your choice: "
                     
                 elif user_input == "2":
                     voyage_menu = VoyageUI(self.logic_wrapper)
                     voyage_menu.input_prompt()
+                    self.input_prompt_str = "Enter your choice: "
                 else:
                     self. input_prompt_str = "\033[31mInvalid input.\033[0m Enter another choice: "
 

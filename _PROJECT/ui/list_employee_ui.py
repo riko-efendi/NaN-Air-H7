@@ -1,7 +1,7 @@
 from datetime import datetime
 from utils.ui_utils import UIUtils
 from logic.logic_wrapper import LogicWrapper
-from ui.input_validation import LengthError, validate_length_kt, validate_integers
+from ui.input_validation import LengthError, validate_length_kt, validate_integers, validate_date_format
 
 import time
 
@@ -168,29 +168,31 @@ class ListEmployeeUI:
 
     def view_all_absent_employees(self):
         self.ui_utils.clear_screen()
+        date_input = input("Enter Date [YYYY-MM-DD]: ")
         while True:
-            date_input = input("Enter Date [YYYY-MM-DD]: ")
             try:
-                valid_date_input = datetime.strptime(date_input, "%Y-%m-%d")
+                validate_date_format(date_input)
+                # valid_date_input = datetime.strptime(date_input, "%Y-%m-%d")
                 
                 all_employees = set(employee.kennitala for employee in self.logic_wrapper.get_all_employees())
 
                 on_duty_employees = set()
-                flights = self.logic_wrapper.get_employees_past_schedule_by_date(valid_date_input)
+                flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
                 for flight in flights:
                     on_duty_employees.update({flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2})
                 
                 absent_employees = all_employees - on_duty_employees  
 
                 self.ui_utils.clear_screen()
-                print(f"Off Duty Employees on {valid_date_input}:\n")
+                print(f"Off Duty Employees on {date_input}:\n")
                 for employee_nid in absent_employees:
                     employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
                     if employee:
-                        print(f"{employee.name}, \tRole: {employee.rank}")
-                
-                input("\nPress \033[34m[ENTER]\033[0m to exit: ")
+                        print(f"{employee.name:>20}, Role: {employee.rank}")
+                break
             except ValueError:
                 print("\033[31mInvalid input.\033[0m Enter a valid format date")
                 time.sleep(1.5)
                 self.ui_utils.clear_screen()
+
+        input("\nPress \033[34m[ENTER]\033[0m to exit: ")    
