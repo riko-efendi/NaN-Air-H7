@@ -39,10 +39,18 @@ class VoyageListUI:
                 self.input_prompt_str = "Enter your choice: "
             
             if user_input == "2":
-                past_voyages = self.logic_wrapper.get_past_voyages()
-                self.ui_utils.print_voyages(past_voyages, "[PAST VOYAGES]")
+                voyages = self.logic_wrapper.get_past_voyages()
+                self.ui_utils.print_voyages(voyages, "[PAST VOYAGES]")
                 input("Press [ENTER] to exit: ")
                 self.input_prompt_str = "Enter your choice: "
+
+            if user_input == "3":
+                user_input = input("Enter a date YYYY-MM-DD: ")
+                voyages = self.logic_wrapper.get_voyages_of_date(user_input)
+                self.ui_utils.print_voyages(voyages, f"[VOYAGES FLYING ON {user_input}]")
+                input("Press [ENTER] to exit: ")
+                self.input_prompt_str = "Enter your choice: "
+
 
             else:
                 self.input_prompt_str = "Invalid. Enter another choice: "

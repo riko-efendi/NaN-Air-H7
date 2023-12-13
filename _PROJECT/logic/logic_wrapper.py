@@ -128,3 +128,6 @@ class LogicWrapper:
     
     def update_voyage(self, voyage):
         return self.voyage_logic.update_voyage(voyage)
+    
+    def get_voyages_of_date(self, date):
+        return self.voyage_logic.get_voyages_of_date(date)
