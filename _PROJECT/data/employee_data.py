@@ -9,7 +9,7 @@ class EmployeeData:
         self.file_name = "_PROJECT/files/crew.csv"
         self.aircraft_file = "_PROJECT/files/aircraft_type.csv"
         self.past_flight_file= "_PROJECT/files/past_flights.csv"
-        self.fieldnames = ["nid", "name", "role", "rank", "licence", "address","phone_nr","slot_param"]
+        self.fieldnames = ["nid", "name", "role", "rank", "license", "address","phone_nr","slot_param"]
 
 
     def read_all_employees(self):
@@ -19,7 +19,7 @@ class EmployeeData:
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                employee_list.append(Employee(row["nid"], row["name"], row["role"], row["rank"], row["address"], row["phone_nr"]))
+                employee_list.append(Employee(row["nid"], row["name"], row["role"], row["rank"], row["address"], row["phone_nr"], row["license"]))
         return employee_list
         
     
@@ -28,7 +28,7 @@ class EmployeeData:
 
         with open(self.file_name, 'a', newline='', encoding="utf-8") as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
-            writer.writerow({"nid": employee.kennitala, "name": employee.name, "role": employee.role, "rank":employee.rank, "address": employee.address, "phone_nr": employee.phone_number})
+            writer.writerow({"nid": employee.kennitala, "name": employee.name, "role": employee.role, "rank":employee.rank, "address": employee.address, "phone_nr": employee.phone_number, "license": employee.license})
 
 
     def read_all_pilots(self):
@@ -38,7 +38,7 @@ class EmployeeData:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 if row["role"] == "Pilot":
-                    pilot_list.append(Employee(row["nid"], row["name"], row["role"], row["rank"], row["address"], row["phone_nr"]))
+                    pilot_list.append(Employee(row["nid"], row["name"], row["role"], row["rank"], row["address"], row["phone_nr"], row["license"]))
         return pilot_list
     
 
@@ -49,7 +49,7 @@ class EmployeeData:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 if row["role"] == "Cabincrew":
-                    cabincrew_list.append(Employee(row["nid"], row["name"], row["role"], row["rank"], row["address"], row["phone_nr"]))
+                    cabincrew_list.append(Employee(row["nid"], row["name"], row["role"], row["rank"], row["address"], row["phone_nr"], row["license"]))
         return cabincrew_list
     
     def read_all_pilots_by_license(self, license):
@@ -80,7 +80,7 @@ class EmployeeData:
     def read_employees_past_schedule_by_date(self, date):
         """Read past_flights.csv file and return all employees past schedule based on chosen date. View All on and off Duty Employees function"""
         past_schedule_list = []
-        employees = self.read_all_employees()
+        # employees = self.read_all_employees()
         with open(self.past_flight_file, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
