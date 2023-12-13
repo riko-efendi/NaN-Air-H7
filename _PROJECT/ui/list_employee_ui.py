@@ -37,7 +37,7 @@ class ListEmployeeUI:
                 self.view_all_absent_employees()
 
             elif user_input == "4":
-                self.view_employees_past_schedule_by_date()
+                self.view_employees_schedule_by_date()
 
             else:
                 self.input_prompt_str = "Invalid. Enter another choice: "
@@ -136,10 +136,10 @@ class ListEmployeeUI:
 
         input("\nPress [ENTER] to exit: ")
 
-    def view_employees_past_schedule_by_date(self):
+    def view_employees_schedule_by_date(self):
         self.ui_utils.clear_screen()
         date_input = input("Enter Date [YYYY-MM-DD]: ")
-        flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
+        flights = self.logic_wrapper.get_employees_schedule_by_date(date_input)
         self.ui_utils.clear_screen()
         print(f"ALL ON DUTY EMPLOYEES on {date_input}\n")
 
@@ -155,7 +155,10 @@ class ListEmployeeUI:
                         print(f"{employee.name}, \tDestination: {flight.arr_at}")
                     employees_printed.add(employee_nid) 
 
-        input("\nPress [ENTER] to exit: ")
+        if len(flights) == 0:
+            input("No working employees on that date. Press [ENTER] to exit: ")
+        else:
+            input("\nPress [ENTER] to exit: ")
 
     def view_all_absent_employees(self):
         self.ui_utils.clear_screen()

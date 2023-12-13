@@ -9,6 +9,8 @@ class EmployeeData:
         self.file_name = "_PROJECT/files/crew.csv"
         self.aircraft_file = "_PROJECT/files/aircraft_type.csv"
         self.past_flight_file= "_PROJECT/files/past_flights.csv"
+        self.upcoming_flight_file = "_PROJECT/files/upcoming_flights.csv"
+
         self.fieldnames = ["nid", "name", "role", "rank", "license", "address","phone_nr","slot_param"]
 
 
@@ -103,3 +105,15 @@ class EmployeeData:
                     if kennitala and (kennitala in [row['captain'], row['copilot'], row['fsm'], row['fa1'], row['fa2']]):
                         flights_in_range.append(row)
         return flights_in_range
+    
+    def read_employees_upcoming_schedule_by_date(self, date):
+        """Read past_flights.csv file and return all employees past schedule based on chosen date. View All on and off Duty Employees function"""
+        upcoming_schedule_list = []
+        # employees = self.read_all_employees()
+        with open(self.upcoming_flight_file, newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                depart_date = row["departure_date"]
+                if depart_date == date:
+                    upcoming_schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure_date"], row["departure_time"], row["arrival_date"], row["arrival_time"], row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"]))
+        return upcoming_schedule_list
