@@ -4,8 +4,8 @@ from model.flight import Flight
 
 class FlightData:
     def __init__(self) -> None:
-        self.file_name_past = "_PROJECT/files/past_flights.csv"
-        self.file_name_upcoming = "_PROJECT/files/upcoming_flights.csv"
+        self.file_name_past = "past_flights.csv"
+        self.file_name_upcoming = "upcoming_flights.csv"
         self.fieldnames = ["flight_nr", 
                            "dep_from", 
                            "arr_at", 

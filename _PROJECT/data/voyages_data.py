@@ -7,8 +7,8 @@ from model.voyage import Voyage
 
 class VoyageData():
     def __init__(self) -> None:
-        self.file_name = "_PROJECT/files/voyages.csv"
-    
+        self.file_name = "voyages.csv"
+
     def get_all_voyages():
         pass
 
