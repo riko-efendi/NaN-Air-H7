@@ -1,9 +1,6 @@
 from utils.ui_utils import UIUtils
 from utils.logic_utils import LogicUtils
 from logic.logic_wrapper import LogicWrapper
-
-from model.voyage import Voyage
-
 from ui.input_validation import validate_date_format, validate_date_range, DateRangeError
 
 
