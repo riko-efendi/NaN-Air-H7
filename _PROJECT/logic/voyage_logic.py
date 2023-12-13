@@ -4,6 +4,7 @@ from data.data_wrapper import DataWrapper
 class VoyageLogic:
     def __init__(self, data_connection:DataWrapper) -> None:
         self.wrapper = data_connection
+        
 
     def get_all_past_voyages(self):
         past_flights = self.wrapper.get_all_past_flights()
@@ -27,3 +28,9 @@ class VoyageLogic:
             past_voyages.append(Voyage(flight_1, flight_2))
 
         return past_voyages
+    
+    def update_voyage(self, voyage):
+        return self.wrapper.update_voyage(voyage)
+
+    
+

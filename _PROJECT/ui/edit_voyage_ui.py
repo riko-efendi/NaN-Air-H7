@@ -1,12 +1,14 @@
 from utils.ui_utils import UIUtils
 from ui.destination_ui import DestinationUI
+from ui.voyage_list_ui import VoyageListUI
+from model.voyage import Voyage
 from model.flight import Flight
 from model.destination import Destination
 from datetime import datetime, timedelta
 from logic.logic_wrapper import LogicWrapper
 
 
-class CreateVoyageUI:
+class EditVoyageUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
         self.ui_utils = UIUtils()
         self.logic_wrapper = logic_connection
@@ -25,9 +27,6 @@ class CreateVoyageUI:
         self.flight_2 = Flight(flight_nr=flight_2_nr, arr_at="KEF")
 
 
-
-
-
     def create_voyage(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
    
@@ -43,32 +42,52 @@ class CreateVoyageUI:
             return None
         input("\nPress [ENTER] to confirm: ")
 
-        captain = self.print_available_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Pilot", "Captain")
-        copilot = self.print_available_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Pilot", "Copilot")
-        fsm = self.print_available_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Cabincrew", "Flight Service Manager")
-        fa1 = self.print_available_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Cabincrew", "Flight Attendant")
-        fa2 = self.print_available_crew(self.flight_1.depart_date, self.flight_2.arr_date, "Cabincrew", "Flight Attendant")
+        self.assign_crew(self.flight_1, self.flight_2)
 
-        self.flight_1.captain = captain
-        self.flight_2.captain = captain
-        
-        self.flight_1.copilot = copilot        
-        self.flight_2.copilot = copilot
+        input("\nVoyage succesfully created. Press [ENTER] to exit: ")
 
-        self.flight_1.fsm = fsm
-        self.flight_2.fsm = fsm
 
-        self.flight_1.fa1 = fa1
-        self.flight_2.fa1 = fa1
+    def assign_crew(self, flight_1:Flight, flight_2:Flight):
 
-        self.flight_1.fa2 = fa2
-        self.flight_2.fa2 = fa2
+        captain = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Captain")
+        copilot = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Copilot")
+        fsm = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Service Manager")
+        fa1 = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Attendant")
+        fa2 = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Attendant")
+
+        flight_1.captain = captain
+        flight_2.captain = captain
+    
+        flight_1.copilot = copilot        
+        flight_2.copilot = copilot
+
+        flight_1.fsm = fsm
+        flight_2.fsm = fsm
+
+        flight_1.fa1 = fa1
+        flight_2.fa1 = fa1
+
+        flight_1.fa2 = fa2
+        flight_2.fa2 = fa2
 
         self.logic_wrapper.register_flight(self.flight_1)
         self.logic_wrapper.register_flight(self.flight_2)
 
-        input("\nVoyage succesfully created. Press [ENTER] to exit: ")
-            
+
+    def edit_voyage(self):
+       
+        voyages = self.logic_wrapper.get_upcoming_voyages()
+        self.print_voyages(voyages)
+        
+        user_input = input("PRess sdfkds")
+
+        voyage = voyages[int(user_input) - 1]
+
+        self.assign_crew(voyage.flight_1, voyage.flight_2)
+
+        self.logic_wrapper.update_voyage(voyage)
+
+
 
     def assign_destination(self) -> bool:
         "Window to select which destination you want to assign to a voyage"
@@ -180,6 +199,22 @@ class CreateVoyageUI:
         user_input = input("\nEnter your choice: ")
 
         return employees[int(user_input) - 1].kennitala
+    
+
+    def print_voyages(self, voyages:Voyage):
+        """Prints voyages and their crews"""
+        self.ui_utils.clear_screen()
+        for index, voyage in enumerate(voyages):
+            # crew_dict = self.logic_wrapper.get_pilots_of_voyages(voyage)
+            print(f"{index + 1}. Voyage id:{voyage.id}")
+            print(f"\tGoing a round trip from {voyage.flight_1.dep_from} to {voyage.flight_1.arr_at}")
+            print()
+            # print(f"\tCaptain: {crew_dict['Captain']}")
+            # print(f"\tCopilot: {crew_dict['Copilot']}")
+            # print(f"\tFlight Service Manager: {crew_dict['Captain']}")
+            # print(f"\tFlight Attendant: {crew_dict['Captain']}")
+            # print(f"\tFlight Attendant: {crew_dict['Captain']}")
+            # print()
 
 
 

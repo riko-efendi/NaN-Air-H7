@@ -85,10 +85,7 @@ class DataWrapper:
         return self.aircraft_data.read_all_aircrafts()
     
     #Voyages
-    def get_all_voyages(self):
-        return self.voyage_data.get_all_voyages()
-
-    def create_new_voyage(self):
-        return self.voyage_data.create_new_voyage()
-    
+   
+    def update_voyage(self, voyage):
+        return self.voyage_data.update_voyage(voyage)
     

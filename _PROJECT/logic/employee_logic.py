@@ -1,13 +1,10 @@
 
-from data.employee_data import EmployeeData
+from data.data_wrapper import DataWrapper
 from logic.aircraft_logic import AircraftLogic
 from logic.flight_logic import FlightLogic
 from logic.voyage_logic import VoyageLogic
-
-from data.data_wrapper import DataWrapper
-
+from model.voyage import Voyage
 from model.employee import Employee
-from model.aircraft import Aircraft
 
 from utils.logic_utils import LogicUtils
 
@@ -114,3 +111,13 @@ class EmployeeLogic:
                 available_employees.append(employee)
 
         return available_employees
+    
+    def get_crew_from_voyages(self, voyage:Voyage):
+        all_crew = voyage.all_crew
+        all_crew_names = []
+
+        for kennitala in all_crew:
+            e = self.get_employee_by_nid(kennitala)
+            all_crew_names.append(e.name)
+
+        return all_crew_names

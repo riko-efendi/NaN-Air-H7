@@ -17,4 +17,4 @@ class Voyage:
         self.all_crew = flight_1.all_crew
 
     def __str__(self) -> str:
-        return f"Voyage id: {self.id}\nGoing from KEF to {self.flight_1.arr_at}"
+        return f"Voyage id: {self.id}\n\tGoing from KEF to {self.flight_1.arr_at}"
