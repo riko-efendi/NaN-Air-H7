@@ -8,6 +8,6 @@ class VoyageData():
         self.file_name = "_PROJECT/files/upcoming_flights.csv"
         
     
-    def update_voyage(self,voyage:Voyage):
+    def update_voyage(self,voyage):
         self.flight_data.update_flight(voyage.flight_1)
-        self.flight_data.update_flight(voyage.flight_1)
+        self.flight_data.update_flight(voyage.flight_2)

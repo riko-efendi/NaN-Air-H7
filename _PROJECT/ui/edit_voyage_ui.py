@@ -46,6 +46,8 @@ class EditVoyageUI:
 
         input("\nVoyage succesfully created. Press [ENTER] to exit: ")
 
+        self.logic_wrapper.register_flight(self.flight_1)
+        self.logic_wrapper.register_flight(self.flight_2)
 
     def assign_crew(self, flight_1:Flight, flight_2:Flight):
 
@@ -70,16 +72,13 @@ class EditVoyageUI:
         flight_1.fa2 = fa2
         flight_2.fa2 = fa2
 
-        self.logic_wrapper.register_flight(self.flight_1)
-        self.logic_wrapper.register_flight(self.flight_2)
-
 
     def edit_voyage(self):
        
         voyages = self.logic_wrapper.get_upcoming_voyages()
         self.print_voyages(voyages)
         
-        user_input = input("PRess sdfkds")
+        user_input = input("Select Crew: ")
 
         voyage = voyages[int(user_input) - 1]
 
@@ -205,23 +204,12 @@ class EditVoyageUI:
         """Prints voyages and their crews"""
         self.ui_utils.clear_screen()
         for index, voyage in enumerate(voyages):
-            # crew_dict = self.logic_wrapper.get_pilots_of_voyages(voyage)
-            print(f"{index + 1}. Voyage id:{voyage.id}")
+            print(f"{index + 1}. Voyage id:[{voyage.id}]")
             print(f"\tGoing a round trip from {voyage.flight_1.dep_from} to {voyage.flight_1.arr_at}")
+            print(f"\tCaptain: {voyage.flight_1.captain}")
+            print(f"\tCopilot: {voyage.flight_1.copilot}")
+            print(f"\tFlight Service Manager: {voyage.flight_1.fsm}")
+            print(f"\tFlight Attendant: {voyage.flight_1.fa1}")
+            print(f"\tFlight Attendant: {voyage.flight_1.fa2}")
             print()
-            # print(f"\tCaptain: {crew_dict['Captain']}")
-            # print(f"\tCopilot: {crew_dict['Copilot']}")
-            # print(f"\tFlight Service Manager: {crew_dict['Captain']}")
-            # print(f"\tFlight Attendant: {crew_dict['Captain']}")
-            # print(f"\tFlight Attendant: {crew_dict['Captain']}")
-            # print()
-
-
-
-
-
-
-        
-
-
 

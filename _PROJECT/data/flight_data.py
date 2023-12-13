@@ -47,7 +47,12 @@ class FlightData:
                             row["departure_date"], 
                             row["departure_time"], 
                             row["arrival_date"], 
-                            row["arrival_time"])
+                            row["arrival_time"],
+                            row["captain"],
+                            row["copilot"],
+                            row["fsm"],
+                            row["fa1"], 
+                            row["fa2"])
                 f.all_crew = [row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"]]
 
                 upcoming_flight_list.append(f)
