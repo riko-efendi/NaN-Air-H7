@@ -5,8 +5,9 @@ class DateError(Exception):
     pass
 
 
-
-
+###############################################################################################################
+#[EMPLOYEE MENU]#
+    
 def validate_name(name):
     if name.isalpha() == False:
         raise ValueError
@@ -20,7 +21,6 @@ def validate_kennitala(kennitala):
     if len(kennitala) != 10 and len(kennitala) != 9:
         raise LengthERROR
     #this validates the kennitala length i saw that there were some that were 10 and some that were 9
-
 
 
 def validate_phone_number(phone_number):
@@ -60,3 +60,16 @@ def validate_year_format(date):
         raise LengthERROR
     elif int(date_list[1]) > 12 or int(date_list[2]) > 31:
         raise DateError
+
+
+###############################################################################################################
+#[VOYAGE MENU]#
+
+#register_destinations.
+
+def validate_id(id):
+    if id.isalpha() == False:
+        raise ValueError
+    if len(id) != 3:
+        raise LengthERROR
+    

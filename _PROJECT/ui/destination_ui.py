@@ -1,7 +1,9 @@
 from logic.logic_wrapper import LogicWrapper
 from model.destination import Destination
-
 from utils.ui_utils import UIUtils
+
+from ui.input_validation import LengthERROR, validate_id
+
 
 class DestinationUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -44,10 +46,28 @@ class DestinationUI:
         d = Destination()
 
         print("[REGISTER DESTINATION]\n")
-        d.id = input("Enter destination three letter id: ").upper()         # Needs error handling
+        
+        while True:
+            try:
+                d.id = input("Enter destination three letter id: ").upper()        # Needs error handling
+                validate_id(d.id)
+                break
+
+            except LengthERROR:
+                print("Length error. Please enter 3 letter id")
+            except ValueError:
+                print("Invalid value. Please enter letters only")
+                
+
         d.destination = input("Enter destination name: ").capitalize()
         d.numeric_id = input("Enter destination numeric id: ")
         d.flight_time_from_kef = input("Enter flight time in hrs, from KEF airport: ")
+
+
+
+
+
+
         self.logic_wrapper.register_destination(d)
         print(f"\n{d.destination} is successfully created.")
         input("\nPress [ENTER] to exit: ")
