@@ -31,8 +31,12 @@ class FlightData:
                                                row["departure_date"], 
                                                row["departure_time"], 
                                                row["arrival_date"], 
-                                               row["arrival_time"], 
-                                               row["aircraft_id"]))
+                                               row["arrival_time"],
+                                               row["captain"],
+                                               row["copilot"],
+                                               row["fsm"],
+                                               row["fa1"], 
+                                               row["fa2"]))
         return past_flight_list
         
     def read_all_upcoming_flights(self):

@@ -34,24 +34,15 @@ class VoyageListUI:
 
             if user_input == "1":
                 upcoming_voyages = self.logic_wrapper.get_upcoming_voyages()
-                self.list_voyages(upcoming_voyages, "[UPCOMING VOYAGES]")
+                self.ui_utils.print_voyages(upcoming_voyages, "[UPCOMING VOYAGES]")
+                input("Press [ENTER] to exit: ")
                 self.input_prompt_str = "Enter your choice: "
             
             if user_input == "2":
                 past_voyages = self.logic_wrapper.get_past_voyages()
-                self.list_voyages(past_voyages, "[PAST VOYAGES]")
+                self.ui_utils.print_voyages(past_voyages, "[PAST VOYAGES]")
+                input("Press [ENTER] to exit: ")
                 self.input_prompt_str = "Enter your choice: "
 
             else:
                 self.input_prompt_str = "Invalid. Enter another choice: "
-
-
-    def list_voyages(self, voyages:list[Voyage], header:str=""):
-
-        self.ui_utils.clear_screen()
-        print(f"{header}\n")
-
-        for voyage in voyages:
-            print(voyage, end="\n\n")
-
-        input("Press [ENTER] to exit: ")

@@ -79,7 +79,7 @@ class EditVoyageUI:
         
 
         voyages = self.logic_wrapper.get_upcoming_voyages()
-        self.print_voyages(voyages)
+        self.ui_utils.print_voyages(voyages, "[EDIT VOYAGE]")
         user_input = input("Select Voyage to edit: ")
         voyage = voyages[int(user_input) - 1]
         self.assign_crew(voyage.flight_1, voyage.flight_2)
@@ -199,31 +199,31 @@ class EditVoyageUI:
         return employees[int(user_input) - 1].kennitala
     
 
-    def print_voyages(self, voyages:Voyage):
-        """Prints voyages and their crews"""
-        self.ui_utils.clear_screen()
-        print("[EDIT VOYAGE]\n")
+    # def print_voyages(self, voyages:Voyage):
+    #     """Prints voyages and their crews"""
+    #     self.ui_utils.clear_screen()
+    #     print("[EDIT VOYAGE]\n")
 
 
-        for index, voyage in enumerate(voyages):
-            captain = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.captain)
-            captain = captain.name if captain != None else "No Crew Assigned"
-            copilot = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.copilot)
-            copilot = copilot.name if copilot != None else "No Crew Assigned"
-            fsm = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.fsm)
-            fsm = fsm.name if fsm != None else "No Crew Assigned"
-            fa1 = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.fa1)
-            fa1 = fa1.name if fa1 != None else "No Crew Assigned"
-            fa2 = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.fa2)
-            fa2 = fa2.name if fa2 != None else "No Crew Assigned"
+    #     for index, voyage in enumerate(voyages):
+    #         captain = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.captain)
+    #         captain = captain.name if captain != None else "No Crew Assigned"
+    #         copilot = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.copilot)
+    #         copilot = copilot.name if copilot != None else "No Crew Assigned"
+    #         fsm = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.fsm)
+    #         fsm = fsm.name if fsm != None else "No Crew Assigned"
+    #         fa1 = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.fa1)
+    #         fa1 = fa1.name if fa1 != None else "No Crew Assigned"
+    #         fa2 = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.fa2)
+    #         fa2 = fa2.name if fa2 != None else "No Crew Assigned"
 
-            print(f"{index + 1}. Voyage id:[{voyage.id}]")
-            print(f"\tGoing a round trip from {voyage.flight_1.dep_from} to {voyage.flight_1.arr_at}.")
-            print(f"\t[{voyage.depart_date}] - [{voyage.arr_date}]")
-            print(f"\tCaptain:                {captain}")
-            print(f"\tCopilot:                {copilot}")
-            print(f"\tFlight Service Manager: {fsm}")
-            print(f"\tFlight Attendant 1:     {fa1}")
-            print(f"\tFlight Attendant 2:     {fa2}")
-            print()
+    #         print(f"{index + 1}. Voyage id:[{voyage.id}]")
+    #         print(f"\tGoing a round trip from {voyage.flight_1.dep_from} to {voyage.flight_1.arr_at}.")
+    #         print(f"\t[{voyage.depart_date}] - [{voyage.arr_date}]")
+    #         print(f"\tCaptain:                {captain}")
+    #         print(f"\tCopilot:                {copilot}")
+    #         print(f"\tFlight Service Manager: {fsm}")
+    #         print(f"\tFlight Attendant 1:     {fa1}")
+    #         print(f"\tFlight Attendant 2:     {fa2}")
+    #         print()
 
