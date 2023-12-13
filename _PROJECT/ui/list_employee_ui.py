@@ -1,6 +1,7 @@
 from utils.ui_utils import UIUtils
 from logic.logic_wrapper import LogicWrapper
-from ui.input_validation import LengthERROR, validate_length_kt, validate_integers
+from ui.input_validation import LengthERROR, validate_length_kt, validate_integers, validate_year_format
+from ui.input_validation import DateError, validate_year_format
 
 class ListEmployeeUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -68,7 +69,6 @@ class ListEmployeeUI:
     def view_employee_by_kennitala(self):
         self.ui_utils.clear_screen()
         
-        
         while True:
             try:
                 kennitala_input = input("Enter Employee Kennitala: ")
@@ -85,13 +85,6 @@ class ListEmployeeUI:
             except LengthERROR:
                 print("Invalid length, please enter a valid kennitala")
 
-                    
-        
-             
-        
-        
-        
-        
         self.ui_utils.clear_screen()
         print(f"[EMPLOYEE INFO]\n")
         self.print_employee(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
@@ -143,7 +136,17 @@ class ListEmployeeUI:
 
     def view_employees_past_schedule_by_date(self):
         self.ui_utils.clear_screen()
-        date_input = input("Enter Date [YYYY-MM-DD]: ")
+        while True:
+            try:
+                date_input = input("Enter Date [YYYY-MM-DD]: ")
+                validate_year_format(date_input)
+                break
+            except ValueError:
+                print("Invalid date, please only use digits")
+            except LengthERROR:
+                print("Invalid date, plesa use format [YYYY-MM-DD]")
+            except DateError:
+                print("Invalid date, month and/or day does not exist")
         flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
         self.ui_utils.clear_screen()
         print(f"ALL ON DUTY EMPLOYEES on {date_input}\n")
@@ -164,7 +167,17 @@ class ListEmployeeUI:
 
     def view_all_absent_employees(self):
         self.ui_utils.clear_screen()
-        date_input = input("Enter Date [YYYY-MM-DD]: ")
+        while True:
+            try:
+                date_input = input("Enter Date [YYYY-MM-DD]: ")
+                validate_year_format(date_input)
+                break
+            except ValueError:
+                print("Invalid date, please only use digits")
+            except LengthERROR:
+                print("Invalid date, plesa use format [YYYY-MM-DD]")
+            except DateError:
+                print("Invalid date, month and/or day does not exist")
         all_employees = set(employee.kennitala for employee in self.logic_wrapper.get_all_employees())
 
         on_duty_employees = set()

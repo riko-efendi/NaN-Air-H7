@@ -1,7 +1,12 @@
 from model.employee import Employee
 from data.data_wrapper import DataWrapper
 from utils.ui_utils import UIUtils
+<<<<<<< Updated upstream
 from ui.input_validation import LengthERROR, validate_length, validate_length_kt, validate_integers, validate_letters,validate_length_phone, validate_address
+=======
+from ui.input_validators import InputError, validate_letters, validate_integers, validate_address
+
+>>>>>>> Stashed changes
 
 class RegisterEmployeeUI():
     def __init__(self, data_connection:DataWrapper) -> None:
@@ -14,6 +19,7 @@ class RegisterEmployeeUI():
         self.ui_utils.print_employee(employee, header)
         while True:
             try:
+<<<<<<< Updated upstream
                 employee.name = input(f"Input the {employee.role}'s name: ").capitalize()
                 validate_length(employee.name)
                 validate_letters(employee.name)
@@ -42,16 +48,33 @@ class RegisterEmployeeUI():
                 print("invalid value, please enter a valid kennitala")
 
         
+=======
+                employee.name = input(f"Input the {employee.role}'s name: ")
+                validate_letters(employee.name)
+                break
+            except InputError:
+                print("Please only use letters")
+        self.ui_utils.print_employee(employee, header)
+        employee.kennitala = (input(f"Input the {employee.role}'s kennitala: "))
+        self.ui_utils.print_employee(employee, header)
+>>>>>>> Stashed changes
         while True:
             try:
                 employee.address = input(f"Input the {employee.role}'s address: ").capitalize()
                 validate_address(employee.address)
+<<<<<<< Updated upstream
                 self.ui_utils.print_employee(employee, header)
                 break
 
             except ValueError:
                 print('Invalid address, please use format "streetname streetnumber"')
         
+=======
+                break
+            except InputError:
+                print('Invalid address, please use format "streetname streetnumber"')
+        self.ui_utils.print_employee(employee, header)
+>>>>>>> Stashed changes
 
         if employee.role == "Pilot":
             e_rank = input(f"Is the {employee.role}: \n1. Captain\n2. Copilot\nEnter your choice: ")
