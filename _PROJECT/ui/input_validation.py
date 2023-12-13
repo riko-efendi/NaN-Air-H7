@@ -15,7 +15,7 @@ def validate_name(name):
         raise LengthERROR
     #validates the length of the name and if the name only contains letters 
 
-def validate_kennitala(kennitala):
+def validate_kennitala(kennitala): #needs to create a new one and cannot create an existing one. 
     if kennitala.isdigit() == False:
         raise ValueError
     if len(kennitala) != 10 and len(kennitala) != 9:
@@ -73,3 +73,20 @@ def validate_id(id):
     if len(id) != 3:
         raise LengthERROR
     
+def validate_name_destination(destination):
+    if destination.isalpha() == False:
+        raise ValueError
+    if (0 < len(destination) <= 25) == False:
+        raise LengthERROR
+
+def validate_numeric_id(numeric_id):
+    if numeric_id.isdigit() == False:
+        raise ValueError
+    if len(numeric_id) != 4:
+        raise LengthERROR
+    
+def validate_flight_time(flight_time):
+    if flight_time.isdigit() == False:
+        raise ValueError
+    if (0 < int(flight_time) <= 20) == False:
+        raise LengthERROR

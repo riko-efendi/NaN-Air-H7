@@ -1,6 +1,6 @@
 from utils.ui_utils import UIUtils
 from logic.logic_wrapper import LogicWrapper
-from ui.input_validation import LengthERROR, DateError, validate_kennitala, validate_address,validate_phone_number, validate_input_view_by_kt, validate_year_format
+from ui.input_validation import *
 
 class ListEmployeeUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:

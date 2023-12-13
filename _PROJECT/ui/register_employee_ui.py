@@ -1,7 +1,7 @@
 from model.employee import Employee
 from data.data_wrapper import DataWrapper
 from utils.ui_utils import UIUtils
-from ui.input_validation import LengthERROR, validate_name, validate_kennitala,   validate_phone_number, validate_address
+from ui.input_validation import *
 
 class RegisterEmployeeUI():
     def __init__(self, data_connection:DataWrapper) -> None:

@@ -60,14 +60,18 @@ class FlightsUI:
             "5": "FAE",
             "6": "LWK"
         }
+        
         print("[Flight(s) List from Airport]\n")
+        print("[Airport ID]\n\n1. KEF 2. LYR 3. GOH 4. KUS 5. FAE 6. LWK")
         while True:
-            print("[Airport ID]\n\n1. KEF 2. LYR 3. GOH 4. KUS 5. FAE 6. LWK")
             airport_id_input = input("\nEnter License Type (1, 2, 3, 4, 5, or 6): ")
             if airport_id_input in airport_id:
                 airport_id_input = airport_id[airport_id_input]
                 break
             else:
+                self.ui_utils.clear_screen()
+                print("[Flight(s) List from Airport]\n")
+                print("[Airport ID]\n\n1. KEF 2. LYR 3. GOH 4. KUS 5. FAE 6. LWK")
                 print("Invalid input. Please enter 1, 2, 3, 4, 5, or 6.")
 
         print(f"\nShowing flight(s) from {airport_id_input}\n")
