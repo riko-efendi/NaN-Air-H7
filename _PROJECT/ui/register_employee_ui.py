@@ -36,6 +36,7 @@ class RegisterEmployeeUI():
             try: 
                 employee.kennitala = (input(f"Input the {employee.role}'s kennitala: "))
                 validate_kennitala(employee.kennitala)
+                
                 self.ui_utils.print_employee(employee, header)
                 break
             
@@ -47,7 +48,10 @@ class RegisterEmployeeUI():
                 self.ui_utils.clear_screen()
                 self.ui_utils.print_employee(employee, header)
                 print("invalid value, please enter a valid kennitala")
-
+            except ExistingError:
+                self.ui_utils.clear_screen()
+                self.ui_utils.print_employee(employee, header)
+                print("The kennitala you have inserted is already assigned to an existing employee.")
         #this checks the address. the validation of the address is that
         # first must contain a name for the adress and the 1 or 2 numbers for the number of that address 
         while True:
