@@ -40,18 +40,21 @@ class EditVoyageUI:
         # Use this as a break statement
         if not self.assign_times(self.flight_2):
             return None
-        input("\nPress [ENTER] to confirm: ")
-
-        user_input = input("Do you want to assign Crew now?: (Y/N)").lower()
+        
+        user_input = input("\nDo you want to assign Crew now?: (Y/N)").lower()
 
         if user_input =="y":
             self.assign_crew(self.flight_1, self.flight_2)
 
-        input("\nVoyage succesfully created. Press [ENTER] to exit: ")
+        # Create a list with the created voyge to put into the  print voyages function
+        created_voyage = [Voyage(self.flight_1, self.flight_2)]
+
+        self.ui_utils.print_voyages(created_voyage, "[CREATED VOYAGE]")
+        input("Voyage succesfully created. Press [ENTER] to exit: ")
 
         self.logic_wrapper.register_flight(self.flight_1)
         self.logic_wrapper.register_flight(self.flight_2)
-        
+
 
     def assign_crew(self, flight_1:Flight, flight_2:Flight):
         """Assignes crew to a voyage"""
@@ -181,9 +184,7 @@ class EditVoyageUI:
         self.ui_utils.clear_screen()
         print(f"[SELECT {rank.upper()}]\n")
         for index, employee in enumerate(employees):
-            print(f"{index + 1}. {employee.name}")
-
-        print("\n[S]kip assigning Crew")
+            print(f"{index + 1}. {employee.name}") 
         user_input = input("\nEnter your choice: ")
 
         return employees[int(user_input) - 1].kennitala
