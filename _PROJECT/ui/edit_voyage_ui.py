@@ -74,22 +74,21 @@ class EditVoyageUI:
 
 
     def edit_voyage(self):
-       
+        """User selects a voyage to assign new crew to"""
+
+        
+
         voyages = self.logic_wrapper.get_upcoming_voyages()
         self.print_voyages(voyages)
-        
-        user_input = input("Select Crew: ")
-
+        user_input = input("Select Voyage to edit: ")
         voyage = voyages[int(user_input) - 1]
-
         self.assign_crew(voyage.flight_1, voyage.flight_2)
-
         self.logic_wrapper.update_voyage(voyage)
 
 
 
     def assign_destination(self) -> bool:
-        "Window to select which destination you want to assign to a voyage"
+        """Window to select which destination you want to assign to a voyage"""
 
         destinations_dict = self.logic_wrapper.get_all_destinations(False, True)
         input_prompt_str = "Enter your choice: "
@@ -203,13 +202,28 @@ class EditVoyageUI:
     def print_voyages(self, voyages:Voyage):
         """Prints voyages and their crews"""
         self.ui_utils.clear_screen()
+        print("[EDIT VOYAGE]\n")
+
+
         for index, voyage in enumerate(voyages):
+            captain = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.captain)
+            captain = captain.name if captain != None else "No Crew Assigned"
+            copilot = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.copilot)
+            copilot = copilot.name if copilot != None else "No Crew Assigned"
+            fsm = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.fsm)
+            fsm = fsm.name if fsm != None else "No Crew Assigned"
+            fa1 = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.fa1)
+            fa1 = fa1.name if fa1 != None else "No Crew Assigned"
+            fa2 = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.fa2)
+            fa2 = fa2.name if fa2 != None else "No Crew Assigned"
+
             print(f"{index + 1}. Voyage id:[{voyage.id}]")
-            print(f"\tGoing a round trip from {voyage.flight_1.dep_from} to {voyage.flight_1.arr_at}")
-            print(f"\tCaptain: {voyage.flight_1.captain}")
-            print(f"\tCopilot: {voyage.flight_1.copilot}")
-            print(f"\tFlight Service Manager: {voyage.flight_1.fsm}")
-            print(f"\tFlight Attendant: {voyage.flight_1.fa1}")
-            print(f"\tFlight Attendant: {voyage.flight_1.fa2}")
+            print(f"\tGoing a round trip from {voyage.flight_1.dep_from} to {voyage.flight_1.arr_at}.")
+            print(f"\t[{voyage.depart_date}] - [{voyage.arr_date}]")
+            print(f"\tCaptain:                {captain}")
+            print(f"\tCopilot:                {copilot}")
+            print(f"\tFlight Service Manager: {fsm}")
+            print(f"\tFlight Attendant 1:     {fa1}")
+            print(f"\tFlight Attendant 2:     {fa2}")
             print()
 
