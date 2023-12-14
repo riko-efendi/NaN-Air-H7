@@ -1,7 +1,8 @@
 from utils.ui_utils import UIUtils
+from logic.logic_wrapper import LogicWrapper
 
 class FlightsUI:
-    def __init__(self, logic_connection) -> None:
+    def __init__(self, logic_connection:LogicWrapper) -> None:
         self.ui_utils = UIUtils()
         self.logic_wrapper = logic_connection
         self.input_prompt_str = "Enter your choice: "
