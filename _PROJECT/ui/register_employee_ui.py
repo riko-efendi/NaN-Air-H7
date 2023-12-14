@@ -80,10 +80,10 @@ class RegisterEmployeeUI():
                 break
             
             except ValueError:
-                print("\033[31mInvalid Value\033[0m, please enter a valid phone number")
+                print("\033[31mInvalid Value\033[0m, please only use digits")
 
             except LengthError:
-                print("\033[31mInvalid Length\033[0m,Please input a valid phone number")
+                print("\033[31mInvalid Length\033[0m, Please use seven numbers")
             
             
         self.logic_wrapper.register_employee(employee)
