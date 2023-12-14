@@ -22,9 +22,13 @@ class FlightData:
     def read_all_past_flights(self):
         """Read past_flights.csv file and return all past flights"""
         past_flight_list = []
+        fa_rows = self.get_fa_amount("_PROJECT/files/past_flights.csv")
         with open(self.file_name_past, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
+                crew_dict = {"captain": row["captain"], "copilot": row["copilot"], "fsm": ["fsm"]}
+                for fa_row in fa_rows:
+                    crew_dict[fa_row] = row[fa_row]
                 past_flight_list.append(Flight(row["flight_nr"], 
                                                row["dep_from"], 
                                                row["arr_at"], 
@@ -32,43 +36,44 @@ class FlightData:
                                                row["departure_time"], 
                                                row["arrival_date"], 
                                                row["arrival_time"],
-                                               row["captain"],
-                                               row["copilot"],
-                                               row["fsm"],
-                                               row["fa1"], 
-                                               row["fa2"]))
+                                               crew_dict))
         return past_flight_list
         
     def read_all_upcoming_flights(self):
         """Read upcoming_flights.csv file and return all upcoming flights"""
         upcoming_flight_list = []
+        fa_rows = self.get_fa_amount("_PROJECT/files/upcoming_flights.csv")
         with open(self.file_name_upcoming, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                f = Flight(row["flight_nr"], 
-                            row["dep_from"], 
-                            row["arr_at"], 
-                            row["departure_date"], 
-                            row["departure_time"], 
-                            row["arrival_date"], 
-                            row["arrival_time"],
-                            row["captain"],
-                            row["copilot"],
-                            row["fsm"],
-                            row["fa1"], 
-                            row["fa2"])
-                f.all_crew = [row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"]]
-
-                upcoming_flight_list.append(f)
+                crew_dict = {"captain": row["captain"], 
+                             "copilot": row["copilot"], 
+                             "fsm": row["fsm"]}
                 
+                for fa_row in fa_rows:
+                    crew_dict[fa_row] = row[fa_row]
+                upcoming_flight_list.append(Flight(row["flight_nr"], 
+                                                   row["dep_from"], 
+                                                   row["arr_at"], 
+                                                   row["departure_date"], 
+                                                   row["departure_time"], 
+                                                   row["arrival_date"], 
+                                                   row["arrival_time"],
+                                                   crew_dict))
+               
         return upcoming_flight_list
     
     def read_all_flights_from_one_airport(self, airport):
         """Read upcoming_flights.csv and return list of flights from chosen airport."""
+
         all_flights_from_one_airport_list = []
+        fa_rows = self.get_fa_amount("_PROJECT/files/upcoming_flights.csv")
         with open(self.file_name_upcoming, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
+                crew_dict = {"captain": row["captain"], "copilot": row["copilot"], "fsm": ["fsm"]}
+                for fa_row in fa_rows:
+                    crew_dict[fa_row] = row[fa_row]
                 if row["dep_from"] == airport:
                     all_flights_from_one_airport_list.append(Flight(row["flight_nr"], 
                                                                     row["dep_from"], 
@@ -76,39 +81,97 @@ class FlightData:
                                                                     row["departure_date"], 
                                                                     row["departure_time"], 
                                                                     row["arrival_date"], 
-                                                                    row["arrival_time"]))
+                                                                    row["arrival_time"],
+                                                                    crew_dict))
         return all_flights_from_one_airport_list
     
     def read_employee_past_schedule_by_nid(self, kennitala):
         """Read past_flights.csv and retrieve the past flight schedule for an employee based on Kennitala"""
         schedule_list = []
+        fa_rows = self.get_fa_amount("_PROJECT/files/past_flights.csv")
         with open(self.file_name_past, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
+                crew_dict = {"captain": row["captain"], "copilot": row["copilot"], "fsm": ["fsm"]}
+                for fa_row in fa_rows:
+                    crew_dict[fa_row] = row[fa_row]
                 if row["captain"] == kennitala or row["copilot"] == kennitala or row["fsm"] == kennitala or row["fa1"] == kennitala or row["fa2"] == kennitala:
-                    schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure_date"], row["departure_time"], row["arrival_date"], row["arrival_time"], row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"], row["aircraft_id"]))
-
+                    schedule_list.append(Flight(row["flight_nr"], 
+                                                row["dep_from"], 
+                                                row["arr_at"], 
+                                                row["departure_date"], 
+                                                row["departure_time"], 
+                                                row["arrival_date"], 
+                                                row["arrival_time"], 
+                                                fa_rows, 
+                                                row["aircraft_id"]))
         return schedule_list
     
 
     
     def register_flight(self, flight:Flight) -> None:
         """Writes employee info onto the crew.csv file"""
+        # Get how many fa's there are before the new flight get registered
+        fa_rows = self.get_fa_amount("_PROJECT/files/upcoming_flights.csv")
+        # Get how many fa's there are in the flight to be registerd
+        flight_fa_rows = [key for key in flight.crew if key.startswith("fa")]
+        # If there are the new fa_rows will be the fa's from the flight
+        if len(flight_fa_rows) > len(fa_rows):
+            fa_rows = flight_fa_rows
+
+        fieldnames = ["flight_nr", 
+                      "dep_from", 
+                      "arr_at", 
+                      "departure_date", 
+                      "departure_time", 
+                      "arrival_date", 
+                      "arrival_time",
+                      "captain",
+                      "copilot",
+                      "fsm"]
+        
+        writewrow_dict = {"flight_nr": flight.flight_nr, 
+                            "dep_from": flight.dep_from, 
+                            "arr_at": flight.arr_at, 
+                            "departure_date": flight.depart_date, 
+                            "departure_time": flight.depart_time, 
+                            "arrival_date": flight.arr_date, 
+                            "arrival_time": flight.arr_time,
+                            "captain": flight.crew["captain"],
+                            "copilot": flight.crew["copilot"],
+                            "fsm": flight.crew["fsm"]}
+        
+        for fa_row in fa_rows:
+            fieldnames.append(fa_row)
+            writewrow_dict[fa_row] = flight.crew[fa_row]
+
+        # Now we will have to re-register all the flights again
+        flights = self.read_all_upcoming_flights()
+
+        with open(self.file_name_upcoming, 'w', newline='', encoding="utf-8") as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+
+        for old_flight in flights:
+            row_dict = {"flight_nr":old_flight.flight_nr, 
+                        "dep_from":old_flight.dep_from, 
+                        "arr_at":old_flight.arr_at, 
+                        "departure_date":old_flight.depart_date, 
+                        "departure_time":old_flight.depart_time,
+                        "arrival_date":old_flight.arr_date,
+                        "arrival_time":old_flight.arr_time,}
+            
+            for crew in old_flight.crew:
+                row_dict[crew] = old_flight.crew[crew]
+            
+            with open(self.file_name_upcoming, 'a', newline='', encoding="utf-8") as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer.writerow(row_dict)
 
         with open(self.file_name_upcoming, 'a', newline='', encoding="utf-8") as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
-            writer.writerow({"flight_nr": flight.flight_nr, 
-                             "dep_from": flight.dep_from, 
-                             "arr_at": flight.arr_at, 
-                             "departure_date": flight.depart_date, 
-                             "departure_time": flight.depart_time, 
-                             "arrival_date": flight.arr_date, 
-                             "arrival_time": flight.arr_time,
-                             "captain": flight.captain, 
-                             "copilot": flight.copilot,
-                             "fsm": flight.fsm,
-                             "fa1": flight.fa1,
-                             "fa2": flight.fa2})
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writerow(writewrow_dict)
+            
 
 
     def read_all_flight_nr(self):
@@ -137,5 +200,12 @@ class FlightData:
                 flight.fa1 = flight_to_update.fa1
                 flight.fa2 = flight_to_update.fa2
             self.register_flight(flight)
+
+
+    def get_fa_amount(self, filename):
+        """Gets amount of flight attendant rows"""
+        with open(filename, "r", newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            return [col for col in reader.fieldnames if col.startswith("fa")]
 
 
