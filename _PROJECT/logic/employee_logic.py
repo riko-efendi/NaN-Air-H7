@@ -88,7 +88,7 @@ class EmployeeLogic:
         # I get all the voyages
         for voyage in all_upcoming_voyages:
             # Get all nids from crew
-            for crew in voyage.all_crew:
+            for crew in voyage.crew.keys():
                 # if the crew is the injected employee
                 if crew == employee.kennitala:
                     # Get the date range from a logic util method

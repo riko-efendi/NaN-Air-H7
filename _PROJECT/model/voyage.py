@@ -14,7 +14,7 @@ class Voyage:
         self.depart_date = flight_1.depart_date
         self.arr_date = flight_2.arr_date
 
-        self.all_crew = flight_1.all_crew
+        self.crew = flight_1.crew
 
     def __str__(self) -> str:
         return f"Voyage id: {self.id}\n\tGoing from KEF to {self.flight_1.arr_at}"
