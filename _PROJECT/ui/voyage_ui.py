@@ -6,7 +6,9 @@ from ui.edit_voyage_ui import EditVoyageUI
 from ui.voyage_list_ui import VoyageListUI
 from model.voyage import Voyage
 from utils.ui_utils import UIUtils
+from utils.ascii_art import nanair_logo
 
+DASH_AMOUNT = 30
 
 class VoyageUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -17,15 +19,18 @@ class VoyageUI:
     def menu_output(self) -> None:
         """Prints out the options for the Voyage UI"""
 
+        header = "[VOYAGE]"
         self.ui_utils.clear_screen()
-        print(f"[VOYAGE]\n")
-        print(f"1. Create Voyage")
-        print(f"2. List Voyages")
-        print(f"3. Edit Voyage")
-        print(f"4. Destination")
-        print(f"5. Flights")
-        print(f"6. Aircraft")
-        print(f"\n[B]ack")
+        print(nanair_logo)
+        print(header + "-" * (DASH_AMOUNT - len(header)) +"\n")
+        print(f"\t1. Create Voyage\n")
+        print(f"\t2. List Voyages\n")
+        print(f"\t3. Edit Voyage\n")
+        print(f"\t4. Destination\n")
+        print(f"\t5. Flights\n")
+        print(f"\t6. Aircraft")
+        print(f"\t\t\t[B]ack")
+        print("-"*DASH_AMOUNT)
 
     def input_prompt(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
@@ -34,7 +39,7 @@ class VoyageUI:
 
         while user_input != "b":
             self.menu_output()
-            user_input = input("\n" + self.input_prompt_str).lower()
+            user_input = input(self.input_prompt_str).lower()
 
             if user_input == "1":
                 create_coyage_menu = EditVoyageUI(self.logic_wrapper)

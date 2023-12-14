@@ -2,6 +2,7 @@ from utils.ui_utils import UIUtils
 from utils.logic_utils import LogicUtils
 from logic.logic_wrapper import LogicWrapper
 from ui.input_validation import validate_date_format, validate_date_range, DateRangeError
+from utils.ascii_art import nanair_logo
 
 
 class VoyageListUI:
@@ -15,13 +16,16 @@ class VoyageListUI:
         """Prints out the options for the Voyage UI"""
 
         self.ui_utils.clear_screen()
+        print(nanair_logo)
+        print("-----------------------------------")
         print(f"[LIST VOYAGES]\n")
-        print(f"1. List Upcoming Voyages")
-        print(f"2. List Past Voyages")
-        print(f"3. List Voyage by date")
-        print(f"4. List Voyage by date range")
-
-        print(f"\n[B]ack")
+        print(f"\t1. List Upcoming Voyages\n")
+        print(f"\t2. List Past Voyages\n")
+        print(f"\t3. List Voyage by date\n")
+        print(f"\t4. List Voyage by date range\n")
+        
+        print(f"[B]ack")
+        print("-----------------------------------")
 
     def input_prompt(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
@@ -30,7 +34,7 @@ class VoyageListUI:
 
         while user_input != "b":
             self.menu_output()
-            user_input = input("\n" + self.input_prompt_str).lower()
+            user_input = input(self.input_prompt_str).lower()
 
             if user_input == "1":
                 upcoming_voyages = self.logic_wrapper.get_upcoming_voyages()

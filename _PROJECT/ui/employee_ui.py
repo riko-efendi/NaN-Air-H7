@@ -2,23 +2,29 @@ from utils.ui_utils import UIUtils
 from ui.cabincrew_ui import CabinCrewUI
 from ui.list_employee_ui import ListEmployeeUI
 from ui.pilot_ui import PilotUI
+from utils.ascii_art import nanair_logo
+from logic.logic_wrapper import LogicWrapper
 
+DASH_AMOUNT = 30
 
 class EmployeeUI:
-    def __init__(self, wrapper) -> None:
-       self.logic_wrapper = wrapper
+    def __init__(self, logic_connection:LogicWrapper) -> None:
+       self.logic_wrapper = logic_connection
        self.ui_utils = UIUtils()
        self.input_prompt_str = "Enter your choice: "
 
     def menu_output(self) -> None:
         """Prints out the options for the Employee UI"""
         
+        header = "[EMPLOYEES]"
         self.ui_utils.clear_screen()
-        print(f"[EMPLOYEES]\n")
-        print(f"1. View Employees Options")
-        print(f"2. Pilot")
-        print(f"3. Cabin Crew")
-        print(f"\n[B]ack")
+        print(nanair_logo)
+        print(header + "-" * (DASH_AMOUNT - len(header)) +"\n")
+        print(f"\t1. View Employees Options\n")
+        print(f"\t2. Pilot\n")
+        print(f"\t3. Cabin Crew")
+        print(f"\t\t\t[B]ack")
+        print("-"*DASH_AMOUNT)
 
     def input_prompt(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
@@ -27,7 +33,7 @@ class EmployeeUI:
 
         while user_input != "b":
             self.menu_output()
-            user_input = input("\n" + self.input_prompt_str).lower()
+            user_input = input(self.input_prompt_str).lower()
 
             if user_input == "1":
                 self.ui_utils.clear_screen()
