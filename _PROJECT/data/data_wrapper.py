@@ -50,6 +50,9 @@ class DataWrapper:
     def get_employees_past_schedule_by_date(self, date):
         return self.employee_data.read_employees_past_schedule_by_date(date)
     
+    def get_employees_upcoming_schedule_by_date(self, date):
+        return self.employee_data.read_employees_upcoming_schedule_by_date(date)
+    
     def get_employees_past_schedule_by_date_range_and_kennitala(self, start_date, end_date, kennitala):
         return self.employee_data.read_employees_past_schedule_by_date_range_and_kennitala(start_date, end_date, kennitala)
     

@@ -172,7 +172,7 @@ class ListEmployeeUI:
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
         print("\n" * 3)
         date_input = input("Enter Date [YYYY-MM-DD]: ")
-        flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
+        flights = self.logic_wrapper.get_employees_schedule_by_date(date_input)
         self.ui_utils.clear_screen()
 
         print("-" * DASH_AMOUNT)

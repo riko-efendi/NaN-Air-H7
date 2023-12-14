@@ -121,3 +121,11 @@ class EmployeeLogic:
             all_crew_names.append(e.name)
 
         return all_crew_names
+    
+
+    def get_employees_schedule_by_date(self, date):
+        
+        past_schedule = self.data_wrapper.get_employees_past_schedule_by_date(date)
+        upcoming_schedule = self.data_wrapper.get_employees_upcoming_schedule_by_date(date)
+
+        return past_schedule + upcoming_schedule
