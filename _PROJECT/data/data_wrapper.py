@@ -10,7 +10,7 @@ class DataWrapper:
         self.flight_data = FlightData()
         self.destination_data = DestinationData()
         self.aircraft_data = AircraftData()
-        self.voyage_data = VoyageData
+        self.voyage_data = VoyageData()
     #Employees
     def get_all_employees(self):
         return self.employee_data.read_all_employees()
@@ -50,6 +50,9 @@ class DataWrapper:
     def get_employees_past_schedule_by_date(self, date):
         return self.employee_data.read_employees_past_schedule_by_date(date)
     
+    def get_employees_upcoming_schedule_by_date(self, date):
+        return self.employee_data.read_employees_upcoming_schedule_by_date(date)
+    
     def get_employees_past_schedule_by_date_range_and_kennitala(self, start_date, end_date, kennitala):
         return self.employee_data.read_employees_past_schedule_by_date_range_and_kennitala(start_date, end_date, kennitala)
     
@@ -85,10 +88,7 @@ class DataWrapper:
         return self.aircraft_data.read_all_aircrafts()
     
     #Voyages
-    def get_all_voyages(self):
-        return self.voyage_data.get_all_voyages()
-
-    def create_new_voyage(self):
-        return self.voyage_data.create_new_voyage()
-    
+   
+    def update_voyage(self, voyage):
+        return self.voyage_data.update_voyage(voyage)
     

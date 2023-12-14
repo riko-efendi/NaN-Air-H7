@@ -1,7 +1,8 @@
 from utils.ui_utils import UIUtils
+from logic.logic_wrapper import LogicWrapper
 
 class FlightsUI:
-    def __init__(self, logic_connection) -> None:
+    def __init__(self, logic_connection:LogicWrapper) -> None:
         self.ui_utils = UIUtils()
         self.logic_wrapper = logic_connection
         self.input_prompt_str = "Enter your choice: "
@@ -21,15 +22,19 @@ class FlightsUI:
 
             if user_input == "1":
                 self.view_all_upcoming_flights()
+                self.input_prompt_str = "Enter your choice: "
             
             elif user_input == "2":
                 self.view_all_past_flights()
+                self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "3":
                 self.view_flights_from_one_airport()
+                self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "5":
                 self.view_flights_by_kennitala()
+                self.input_prompt_str = "Enter your choice: "
                 
             elif user_input == "b":
                 break
@@ -83,7 +88,7 @@ class FlightsUI:
     def view_flights_by_kennitala(self):
         self.ui_utils.clear_screen()
         kennitala_input = input("Enter Employee Kennitala: ")
-        print(f"\nShowing All flight trip(s) for {kennitala_input}\n")
+        print(f"\nShowing All flight trip(s) for \033[32m{kennitala_input}\033[0m\n")
         schedules = self.logic_wrapper.get_employee_past_schedule_by_nid(kennitala_input)
         for index, schedule in enumerate(schedules):
             print(f"{index+1:>2}. {schedule}\n")
