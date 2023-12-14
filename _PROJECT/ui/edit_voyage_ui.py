@@ -44,10 +44,11 @@ class EditVoyageUI:
             return None
         input("\nPress [ENTER] to confirm: ")
 
-        user_input = input("Do you want to assign Crew now?: (Y/N)").lower()
+        user_input = input("Do you want to assign Crew now? (Y/N): ").lower()
 
         if user_input =="y":
             self.assign_crew(self.flight_1, self.flight_2)
+
 
         input("\nVoyage succesfully created. Press [ENTER] to exit: ")
 
@@ -60,25 +61,14 @@ class EditVoyageUI:
 
         captain = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Captain")
         copilot = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Copilot")
-
         fsm = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Service Manager")
-        fa1 = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Attendant")
-        fa2 = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Attendant")
-
-        flight_1.captain = captain
-        flight_2.captain = captain
-    
-        flight_1.copilot = copilot        
-        flight_2.copilot = copilot
-
-        flight_1.fsm = fsm
-        flight_2.fsm = fsm
-
-        flight_1.fa1 = fa1
-        flight_2.fa1 = fa1
-
-        flight_1.fa2 = fa2
-        flight_2.fa2 = fa2
+        self.assign_fa(flight_1, "Cabincrew", "Flight Attendant")
+        flight_1.crew["captain"] = captain
+        flight_2.crew["captain"] = captain
+        flight_1.crew["copilot"] = copilot
+        flight_2.crew["copilot"] = copilot
+        flight_1.crew["fsm"] = fsm
+        flight_2.crew["fsm"] = fsm
 
 
     def edit_voyage(self):
@@ -198,10 +188,28 @@ class EditVoyageUI:
         for index, employee in enumerate(employees):
             print(f"{index + 1}. {employee.name}")
 
-        print("\n[S]kip assigning Crew")
         user_input = input("\nEnter your choice: ")
 
         return employees[int(user_input) - 1].kennitala
+    
+    def assign_fa(self, flight:Flight, role, rank):
+        """Prints avaiable flight attendants and assigns them to the"""
+        employees = self.logic_wrapper.get_available_employees(flight.depart_date, flight.arr_date, role, rank)
+        index = 1
+        user_input = input("Do you want to assign a Flight attendant? (Y/N): ").lower()
+        while user_input == "y":
+            self.ui_utils.clear_screen()
+            print(f"[SELECT {rank.upper()}]\n")
+
+            for i, employee in enumerate(employees):
+                print(f"{i + 1}. {employee.name}")
+            
+            user_input = input("\nEnter your choice: ")
+            flight.crew["fa" + str(index)] = employees[int(user_input) - 1].kennitala
+            employees.pop(int(user_input) - 1)
+            index += 1
+            user_input = input("Do you want to assign another Flight attendant? (Y/N): ").lower()
+
     
 
     def print_flight_info(self, flight:Flight) -> None:

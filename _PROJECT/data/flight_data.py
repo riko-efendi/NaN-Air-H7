@@ -26,7 +26,7 @@ class FlightData:
         with open(self.file_name_past, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                crew_dict = {"captain": row["captain"], "copilot": row["copilot"], "fsm": ["fsm"]}
+                crew_dict = {"captain": row["captain"], "copilot": row["copilot"], "fsm": row["fsm"]}
                 for fa_row in fa_rows:
                     crew_dict[fa_row] = row[fa_row]
                 past_flight_list.append(Flight(row["flight_nr"], 
@@ -111,13 +111,6 @@ class FlightData:
     
     def register_flight(self, flight:Flight) -> None:
         """Writes employee info onto the crew.csv file"""
-        # Get how many fa's there are before the new flight get registered
-        fa_rows = self.get_fa_amount("_PROJECT/files/upcoming_flights.csv")
-        # Get how many fa's there are in the flight to be registerd
-        flight_fa_rows = [key for key in flight.crew if key.startswith("fa")]
-        # If there are the new fa_rows will be the fa's from the flight
-        if len(flight_fa_rows) > len(fa_rows):
-            fa_rows = flight_fa_rows
 
         fieldnames = ["flight_nr", 
                       "dep_from", 
@@ -141,8 +134,22 @@ class FlightData:
                             "copilot": flight.crew["copilot"],
                             "fsm": flight.crew["fsm"]}
         
-        for fa_row in fa_rows:
-            fieldnames.append(fa_row)
+        # Get how many fa's there are before the new flight get registered
+        fa_rows = self.get_fa_amount("_PROJECT/files/upcoming_flights.csv")
+
+        # Get how many fa's there are in the flight to be registerd
+        flight_fa_rows = [key for key in flight.crew if key.startswith("fa")]
+        # If there are the new fa_rows will be the fa's from the flight
+        if len(flight_fa_rows) > len(fa_rows):
+            fa_rows = flight_fa_rows
+            for fa_row in flight_fa_rows:
+                fieldnames.append(fa_row)
+        else:
+            for row in fa_rows:
+                fieldnames.append(row)
+
+        
+        for fa_row in flight_fa_rows:
             writewrow_dict[fa_row] = flight.crew[fa_row]
 
         # Now we will have to re-register all the flights again

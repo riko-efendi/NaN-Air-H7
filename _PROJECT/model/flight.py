@@ -6,7 +6,7 @@ Flight base class. Here we give the flight all its variables, and behaviours.
 """
 
 class Flight:
-    def __init__(self, flight_nr="", dep_from="", arr_at="", departure_date="", departure_time="", arrival_date="", arrival_time="", crew={}, aircraft_id=None) -> None:
+    def __init__(self, flight_nr="", dep_from="", arr_at="", departure_date="", departure_time="", arrival_date="", arrival_time="", crew={"captain":"", "copilot": "", "fsm": ""}, aircraft_id=None) -> None:
 
        
         self.flight_nr = flight_nr
