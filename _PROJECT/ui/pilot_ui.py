@@ -1,26 +1,30 @@
 from logic.logic_wrapper import LogicWrapper
 from ui.register_employee_ui import RegisterEmployeeUI
 from model.employee import Employee
-
 from utils.ui_utils import UIUtils
+from utils.ascii_art import AsciiArt
+
+DASH_AMOUNT = 38
+SPACING = " " * 14
 
 class PilotUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
        self.logic_wrapper = logic_connection
        self.ui_utils = UIUtils()
        self.input_prompt_str = "Enter your choice: "
+       self.ascii_art = AsciiArt()
 
     def menu_output(self):
         """Prints out the options for the Pilot UI"""
-
+        header = "[PILOTS]"
         self.ui_utils.clear_screen()
-        print(f"[PILOTS]\n")
-        print(f"1. Register pilot")
-        print(f"2. List All pilots")
-        print(f"3. View specific pilot")
-        print(f"\n[B]ack")
-
-
+        print(self.ascii_art.nanair_logo(SPACING))
+        print(header + "-" * (DASH_AMOUNT - len(header)) +"\n")
+        print(f"{SPACING}1. Register pilot\n")
+        print(f"{SPACING}2. List All pilots\n")
+        print(f"{SPACING}3. View specific pilot")
+        print(f"\t\t\t\t[B]ack")
+        print("-"*DASH_AMOUNT)
 
 
     def input_prompt(self):
@@ -30,7 +34,7 @@ class PilotUI:
 
         while user_input != "b":
             self.menu_output()
-            user_input = input("\n" + self.input_prompt_str).lower()
+            user_input = input(self.input_prompt_str).lower()
 
             if user_input == "1":
                 register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)

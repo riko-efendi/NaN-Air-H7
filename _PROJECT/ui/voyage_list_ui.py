@@ -2,8 +2,10 @@ from utils.ui_utils import UIUtils
 from utils.logic_utils import LogicUtils
 from logic.logic_wrapper import LogicWrapper
 from ui.input_validation import validate_date_format, validate_date_range, DateRangeError
-from utils.ascii_art import nanair_logo
+from utils.ascii_art import AsciiArt
 
+DASH_AMOUNT = 38
+SPACING = " " * 14
 
 class VoyageListUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -11,21 +13,21 @@ class VoyageListUI:
         self.logic_utils = LogicUtils()
         self.logic_wrapper = logic_connection
         self.input_prompt_str = "Enter your choice: "
+        self.ascii_art = AsciiArt()
 
     def menu_output(self) -> None:
         """Prints out the options for the Voyage UI"""
 
+        header = "[LIST VOYAGES]"
         self.ui_utils.clear_screen()
-        print(nanair_logo)
-        print("-----------------------------------")
-        print(f"[LIST VOYAGES]\n")
-        print(f"\t1. List Upcoming Voyages\n")
-        print(f"\t2. List Past Voyages\n")
-        print(f"\t3. List Voyage by date\n")
-        print(f"\t4. List Voyage by date range\n")
-        
-        print(f"[B]ack")
-        print("-----------------------------------")
+        print(self.ascii_art.nanair_logo(SPACING))
+        print(header + "-" * (DASH_AMOUNT - len(header)) +"\n")
+        print(f"{SPACING}1. List Upcoming Voyages\n")
+        print(f"{SPACING}2. List Past Voyages\n")
+        print(f"{SPACING}3. List Voyage by date\n")
+        print(f"{SPACING}4. List Voyage by date range\n")
+        print(f"\t\t\t[B]ack")
+        print("-"*DASH_AMOUNT)
 
     def input_prompt(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""

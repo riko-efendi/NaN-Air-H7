@@ -6,30 +6,33 @@ from ui.edit_voyage_ui import EditVoyageUI
 from ui.voyage_list_ui import VoyageListUI
 from model.voyage import Voyage
 from utils.ui_utils import UIUtils
-from utils.ascii_art import nanair_logo
+from utils.ascii_art import AsciiArt
 
-DASH_AMOUNT = 30
+DASH_AMOUNT = 38
+SPACING = " " * int((DASH_AMOUNT -10)/2)
+LOGO_SPACING = " " * int((DASH_AMOUNT -10)/4)
 
 class VoyageUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
         self.ui_utils = UIUtils()
         self.logic_wrapper = logic_connection
         self.input_prompt_str = "Enter your choice: "
+        self.ascii_art = AsciiArt()
 
     def menu_output(self) -> None:
         """Prints out the options for the Voyage UI"""
 
         header = "[VOYAGE]"
         self.ui_utils.clear_screen()
-        print(nanair_logo)
+        print(self.ascii_art.nanair_logo(LOGO_SPACING))
         print(header + "-" * (DASH_AMOUNT - len(header)) +"\n")
-        print(f"\t1. Create Voyage\n")
-        print(f"\t2. List Voyages\n")
-        print(f"\t3. Edit Voyage\n")
-        print(f"\t4. Destination\n")
-        print(f"\t5. Flights\n")
-        print(f"\t6. Aircraft")
-        print(f"\t\t\t[B]ack")
+        print(f"{SPACING}1. Create Voyage\n")
+        print(f"{SPACING}2. List Voyages\n")
+        print(f"{SPACING}3. Edit Voyage\n")
+        print(f"{SPACING}4. Destination\n")
+        print(f"{SPACING}5. Flights\n")
+        print(f"{SPACING}6. Aircraft")
+        print(f"{' ' * (DASH_AMOUNT - len('[B]ack'))}[B]ack")
         print("-"*DASH_AMOUNT)
 
     def input_prompt(self) -> None:

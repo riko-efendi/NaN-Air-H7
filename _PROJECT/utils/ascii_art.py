@@ -1,14 +1,14 @@
 import time
 from utils.ui_utils import UIUtils
 
-nanair_logo = """
-   _  __     _  __  ___   _    
-  / |/ /__ _/ |/ / / _ | (_)___
- /    / _ `/    / / __ |/ / __/
-/_/|_/\_,_/_/|_/ /_/ |_/_/_/ 
-"""
+# nanair_logo = """
+#         _  __     _  __  ___   _    
+#        / |/ /__ _/ |/ / / _ | (_)___
+#       /    / _ `/    / / __ |/ / __/
+#      /_/|_/\_,_/_/|_/ /_/ |_/_/_/ 
+# """
 
-class AsciiAnimations():
+class AsciiArt():
     def closing_screen(self):
         ui_utils = UIUtils()
         ui_utils.clear_screen()
@@ -24,3 +24,12 @@ class AsciiAnimations():
             """)
         time.sleep(1.5)
         ui_utils.clear_screen()
+
+    def nanair_logo(self, spacing=0):
+        nanair_logo = f"""
+{spacing}   _  __     _  __  ___   _    
+{spacing}  / |/ /__ _/ |/ / / _ | (_)___
+{spacing} /    / _ `/    / / __ |/ / __/
+{spacing}/_/|_/\_,_/_/|_/ /_/ |_/_/_/ 
+"""
+        return nanair_logo

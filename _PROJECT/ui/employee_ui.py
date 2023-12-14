@@ -2,28 +2,30 @@ from utils.ui_utils import UIUtils
 from ui.cabincrew_ui import CabinCrewUI
 from ui.list_employee_ui import ListEmployeeUI
 from ui.pilot_ui import PilotUI
-from utils.ascii_art import nanair_logo
+from utils.ascii_art import AsciiArt
 from logic.logic_wrapper import LogicWrapper
 
-DASH_AMOUNT = 30
+DASH_AMOUNT = 38
+SPACING = " " * 14
 
 class EmployeeUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
        self.logic_wrapper = logic_connection
        self.ui_utils = UIUtils()
        self.input_prompt_str = "Enter your choice: "
+       self.ascii_art = AsciiArt()
 
     def menu_output(self) -> None:
         """Prints out the options for the Employee UI"""
         
         header = "[EMPLOYEES]"
         self.ui_utils.clear_screen()
-        print(nanair_logo)
+        print(self.ascii_art.nanair_logo(SPACING))
         print(header + "-" * (DASH_AMOUNT - len(header)) +"\n")
-        print(f"\t1. View Employees Options\n")
-        print(f"\t2. Pilot\n")
-        print(f"\t3. Cabin Crew")
-        print(f"\t\t\t[B]ack")
+        print(f"{SPACING}1. View Employees Options\n")
+        print(f"{SPACING}2. Pilot\n")
+        print(f"{SPACING}3. Cabin Crew")
+        print(f"\t\t\t\t[B]ack")
         print("-"*DASH_AMOUNT)
 
     def input_prompt(self) -> None:
