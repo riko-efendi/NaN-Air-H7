@@ -3,6 +3,8 @@ from model.destination import Destination
 
 from utils.ui_utils import UIUtils
 
+DASH_AMOUNT = 46
+
 class DestinationUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
         self.logic_wrapper = logic_connection
@@ -12,12 +14,15 @@ class DestinationUI:
 
     def menu_output(self):
         """Prints out the options for the Destination UI"""
-
+        header = "[Destination]"
         self.ui_utils.clear_screen()
-        print(f"[DESTINATION]\n")
-        print(f"1. Register Destination")
-        print(f"2. List all Destinations")
-        print(f"\n[B]ack")
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        print("\n" * 4)
+        print(f"\t1. Register Destination\n")
+        print(f"\t2. View All Destinations\n")
+        print("\n" * 4)
+        print(f"\t\t\t\t\t[B]ack")
+        print("-" * DASH_AMOUNT)
 
 
     def input_prompt(self):
