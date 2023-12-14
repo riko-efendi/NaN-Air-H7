@@ -23,6 +23,7 @@ class MainMenuUI:
         print(header + "-" * (DASH_AMOUNT - len(header)) +"\n")
         print(f"{SPACING}1. Employees\n")
         print(f"{SPACING}2. Voyage")
+        print("\n"*8)
         print(f"{' ' * (DASH_AMOUNT - len('[Q]uit'))}[Q]uit")
         print("-"*DASH_AMOUNT)
 

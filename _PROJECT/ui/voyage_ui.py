@@ -31,7 +31,7 @@ class VoyageUI:
         print(f"{SPACING}3. Edit Voyage\n")
         print(f"{SPACING}4. Destination\n")
         print(f"{SPACING}5. Flights\n")
-        print(f"{SPACING}6. Aircraft")
+        print(f"{SPACING}6. Aircraft\n")
         print(f"{' ' * (DASH_AMOUNT - len('[B]ack'))}[B]ack")
         print("-"*DASH_AMOUNT)
 
