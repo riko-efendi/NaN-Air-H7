@@ -42,7 +42,7 @@ class FlightData:
     def read_all_upcoming_flights(self):
         """Read upcoming_flights.csv file and return all upcoming flights"""
         upcoming_flight_list = []
-        fa_rows = self.get_fa_amount("_PROJECT/files/upcoming_flights.csv")
+        fa_rows = self.get_fa_amount("upcoming_flights.csv")
         with open(self.file_name_upcoming, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:

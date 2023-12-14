@@ -48,7 +48,7 @@ def validate_address(address):
 
 
 def validate_input_view_by_kt(user_input):
-    valid_input = ("w","u","k","b")
+    valid_input = ("w","u","b")
     if user_input.lower() not in valid_input:
         raise ValueError
     #this was used for the list employee via kennitala. 

@@ -48,7 +48,7 @@ class RegisterEmployeeUI():
                     break
                 else:
                     self.ui_utils.print_employee(employee, header)   
-                    print("This kennlitala is already assigned to an existing employee.")
+                    print("This kennlitala is \033[31malready assigned\033[0m to an existing employee.")
 
             except LengthError:
                 self.ui_utils.print_employee(employee, header)
@@ -69,11 +69,11 @@ class RegisterEmployeeUI():
 
             except ValueError:
                 self.ui_utils.print_employee(employee, header)
-                print('invalid value. Please enter the right format"streetname streetnumber"')
+                print('\033[31mInvalid Value\033[0m. Please enter the right format"streetname streetnumber"')
 
             except LengthError:
                 self.ui_utils.print_employee(employee, header)
-                print('Invalid address, please use format "streetname streetnumber"')
+                print('\033[31mInvalid Address\033[0m, please use format "streetname streetnumber"')
 
         if employee.role == "Pilot":
             e_rank = input(f"Is the {employee.role}: \n1. Captain\n2. Copilot\nEnter your choice: ")

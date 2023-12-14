@@ -1,4 +1,5 @@
 from datetime import datetime
+import time
 from utils.ui_utils import UIUtils
 from logic.logic_wrapper import LogicWrapper
 from ui.input_validation import *
@@ -79,15 +80,13 @@ class ListEmployeeUI:
 
         self.ui_utils.clear_screen()
         
-        
+        header = "[View Employee by Kennitala]"
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        print("\n" * 3)
         while True:
             try:
-                header = "[View Employee by Kennitala]"
-                print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
-                print("\n" * 3)
-                
                 kennitala_input = input("Enter Employee Kennitala: ")
-                validate_input_view_by_kt(kennitala_input)
+                validate_kennitala(kennitala_input)
                 employee = self.logic_wrapper.get_employee_by_nid(kennitala_input)
                 if employee != None:
                     break
@@ -95,18 +94,41 @@ class ListEmployeeUI:
                     print(f"\033[31mNo Record of {kennitala_input}\033[0m")
                     time.sleep(1.5)
                     self.ui_utils.clear_screen()
+                    header = "[View Employee by Kennitala]"
+                    print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+                    print("\n" * 3)
+
             except ValueError:
-                print("invalid value, please enter a valid kennitala")
+                self.ui_utils.clear_screen()
+                header = "[View Employee by Kennitala]"
+                print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+                print("\n" * 3)
+                print("\033[31mInvalid Value.\033[0m Please enter a valid kennitala")
             except LengthError:
-                print("Invalid length, please enter a valid kennitala")
+                self.ui_utils.clear_screen()
+                header = "[View Employee by Kennitala]"
+                print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+                print("\n" * 3)
+                print("\033[31mInvalid length.\033[0m Please enter a valid kennitala")
         
         self.ui_utils.clear_screen()
-        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
-        print("\n" * 2)
+        print(header + "-" * (DASH_AMOUNT - len(header)))
         self.print_employee(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
 
         print("\n[U]pdate Info\t[W]ork Schedule\t  [B]ack")
-        option_input = input("\nEnter your choice: ").lower()
+        while True:
+            try:
+                option_input = input("Enter your choice: ").lower()
+                validate_input_view_by_kt(option_input)
+                break
+
+            except ValueError:
+                self.ui_utils.clear_screen()
+                print(header + "-" * (DASH_AMOUNT - len(header)))
+                self.print_employee(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
+                print("\n[U]pdate Info\t[W]ork Schedule\t  [B]ack")
+                print("\033[31mInvalid Input\033[0m")
+
 
         if option_input == "u":
             self.ui_utils.clear_screen()
@@ -129,12 +151,12 @@ class ListEmployeeUI:
                 except ValueError:
                     self.ui_utils.clear_screen()
                     self.print_update_employee_info(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
-                    print("\nInvalid values")
+                    print("\n\033[31mInvalid values.\033[0m")
 
                 except LengthError:
                     self.ui_utils.clear_screen()
                     self.print_update_employee_info(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
-                    print("\nInvalid length")
+                    print("\n\033[31mInvalid length.\033[0m")
 
             #this check prevents the user adding something random into the phone number
             #this validates then the phone number and checks if it fits the right amount of numbers 
@@ -151,11 +173,11 @@ class ListEmployeeUI:
                 except ValueError:
                     self.ui_utils.clear_screen()
                     self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, employee.phone_number)
-                    print("\nInvalid values, please only use numbers")
+                    print("\n\033[31mInvalid Values.\033[0m Please only use numbers")
                 except LengthError:
                     self.ui_utils.clear_screen()
                     self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, employee.phone_number)
-                    print("\nInvalid number.")
+                    print("\n\033[31mInvalid number\033[0m")
 
             self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, new_phone_number.upper())
             self.logic_wrapper.update_employee_info(kennitala_input, new_address, new_phone_number)
@@ -192,29 +214,40 @@ class ListEmployeeUI:
         print("\n" * 3)
         print("-" * DASH_AMOUNT)
         input("\nPress \033[34m[ENTER]\033[0m to exit: ")
-
+    
+    
     def view_on_duty_employees_by_date(self):
         header = "[View On Duty Employees By Date]"
         self.ui_utils.clear_screen()
-        date_input = input("Enter Date [YYYY-MM-DD]: ")
-        flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
-        self.ui_utils.clear_screen()
-
-        print("-" * DASH_AMOUNT)
-        print(f"ALL ON DUTY EMPLOYEES on \033[32m{date_input}\033[0m")
-        print("-" * DASH_AMOUNT)
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
         print("\n" * 3)
-        employees_printed = set() 
+        while True:
+            try:
+                date_input = input("Enter Date [YYYY-MM-DD]: ")
+                validate_date_format(date_input)
 
-        for flight in flights:
-            unique_employees = {flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2}
+                
+                flights = self.logic_wrapper.get_employees_schedule_by_date(date_input)
+                self.ui_utils.clear_screen()
 
-            for employee_nid in unique_employees:
-                if employee_nid not in employees_printed:
-                    employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
-                    if employee: 
-                        print(f"{employee.name:>20}; \tDestination: {flight.arr_at}")
-                    employees_printed.add(employee_nid)
+                print("-" * DASH_AMOUNT)
+                print(f"ALL ON DUTY EMPLOYEES on \033[32m{date_input}\033[0m")
+                print("-" * DASH_AMOUNT)
+                print("\n" * 3)
+                employees_printed = set() 
+                for flight in flights:
+                    unique_employees = {flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2}
+
+                    for employee_nid in unique_employees:
+                        if employee_nid not in employees_printed:
+                            employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
+                            if employee: 
+                                print(f"{employee.name:>20}; \tDestination: {flight.arr_at}")
+                            employees_printed.add(employee_nid)
+                break
+            except ValueError:
+                print("\033[31mInvalid input.\033[0m Enter a valid format date")
+
         print("\n" * 3) 
         print("\n" + "-" * DASH_AMOUNT)
         input("\nPress \033[34m[ENTER]\033[0m to exit: ")
@@ -222,28 +255,41 @@ class ListEmployeeUI:
     def view_off_duty_employees(self):
         header = "[View Off Duty Employee by Date]"
         self.ui_utils.clear_screen()
-        date_input = input("Enter Date [YYYY-MM-DD]: ")
-        all_employees = set(employee.kennitala for employee in self.logic_wrapper.get_all_employees())
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        print("\n" * 3)
 
-        on_duty_employees = set()
-        flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
-        for flight in flights:
-            on_duty_employees.update({flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2})
-                
-        absent_employees = all_employees - on_duty_employees  
+        while True:
+            try:
+                date_input = input("Enter Date [YYYY-MM-DD]: ")
+                validate_date_format(date_input)
 
-        self.ui_utils.clear_screen()
-        print("-" * DASH_AMOUNT)
-        print(f"Off Duty Employees on \033[32m{date_input}\033[0m:")
-        print("-" * DASH_AMOUNT)
-        for employee_nid in absent_employees:
-            employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
-            if employee:
-                print(f"{employee.name:>20}; {employee.rank}")
-                break
-            except ValueError:
-                print("\033[31mInvalid input.\033[0m Enter a valid format date")
-                time.sleep(1.5)
+                all_employees = set(employee.kennitala for employee in self.logic_wrapper.get_all_employees())
+
+                on_duty_employees = set()
+                flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
+                for flight in flights:
+                    on_duty_employees.update({flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2})
+
+                absent_employees = all_employees - on_duty_employees
+
                 self.ui_utils.clear_screen()
+                print("-" * DASH_AMOUNT)
+                print(f"Off Duty Employees on \033[32m{date_input}\033[0m:")
+                print("-" * DASH_AMOUNT)
+                for employee_nid in absent_employees:
+                    employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
+                    if employee:
+                        print(f"{employee.name:>20}; {employee.rank}")
+                break
+            
+            except ValueError:
+                self.ui_utils.clear_screen()
+                print("-" * DASH_AMOUNT)
+                print(f"Off Duty Employees on \033[32m{date_input}\033[0m:")
+                print("-" * DASH_AMOUNT)
+                print("\033[31mInvalid input.\033[0m Enter a valid format date")
+
+        time.sleep(1.5)
+        self.ui_utils.clear_screen()
         print("\n" + "-" * DASH_AMOUNT)
-        input("\nPress \033[34m[ENTER]\033[0m to exit: ")       
+        input("\nPress \033[34m[ENTER]\033[0m to exit: ")  

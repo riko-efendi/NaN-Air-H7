@@ -8,7 +8,7 @@ class EmployeeData:
     def __init__(self) -> None:
         self.file_name = "crew.csv"
         self.aircraft_file = "aircraft_type.csv"
-        self.past_flight_file= "/past_flights.csv"
+        self.past_flight_file= "past_flights.csv"
         self.upcoming_flight_file = "upcoming_flights.csv"
 
         self.fieldnames = ["nid", "name", "role", "rank", "license", "address","phone_nr","slot_param"]
