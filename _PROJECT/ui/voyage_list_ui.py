@@ -5,7 +5,8 @@ from ui.input_validation import validate_date_format, validate_date_range, DateR
 from utils.ascii_art import AsciiArt
 
 DASH_AMOUNT = 38
-SPACING = " " * 14
+SPACING = " " * int((DASH_AMOUNT -10)/2)
+LOGO_SPACING = " " * int((DASH_AMOUNT -10)/4)
 
 class VoyageListUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -26,7 +27,7 @@ class VoyageListUI:
         print(f"{SPACING}2. List Past Voyages\n")
         print(f"{SPACING}3. List Voyage by date\n")
         print(f"{SPACING}4. List Voyage by date range\n")
-        print(f"\t\t\t[B]ack")
+        print(f"{' ' * (DASH_AMOUNT - len('[B]ack'))}[B]ack")
         print("-"*DASH_AMOUNT)
 
     def input_prompt(self) -> None:
