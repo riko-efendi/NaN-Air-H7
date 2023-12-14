@@ -61,7 +61,7 @@ class DestinationUI:
                 else:
                     self.ui_utils.print_destination(d, header)
                     print("This id is already assigned to a destination")
-            except LengthERROR:
+            except LengthError:
                 self.ui_utils.print_destination(d, header)
                 print("Length error. Please enter 3 letter id")
             except ValueError:
@@ -75,7 +75,7 @@ class DestinationUI:
                 self.ui_utils.print_destination(d, header)
                 break
 
-            except LengthERROR:
+            except LengthError:
                 self.ui_utils.print_destination(d, header)
                 print("Length error. Please enter a valid destination.")
             except ValueError:
@@ -89,7 +89,7 @@ class DestinationUI:
                 self.ui_utils.print_destination(d, header)
                 break
 
-            except LengthERROR:
+            except LengthError:
                 self.ui_utils.print_destination(d, header)
                 print("Invalid length. Please enter 4 digit id.")
             except ValueError:
@@ -103,7 +103,7 @@ class DestinationUI:
                 self.ui_utils.print_destination(d, header)
                 break
 
-            except LengthERROR:
+            except LengthError:
                 self.ui_utils.print_destination(d, header)
                 print("Flight time exceeded. Please enter a valid flight time.")
             except ValueError:

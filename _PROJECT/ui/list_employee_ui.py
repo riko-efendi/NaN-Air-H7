@@ -1,7 +1,9 @@
 from datetime import datetime
 from utils.ui_utils import UIUtils
 from logic.logic_wrapper import LogicWrapper
-from ui.input_validation import LengthERROR, validate_length_kt, validate_integers
+from ui.input_validation import *
+
+DASH_AMOUNT = 46 
 
 class ListEmployeeUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -85,8 +87,7 @@ class ListEmployeeUI:
                 print("\n" * 3)
                 
                 kennitala_input = input("Enter Employee Kennitala: ")
-                validate_integers(kennitala_input)
-                validate_length_kt(kennitala_input)
+                validate_input_view_by_kt(kennitala_input)
                 employee = self.logic_wrapper.get_employee_by_nid(kennitala_input)
                 if employee != None:
                     break
@@ -96,15 +97,8 @@ class ListEmployeeUI:
                     self.ui_utils.clear_screen()
             except ValueError:
                 print("invalid value, please enter a valid kennitala")
-            except LengthERROR:
+            except LengthError:
                 print("Invalid length, please enter a valid kennitala")
-
-                    
-        
-             
-        
-        
-        
         
         self.ui_utils.clear_screen()
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
@@ -137,7 +131,7 @@ class ListEmployeeUI:
                     self.print_update_employee_info(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
                     print("\nInvalid values")
 
-                except LengthERROR:
+                except LengthError:
                     self.ui_utils.clear_screen()
                     self.print_update_employee_info(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
                     print("\nInvalid length")
@@ -158,7 +152,7 @@ class ListEmployeeUI:
                     self.ui_utils.clear_screen()
                     self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, employee.phone_number)
                     print("\nInvalid values, please only use numbers")
-                except LengthERROR:
+                except LengthError:
                     self.ui_utils.clear_screen()
                     self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, employee.phone_number)
                     print("\nInvalid number.")
@@ -231,25 +225,25 @@ class ListEmployeeUI:
         date_input = input("Enter Date [YYYY-MM-DD]: ")
         all_employees = set(employee.kennitala for employee in self.logic_wrapper.get_all_employees())
 
-                on_duty_employees = set()
-                flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
-                for flight in flights:
-                    on_duty_employees.update({flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2})
+        on_duty_employees = set()
+        flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
+        for flight in flights:
+            on_duty_employees.update({flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2})
                 
-                absent_employees = all_employees - on_duty_employees  
+        absent_employees = all_employees - on_duty_employees  
 
-                self.ui_utils.clear_screen()
-                print("-" * DASH_AMOUNT)
-                print(f"Off Duty Employees on \033[32m{date_input}\033[0m:")
-                print("-" * DASH_AMOUNT)
-                for employee_nid in absent_employees:
-                    employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
-                    if employee:
-                        print(f"{employee.name:>20}; {employee.rank}")
+        self.ui_utils.clear_screen()
+        print("-" * DASH_AMOUNT)
+        print(f"Off Duty Employees on \033[32m{date_input}\033[0m:")
+        print("-" * DASH_AMOUNT)
+        for employee_nid in absent_employees:
+            employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
+            if employee:
+                print(f"{employee.name:>20}; {employee.rank}")
                 break
             except ValueError:
                 print("\033[31mInvalid input.\033[0m Enter a valid format date")
                 time.sleep(1.5)
                 self.ui_utils.clear_screen()
         print("\n" + "-" * DASH_AMOUNT)
-        input("\nPress \033[34m[ENTER]\033[0m to exit: ")    
+        input("\nPress \033[34m[ENTER]\033[0m to exit: ")       

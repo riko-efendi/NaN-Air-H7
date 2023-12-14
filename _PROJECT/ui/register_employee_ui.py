@@ -50,7 +50,7 @@ class RegisterEmployeeUI():
                     self.ui_utils.print_employee(employee, header)   
                     print("This kennlitala is already assigned to an existing employee.")
 
-            except LengthERROR:
+            except LengthError:
                 self.ui_utils.print_employee(employee, header)
                 print("\033[31mInvalid Length\033[0m, please enter a valid kennitala")
             except ValueError:
@@ -71,7 +71,7 @@ class RegisterEmployeeUI():
                 self.ui_utils.print_employee(employee, header)
                 print('invalid value. Please enter the right format"streetname streetnumber"')
 
-            except LengthERROR:
+            except LengthError:
                 self.ui_utils.print_employee(employee, header)
                 print('Invalid address, please use format "streetname streetnumber"')
 
@@ -111,6 +111,6 @@ class RegisterEmployeeUI():
                 print("\033[31mInvalid Length\033[0m,Please input a valid phone number")
             
             
-        self.logic_wrapper.register_employee(employee)
+        self.data_wrapper.register_employee(employee)
         
         input(f"{employee.name} is successfully created! Press \033[34m[ENTER]\033[0m to exit: ")
