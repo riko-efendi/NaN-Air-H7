@@ -3,6 +3,9 @@ from ui.register_employee_ui import RegisterEmployeeUI
 from model.employee import Employee
 
 from utils.ui_utils import UIUtils
+import time
+
+DASH_AMOUNT = 46
 
 class PilotUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -12,13 +15,16 @@ class PilotUI:
 
     def menu_output(self):
         """Prints out the options for the Pilot UI"""
-
+        header = "[PILOTS]"
         self.ui_utils.clear_screen()
-        print(f"[PILOTS]\n")
-        print(f"1. Register pilot")
-        print(f"2. List All pilots")
-        print(f"3. View specific pilot")
-        print(f"\n[B]ack")
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        print("\n" * 3)
+        print(f"\t1. Register Pilot\n")
+        print(f"\t2. View All Pilots\n")
+        print(f"\t3. View Pilots by License\n")
+        print("\n" * 3)
+        print(f"\t\t\t\t\t[B]ack")
+        print("-" * DASH_AMOUNT)
 
 
 
@@ -47,18 +53,19 @@ class PilotUI:
                 self.input_prompt_str = "Enter your choice: "
             
             else:
-                self.input_prompt_str = "Invaild. Enter another choice: "
+                self.input_prompt_str = "\033[31mInvalid\033[0m. Enter another choice: "
 
 
     def list_all_pilots(self):
         """Lists all pilots from the crew.csv file"""
-
+        header = "[ALL PILOTS]"
         self.ui_utils.clear_screen()
         pilots = self.logic_wrapper.get_all_pilots()
-        print("[ALL PILOTS]\n")
-        for index, pilot in enumerate(pilots):
-            print(f"{index + 1:>2}.{' Name: ':^2}{pilot.name:<}, {'Rank: '}{pilot.rank}")
-        input("\nPress [ENTER] to exit: ")
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        for pilot in pilots:
+            print(f"{pilot.name:^46}")
+        print("\n" + "-" * DASH_AMOUNT)
+        input("\nPress \033[34m[ENTER]\033[0m to exit: ")
 
 
     def view_pilots_by_license(self):
@@ -69,19 +76,28 @@ class PilotUI:
         license_type_input = self.print_pilot_list_by_license("Enter in a choice: ", aircrafts_dict)
 
         while license_type_input not in aircrafts_dict:
-            license_type_input = self.print_pilot_list_by_license("Invalid. Enter another choice: ", aircrafts_dict)
-            
+            license_type_input = self.print_pilot_list_by_license("\033[31mInvalid Input\033[0m. Enter another choice: ", aircrafts_dict)
         aircraft_type = aircrafts_dict[license_type_input]
-        print(f"\nShowing pilot(s) for {aircraft_type}\n")
-        print(self.logic_wrapper.get_all_pilots_by_license(aircraft_type))
-        input("\nPress [ENTER] to exit: ")
+        self.ui_utils.clear_screen()
+        print("-" * DASH_AMOUNT)
+        print(f"Showing pilot(s) for \033[32m{aircraft_type}\033[0m license")
+        print("-" * DASH_AMOUNT + "\n")
+        print("\n" * 3)
+        for pilot in self.logic_wrapper.get_all_pilots_by_license(aircraft_type):
+            print(f"{pilot:^46}")
+        print("\n" * 3)
+        print("\n" + "-" * DASH_AMOUNT)
+        input("\nPress \033[34m[ENTER]\033[0m to exit: ")
 
 
     def print_pilot_list_by_license(self, input_str, a_dict):
         """Prints out different aircraft types based on an inputed dictinoary"""
-
+        header = "[PILOT LIST BY AIRCRAFT LICENSE]"
         self.ui_utils.clear_screen()
-        print("[PILOT LIST BY AIRCRAFT LICENCE]\n")
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        print("\n" * 3)
         for index, aircraft in a_dict.items():
-            print(f"{index}. {aircraft}")
+            print(f"{index:>15}. {aircraft}\n")
+        print("\n" * 3)
+        print("\n" + "-" * DASH_AMOUNT)
         return input("\n" + input_str)

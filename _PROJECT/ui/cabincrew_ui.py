@@ -4,6 +4,8 @@ from ui.register_employee_ui import RegisterEmployeeUI
 
 from utils.ui_utils import UIUtils
 
+DASH_AMOUNT = 46
+
 class CabinCrewUI:
     def __init__(self, wrapper) -> None:
        self.logic_wrapper = wrapper
@@ -12,13 +14,13 @@ class CabinCrewUI:
 
     def menu_output(self) -> None:
         """Prints out the options for the Cabin Crew UI"""
-        
+        header = ("[CABIN CREW]")
         self.ui_utils.clear_screen()
-        print(f"[CABIN CREW]\n")
-        print(f"1. Register cabin crew")
-        print(f"2. List All cabin crews")
-        print(f"\n[B]ack")
-
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        print(f"\t1. Register Cabin Crew\n")
+        print(f"\t2. View All Cabin Crews\n")
+        print(f"\t\t\t\t\t[B]ack")
+        print("-" * DASH_AMOUNT)
 
     def input_prompt(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
@@ -45,10 +47,11 @@ class CabinCrewUI:
 
     def list_all_cabin_crew(self) -> None:
         """Prints out all cabin crew"""
-
+        header = "[ALL CABIN CREWS]"
         self.ui_utils.clear_screen()
         cabincrews = self.logic_wrapper.get_all_cabincrews()
-        print("[ALL CABIN CREW]\n")
-        for index, cabincrew in enumerate(cabincrews):
-            print(f"{index + 1:>2}.{' Name: ':^2}{cabincrew.name:<}, {'Role: '}{cabincrew.role}")
-        input("\nPress [ENTER] to exit: ")
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        for cabincrew in cabincrews:
+            print(f"{cabincrew.name:^46}")
+        print("\n"+ "-" * DASH_AMOUNT)
+        input("\nPress \033[34m[ENTER]\033[0m to exit: ")
