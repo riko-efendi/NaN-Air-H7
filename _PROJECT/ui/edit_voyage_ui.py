@@ -61,7 +61,7 @@ class EditVoyageUI:
         captain = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Captain")
         copilot = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Copilot")
         fsm = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Service Manager")
-        self.assign_fa(flight_1, "Cabincrew", "Flight Attendant")
+        self.assign_fa(flight_1, flight_2, "Cabincrew", "Flight Attendant")
         flight_1.crew["captain"] = captain
         flight_2.crew["captain"] = captain
         flight_1.crew["copilot"] = copilot
@@ -77,6 +77,10 @@ class EditVoyageUI:
         self.ui_utils.print_voyages(voyages, "[EDIT VOYAGE]")
         user_input = input("Select Voyage to edit: ")
         voyage = voyages[int(user_input) - 1]
+        # Reset Voyage
+        new_crew = {"captain":"", "copilot": "", "fms": ""}
+        voyage.flight_1.crew = new_crew
+        voyage.flight_2.crew = new_crew
         self.assign_crew(voyage.flight_1, voyage.flight_2)
         self.logic_wrapper.update_voyage(voyage)
 
@@ -212,9 +216,9 @@ class EditVoyageUI:
 
         return employees[int(user_input) - 1].kennitala
     
-    def assign_fa(self, flight:Flight, role, rank):
+    def assign_fa(self, flight_1:Flight, flight_2:Flight, role, rank):
         """Prints avaiable flight attendants and assigns them to the"""
-        employees = self.logic_wrapper.get_available_employees(flight.depart_date, flight.arr_date, role, rank)
+        employees = self.logic_wrapper.get_available_employees(flight_1.depart_date, flight_2.arr_date, role, rank)
         index = 1
         user_input = input("Do you want to assign a Flight attendant? (Y/N): ").lower()
         while user_input == "y":
@@ -246,7 +250,8 @@ class EditVoyageUI:
                 else:
                     break
 
-            flight.crew["fa" + str(index)] = employees[int(user_input) - 1].kennitala
+            flight_1.crew["fa" + str(index)] = employees[int(user_input) - 1].kennitala
+            flight_2.crew["fa" + str(index)] = employees[int(user_input) - 1].kennitala
             employees.pop(int(user_input) - 1)
             index += 1
             user_input = input("Do you want to assign another Flight attendant? (Y/N): ").lower()
