@@ -84,10 +84,12 @@ class ListEmployeeUI:
             try:
                 header = "[View Employee by Kennitala]"
                 print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
-                print("\n" * 3)
+                print("\n" * 2)
+                print(f"\t\t\t\t\t[B]ack")
                 
-                kennitala_input = input("Enter Employee Kennitala: ")
-                
+                kennitala_input = input("Enter Employee Kennitala: ").lower()
+                if kennitala_input == "b":
+                    return None             
                 validate_integers(kennitala_input)
                 validate_length_kt(kennitala_input)
                 employee = self.logic_wrapper.get_employee_by_nid(kennitala_input)
@@ -211,7 +213,7 @@ class ListEmployeeUI:
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
         print("\n" * 3)
         date_input = input("Enter Date [YYYY-MM-DD]: ")
-        
+
         # while True:
         #     try:
         #         date_input = input("Enter Date [YYYY-MM-DD]: ")
