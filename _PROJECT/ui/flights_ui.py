@@ -84,7 +84,7 @@ class FlightsUI:
     def view_flights_by_kennitala(self):
         self.ui_utils.clear_screen()
         kennitala_input = input("Enter Employee Kennitala: ")
-        print(f"\nShowing All flight trip(s) for {kennitala_input}\n")
+        print(f"\nShowing All flight trip(s) for \033[32m{kennitala_input}\033[0m\n")
         schedules = self.logic_wrapper.get_employee_past_schedule_by_nid(kennitala_input)
         for index, schedule in enumerate(schedules):
             print(f"{index+1:>2}. {schedule}\n")

@@ -7,6 +7,7 @@ from ui.voyage_list_ui import VoyageListUI
 from model.voyage import Voyage
 from utils.ui_utils import UIUtils
 
+DASH_AMOUNT = 46
 
 class VoyageUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -16,16 +17,17 @@ class VoyageUI:
 
     def menu_output(self) -> None:
         """Prints out the options for the Voyage UI"""
-
+        header = "[Voyage]"
         self.ui_utils.clear_screen()
-        print(f"[VOYAGE]\n")
-        print(f"1. Create Voyage")
-        print(f"2. List Voyages")
-        print(f"3. Edit Voyage")
-        print(f"4. Destination")
-        print(f"5. Flights")
-        print(f"6. Aircraft")
-        print(f"\n[B]ack")
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n\n")
+        print(f"\t1. Create Voyage\n")
+        print(f"\t2. List Voyages\n")
+        print(f"\t3. Edit Voyage\n")
+        print(f"\t4. Destination\n")
+        print(f"\t5. Flights\n")
+        print(f"\t6. Aircraft\n\n")
+        print(f"\t\t\t\t\t[B]ack")
+        print("-" * DASH_AMOUNT)
 
     def input_prompt(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
