@@ -21,10 +21,10 @@ class RegisterEmployeeUI():
                 break
             
             except LengthError:
-                print("Name is out of range, please enter a valid length")
+                print("\033[31mName is out of range\033[0m, please enter a valid length")
             
             except ValueError:
-                print("Invalid name, please only use letters")
+                print("\033[31mInvalid Value\033[0m, please only use letters")
 
 
         while True:
@@ -36,10 +36,10 @@ class RegisterEmployeeUI():
                 break
             
             except LengthError:
-                print("Invalid length, please enter a valid kennitala")
+                print("\033[31mInvalid Length\033[0m, please enter a valid kennitala")
 
             except ValueError:
-                print("invalid value, please enter a valid kennitala")
+                print("\033[31mInvalid Value\033[0m, please enter a valid kennitala")
 
         
         while True:
@@ -80,12 +80,12 @@ class RegisterEmployeeUI():
                 break
             
             except ValueError:
-                print("Invalid value, please enter a valid phone number")
+                print("\033[31mInvalid Value\033[0m, please enter a valid phone number")
 
             except LengthError:
-                print("Please inpout a valid phone number")
+                print("\033[31mInvalid Length\033[0m,Please input a valid phone number")
             
             
         self.logic_wrapper.register_employee(employee)
         
-        input(f"{employee.name} is successfully created! Press [ENTER] to exit: ")
+        input(f"{employee.name} is successfully created! Press \033[34m[ENTER]\033[0m to exit: ")

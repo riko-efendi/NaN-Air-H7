@@ -35,13 +35,13 @@ class VoyageListUI:
             if user_input == "1":
                 upcoming_voyages = self.logic_wrapper.get_upcoming_voyages()
                 self.ui_utils.print_voyages(upcoming_voyages, "[UPCOMING VOYAGES]")
-                input("Press [ENTER] to exit: ")
+                input("Press \033[34m[ENTER]\033[0m to exit: ")
                 self.input_prompt_str = "Enter your choice: "
             
             elif user_input == "2":
                 voyages = self.logic_wrapper.get_past_voyages()
                 self.ui_utils.print_voyages(voyages, "[PAST VOYAGES]")
-                input("Press [ENTER] to exit: ")
+                input("Press \033[34m[ENTER]\033[0m to exit: ")
                 self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "3":
@@ -72,7 +72,7 @@ class VoyageListUI:
 
         voyages = self.logic_wrapper.get_voyages_of_date([user_input])
         self.ui_utils.print_voyages(voyages, f"[VOYAGES FLYING ON {user_input}]")
-        input("Press [ENTER] to exit: ")
+        input("Press \033[34m[ENTER]\033[0m to exit: ")
         self.input_prompt_str = "Enter your choice: "
 
     
@@ -105,7 +105,7 @@ class VoyageListUI:
         dates = self.logic_utils.generate_date_range(start_date, end_date)
         voyages = self.logic_wrapper.get_voyages_of_date(dates)
         self.ui_utils.print_voyages(voyages, f"[VOYAGES FLYING IN THE SELECTED RANGE]")
-        input("Press [ENTER] to exit: ")
+        input("Press \033[34m[ENTER]\033[0m to exit: ")
         self.input_prompt_str = "Enter your choice: "
 
 

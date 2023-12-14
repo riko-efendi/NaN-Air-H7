@@ -61,5 +61,5 @@ class DestinationUI:
 
         print("[All DESTINATIONS]\n")
         for index, destination in enumerate(destinations):
-            print(f"{index+1:>2}.{' name: ':^2}{destination.destination:<}, {'id: '}{destination.id}, {destination.numeric_id}")
+            print(f"{index+1:>2}. {destination.destination:<}, {destination.id}, {destination.numeric_id}")
         input("\nPress \033[34m[ENTER]\033[0m to exit: ")
