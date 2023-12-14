@@ -1,3 +1,3 @@
-inp = str(input())
-inp = inp.lower().capitalize()
-print(inp)
+hey = str(input())
+heya = hey.title()
+print(heya)

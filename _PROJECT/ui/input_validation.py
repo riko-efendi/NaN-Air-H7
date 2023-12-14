@@ -20,8 +20,10 @@ def validate_length_kt(kennitala):
         raise LengthError()
 
 def validate_letters(name):
-    if name.isalpha() == False:
-         raise ValueError()
+    name_list = name.split()
+    for element in name_list:
+        if element.isalpha() == False:
+            raise ValueError()
 
 def validate_integers(number):
     if number.isdigit() == False:

@@ -14,7 +14,7 @@ class RegisterEmployeeUI():
         self.ui_utils.print_employee(employee, header)
         while True:
             try:
-                employee.name = input(f"Input the {employee.role}'s name: ").capitalize()
+                employee.name = input(f"Input the {employee.role}'s name: ").title()
                 validate_length(employee.name)
                 validate_letters(employee.name)
                 self.ui_utils.print_employee(employee, header)
@@ -50,7 +50,7 @@ class RegisterEmployeeUI():
                 break
 
             except ValueError:
-                print('Invalid address, please use format "streetname streetnumber"')
+                print("Invalid address, please use format (streetname streetnumber)")
         
 
         if employee.role == "Pilot":
