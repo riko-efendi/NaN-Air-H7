@@ -1,14 +1,12 @@
 from utils.ui_utils import UIUtils
 from ui.destination_ui import DestinationUI
-from ui.voyage_list_ui import VoyageListUI
-from model.voyage import Voyage
 from model.flight import Flight
-from model.destination import Destination
 from datetime import datetime, timedelta
 from logic.logic_wrapper import LogicWrapper
 
 from ui.input_validation import validate_date_format, validate_time_format, validate_date_range
 
+DASH_AMOUNT = 46
 
 class EditVoyageUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -38,11 +36,11 @@ class EditVoyageUI:
         # Use this as a break statement
         if not self.assign_times(self.flight_1):
             return None
-        input("\nPress [ENTER] to confirm: ")
+        input("\nPress \033[34m[ENTER]\033[0m to confirm: ")
         # Use this as a break statement
         if not self.assign_times(self.flight_2):
             return None
-        input("\nPress [ENTER] to confirm: ")
+        input("\nPress \033[34m[ENTER]\033[0m to confirm: ")
 
         user_input = input("Do you want to assign Crew now? (Y/N): ").lower()
 
@@ -74,7 +72,7 @@ class EditVoyageUI:
         """User selects a voyage to assign new crew to"""
 
         voyages = self.logic_wrapper.get_upcoming_voyages()
-        self.ui_utils.print_voyages(voyages, "[EDIT VOYAGE]")
+        self.ui_utils.print_voyages(voyages, "[Edit Voyage]")
         user_input = input("Select Voyage to edit: ")
         voyage = voyages[int(user_input) - 1]
         # Reset Voyage
@@ -113,19 +111,21 @@ class EditVoyageUI:
                         return True
                     
                 except ValueError:
-                    input_prompt_str = "Invalid. Choose again: " # Needs error handling for values that go beyond
+                    input_prompt_str = "\033[31mInvalid.\033[0m Choose again: " # Needs error handling for values that go beyond
         return False
 
 
     def print_destinations(self, destinations:dict) -> None:
         """Prints destinations from a dictionary"""
-
+        header = "[ASSIGN DESTINATION TO VOYAGE]"
         self.ui_utils.clear_screen()
-        print(f"[ASSIGN DESTINATION TO VOYAGE]\n")
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        print("\n" * 3)
         for index, destination in destinations.items():
-            print(f"{index + 1}. {destination.id}. Flight Time from KEF: {destination.flight_time_from_kef} hrs")
-        
+            print(f"{index + 1}. {destination.id}. Flight Duration from KEF: {destination.flight_time_from_kef} hrs")
+        print("\n" * 3)
         print(f"\n[C]ancel\t[M]ake new Destination")
+        print("-" * DASH_AMOUNT)
 
 
     def assign_times(self, flight:Flight) -> bool:
@@ -187,9 +187,15 @@ class EditVoyageUI:
 
         employees = self.logic_wrapper.get_available_employees(dep_date, arr_date, role, rank)
         self.ui_utils.clear_screen()
-        print(f"[SELECT {rank.upper()}]\n")
+        print("\n" + "-" * DASH_AMOUNT)
+        print(f"[SELECT {rank.upper()}]")
+        print("-" * DASH_AMOUNT)
+        print("\n" * 2)
         for index, employee in enumerate(employees):
             print(f"{index + 1}. {employee.name}")
+        print("\n" * 2)
+        print("[S]kip assigning Crew")
+        print("-" * DASH_AMOUNT)
 
         user_input = input("\nEnter your choice: ")
 
@@ -260,14 +266,17 @@ class EditVoyageUI:
 
     def print_flight_info(self, flight:Flight) -> None:
         """Prints out for user info on current flight"""
-
+        header = "[ASSIGN DATE AND TIME]"
         self.ui_utils.clear_screen()
-        print(f"[ASSIGN DATE AND TIME]\n")
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        print("\n" * 3)
         print(f"Departing Destination: {flight.dep_from}")
         print(f"Arriving Destination:  {flight.arr_at}")
         print(f"Date of Departure:     {flight.depart_date}")
         print(f"Time of Departure:     {flight.depart_time}")
         print(f"Date of Arrival:       {flight.arr_date}")
         print(f"Time of Arrival:       {flight.arr_time}")
-        print(f"\n[C]ancel")
+        print("\n" * 3)
+        print(f"\t\t\t\t      [C]ancel")
+        print("-" * DASH_AMOUNT)
     

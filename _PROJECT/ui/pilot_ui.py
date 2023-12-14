@@ -41,7 +41,7 @@ class PilotUI:
             if user_input == "1":
                 register_employee_menu = RegisterEmployeeUI(self.logic_wrapper)
                 e = Employee(role="Pilot")
-                register_employee_menu.register_employee(e, "[REGISTER PILOT]")   
+                register_employee_menu.register_employee(e, "[REGISTER PILOT]")  
                 self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "2":

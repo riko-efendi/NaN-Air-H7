@@ -16,7 +16,9 @@ class AircraftUI:
         header = "[AIRCARFT]"
         self.ui_utils.clear_screen()
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
-        print(f"\t1. View all aircrafts\n")
+        print("\n" * 5)
+        print(f"\t1. View All Aircrafts\n")
+        print("\n" * 5)
         print(f"\t\t\t\t\t[B]ack")
         print("-" * DASH_AMOUNT)
 
@@ -40,8 +42,10 @@ class AircraftUI:
         header = "[ALL AIRCRAFTS]"
         self.ui_utils.clear_screen()
         aircrafts = self.logic_wrapper.get_all_aircrafts()
-        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        print(header + "-" * (DASH_AMOUNT - len(header)))
+        print("\n" * 3)
         for aircraft in (aircrafts):
-            print(f"{'Plane Insignia: ':^2}{aircraft.plane_insignia:<}, {'Plane Type id: '}{aircraft.plane_type_id:<15} {'DOM: '}{aircraft.date_of_manufacture:>4}, {'Last Maintenance: '}{aircraft.last_maintenance:>4}")
-        print("\n" + "-" * DASH_AMOUNT)
+            print(f"{aircraft.plane_insignia} {'PTI: '}{aircraft.plane_type_id:<15} {'DOM: '}{aircraft.date_of_manufacture:>4}, {'Last Maintenance: '}{aircraft.last_maintenance:>4}")
+        print("\n" * 2)
+        print("-" * DASH_AMOUNT)
         input("\nPress \033[34m[ENTER]\033[0m to exit: ")

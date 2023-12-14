@@ -57,7 +57,8 @@ class ListEmployeeUI:
         self.ui_utils.clear_screen()
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
         for index, employee in enumerate(employees):
-            print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
+            print(f"{index+1:>2}. {employee.name:<} - {employee.role}\n    {'kt: ' + employee.print_kennitala}\n")
+
         print("\n" + "-" * DASH_AMOUNT)
         input("\nPress \033[34m[ENTER]\033[0m to exit: ")
 
@@ -65,12 +66,14 @@ class ListEmployeeUI:
         header = "[UPDATE EMPLOYEE INFO]"
         self.ui_utils.clear_screen()
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        print("\n" * 3)
         self.print_employee(name, kennitala, address, role, rank, phone_number)
+        print("\n" * 3)
         print("\n" + "-" * DASH_AMOUNT)
-
+        
     def print_employee(self, name, kennitala, address, role, rank, phone_number) -> None:
-        print(f"Name: {name}")
-        print(f"Kt: {kennitala}")
+        print(f"Name: {name:>18}")
+        print(f"Kt: {kennitala:>15}")
         print(f"Address: {address}")
         print(f"Role: {role}")
         print(f"Rank: {rank}")
@@ -131,7 +134,7 @@ class ListEmployeeUI:
                 new_phone_number = employee.phone_number
             self.print_update_employee_info(employee.name, employee.kennitala, new_address.upper(), employee.role, employee.rank, new_phone_number.upper())
             self.logic_wrapper.update_employee_info(kennitala_input, new_address, new_phone_number)
-            print("\nSuccess!")
+            print("\n\033[32mSuccessfully Updated!\033[0m")
             input("\nPress \033[34m[ENTER]\033[0m to confirm: ")
             
         elif option_input == "w":
@@ -188,7 +191,7 @@ class ListEmployeeUI:
                 if employee_nid not in employees_printed:
                     employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
                     if employee: 
-                        print(f"{employee.name:>20}; \tDestination: {flight.arr_at}")
+                        print(f"{employee.name:^22} \tDestination: {flight.arr_at}")
                     employees_printed.add(employee_nid)
         print("\n" * 3) 
         print("\n" + "-" * DASH_AMOUNT)
@@ -216,11 +219,11 @@ class ListEmployeeUI:
                 self.ui_utils.clear_screen()
                 print("-" * DASH_AMOUNT)
                 print(f"Off Duty Employees on \033[32m{date_input}\033[0m:")
-                print("-" * DASH_AMOUNT)
+                print("-" * DASH_AMOUNT + "\n")
                 for employee_nid in absent_employees:
                     employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
                     if employee:
-                        print(f"{employee.name:>20}; {employee.rank}")
+                        print(f"{employee.name:^22} {employee.rank:^22}")
                 break
             except ValueError:
                 print("\033[31mInvalid input.\033[0m Enter a valid format date")

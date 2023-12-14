@@ -3,6 +3,8 @@ from model.voyage import Voyage
 from logic.logic_wrapper import LogicWrapper
 import os
 
+DASH_AMOUNT = 46
+
 class UIUtils:
     
     def __init__(self) -> None:
@@ -17,9 +19,10 @@ class UIUtils:
 
     def print_employee(self, employee:Employee, header:str=""):
         """Prints out a table of information on an Employee"""
-
+        dash = (DASH_AMOUNT - len(header))
         self.clear_screen()
-        print(header + "\n")
+        print(header + (dash * "-"))
+        print("\n" * 4)
         print(f"Name: {employee.name}")
         print(f"Kt: {employee.kennitala}")
         print(f"Address: {employee.address}")
@@ -33,6 +36,9 @@ class UIUtils:
         """Prints voyages and their crews"""
 
         self.clear_screen()
+        print("-" * DASH_AMOUNT)
+        print(f"{header:^46}") 
+        print("-" * DASH_AMOUNT + "\n")
         print(f"{header}\n")
 
         for i, voyage in enumerate(voyages):

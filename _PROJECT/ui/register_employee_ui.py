@@ -3,6 +3,8 @@ from data.data_wrapper import DataWrapper
 from utils.ui_utils import UIUtils
 from ui.input_validation import LengthError, validate_length, validate_length_kt, validate_integers, validate_letters,validate_length_phone, validate_address
 
+DASH_AMOUNT = 46
+
 class RegisterEmployeeUI():
     def __init__(self, data_connection:DataWrapper) -> None:
         self.logic_wrapper = data_connection
@@ -10,8 +12,9 @@ class RegisterEmployeeUI():
 
     def register_employee(self, employee:Employee, header:str):
         """Registers an employee"""
-        
         self.ui_utils.print_employee(employee, header)
+        print("\n" * 3)
+        print("-" * DASH_AMOUNT + "\n")
         while True:
             try:
                 employee.name = input(f"Input the {employee.role}'s name: ").capitalize()
@@ -29,6 +32,8 @@ class RegisterEmployeeUI():
 
         while True:
             try: 
+                print("\n" * 3)
+                print("-" * DASH_AMOUNT + "\n")
                 employee.kennitala = (input(f"Input the {employee.role}'s kennitala: "))
                 validate_integers(employee.kennitala)
                 validate_length_kt(employee.kennitala)
@@ -44,6 +49,8 @@ class RegisterEmployeeUI():
         
         while True:
             try:
+                print("\n" * 3)
+                print("-" * DASH_AMOUNT + "\n")
                 employee.address = input(f"Input the {employee.role}'s address: ").capitalize()
                 validate_address(employee.address)
                 self.ui_utils.print_employee(employee, header)
@@ -54,9 +61,11 @@ class RegisterEmployeeUI():
         
 
         if employee.role == "Pilot":
+            print("\n" * 3)
+            print("-" * DASH_AMOUNT + "\n")
             e_rank = input(f"Is the {employee.role}: \n1. Captain\n2. Copilot\nEnter your choice: ")
             while e_rank != "1" and e_rank != "2":
-                e_rank = input(f"Is the {employee.role}'s: \n1. Captain\n2. Copilot\nInvalid. Choose either 1 or 2: ")
+                e_rank = input(f"Is the {employee.role}'s: \n1. Captain\n2. Copilot\n\033[31mInvalid.\033[0m Choose either 1 or 2: ")
             if e_rank == "1":
                 employee.rank = "Captain"
             elif e_rank == "2":
@@ -64,7 +73,7 @@ class RegisterEmployeeUI():
         else:
             e_rank = input(f"Is the {employee.role}: \n1. Flight Service Manager\n2. Flight Attendant\nEnter your choice: ")
             while e_rank != "1" and e_rank != "2":
-                e_rank = input(f"Is the {employee.role}: \n1. Flight Service Manager\n2. Flight Attendant\nInvalid. Choose either 1 or 2: ")
+                e_rank = input(f"Is the {employee.role}: \n1. Flight Service Manager\n2. Flight Attendant\n\033[31mInvalid.\033[0m Choose either 1 or 2: ")
             if e_rank == "1":
                 employee.rank = "Flight Service Manager"
             elif e_rank == "2":
@@ -73,6 +82,8 @@ class RegisterEmployeeUI():
         self.ui_utils.print_employee(employee, header)
         while True: 
             try:
+                print("\n" * 3)
+                print("-" * DASH_AMOUNT + "\n")
                 employee.phone_number = input(f"Input the {employee.role}'s phone number: ")
                 validate_integers(employee.phone_number)
                 validate_length_phone(employee.phone_number)
@@ -87,5 +98,6 @@ class RegisterEmployeeUI():
             
             
         self.logic_wrapper.register_employee(employee)
-        
-        input(f"{employee.name} is successfully created! Press \033[34m[ENTER]\033[0m to exit: ")
+        print("\n" * 3)
+        print("-" * DASH_AMOUNT + "\n")
+        input(f"{employee.name} is successfully created! \nPress \033[34m[ENTER]\033[0m to exit: ")
