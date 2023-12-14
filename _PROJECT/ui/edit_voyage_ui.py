@@ -7,7 +7,7 @@ from logic.logic_wrapper import LogicWrapper
 from ui.input_validation import *
 
 
-class CreateVoyageUI:
+class EditVoyageUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
         self.ui_utils = UIUtils()
         self.logic_wrapper = logic_connection
