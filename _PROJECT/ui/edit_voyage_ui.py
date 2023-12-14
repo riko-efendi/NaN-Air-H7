@@ -7,7 +7,7 @@ from model.destination import Destination
 from datetime import datetime, timedelta
 from logic.logic_wrapper import LogicWrapper
 
-from ui.input_validation import validate_date_format, validate_time_format, validate_date_range
+from ui.input_validation import validate_date_format, validate_time_format, validate_date_range, is_datetime_ahead, DateBeforeError
 
 
 class EditVoyageUI:
@@ -35,12 +35,16 @@ class EditVoyageUI:
         # Use this as a break statement
         if not self.assign_destination():
             return None
+        
         # Use this as a break statement
-        if not self.assign_times(self.flight_1):
+        arr_date, arr_time = self.assign_times(self.flight_1)
+        if arr_date == None:
             return None
         input("\nPress [ENTER] to confirm: ")
+
         # Use this as a break statement
-        if not self.assign_times(self.flight_2):
+        arr_date, arr_time = self.assign_times(self.flight_2, arr_date, arr_time)
+        if arr_date == None:
             return None
         input("\nPress [ENTER] to confirm: ")
 
@@ -53,21 +57,6 @@ class EditVoyageUI:
         self.logic_wrapper.register_flight(self.flight_2)
         
         input("\n\033[32mVoyage succesfully created.\033[0m Press [ENTER] to exit: ")
-        
-
-    def assign_crew(self, flight_1:Flight, flight_2:Flight):
-        """Assignes crew to a voyage"""
-
-        captain = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Captain")
-        copilot = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Copilot")
-        fsm = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Service Manager")
-        self.assign_fa(flight_1, flight_2, "Cabincrew", "Flight Attendant")
-        flight_1.crew["captain"] = captain
-        flight_2.crew["captain"] = captain
-        flight_1.crew["copilot"] = copilot
-        flight_2.crew["copilot"] = copilot
-        flight_1.crew["fsm"] = fsm
-        flight_2.crew["fsm"] = fsm
 
 
     def edit_voyage(self):
@@ -77,12 +66,33 @@ class EditVoyageUI:
         self.ui_utils.print_voyages(voyages, "[EDIT VOYAGE]")
         user_input = input("Select Voyage to edit: ")
         voyage = voyages[int(user_input) - 1]
+
         # Reset Voyage
         new_crew = {"captain":"", "copilot": "", "fms": ""}
         voyage.flight_1.crew = new_crew
         voyage.flight_2.crew = new_crew
+
+        # Assign the crew to the flights
         self.assign_crew(voyage.flight_1, voyage.flight_2)
         self.logic_wrapper.update_voyage(voyage)
+        
+
+    def assign_crew(self, flight_1:Flight, flight_2:Flight):
+        """Assignes crew to a voyage"""
+
+        captain = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Captain")
+        copilot = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Pilot", "Copilot")
+        fsm = self.print_available_crew(flight_1.depart_date, flight_2.arr_date, "Cabincrew", "Flight Service Manager")
+
+        # Assign fa's
+        self.assign_fa(flight_1, flight_2, "Cabincrew", "Flight Attendant")
+
+        flight_1.crew["captain"] = captain
+        flight_2.crew["captain"] = captain
+        flight_1.crew["copilot"] = copilot
+        flight_2.crew["copilot"] = copilot
+        flight_1.crew["fsm"] = fsm
+        flight_2.crew["fsm"] = fsm
 
 
     def assign_destination(self) -> bool:
@@ -128,7 +138,7 @@ class EditVoyageUI:
         print(f"\n[C]ancel\t[M]ake new Destination")
 
 
-    def assign_times(self, flight:Flight) -> bool:
+    def assign_times(self, flight:Flight, date="1000-01-01", time="00:00:01") -> bool:
         """Assign date and time in the correct format to a flight"""
 
         # Update flight info
@@ -136,13 +146,20 @@ class EditVoyageUI:
         dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower() # Needs Error handling
         while True:
             try:
-                validate_date_format(dep_date)
-                break
-            except ValueError:
                 if dep_date == "c":
-                    return False
+                    return None, None
+                validate_date_format(dep_date)
+                is_datetime_ahead(input_date=dep_date, comparison_date=date, comparison_time=time)
+                break
+
+            except ValueError:
                 self.print_flight_info(flight)
                 dep_date = input(f"\n\033[31mWrong format!\033[0m At what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower()
+
+            # If a date inputed is earlier thatn previously inputed date
+            except DateBeforeError:
+                self.print_flight_info(flight)
+                dep_date = input(f"\n\033[31mInvalid Date!\033[0m At what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower()
 
         flight.depart_date = dep_date
 
@@ -151,13 +168,19 @@ class EditVoyageUI:
         dep_time = input(f"\nAt what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower()
         while True:
             try:
+                if dep_date == "c":
+                    return None, None
                 validate_time_format(dep_time)
+                is_datetime_ahead(input_date=dep_date, input_time=dep_time, comparison_date=date, comparison_time=time)
                 break
+
             except ValueError:
-                if dep_time == "c":
-                    return False
                 self.print_flight_info(flight)
                 dep_time = input(f"\n\033[31mWrong format!\033[0m At what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower()
+
+            except DateBeforeError:
+                self.print_flight_info(flight)
+                dep_date = input(f"\n\033[31mInvalid time!\033[0m At what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower()
 
 
         # Add the date and time togheter to work as a single variable when going into the add hours function
@@ -168,7 +191,7 @@ class EditVoyageUI:
         # Update flight info 
         self.print_flight_info(flight)
 
-        return True
+        return flight.arr_date, flight.arr_time
 
 
     def add_hours_to_datetime(self, datetime_str, hours_to_add):
@@ -256,7 +279,6 @@ class EditVoyageUI:
             index += 1
             user_input = input("Do you want to assign another Flight attendant? (Y/N): ").lower()
 
-    
 
     def print_flight_info(self, flight:Flight) -> None:
         """Prints out for user info on current flight"""

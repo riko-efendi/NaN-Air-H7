@@ -6,6 +6,8 @@ class LengthError(Exception):
 class DateRangeError(Exception):
     pass
 
+class DateBeforeError(Exception):
+    pass
 
 
 def validate_length(name):
@@ -46,6 +48,20 @@ def validate_time_format(time):
     datetime.strptime(time, '%H:%M:%S')
 
 
+def is_datetime_ahead(input_date="9999-12-31", input_time="23:59:59", comparison_date="0001-01-01", comparison_time="00:00:00"):
+
+    datetime_format='%Y-%m-%d %H:%M:%S'
+
+    datetime1_str = f"{input_date} {input_time}"
+    datetime2_str = f"{comparison_date} {comparison_time}"#f"{comparison_date} {comparison_time}"
+    datetime1 = datetime.strptime(datetime1_str, datetime_format)
+    print(datetime1)
+    datetime2 = datetime.strptime(datetime2_str, datetime_format)
+    print(datetime2)
+
+    if datetime1 < datetime2:
+        raise DateBeforeError
+
 
 def validate_date_range(start_date, end_date, start_time="00:00:00", end_time="00:00:00"):
     try:
@@ -55,6 +71,7 @@ def validate_date_range(start_date, end_date, start_time="00:00:00", end_time="0
 
         if end_datetime < start_datetime:
             raise DateRangeError
-
+    
+    # BIG BRAIN
     except ValueError:
         raise ValueError
