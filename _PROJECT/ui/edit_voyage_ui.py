@@ -124,7 +124,17 @@ class EditVoyageUI:
                 dep_date = input(f"\nAt what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower() # Needs Error handling
                 if dep_date == "c":
                     return False
-                validate_year_format(dep_date)
+                self.print_flight_info(flight)
+                dep_date = input(f"\n\033[31mWrong format!\033[0m At what date do you want to depart from {flight.dep_from}? (YYYY-MM-DD): ").lower()
+                break
+        flight.depart_date = dep_date
+
+        # Update flight info
+        self.print_flight_info(flight)
+        dep_time = input(f"\nAt what time do you want to depart from {flight.dep_from}? (HH:MM:SS): ").lower()
+        while True:
+            try:
+                validate_time_format(dep_time)
                 break
             except ValueError:
                 print("Invalid date, please only use digits")
@@ -145,7 +155,7 @@ class EditVoyageUI:
                 break
             except ValueError:
                 print("Invalid time, please only use digits")
-            except LengthERROR:
+            except LengthError:
                 print("Invalid time, plesa use format (HH:MM:SS)")
             except DateError:
                 print("Invalid time, time does not exist")

@@ -2,6 +2,8 @@ from logic.logic_wrapper import LogicWrapper
 from model.aircraft import Aircraft
 from utils.ui_utils import UIUtils
 
+DASH_AMOUNT = 46
+
 class AircraftUI:
     def __init__(self, wrapper) -> None:
         self.logic_wrapper = wrapper
@@ -11,13 +13,12 @@ class AircraftUI:
 
     def menu_output(self) -> None:
         """Prints out the options for the Aircraft UI"""
-
+        header = "[AIRCARFT]"
         self.ui_utils.clear_screen()
-        print(f"[AIRCARFT]\n")
-        print(f"1. Register aircraft")
-        print(f"2. List all aircrafts")
-        print(f"\n[B]ack")
-
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        print(f"\t1. View all aircrafts\n")
+        print(f"\t\t\t\t\t[B]ack")
+        print("-" * DASH_AMOUNT)
 
     def input_prompt(self) -> None:
         """Takes in an input from user, and jumpst to a specific UI/function based on that input."""
@@ -28,18 +29,19 @@ class AircraftUI:
             self.menu_output()
             user_input = input("\n" + self.input_prompt_str).lower()
 
-            if user_input == "2":
+            if user_input == "1":
                 self.list_all_aircarfts()
             else:
-                self.input_prompt_str = "Invalid. Enter another choice: "
+                self.input_prompt_str = "\033[31mInvalid\033[0m. Enter another choice: "
 
 
     def list_all_aircarfts(self):
         """Lists all aircrafts from the aircraft.csv file"""
-
+        header = "[ALL AIRCRAFTS]"
         self.ui_utils.clear_screen()
         aircrafts = self.logic_wrapper.get_all_aircrafts()
-        print("[ALL AIRCRAFTS]\n")
-        for index, aircraft in enumerate(aircrafts):
-            print(f"{index+1:>2}. {'Plane Insignia':^2}{aircraft.plane_insignia:<}, {'Plane Type id: '}{aircraft.plane_type_id}, {'DOM: '}{aircraft.date_of_manufacture}, {'Last Maintenance: '}{aircraft.last_maintenance}")
-        input("\nPress [ENTER] to exit: ")
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        for aircraft in (aircrafts):
+            print(f"{'Plane Insignia: ':^2}{aircraft.plane_insignia:<}, {'Plane Type id: '}{aircraft.plane_type_id:<15} {'DOM: '}{aircraft.date_of_manufacture:>4}, {'Last Maintenance: '}{aircraft.last_maintenance:>4}")
+        print("\n" + "-" * DASH_AMOUNT)
+        input("\nPress \033[34m[ENTER]\033[0m to exit: ")

@@ -35,13 +35,13 @@ class VoyageListUI:
             if user_input == "1":
                 upcoming_voyages = self.logic_wrapper.get_upcoming_voyages()
                 self.ui_utils.print_voyages(upcoming_voyages, "[UPCOMING VOYAGES]")
-                input("Press [ENTER] to exit: ")
+                input("Press \033[34m[ENTER]\033[0m to exit: ")
                 self.input_prompt_str = "Enter your choice: "
             
             elif user_input == "2":
                 voyages = self.logic_wrapper.get_past_voyages()
                 self.ui_utils.print_voyages(voyages, "[PAST VOYAGES]")
-                input("Press [ENTER] to exit: ")
+                input("Press \033[34m[ENTER]\033[0m to exit: ")
                 self.input_prompt_str = "Enter your choice: "
 
             elif user_input == "3":
@@ -53,7 +53,7 @@ class VoyageListUI:
                 self.input_prompt_str = "Enter your choice: "
 
             else:
-                self.input_prompt_str = "Invalid. Enter another choice: "
+                self.input_prompt_str = "\033[31mInvalid.\033[0m Enter another choice: "
 
             
 
@@ -68,11 +68,11 @@ class VoyageListUI:
                 break
             except ValueError:
                 self.ui_utils.clear_screen()
-                user_input = input("Wrong Format. Enter a date YYYY-MM-DD: ")
+                user_input = input("\033[31mWrong Format.\033[0m Enter a date YYYY-MM-DD: ")
 
         voyages = self.logic_wrapper.get_voyages_of_date([user_input])
-        self.ui_utils.print_voyages(voyages, f"[VOYAGES FLYING ON {user_input[0]}]")
-        input("Press [ENTER] to exit: ")
+        self.ui_utils.print_voyages(voyages, f"[VOYAGES FLYING ON {user_input}]")
+        input("Press \033[34m[ENTER]\033[0m to exit: ")
         self.input_prompt_str = "Enter your choice: "
 
     
@@ -86,7 +86,7 @@ class VoyageListUI:
                 break
             except ValueError:
                 self.ui_utils.clear_screen()
-                start_date = input("Wrong Format. Enter a date YYYY-MM-DD: ")
+                start_date = input("\033[31mWrong Format.\033[0m Enter a date YYYY-MM-DD: ")
                 
 
         end_date = input("\nEnter an end date YYYY-MM-DD: ")
@@ -97,15 +97,15 @@ class VoyageListUI:
                 break
             except ValueError:
                 self.ui_utils.clear_screen()
-                end_date = input("Wrong Format. Enter a date YYYY-MM-DD: ")
+                end_date = input("\033[31mWrong Format.\033[0m Enter a date YYYY-MM-DD: ")
             except DateRangeError:
                 self.ui_utils.clear_screen()
-                end_date = input("The end date is before the start date. Enter a date YYYY-MM-DD: ")
+                end_date = input("\033[31mThe end date can't be before the start date.\033[0m Enter a date YYYY-MM-DD: ")
 
         dates = self.logic_utils.generate_date_range(start_date, end_date)
         voyages = self.logic_wrapper.get_voyages_of_date(dates)
         self.ui_utils.print_voyages(voyages, f"[VOYAGES FLYING IN THE SELECTED RANGE]")
-        input("Press [ENTER] to exit: ")
+        input("Press \033[34m[ENTER]\033[0m to exit: ")
         self.input_prompt_str = "Enter your choice: "
 
 
