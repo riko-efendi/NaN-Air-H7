@@ -3,6 +3,8 @@ from model.voyage import Voyage
 from logic.logic_wrapper import LogicWrapper
 import os
 
+DASH_AMOUNT = 46
+
 class UIUtils:
     
     def __init__(self) -> None:
@@ -17,9 +19,10 @@ class UIUtils:
 
     def print_employee(self, employee:Employee, header:str=""):
         """Prints out a table of information on an Employee"""
-
+        dash = (DASH_AMOUNT - len(header))
         self.clear_screen()
-        print(header + "\n")
+        print(header + (dash * "-"))
+        print("\n" * 4)
         print(f"Name: {employee.name}")
         print(f"Kt: {employee.kennitala}")
         print(f"Address: {employee.address}")
@@ -32,8 +35,9 @@ class UIUtils:
     def print_voyages(self, voyages:Voyage, header:str=""):
         """Prints voyages and their crews"""
         self.clear_screen()
-        print(f"{header}\n")
-
+        print("-" * DASH_AMOUNT)
+        print(f"{header:^46}") 
+        print("-" * DASH_AMOUNT + "\n")
 
         for index, voyage in enumerate(voyages):
             captain = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.captain)
@@ -47,6 +51,7 @@ class UIUtils:
             fa2 = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.fa2)
             fa2 = fa2.name if fa2 != None else "No Crew Assigned"
 
+            
             print(f"{index + 1}. Voyage id:[{voyage.id}]")
             print(f"\tGoing a round trip from {voyage.flight_1.dep_from} to {voyage.flight_1.arr_at}.")
             print(f"\t[{voyage.depart_date}] - [{voyage.arr_date}]")

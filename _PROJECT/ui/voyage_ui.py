@@ -62,7 +62,8 @@ class VoyageUI:
                 aircraft_menu = AircraftUI(self.logic_wrapper)
                 aircraft_menu.input_prompt()
 
+
             else:
-                self.input_prompt_str = "Invalid. Enter another choice: "
+                self.input_prompt_str = "\033[31mInvalid Input.\033[0m Enter another choice: "
             
             self.input_prompt_str = "Enter your choice: "

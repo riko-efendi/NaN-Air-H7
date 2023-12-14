@@ -17,8 +17,10 @@ class CabinCrewUI:
         header = ("[CABIN CREW]")
         self.ui_utils.clear_screen()
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        print("\n" * 4)
         print(f"\t1. Register Cabin Crew\n")
         print(f"\t2. View All Cabin Crews\n")
+        print("\n" * 4)
         print(f"\t\t\t\t\t[B]ack")
         print("-" * DASH_AMOUNT)
 
