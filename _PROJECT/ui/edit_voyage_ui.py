@@ -4,7 +4,7 @@ from model.flight import Flight
 from model.destination import Destination
 from datetime import datetime, timedelta
 from logic.logic_wrapper import LogicWrapper
-from ui.input_validation import LengthERROR, DateError, validate_year_format, validate_time_format
+from ui.input_validation import *
 
 
 class CreateVoyageUI:

@@ -1,7 +1,6 @@
 from logic.logic_wrapper import LogicWrapper
 from model.destination import Destination
-from ui.input_validation import LengthERROR, DateError, validate_dest_id, validate_destination, validate_numeric_id, validate_flight_time
-
+from ui.input_validation import *
 from utils.ui_utils import UIUtils
 
 class DestinationUI:

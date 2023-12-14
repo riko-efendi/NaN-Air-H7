@@ -2,7 +2,6 @@ from logic.logic_wrapper import LogicWrapper
 from ui.destination_ui import DestinationUI
 from ui.aircraft_ui import AircraftUI
 from ui.flights_ui import FlightsUI
-from ui.edit_voyage_ui import EditVoyageUI
 from ui.voyage_list_ui import VoyageListUI
 from model.voyage import Voyage
 from utils.ui_utils import UIUtils

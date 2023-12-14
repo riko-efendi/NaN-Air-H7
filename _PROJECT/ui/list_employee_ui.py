@@ -1,7 +1,6 @@
 from utils.ui_utils import UIUtils
 from logic.logic_wrapper import LogicWrapper
-from ui.input_validation import LengthERROR, validate_length_kt, validate_integers, validate_year_format
-from ui.input_validation import DateError, validate_year_format
+from ui.input_validation import *
 
 class ListEmployeeUI:
     def __init__(self, logic_connection:LogicWrapper) -> None:
@@ -82,7 +81,7 @@ class ListEmployeeUI:
 
             except ValueError:
                 print("invalid value, please enter a valid kennitala")
-            except LengthERROR:
+            except LengthError:
                 print("Invalid length, please enter a valid kennitala")
 
         self.ui_utils.clear_screen()
@@ -143,7 +142,7 @@ class ListEmployeeUI:
                 break
             except ValueError:
                 print("Invalid date, please only use digits")
-            except LengthERROR:
+            except LengthError:
                 print("Invalid date, plesa use format [YYYY-MM-DD]")
             except DateError:
                 print("Invalid date, month and/or day does not exist")
@@ -174,7 +173,7 @@ class ListEmployeeUI:
                 break
             except ValueError:
                 print("Invalid date, please only use digits")
-            except LengthERROR:
+            except LengthError:
                 print("Invalid date, plesa use format [YYYY-MM-DD]")
             except DateError:
                 print("Invalid date, month and/or day does not exist")
