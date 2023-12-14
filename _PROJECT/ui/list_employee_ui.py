@@ -57,7 +57,8 @@ class ListEmployeeUI:
         self.ui_utils.clear_screen()
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
         for index, employee in enumerate(employees):
-            print(f"{index+1:>2}.{' name: ':^2}{employee.name:<}, {employee.role}\n      {'kt: ' + employee.print_kennitala}")
+            print(f"{index+1:>2}. {employee.name:<} - {employee.role}\n    {'kt: ' + employee.print_kennitala}\n")
+
         print("\n" + "-" * DASH_AMOUNT)
         input("\nPress \033[34m[ENTER]\033[0m to exit: ")
 
