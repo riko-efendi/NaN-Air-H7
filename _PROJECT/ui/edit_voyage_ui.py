@@ -49,12 +49,10 @@ class EditVoyageUI:
         if user_input =="y":
             self.assign_crew(self.flight_1, self.flight_2)
 
-
-        input("\nVoyage succesfully created. Press [ENTER] to exit: ")
-
         self.logic_wrapper.register_flight(self.flight_1)
         self.logic_wrapper.register_flight(self.flight_2)
         
+        input("\nVoyage succesfully created. Press [ENTER] to exit: ")
 
     def assign_crew(self, flight_1:Flight, flight_2:Flight):
         """Assignes crew to a voyage"""
