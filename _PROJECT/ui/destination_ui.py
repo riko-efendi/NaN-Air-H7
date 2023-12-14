@@ -51,9 +51,16 @@ class DestinationUI:
             try:
                 d.id = input("Enter destination three letter id: ").upper()
                 validate_id(d.id)
-                self.ui_utils.print_destination(d, header)
-                break
-
+                destination_list = []
+                all_destinations = self.logic_wrapper.get_all_destinations()
+                for destination in all_destinations:
+                    destination_list.append(destination.id)
+                if d.id not in destination_list:
+                    self.ui_utils.print_destination(d, header)
+                    break
+                else:
+                    self.ui_utils.print_destination(d, header)
+                    print("This id is already assigned to a destination")
             except LengthERROR:
                 self.ui_utils.print_destination(d, header)
                 print("Length error. Please enter 3 letter id")

@@ -3,9 +3,11 @@ from data.data_wrapper import DataWrapper
 from utils.ui_utils import UIUtils
 from ui.input_validation import *
 
+
+
 class RegisterEmployeeUI():
     def __init__(self, data_connection:DataWrapper) -> None:
-        self.logic_wrapper = data_connection
+        self.data_wrapper = data_connection
         self.ui_utils = UIUtils()
 
     def register_employee(self, employee:Employee, header:str):
@@ -22,14 +24,14 @@ class RegisterEmployeeUI():
                 break
             
             except LengthERROR:
-                self.ui_utils.clear_screen()
                 self.ui_utils.print_employee(employee, header)
                 print("Name is out of range, please enter a valid length")
             
             except ValueError:
-                self.ui_utils.clear_screen()
                 self.ui_utils.print_employee(employee, header)
                 print("Invalid name, please only use letters")
+
+
 
         #this checks the kennitala if the user inputs the right numbers for a kennitala and nothing random. 
         while True:
@@ -37,21 +39,25 @@ class RegisterEmployeeUI():
                 employee.kennitala = (input(f"Input the {employee.role}'s kennitala: "))
                 validate_kennitala(employee.kennitala)
                 
-                self.ui_utils.print_employee(employee, header)
-                break
-            
+                kennitala_list = []
+                all_employees = self.data_wrapper.get_all_employees()
+                for person in all_employees:
+                    kennitala_list.append(person.kennitala)
+                if employee.kennitala not in kennitala_list:
+                    self.ui_utils.print_employee(employee, header)    
+                    break
+                else:
+                    self.ui_utils.print_employee(employee, header)   
+                    print("This kennlitala is already assigned to an existing employee.")
+
             except LengthERROR:
-                self.ui_utils.clear_screen()
                 self.ui_utils.print_employee(employee, header)
                 print("Invalid length, please enter a valid kennitala")
             except ValueError:
-                self.ui_utils.clear_screen()
                 self.ui_utils.print_employee(employee, header)
                 print("invalid value, please enter a valid kennitala")
-            except ExistingError:
-                self.ui_utils.clear_screen()
-                self.ui_utils.print_employee(employee, header)
-                print("The kennitala you have inserted is already assigned to an existing employee.")
+
+            
         #this checks the address. the validation of the address is that
         # first must contain a name for the adress and the 1 or 2 numbers for the number of that address 
         while True:
@@ -62,10 +68,13 @@ class RegisterEmployeeUI():
                 break
 
             except ValueError:
-                self.ui_utils.clear_screen()
+                self.ui_utils.print_employee(employee, header)
+                print('invalid value. Please enter the right format"streetname streetnumber"')
+
+            except LengthERROR:
                 self.ui_utils.print_employee(employee, header)
                 print('Invalid address, please use format "streetname streetnumber"')
-        
+
         if employee.role == "Pilot":
             e_rank = input(f"Is the {employee.role}: \n1. Captain\n2. Copilot\nEnter your choice: ")
             while e_rank != "1" and e_rank != "2":
@@ -94,13 +103,11 @@ class RegisterEmployeeUI():
                 break
             
             except ValueError:
-                self.ui_utils.clear_screen()
                 self.ui_utils.print_employee(employee, header)
                 print("Invalid value, please enter a valid phone number")
             except LengthERROR:
-                self.ui_utils.clear_screen()
                 self.ui_utils.print_employee(employee, header)
                 print("Please inpout a valid phone number")
             
-        self.logic_wrapper.register_employee(employee)
+        self.data_wrapper.register_employee(employee)
         input(f"{employee.name} is successfully created! Press [ENTER] to exit: ")

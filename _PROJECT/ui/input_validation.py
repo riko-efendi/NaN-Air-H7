@@ -1,29 +1,12 @@
-from logic.logic_wrapper import LogicWrapper
-from model.employee import Employee
+
+
 class LengthERROR(Exception):
     pass
 
 class DateError(Exception):
     pass
 
-class ExistingError(Exception):
-    pass
 
-class CheckingExisting():
-    def __init__(self, logic_connection:LogicWrapper) ->None:
-        self.logic_wrapper = logic_connection
-        
-    def check_kennitata(self, other ):
-        kennitala_list = []
-
-        employees = self.logic_wrapper.get_all_employees()
-        for index, kennitala in enumerate(employees):
-            kennitala_list.append(kennitala.kennitala)
-        if other.kennitala in kennitala_list:
-            return False
-        else:
-            return True
-    
 ###############################################################################################################
 #[EMPLOYEE MENU]#
     
@@ -40,11 +23,6 @@ def validate_kennitala(kennitala): #needs to create a new one and cannot create 
     if len(kennitala) != 10 and len(kennitala) != 9:
         raise LengthERROR
     
-    employee = CheckingExisting(kennitala)
-    employee = employee.check_kennitata(kennitala)
-    if employee == False:
-        raise ExistingError
-
 
     #this validates the kennitala length i saw that there were some that were 10 and some that were 9
 
@@ -65,7 +43,7 @@ def validate_address(address):
         raise ValueError
     if not (1 <= len(first) <= 25 and 1 <= len(second) <= 2):
         raise LengthERROR
-    #this is an example of mixing things together
+
     #this validates that the address is valid.
 
 
