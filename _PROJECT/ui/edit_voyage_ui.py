@@ -188,6 +188,27 @@ class EditVoyageUI:
 
         user_input = input("\nEnter your choice: ")
 
+        # Input validation
+        while True:
+            if any(char.isalpha() for char in user_input) or user_input == "":
+                self.ui_utils.clear_screen()
+                print(f"[SELECT {rank.upper()}]\n")
+                for i, employee in enumerate(employees):
+                    print(f"{i + 1}. {employee.name}")
+
+                user_input = input("\n\033[31mInvalid.\033[0m Enter another choice: ")
+
+            elif int(user_input) > len(employees):
+                self.ui_utils.clear_screen()
+                print(f"[SELECT {rank.upper()}]\n")
+
+                for i, employee in enumerate(employees):
+                    print(f"{i + 1}. {employee.name}")
+                user_input = input("\n\033[Number out of Range.\033[0m Enter another choice: ")
+            else:
+                break
+    
+
         return employees[int(user_input) - 1].kennitala
     
     def assign_fa(self, flight:Flight, role, rank):
@@ -203,6 +224,27 @@ class EditVoyageUI:
                 print(f"{i + 1}. {employee.name}")
             
             user_input = input("\nEnter your choice: ")
+            
+            # Input Validation
+            while True:
+                if any(char.isalpha() for char in user_input) or user_input == "":
+                    self.ui_utils.clear_screen()
+                    print(f"[SELECT {rank.upper()}]\n")
+
+                    for i, employee in enumerate(employees):
+                        print(f"{i + 1}. {employee.name}")
+                    user_input = input("\n\033[31mInvalid.\033[0m Enter another choice: ")
+
+                elif int(user_input) > len(employees):
+                    self.ui_utils.clear_screen()
+                    print(f"[SELECT {rank.upper()}]\n")
+
+                    for i, employee in enumerate(employees):
+                        print(f"{i + 1}. {employee.name}")
+                    user_input = input("\n\033[31mNumber out of Range.\033[0m Enter another choice: ")
+                else:
+                    break
+
             flight.crew["fa" + str(index)] = employees[int(user_input) - 1].kennitala
             employees.pop(int(user_input) - 1)
             index += 1
