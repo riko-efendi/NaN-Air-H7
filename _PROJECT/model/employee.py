@@ -13,5 +13,6 @@ class Employee:
         self.address = address
         self.phone_number = phone_number
         self.license = license
+        self.work_days = [] 
 
 

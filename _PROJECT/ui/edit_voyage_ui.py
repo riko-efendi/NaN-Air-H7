@@ -218,7 +218,6 @@ class EditVoyageUI:
                 user_input = input("\n\033[Number out of Range.\033[0m Enter another choice: ")
             else:
                 break
-    
 
         return employees[int(user_input) - 1].kennitala
     

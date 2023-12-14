@@ -88,7 +88,7 @@ class EmployeeLogic:
         # I get all the voyages
         for voyage in all_upcoming_voyages:
             # Get all nids from crew
-            for crew in voyage.crew.keys():
+            for crew in voyage.crew.values():
                 # if the crew is the injected employee
                 if crew == employee.kennitala:
                     # Get the date range from a logic util method
@@ -104,6 +104,7 @@ class EmployeeLogic:
 
         for employee in employee_of_role:
             # Check for common days in personal schedule vs the inputed date raneg
+
             common_days = [days for days in employee.work_days if days in working_dates]
 
             # If the list is empty then there are no common eliments, and thus employee is available
