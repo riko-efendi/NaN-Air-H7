@@ -5,7 +5,7 @@ from ui.flights_ui import FlightsUI
 from ui.voyage_list_ui import VoyageListUI
 from model.voyage import Voyage
 from utils.ui_utils import UIUtils
-from ui.edit_voyage_ui import EditVoyageUi
+from ui.edit_voyage_ui import EditVoyageUI
 
 
 class VoyageUI:

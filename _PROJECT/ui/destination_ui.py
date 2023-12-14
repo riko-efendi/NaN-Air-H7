@@ -51,7 +51,7 @@ class DestinationUI:
                 break
             except ValueError:
                 print("Please only use letters")
-            except LengthERROR:
+            except LengthError:
                 print("Please use three letters")
         while True:
             try:
@@ -60,7 +60,7 @@ class DestinationUI:
                 break
             except ValueError:
                 print("Please only use letters")
-            except LengthERROR:
+            except LengthError:
                 print("Please only use one word")
         while True:
             try:
@@ -69,7 +69,7 @@ class DestinationUI:
                 break
             except ValueError:
                 print("Please only use digits")
-            except LengthERROR:                    
+            except LengthError:                    
                 print("Plese use 4 digits")
         while True:
             try:
@@ -78,7 +78,7 @@ class DestinationUI:
                 break
             except ValueError:
                 print("Please only use digits")
-            except LengthERROR:
+            except LengthError:
                 print("Flight is too long")
         self.logic_wrapper.register_destination(d)
         print(f"\n{d.destination} is successfully created.")
