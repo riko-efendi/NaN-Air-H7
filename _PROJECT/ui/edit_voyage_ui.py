@@ -124,7 +124,7 @@ class EditVoyageUI:
         for index, destination in destinations.items():
             print(f"{index + 1}. {destination.id}. Flight Duration from KEF: {destination.flight_time_from_kef} hrs")
         print("\n" * 3)
-        print(f"\n[C]ancel\t[M]ake new Destination")
+        print(f"\n[M]ake new Destination\t\t      [C]ancel")
         print("-" * DASH_AMOUNT)
 
 
