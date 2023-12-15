@@ -4,8 +4,8 @@ from model.flight import Flight
 
 class FlightData:
     def __init__(self) -> None:
-        self.file_name_past = "_PROJECT/files/past_flights.csv"
-        self.file_name_upcoming = "_PROJECT/files/upcoming_flights.csv"
+        self.file_flights_past = "files/past_flights.csv"
+        self.file_flights_upcoming = "files/upcoming_flights.csv"
         self.fieldnames = ["flight_nr", 
                            "dep_from", 
                            "arr_at", 
@@ -22,8 +22,8 @@ class FlightData:
     def read_all_past_flights(self):
         """Read past_flights.csv file and return all past flights"""
         past_flight_list = []
-        fa_rows = self.get_fa_amount("_PROJECT/files/past_flights.csv")
-        with open(self.file_name_past, newline='', encoding="utf-8") as csvfile:
+        fa_rows = self.get_fa_amount(self.file_flights_past)
+        with open(self.file_flights_past, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 crew_dict = {"captain": row["captain"], "copilot": row["copilot"], "fsm": row["fsm"]}
@@ -42,8 +42,8 @@ class FlightData:
     def read_all_upcoming_flights(self):
         """Read upcoming_flights.csv file and return all upcoming flights"""
         upcoming_flight_list = []
-        fa_rows = self.get_fa_amount("_PROJECT/files/upcoming_flights.csv")
-        with open(self.file_name_upcoming, newline="", encoding="utf-8") as csvfile:
+        fa_rows = self.get_fa_amount(self.file_flights_upcoming)
+        with open(self.file_flights_upcoming, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 crew_dict = {"captain": row["captain"], 
@@ -67,8 +67,8 @@ class FlightData:
         """Read upcoming_flights.csv and return list of flights from chosen airport."""
 
         all_flights_from_one_airport_list = []
-        fa_rows = self.get_fa_amount("_PROJECT/files/upcoming_flights.csv")
-        with open(self.file_name_upcoming, newline='', encoding="utf-8") as csvfile:
+        fa_rows = self.get_fa_amount(self.file_flights_upcoming)
+        with open(self.file_flights_upcoming, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 crew_dict = {"captain": row["captain"], "copilot": row["copilot"], "fsm": ["fsm"]}
@@ -88,8 +88,8 @@ class FlightData:
     def read_employee_past_schedule_by_nid(self, kennitala):
         """Read past_flights.csv and retrieve the past flight schedule for an employee based on Kennitala"""
         schedule_list = []
-        fa_rows = self.get_fa_amount("_PROJECT/files/past_flights.csv")
-        with open(self.file_name_past, newline='', encoding="utf-8") as csvfile:
+        fa_rows = self.get_fa_amount(self.file_flights_past)
+        with open(self.file_flights_past, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 crew_dict = {"captain": row["captain"], "copilot": row["copilot"], "fsm": ["fsm"]}
@@ -135,7 +135,7 @@ class FlightData:
                             "fsm": flight.crew["fsm"]}
         
         # Get how many fa's there are before the new flight get registered
-        fa_rows = self.get_fa_amount("_PROJECT/files/upcoming_flights.csv")
+        fa_rows = self.get_fa_amount(self.file_flights_upcoming)
 
         # Get how many fa's there are in the flight to be registerd
         flight_fa_rows = [key for key in flight.crew if key.startswith("fa")]
@@ -155,7 +155,7 @@ class FlightData:
         # Now we will have to re-register all the flights again
         flights = self.read_all_upcoming_flights()
 
-        with open(self.file_name_upcoming, 'w', newline='', encoding="utf-8") as csvfile:
+        with open(self.file_flights_upcoming, 'w', newline='', encoding="utf-8") as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
 
@@ -171,11 +171,11 @@ class FlightData:
             for crew in old_flight.crew:
                 row_dict[crew] = old_flight.crew[crew]
             
-            with open(self.file_name_upcoming, 'a', newline='', encoding="utf-8") as csvfile:
+            with open(self.file_flights_upcoming, 'a', newline='', encoding="utf-8") as csvfile:
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 writer.writerow(row_dict)
 
-        with open(self.file_name_upcoming, 'a', newline='', encoding="utf-8") as csvfile:
+        with open(self.file_flights_upcoming, 'a', newline='', encoding="utf-8") as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writerow(writewrow_dict)
             
@@ -185,7 +185,7 @@ class FlightData:
         """Returns a list of all flight numbers"""
         flight_nrs = []
 
-        with open(self.file_name_upcoming, newline='', encoding="utf-8") as csvfile:
+        with open(self.file_flights_upcoming, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 flight_nrs.append(row["flight_nr"])
@@ -195,7 +195,7 @@ class FlightData:
     def update_flight(self, flight_to_update):
         flights = self.read_all_upcoming_flights()
 
-        with open(self.file_name_upcoming, 'w', newline='', encoding="utf-8") as csvfile:
+        with open(self.file_flights_upcoming, 'w', newline='', encoding="utf-8") as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
             writer.writeheader()
 

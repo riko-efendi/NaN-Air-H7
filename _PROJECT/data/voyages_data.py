@@ -5,7 +5,7 @@ from data.flight_data import FlightData
 class VoyageData():
     def __init__(self) -> None:
         self.flight_data = FlightData()
-        self.file_name = "_PROJECT/files/upcoming_flights.csv"
+        self.file_name = "files/upcoming_flights.csv"
         
     
     def update_voyage(self,voyage):

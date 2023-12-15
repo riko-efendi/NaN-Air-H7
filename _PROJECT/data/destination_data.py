@@ -4,7 +4,7 @@ from model.destination import Destination
 
 class DestinationData:
     def __init__(self) -> None:
-        self.file_name = "_PROJECT/files/destinations.csv"
+        self.file_name = "files/destinations.csv"
         self.fieldnames = ["id", "destination", "numeric_id", "flight_time_from_kef"]
 
     def read_all_destinations(self):
