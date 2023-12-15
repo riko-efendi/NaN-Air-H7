@@ -1,6 +1,19 @@
-This is a program for Chuck Norris's air line Nan Air, a small airline company that flies to five large cities around Iceland. The program can be used to store and update all kinds of information regarding his employees and past/upcoming flights and it can register new employees and create new flights. 
+This is a program for Chuck Norris's air line Nan Air, a small airline company that flies to five large cities around Iceland. 
 
 Here is a link to a video presentation on how to use the program and everything that can be done with it.
 https://www.youtube.com/watch?v=iUhXfYQ4oUY
+
+WHAT YOU CAN DO:
+-Register an employee, weather that'd be a pilot or a cabin crew member.
+-Edit information on a selected employee.
+-Create new destinations to travel to.
+-Create voyages.
+-Edit voyages, which simply assigns crew to the selected voyage.
+-View all aircraft types
+-View which pilots have licences for which aircraft
+
+IMPORTANT INFORMATION:
+-In our system a voyage consists of two flights, so when creating a voyage, you are essentially creating two flights; one departing from KEF, and one arriving at KEF
+-When assigning crew to a voyage you can only assign: one captain, one copilot, one flight service manager but as many flight attendants as are available.
 
 No external packages are needed to run the our program. Simply run the main.py file.
