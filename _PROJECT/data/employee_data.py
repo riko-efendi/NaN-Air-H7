@@ -85,7 +85,9 @@ class EmployeeData:
         # employees = self.read_all_employees()
         with open(self.past_flight_file, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
+            crew_dict = self.make_crew_dict(self.past_flight_file)
             for row in reader:
+                self.inject_into_crew_dict(crew_dict)
                 depart_date = row["departure_date"]
                 if depart_date == date:
                     past_schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure_date"], row["departure_time"], row["arrival_date"], row["arrival_time"], row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"], row["aircraft_id"]))
@@ -112,8 +114,24 @@ class EmployeeData:
         # employees = self.read_all_employees()
         with open(self.upcoming_flight_file, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
+            crew_dict = self.make_crew_dict(self.upcoming_flight_file)
             for row in reader:
+                self.inject_into_crew_dict(crew_dict)
                 depart_date = row["departure_date"]
                 if depart_date == date:
                     upcoming_schedule_list.append(Flight(row["flight_nr"], row["dep_from"], row["arr_at"], row["departure_date"], row["departure_time"], row["arrival_date"], row["arrival_time"], row["captain"], row["copilot"], row["fsm"], row["fa1"], row["fa2"]))
         return upcoming_schedule_list
+    
+    def get_fa_amount(self, filename):
+        """Gets amount of flight attendant rows"""
+        with open(filename, "r", newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            return [col for col in reader.fieldnames if col.startswith("fa")]
+
+    def make_crew_dict(self, filename):
+        crew_dict = {"captain":"", "copilot":"", "fsm":""}
+        fa_amount = self.get_fa_amount(filename)
+        for fa in fa_amount:
+            crew_dict[fa] = ""
+
+        return crew_dict

@@ -202,10 +202,6 @@ class FlightData:
         for flight in flights:
             if flight.flight_nr == flight_to_update.flight_nr:
                 flight = flight_to_update
-                # flight.crew["captain"] = flight_to_update.crew["captain"]
-                # flight.crew["copilot"] = flight_to_update.crew["copilot"]
-                # flight.crew["fsm"] = flight_to_update.crew["fsm"]
-                # flight.crew = flight_to_update.crew
             self.register_flight(flight)
 
 
