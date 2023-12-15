@@ -83,16 +83,17 @@ class ListEmployeeUI:
     def view_employee_by_kennitala(self):
 
         self.ui_utils.clear_screen()
-        
+        header = "[View Employee by Kennitala]"
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        print("\n" * 13)
+        print(f"\t\t\t\t\t[B]ack")
+        print("-" * DASH_AMOUNT + "\n")
+        kennitala_input = input("Enter Employee Kennitala: ").lower()
+
         while True:
             try:
-                header = "[View Employee by Kennitala]"
-                print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
-                print("\n" * 13)
-                print(f"\t\t\t\t\t[B]ack")
-                print("-" * DASH_AMOUNT + "\n")
-                kennitala_input = input("Enter Employee Kennitala: ")
-                
+                if kennitala_input == "b":
+                    return None
                 validate_integers(kennitala_input)
                 validate_length_kt(kennitala_input)
                 employee = self.logic_wrapper.get_employee_by_nid(kennitala_input)
@@ -100,16 +101,27 @@ class ListEmployeeUI:
                     break
                 else:
                     print(f"\033[31mNo Record of {kennitala_input}\033[0m")
-                    time.sleep(1.5)
-                    self.ui_utils.clear_screen()
+                    input("Press \033[34m[ENTER]\033[0m to exit: ")
+                    return None
+
             except ValueError:
-                print("\033[31mInvalid value, please enter a valid kennitala\033[0m")
-                time.sleep(1.5)
                 self.ui_utils.clear_screen()
+                header = "[View Employee by Kennitala]"
+                print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+                print("\n" * 13)
+                print(f"\t\t\t\t\t[B]ack")
+                print("-" * DASH_AMOUNT + "\n")
+                kennitala_input = input("\033[31mInvalid input.\033[0m Enter Employee Kennitala: ").lower()
+
             except LengthError:
-                print("\033[31mInvalid length, please enter a valid kennitala\033[0m")
-                time.sleep(1.5)
                 self.ui_utils.clear_screen()
+                header = "[View Employee by Kennitala]"
+                print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+                print("\n" * 13)
+                print(f"\t\t\t\t\t[B]ack")
+                print("-" * DASH_AMOUNT + "\n")
+                kennitala_input = input("\033[31mInvalid length.\033[0m Enter Employee Kennitala: ").lower()
+
 
         header = "[EMPLOYEE INFO]"        
         self.ui_utils.clear_screen()
@@ -179,7 +191,22 @@ class ListEmployeeUI:
         print("\n" * 13)
         print(f"\t\t\t\t\t[B]ack")
         print("-" * DASH_AMOUNT + "\n")
-        date_input = input("Enter Date [YYYY-MM-DD]: ")
+        date_input = input("Enter Date [YYYY-MM-DD]: ").lower()
+        while True:
+            try:
+                if date_input == "b":
+                    return None
+                validate_date_format(date_input)
+                break
+            except ValueError:
+                self.ui_utils.clear_screen()
+                print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+                print("\n" * 13)
+                print(f"\t\t\t\t\t[B]ack")
+                print("-" * DASH_AMOUNT + "\n")
+                date_input = input("\033[31mInvalid input.\033[0m Enter a valid format date [YYYY-MM-DD]: ")
+
+
         voyages = self.logic_wrapper.get_available_voyages_by_date(date_input)
         self.ui_utils.clear_screen()
 
@@ -212,24 +239,28 @@ class ListEmployeeUI:
         while True:
             try:
                 if date_input == "b":
-                    break
+                    return None
                 validate_date_format(date_input)
-                on_duty_employees = set()
-                voyages = self.logic_wrapper.get_non_available_voyages_by_date(date_input)                
-                self.ui_utils.clear_screen()
-                print("-" * DASH_AMOUNT)
-                print(f"Off Duty Employees on \033[32m{date_input}\033[0m:")
-                print("-" * DASH_AMOUNT + "\n")
-                for voyage in voyages:
-                    for employee_nid in voyage.crew.values():
-                        employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
-                        if employee and employee.kennitala not in on_duty_employees:
-                            print(f"{employee.name:^22} {employee.rank:^22}")
-                            on_duty_employees.add(employee.kennitala)
-                print("\n" + "-" * DASH_AMOUNT)
-                input("\nPress \033[34m[ENTER]\033[0m to exit: ")    
                 break
             except ValueError:
-                print("\033[31mInvalid input.\033[0m Enter a valid format date")
-                time.sleep(1.5)
                 self.ui_utils.clear_screen()
+                print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+                print("\n" * 13)
+                print(f"\t\t\t\t\t[B]ack")
+                print("-" * DASH_AMOUNT + "\n")
+                date_input = input("\033[31mInvalid input.\033[0m Enter a valid format date [YYYY-MM-DD]: ")
+
+        on_duty_employees = set()
+        voyages = self.logic_wrapper.get_non_available_voyages_by_date(date_input)                
+        self.ui_utils.clear_screen()
+        print("-" * DASH_AMOUNT)
+        print(f"Off Duty Employees on \033[32m{date_input}\033[0m:")
+        print("-" * DASH_AMOUNT + "\n")
+        for voyage in voyages:
+            for employee_nid in voyage.crew.values():
+                employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
+                if employee and employee.kennitala not in on_duty_employees:
+                    print(f"{employee.name:^22} {employee.rank:^22}")
+                    on_duty_employees.add(employee.kennitala)
+        print("\n" + "-" * DASH_AMOUNT)
+        input("\nPress \033[34m[ENTER]\033[0m to exit: ")    

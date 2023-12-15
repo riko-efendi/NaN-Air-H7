@@ -227,9 +227,9 @@ Task for the day :
 
 Attendance
  - Gestur Pálsson
- - Guðni Hrafn Guðlaugsson
- - Manwin Georg Edselsson
- - Riko Efendi
+ - Guðni Hrafn Guðlaugsson [9:00]
+ - Manwin Georg Edselsson  
+ - Riko Efendi             [9:00]
 
  ---------------------------------------------------------------------------
 
@@ -237,6 +237,8 @@ Attendance
 
 Task for the day : 
 - fixed bug on list employee by specific date and range
+
+Guðni Fixed that bug 
 
 Attendance
  - Guðni Hrafn Guðlaugsson
