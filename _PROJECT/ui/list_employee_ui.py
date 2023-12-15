@@ -83,7 +83,6 @@ class ListEmployeeUI:
     def view_employee_by_kennitala(self):
 
         self.ui_utils.clear_screen()
-        
         while True:
             try:
                 header = "[View Employee by Kennitala]"
@@ -91,7 +90,9 @@ class ListEmployeeUI:
                 print("\n" * 13)
                 print(f"\t\t\t\t\t[B]ack")
                 print("-" * DASH_AMOUNT + "\n")
-                kennitala_input = input("Enter Employee Kennitala: ")
+                kennitala_input = input("Enter Employee Kennitala: ").lower()
+                if kennitala_input == 'b':
+                    return None
                 
                 validate_integers(kennitala_input)
                 validate_length_kt(kennitala_input)
@@ -179,7 +180,9 @@ class ListEmployeeUI:
         print("\n" * 13)
         print(f"\t\t\t\t\t[B]ack")
         print("-" * DASH_AMOUNT + "\n")
-        date_input = input("Enter Date [YYYY-MM-DD]: ")
+        date_input = input("Enter Date [YYYY-MM-DD]: ").lower()
+        if date_input == 'b':
+            return None
         flights = self.logic_wrapper.get_employees_schedule_by_date(date_input)
         self.ui_utils.clear_screen()
 
@@ -209,8 +212,10 @@ class ListEmployeeUI:
         print("\n" * 13)
         print(f"\t\t\t\t\t[B]ack")
         print("-" * DASH_AMOUNT + "\n")
-        date_input = input("Enter Date [YYYY-MM-DD]: ")
+        date_input = input("Enter Date [YYYY-MM-DD]: ").lower()
         while True:
+            if date_input == 'b':
+                    return None
             try:
                 validate_date_format(date_input)
                 
@@ -235,6 +240,6 @@ class ListEmployeeUI:
             except ValueError:
                 print("\033[31mInvalid input.\033[0m Enter a valid format date")
                 time.sleep(1.5)
-                self.ui_utils.clear_screen()
+                # self.ui_utils.clear_screen()
         print("\n" + "-" * DASH_AMOUNT)
         input("\nPress \033[34m[ENTER]\033[0m to exit: ")    

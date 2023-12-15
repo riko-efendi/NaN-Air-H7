@@ -70,8 +70,10 @@ class VoyageListUI:
         print("\n" * 13)
         print(f"\t\t\t\t\t[B]ack")
         print("-" * DASH_AMOUNT + "\n")
-        user_input = input("Enter a date YYYY-MM-DD: ")
+        user_input = input("Enter a date YYYY-MM-DD: ").lower()
         while True:
+            if user_input == 'b':
+                    return None
             try:
                 validate_date_format(user_input)
                 break
@@ -93,8 +95,10 @@ class VoyageListUI:
         print("\n" * 13)
         print(f"\t\t\t\t\t[B]ack")
         print("-" * DASH_AMOUNT + "\n")
-        start_date = input("Enter a start date YYYY-MM-DD: ")
+        start_date = input("Enter a start date YYYY-MM-DD: ").lower()
         while True:
+            if start_date == 'b':
+                return None
             try:
                 validate_date_format(start_date)
                 break
@@ -103,9 +107,11 @@ class VoyageListUI:
                 start_date = input("\033[31mWrong Format.\033[0m Enter a date YYYY-MM-DD: ")
                 
 
-        end_date = input("\nEnter an end date YYYY-MM-DD: ")
+        end_date = input("\nEnter an end date YYYY-MM-DD: ").lower()
         
         while True:
+            if end_date == 'b':
+                return None
             try:
                 validate_date_range(start_date, end_date)
                 break

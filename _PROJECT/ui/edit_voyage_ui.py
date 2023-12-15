@@ -50,7 +50,7 @@ class EditVoyageUI:
         self.logic_wrapper.register_flight(self.flight_1)
         self.logic_wrapper.register_flight(self.flight_2)
         
-        input("\n\033[32mVoyage succesfully created.\033[0m Press [ENTER] to exit: ")
+        input("\n\033[32mVoyage succesfully created.\033[0m\nPress \033[34m[ENTER]\033[0m to exit: ")
         
 
     def assign_crew(self, flight_1:Flight, flight_2:Flight):
@@ -73,6 +73,7 @@ class EditVoyageUI:
 
         voyages = self.logic_wrapper.get_upcoming_voyages()
         self.ui_utils.print_voyages(voyages, "[Edit Voyage]")
+        print("-" * DASH_AMOUNT + "\n")
         user_input = input("Select Voyage to edit: ")
         voyage = voyages[int(user_input) - 1]
         # Reset Voyage
