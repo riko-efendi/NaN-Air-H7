@@ -19,9 +19,11 @@ def validate_length_kt(kennitala):
         raise LengthError()
 
 def validate_letters(name):
-    if name.isalpha() == False:
-         raise ValueError()
-
+    name_list = name.split()
+    for element in name_list:
+        if element.isalpha() == False:
+            raise ValueError()
+    
 def validate_integers(number):
     if number.isdigit() == False:
         raise ValueError()
@@ -47,6 +49,9 @@ def validate_time_format(time):
 
 
 
+
+
+
 def validate_date_range(start_date, end_date, start_time="00:00:00", end_time="00:00:00"):
     try:
         start_datetime = datetime.strptime(f"{start_date} {start_time}", '%Y-%m-%d %H:%M:%S')
@@ -58,3 +63,33 @@ def validate_date_range(start_date, end_date, start_time="00:00:00", end_time="0
 
     except ValueError:
         raise ValueError
+
+
+
+# Destination
+    
+def validate_dest_id(dest):
+    if dest.isalpha() == False:
+        raise ValueError
+    if len(dest) != 3:
+        raise LengthError
+
+def validate_destination(dest):
+    dest_list = dest.split()
+    for element in dest_list:
+        if element.isalpha() == False:
+            raise ValueError
+    if len(dest_list) > 1:
+        raise LengthError
+
+def validate_numeric_id(numeric_id):
+    if numeric_id.isdigit() == False:
+        raise ValueError
+    if len(numeric_id) != 4:
+        raise LengthError
+    
+def validate_flight_time(flight_time):
+    if flight_time.isdigit() == False:
+        raise ValueError
+    if int(flight_time) > 21:
+        raise LengthError

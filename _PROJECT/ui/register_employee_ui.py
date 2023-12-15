@@ -16,51 +16,69 @@ class RegisterEmployeeUI():
         self.ui_utils.print_employee(employee, header)
         print("\n" * 3)
         print("-" * DASH_AMOUNT + "\n")
+        user_input = input(f"Input the {employee.role}'s name: ").capitalize()
         while True:
             try:
-                employee.name = input(f"Input the {employee.role}'s name: ").capitalize()
-                validate_length(employee.name)
-                validate_letters(employee.name)
+                validate_length(user_input)
+                validate_letters(user_input)
+                employee.name = user_input
                 self.ui_utils.print_employee(employee, header)
                 break
             
             except LengthError:
-                print("\033[31mName is out of range\033[0m, please enter a valid length")
+                self.ui_utils.print_employee(employee, header)
+                print("\n" * 3)
+                print("-" * DASH_AMOUNT + "\n")
+                user_input = input("\033[31mName is out of range\033[0m, please enter a valid length: ")
                 time.sleep(1.5)
             
             except ValueError:
-                print("\033[31mInvalid Value\033[0m, please only use letters")
-                time.sleep(1.5)
+                self.ui_utils.print_employee(employee, header)
+                print("\n" * 3)
+                print("-" * DASH_AMOUNT + "\n")
+                user_input = input("\033[31mInvalid Value\033[0m, please only use letters: ")
+                
+
 
         print("\n" * 3)
         print("-" * DASH_AMOUNT + "\n")
+        user_input = (input(f"Input the {employee.role}'s kennitala: "))
         while True:
             try: 
-                employee.kennitala = (input(f"Input the {employee.role}'s kennitala: "))
-                validate_integers(employee.kennitala)
-                validate_length_kt(employee.kennitala)
+                validate_integers(user_input)
+                validate_length_kt(user_input)
+                employee.kennitala = user_input
                 self.ui_utils.print_employee(employee, header)
                 break
             
             except LengthError:
-                print("\033[31mInvalid Length\033[0m, please enter a valid kennitala")
-                time.sleep(1.5)
+                self.ui_utils.print_employee(employee, header)
+                print("\n" * 3)
+                print("-" * DASH_AMOUNT + "\n")
+                user_input = input("\033[31mInvalid Length\033[0m, please enter a valid kennitala: ")
 
             except ValueError:
-                print("\033[31mInvalid Value\033[0m, please enter a valid kennitala")
-                time.sleep(1.5)
+                self.ui_utils.print_employee(employee, header)
+                print("\n" * 3)
+                print("-" * DASH_AMOUNT + "\n")
+                user_input = input("\033[31mInvalid Value\033[0m, please enter a valid kennitala: ")
+
 
         print("\n" * 3)
         print("-" * DASH_AMOUNT + "\n")
+        user_input = input(f"Input the {employee.role}'s address: ").capitalize()
         while True:
             try:
-                employee.address = input(f"Input the {employee.role}'s address: ").capitalize()
-                validate_address(employee.address)
+                validate_address(user_input)
+                employee.address = user_input
                 self.ui_utils.print_employee(employee, header)
                 break
 
             except ValueError:
-                print('\033[31mInvalid address.\033[0m Please use format "StreetName StreetNumber"')
+                self.ui_utils.print_employee(employee, header)
+                print("\n" * 3)
+                print("-" * DASH_AMOUNT + "\n")
+                user_input = input('\033[31mInvalid address.\033[0m Please use format "StreetName StreetNumber: "')
                 time.sleep(1.5)
         
         print("\n" * 3)
@@ -85,19 +103,26 @@ class RegisterEmployeeUI():
         self.ui_utils.print_employee(employee, header)
         print("\n" * 3)
         print("-" * DASH_AMOUNT + "\n")
+        user_input =  input(f"Input the {employee.role}'s phone number: ")
         while True: 
             try:
-                employee.phone_number = input(f"Input the {employee.role}'s phone number: ")
-                validate_integers(employee.phone_number)
-                validate_length_phone(employee.phone_number)
+                validate_integers(user_input)
+                validate_length_phone(user_input)
+                employee.phone_number = user_input
                 self.ui_utils.print_employee(employee, header)
                 break
             
             except ValueError:
-                print("\033[31mInvalid Value.\033[0m Please use 7 digits phone number")
+                self.ui_utils.print_employee(employee, header)
+                print("\n" * 3)
+                print("-" * DASH_AMOUNT + "\n")
+                user_input = input("\033[31mInvalid Value.\033[0m Please use 7 digits phone number: ")
 
             except LengthError:
-                print("\033[31mInvalid Length.\033[0m Please input 7 digits phone number")
+                self.ui_utils.print_employee(employee, header)
+                print("\n" * 3)
+                print("-" * DASH_AMOUNT + "\n")
+                user_input = input("\033[31mInvalid Length.\033[0m Please input 7 digits phone number: ")
             
             
         self.logic_wrapper.register_employee(employee)

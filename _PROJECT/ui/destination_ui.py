@@ -1,6 +1,6 @@
 from logic.logic_wrapper import LogicWrapper
 from model.destination import Destination
-
+from ui.input_validation import validate_dest_id, validate_destination, validate_numeric_id,  validate_flight_time, LengthError
 from utils.ui_utils import UIUtils
 
 DASH_AMOUNT = 46
@@ -52,10 +52,45 @@ class DestinationUI:
         print("\n" * 13)
         print(f"\t\t\t\t\t[B]ack")
         print("-" * DASH_AMOUNT + "\n")
-        d.id = input("Enter destination three letter id: ").upper()         # Needs error handling
-        d.destination = input("Enter destination name: ").capitalize()
-        d.numeric_id = input("Enter destination numeric id: ")
-        d.flight_time_from_kef = input("Enter flight time in hrs, from KEF airport: ")
+        # d.id = input("Enter destination three letter id: ").upper()
+
+        while True:
+            try:
+                d.id = input("Enter destination three letter id: ").upper()         # Needs error handling
+                validate_dest_id(d.id)
+                break
+            except ValueError:
+                print("Please only use letters")
+            except LengthError:
+                print("Please use three letters")
+        while True:
+            try:
+                d.destination = input("Enter destination name: ").lower().capitalize()
+                validate_destination(d.destination)
+                break
+            except ValueError:
+                print("Please only use letters")
+            except LengthError:
+                print("Please only use one word")
+        while True:
+            try:
+                d.numeric_id = input("Enter destination numeric id: ")
+                validate_numeric_id(d.numeric_id)
+                break
+            except ValueError:
+                print("Please only use digits")
+            except LengthError:
+                print("Plese use 4 digits")
+        while True:
+            try:
+                d.flight_time_from_kef = input("Enter flight time in hrs, from KEF airport: ")
+                validate_flight_time(d.flight_time_from_kef)
+                break
+            except ValueError:
+                print("Please only use digits")
+            except LengthError:
+                print("Flight is too long")
+
         self.logic_wrapper.register_destination(d)
         print(f"\n{d.destination} is successfully created.")
         input("\nPress \033[34m[ENTER]\033[0m to exit: ")

@@ -231,17 +231,10 @@ The better solution would have been just to hava single fa row and seperate each
 We also did some error handling so that, when the user is creating a voyage he can't set a destination date in the past in relation to the departure date.
 
 Attendance
-<<<<<<< Updated upstream
- - Gestur Pálsson
- - Guðni Hrafn Guðlaugsson [9:00]
- - Manwin Georg Edselsson  
- - Riko Efendi             [9:00]
-=======
  - Gestur Pálsson		[11:00]
  - Guðni Hrafn Guðlaugsson	[09:00]
  - Manwin Georg Edselsson	[11:00]
  - Riko Efendi			[09:00]
->>>>>>> Stashed changes
 
  ---------------------------------------------------------------------------
 
@@ -252,10 +245,9 @@ Task for the day :
 - Make a video
 - Finish the design report
 
-Guðni Fixed that bug 
-
 Attendance
  - Guðni Hrafn Guðlaugsson	[09:00]
  - Riko Efendi			[09:00]
  - Gestur Pálsson		[11:45]
  - Manwin Georg Edselsson	[12:00]
+ - Sindri Rafn Bjarkason	[13:20]
