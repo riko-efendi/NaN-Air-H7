@@ -54,6 +54,8 @@ class LogicWrapper:
     def get_crew_from_voyages(self, voyage):
         return self.employee_logic.get_crew_from_voyages(voyage)
     
+
+    
     # DESTINATIONS
 
     def get_all_destinations(self, include_kef:bool=True, as_dict=False) -> list[Destination]:
@@ -87,6 +89,13 @@ class LogicWrapper:
     def register_flight(self, flight):
         """Registers a flight in the upcoming_flights.csv"""
         return self.flight_logic.register_flight(flight)
+    
+    def get_avaiable_fligths_by_date(self, date):
+        return self.flight_logic.get_avaiable_fligths_by_date(date)
+    
+    def get_non_available_flights_by_date(self, date):
+        return self.flight_logic.get_non_available_flights_by_date(date)
+
     
     # AIRCRAFTS
 

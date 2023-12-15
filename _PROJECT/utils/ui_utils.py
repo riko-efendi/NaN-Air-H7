@@ -39,7 +39,6 @@ class UIUtils:
         print("-" * DASH_AMOUNT)
         print(f"{header:^46}") 
         print("-" * DASH_AMOUNT + "\n")
-        print(f"{header}\n")
 
         for i, voyage in enumerate(voyages):
 
@@ -68,8 +67,8 @@ class UIUtils:
             for k, fa in enumerate(fa_amount):
                 try:
                     flight_attendant = self.logic_wrapper.get_employee_by_nid(voyage.flight_1.crew[fa])
-                    print(f"\tFlight Attendant {k + 1}:     {flight_attendant.name}")
+                    print(f"    Flight Attendant {k + 1}:     {flight_attendant.name}")
                 except AttributeError:
-                    print(f"\tFlight Attendant {k + 1}:     Employee no longer registered")
+                    print(f"    Flight Attendant {k + 1}:     Employee no longer registered")
 
             print()

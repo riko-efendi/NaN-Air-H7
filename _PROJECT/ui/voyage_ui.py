@@ -19,13 +19,15 @@ class VoyageUI:
         """Prints out the options for the Voyage UI"""
         header = "[Voyage]"
         self.ui_utils.clear_screen()
-        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n\n")
+        print(header + "-" * (DASH_AMOUNT - len(header)))
+        print("\n" * 2)
         print(f"\t1. Create Voyage\n")
         print(f"\t2. List Voyages\n")
         print(f"\t3. Edit Voyage\n")
         print(f"\t4. Destination\n")
-        print(f"\t5. Flights\n")
-        print(f"\t6. Aircraft\n\n")
+        # print(f"\t5. Flights\n")
+        print(f"\t5. Aircraft")
+        print("\n" * 2)
         print(f"\t\t\t\t\t[B]ack")
         print("-" * DASH_AMOUNT)
 
@@ -54,11 +56,11 @@ class VoyageUI:
                 destination_menu = DestinationUI(self.logic_wrapper)
                 destination_menu.input_prompt()
 
-            elif user_input == "5":
-                flights_menu = FlightsUI(self.logic_wrapper)
-                flights_menu.input_prompt()
+            # elif user_input == "5":
+            #     flights_menu = FlightsUI(self.logic_wrapper)
+            #     flights_menu.input_prompt()
 
-            elif user_input == "6":
+            elif user_input == "5":
                 aircraft_menu = AircraftUI(self.logic_wrapper)
                 aircraft_menu.input_prompt()
 

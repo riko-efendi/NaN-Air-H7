@@ -125,8 +125,19 @@ class EmployeeLogic:
     
 
     def get_employees_schedule_by_date(self, date):
-        
-        past_schedule = self.data_wrapper.get_employees_past_schedule_by_date(date)
-        upcoming_schedule = self.data_wrapper.get_employees_upcoming_schedule_by_date(date)
 
-        return past_schedule + upcoming_schedule
+        past_schedule = self.data_wrapper.get_all_past_flights()
+        upcoming_schedule = self.data_wrapper.get_all_upcoming_flights()
+
+        all_flights = past_schedule + upcoming_schedule
+        flights_on_date = [] 
+
+        for flight in all_flights:
+            if date in self.logic_utils.generate_date_range(flight.depart_date, flight.arr_date):
+                flights_on_date.append(flight)
+
+        
+        #past_schedule = self.data_wrapper.get_employees_past_schedule_by_date(date)
+        #upcoming_schedule = self.data_wrapper.get_employees_upcoming_schedule_by_date(date)
+
+        return flights_on_date
