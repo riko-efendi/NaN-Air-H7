@@ -5,7 +5,7 @@ from utils.logic_utils import LogicUtils
 class VoyageLogic:
     def __init__(self, data_connection:DataWrapper) -> None:
         self.wrapper = data_connection
-        self.logic_util = LogicUtils()
+        self.logic_utils = LogicUtils()
         
 
     def get_all_past_voyages(self):
@@ -48,10 +48,34 @@ class VoyageLogic:
         voyages = self.get_all_voyages()
         for date in dates:
             for voyage in voyages:
-                voyage_dates = self.logic_util.generate_date_range(voyage.depart_date, voyage.arr_date)
+                voyage_dates = self.logic_utils.generate_date_range(voyage.depart_date, voyage.arr_date)
                 if date in voyage_dates:
                     voyages_of_date.append(voyage)
 
         return voyages_of_date
+
+    def get_available_voyages_by_date(self, date):
+        """Returns a list of flights available for an inputed date"""
+
+        all_voyages = self.get_all_voyages()
+        voyages_on_date = [] 
+
+        for voyage in all_voyages:
+            if date in self.logic_utils.generate_date_range(voyage.depart_date, voyage.arr_date):
+                voyages_on_date.append(voyage)
+
+        return voyages_on_date
     
+    def get_non_available_voyages_by_date(self, date):
+        """Returns a list of flights not available for an inputed date"""
+
+        all_voyages = self.get_all_voyages()
+        voyages_not_on_date = [] 
+
+        for voyage in all_voyages:
+            if date not in self.logic_utils.generate_date_range(voyage.depart_date, voyage.arr_date):
+                voyages_not_on_date.append(voyage)
+
+        return voyages_not_on_date
+
 

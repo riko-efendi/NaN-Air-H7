@@ -64,11 +64,11 @@ class FlightLogic:
         return four_digit_random_number
     
 
-    def get_avaiable_fligths_by_date(self, date):
+    def get_available_fligths_by_date(self, date):
         """Returns a list of flights available for an inputed date"""
 
-        past_schedule = self.data_wrapper.get_all_past_flights()
-        upcoming_schedule = self.data_wrapper.get_all_upcoming_flights()
+        past_schedule = self.get_all_past_flights()
+        upcoming_schedule = self.get_all_upcoming_flights()
         all_flights = past_schedule + upcoming_schedule
         flights_on_date = [] 
 
@@ -80,8 +80,8 @@ class FlightLogic:
     
     def get_non_available_flights_by_date(self, date):
         """Returns a list of flights not available for an inputed date"""
-        past_schedule = self.data_wrapper.get_all_past_flights()
-        upcoming_schedule = self.data_wrapper.get_all_upcoming_flights()
+        past_schedule = self.get_all_past_flights()
+        upcoming_schedule = self.get_all_upcoming_flights()
         all_flights = past_schedule + upcoming_schedule
         flights_on_date = [] 
 

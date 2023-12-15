@@ -11,10 +11,12 @@ class Voyage:
         self.flight_1 = flight_1
         self.flight_2 = flight_2
 
+
         self.depart_date = flight_1.depart_date
         self.arr_date = flight_2.arr_date
 
         self.crew = flight_1.crew
+        self.dest = flight_1.arr_at
 
     def __str__(self) -> str:
         return f"Voyage id: {self.id}\n\tGoing from KEF to {self.flight_1.arr_at}"

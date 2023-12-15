@@ -180,7 +180,7 @@ class ListEmployeeUI:
         print(f"\t\t\t\t\t[B]ack")
         print("-" * DASH_AMOUNT + "\n")
         date_input = input("Enter Date [YYYY-MM-DD]: ")
-        flights = self.logic_wrapper.get_avaiable_fligths_by_date(date_input)
+        voyages = self.logic_wrapper.get_available_voyages_by_date(date_input)
         self.ui_utils.clear_screen()
 
         print("-" * DASH_AMOUNT)
@@ -189,12 +189,12 @@ class ListEmployeeUI:
         print("\n" * 3)
         employees_printed = set() 
 
-        for flight in flights:
-            for employee_nid in flight.crew.values():
+        for voyage in voyages:
+            for employee_nid in voyage.crew.values():
                 if employee_nid not in employees_printed:
                     employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
                     if employee: 
-                        print(f"{employee.name:^22} \tDestination: {flight.arr_at}")
+                        print(f"{employee.name:^22} \tDestination: {voyage.dest}")
                     employees_printed.add(employee_nid)
         print("\n" * 3) 
         print("\n" + "-" * DASH_AMOUNT)
@@ -215,13 +215,13 @@ class ListEmployeeUI:
                     break
                 validate_date_format(date_input)
                 on_duty_employees = set()
-                flights = self.logic_wrapper.get_non_available_flights_by_date(date_input)                
+                voyages = self.logic_wrapper.get_non_available_voyages_by_date(date_input)                
                 self.ui_utils.clear_screen()
                 print("-" * DASH_AMOUNT)
                 print(f"Off Duty Employees on \033[32m{date_input}\033[0m:")
                 print("-" * DASH_AMOUNT + "\n")
-                for flight in flights:
-                    for employee_nid in flight.crew.values():
+                for voyage in voyages:
+                    for employee_nid in voyage.crew.values():
                         employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
                         if employee and employee.kennitala not in on_duty_employees:
                             print(f"{employee.name:^22} {employee.rank:^22}")

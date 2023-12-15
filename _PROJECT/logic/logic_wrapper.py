@@ -90,7 +90,7 @@ class LogicWrapper:
         """Registers a flight in the upcoming_flights.csv"""
         return self.flight_logic.register_flight(flight)
     
-    def get_avaiable_fligths_by_date(self, date):
+    def get_available_fligths_by_date(self, date):
         return self.flight_logic.get_avaiable_fligths_by_date(date)
     
     def get_non_available_flights_by_date(self, date):
@@ -145,3 +145,9 @@ class LogicWrapper:
     
     def get_voyages_of_date(self, date):
         return self.voyage_logic.get_voyages_of_date(date)
+    
+    def get_available_voyages_by_date(self, date):
+        return self.voyage_logic.get_available_voyages_by_date(date)
+    
+    def get_non_available_voyages_by_date(self, date):
+        return self.voyage_logic.get_non_available_voyages_by_date(date)
