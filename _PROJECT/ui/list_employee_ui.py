@@ -72,11 +72,11 @@ class ListEmployeeUI:
         print("\n" + "-" * DASH_AMOUNT)
         
     def print_employee(self, name, kennitala, address, role, rank, phone_number) -> None:
-        print(f"Name: {name:>18}")
-        print(f"Kt: {kennitala:>15}")
-        print(f"Address: {address}")
-        print(f"Role: {role}")
-        print(f"Rank: {rank}")
+        print(f"Name:         {name}")
+        print(f"Kt:           {kennitala}")
+        print(f"Address:      {address}")
+        print(f"Role:         {role}")
+        print(f"Rank:         {rank}")
         print(f"Phone number: {phone_number}")
 
 

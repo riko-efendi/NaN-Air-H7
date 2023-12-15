@@ -21,7 +21,9 @@
 | Riko Efendi             |
 | Sindri Rafn Bjarkason   | _ .
 +-------------------------+ _ )_ 
-                         (_ _(_ ,)	
+                         (_ _(_ ,)
+
+C:\Users\Guðni\OneDrive - Reykjavik University\Documents\01_HR\01_FyrstaOnn\08_3_Week_Project\NaN-Air-H7\_PROJECT	
 
 
 [27/11/2023 - mon]
@@ -244,6 +246,7 @@ Task for the day :
 - fixed bug on list employee by specific date and range
 - Make a video
 - Finish the design report
+
 
 Attendance
  - Guðni Hrafn Guðlaugsson	[09:00]
