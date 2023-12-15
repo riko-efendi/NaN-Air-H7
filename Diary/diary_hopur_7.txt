@@ -15,13 +15,13 @@
 +-------------------------┓┓┓┓┓┓┓┓┓┓┓┓+						                                     _
 | 	 Hópur 7	  |	       			                       (  )
 |-------------------------|		        _ .                         ( `  ) . )	
-| Clarence Castro Santos? |	              (  _ )_                      (_, _(  ,_)_)
-| Gestur Pálsson	  |		     (_  _(_ ,)		
-| Guðni Hrafn Guðlaugsson |
-| Manwin Georg Edselsson  |
-| Riko Efendi		  | _ .
-| Sindri Rafn Bjarkason	  | _ )_ 
-+-------------------------+ _(_ ,)	
+| Gestur Pálsson          |	              (  _ )_                      (_, _(  ,_)_)
+| Guðni Hrafn Guðlaugsson |		     (_  _(_ ,)		
+| Manwin Georg Edselsson  | 
+| Riko Efendi             |
+| Sindri Rafn Bjarkason   | _ .
++-------------------------+ _ )_ 
+                         (_ _(_ ,)	
 
 
 [27/11/2023 - mon]
@@ -140,11 +140,11 @@ Today's checklist:
 - error handling?
 
 Attendance:
- - Gestur Pálsson
- - Guðni Hrafn Guðlaugsson
- - Manwin Georg Edselsson
- - Riko Efendi
- - Sindri Rafn Bjarkason
+ - Gestur Pálsson		[11:00]
+ - Guðni Hrafn Guðlaugsson	[09:00]
+ - Manwin Georg Edselsson	[11:00]
+ - Riko Efendi			[09:00]
+ - Sindri Rafn Bjarkason	[12:00]
 
 ---------------------------------------------------------------------------
 
@@ -153,11 +153,11 @@ Attendance:
 Today Guðni worked on the flight, in preperation for the final boss that are the voyages. I created a system that assigns 2 destination classes, one departing and one arriving to a single flight. Which was harder than I ever expected. Meanwhile Riko dwelled into the updating employee info. I (Guðni) helped him at the end fo the day.
 
 Attendance:
- - Gestur Pálsson
- - Guðni Hrafn Guðlaugsson
- - Manwin Georg Edselsson
- - Riko Efendi
- - Sindri Rafn Bjarkason
+ - Gestur Pálsson		[11:30]
+ - Guðni Hrafn Guðlaugsson	[09:00]
+ - Manwin Georg Edselsson	[12:00]
+ - Riko Efendi			[09:00]
+ - Sindri Rafn Bjarkason	[11:00]
 
 ---------------------------------------------------------------------------
 
@@ -165,11 +165,9 @@ Attendance:
 
 Me and Riko started the day off by succesfully updating employee info!
 
- - Gestur Pálsson
- - Guðni Hrafn Guðlaugsson
- - Manwin Georg Edselsson
- - Riko Efendi
- - Sindri Rafn Bjarkason
+Attendance:		
+ - Guðni Hrafn Guðlaugsson	[09:00]
+ - Riko Efendi			[09:00]
 
 ---------------------------------------------------------------------------
 
@@ -180,11 +178,11 @@ We wanted to create the voyage from the flight.csv's insteda of creating some vo
 The way our system works is that we read through either of the past_ or upcoming_flights 2 lines at a time. Assign the first flight as the flight from KEF and the latter as the flight back home. And that makes a whole Voyage.
 So we then have to create a system where, when a user creates a voyage, they create 2 flights: one from KEF to a destination, and then another for the way back.
 
-
- - Guðni Hrafn Guðlaugsson
- - Manwin Georg Edselsson
- - Riko Efendi
- - Sindri Rafn Bjarkason
+Attendance:
+ - Guðni Hrafn Guðlaugsson	[09:00]
+ - Manwin Georg Edselsson	[11:20]
+ - Riko Efendi			[09:00]
+ - Sindri Rafn Bjarkason	[10:00]
 
 ---------------------------------------------------------------------------
 
@@ -193,11 +191,11 @@ So we then have to create a system where, when a user creates a voyage, they cre
 We started the day off by merging 2 branches into main, one of Riko's and one of mine (Guðni). Both 
 More voyage stuff was worked on today. 
 
-
- - Gestur Pálsson
- - Guðni Hrafn Guðlaugsson
- - Manwin Georg Edselsson
- - Riko Efendi
+Attendance:
+ - Gestur Pálsson		[10:00]
+ - Guðni Hrafn Guðlaugsson	[09:00]
+ - Manwin Georg Edselsson	[12:20]
+ - Riko Efendi			[09:00]
 
 ---------------------------------------------------------------------------
 
@@ -208,12 +206,15 @@ Task for the day :
 - Working on input validation
 - Refine Use cases and functional requirements
 
+Me(guðni) turned the flight system on its head, when he made the crew be a dictionary instead of individual variables. So now you can assign how many fa's you want to a voyage.
+Riko added coloring to the error messages! Super nice
+
 Attendance
- - Gestur Pálsson
- - Guðni Hrafn Guðlaugsson
- - Manwin Georg Edselsson
- - Riko Efendi
- - Sindri Rafn Bjarkason
+ - Gestur Pálsson		[11:20]
+ - Guðni Hrafn Guðlaugsson	[09:00]
+ - Manwin Georg Edselsson	[12:00]
+ - Riko Efendi			[09:00]
+ - Sindri Rafn Bjarkason	[12:00]
 
 ---------------------------------------------------------------------------
 
@@ -225,11 +226,22 @@ Task for the day :
 - Refine the Happy Paths
 - Refine the final report
 
+Me (Guðni) is slowly realizing that by making the crew as a dictinoary, is complicating the project exponentially.
+The better solution would have been just to hava single fa row and seperate each fa by a "-"
+We also did some error handling so that, when the user is creating a voyage he can't set a destination date in the past in relation to the departure date.
+
 Attendance
+<<<<<<< Updated upstream
  - Gestur Pálsson
  - Guðni Hrafn Guðlaugsson [9:00]
  - Manwin Georg Edselsson  
  - Riko Efendi             [9:00]
+=======
+ - Gestur Pálsson		[11:00]
+ - Guðni Hrafn Guðlaugsson	[09:00]
+ - Manwin Georg Edselsson	[11:00]
+ - Riko Efendi			[09:00]
+>>>>>>> Stashed changes
 
  ---------------------------------------------------------------------------
 
@@ -237,9 +249,13 @@ Attendance
 
 Task for the day : 
 - fixed bug on list employee by specific date and range
+- Make a video
+- Finish the design report
 
 Guðni Fixed that bug 
 
 Attendance
- - Guðni Hrafn Guðlaugsson
- - Riko Efendi
+ - Guðni Hrafn Guðlaugsson	[09:00]
+ - Riko Efendi			[09:00]
+ - Gestur Pálsson		[11:45]
+ - Manwin Georg Edselsson	[12:00]
