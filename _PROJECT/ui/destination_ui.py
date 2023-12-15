@@ -49,7 +49,9 @@ class DestinationUI:
         d = Destination()
 
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
-        print("\n" * 4)
+        print("\n" * 13)
+        print(f"\t\t\t\t\t[B]ack")
+        print("-" * DASH_AMOUNT + "\n")
         d.id = input("Enter destination three letter id: ").upper()         # Needs error handling
         d.destination = input("Enter destination name: ").capitalize()
         d.numeric_id = input("Enter destination numeric id: ")
@@ -66,9 +68,9 @@ class DestinationUI:
         destinations = self.logic_wrapper.get_all_destinations()
 
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
-        print("\n" * 2)
+        print("\n" * 3)
         for destination in (destinations):
             print(f"{destination.destination:^20} {destination.id:>15} {destination.numeric_id}")
-        print("\n" * 2)
+        print("\n" * 4)
         print("-" * DASH_AMOUNT)
         input("\nPress \033[34m[ENTER]\033[0m to exit: ")

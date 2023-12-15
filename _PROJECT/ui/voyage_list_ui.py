@@ -67,14 +67,16 @@ class VoyageListUI:
         header = "[View Voyages by Date]"
         self.ui_utils.clear_screen()
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
-        print("\n" * 3)
+        print("\n" * 13)
+        print(f"\t\t\t\t\t[B]ack")
+        print("-" * DASH_AMOUNT + "\n")
         user_input = input("Enter a date YYYY-MM-DD: ")
         while True:
             try:
                 validate_date_format(user_input)
                 break
             except ValueError:
-                self.ui_utils.clear_screen()
+                # self.ui_utils.clear_screen()
                 user_input = input("\033[31mWrong Format.\033[0m Enter a date YYYY-MM-DD: ")
 
         voyages = self.logic_wrapper.get_voyages_of_date([user_input])
@@ -88,14 +90,16 @@ class VoyageListUI:
         header = "[View Voyages by Week]"
         self.ui_utils.clear_screen()
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
-        print("\n" * 3)
+        print("\n" * 13)
+        print(f"\t\t\t\t\t[B]ack")
+        print("-" * DASH_AMOUNT + "\n")
         start_date = input("Enter a start date YYYY-MM-DD: ")
         while True:
             try:
                 validate_date_format(start_date)
                 break
             except ValueError:
-                self.ui_utils.clear_screen()
+                # self.ui_utils.clear_screen()
                 start_date = input("\033[31mWrong Format.\033[0m Enter a date YYYY-MM-DD: ")
                 
 
@@ -106,10 +110,10 @@ class VoyageListUI:
                 validate_date_range(start_date, end_date)
                 break
             except ValueError:
-                self.ui_utils.clear_screen()
+                # self.ui_utils.clear_screen()
                 end_date = input("\033[31mWrong Format.\033[0m Enter a date YYYY-MM-DD: ")
             except DateRangeError:
-                self.ui_utils.clear_screen()
+                # self.ui_utils.clear_screen()
                 end_date = input("\033[31mThe end date can't be before the start date.\033[0m Enter a date YYYY-MM-DD: ")
 
         dates = self.logic_utils.generate_date_range(start_date, end_date)

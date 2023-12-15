@@ -188,7 +188,7 @@ So we then have to create a system where, when a user creates a voyage, they cre
 
 ---------------------------------------------------------------------------
 
-[11/12/2023 - thu]
+[11/12/2023 - Monday]
 
 We started the day off by merging 2 branches into main, one of Riko's and one of mine (Guðni). Both 
 More voyage stuff was worked on today. 
@@ -199,8 +199,31 @@ More voyage stuff was worked on today.
  - Manwin Georg Edselsson
  - Riko Efendi
 
-[13/12/2023 - thu]
+---------------------------------------------------------------------------
 
+[13/12/2023 - Wednesday]
+
+Task for the day : 
+- Working on the assign crew to the vogaye
+- Working on input validation
+- Refine Use cases and functional requirements
+
+Attendance
+ - Gestur Pálsson
+ - Guðni Hrafn Guðlaugsson
+ - Manwin Georg Edselsson
+ - Riko Efendi
+ - Sindri Rafn Bjarkason
+
+---------------------------------------------------------------------------
+
+[14/12/2023 - Thursday]
+
+Task for the day : 
+- Add input validation into the system
+- Working on front end visualization
+- Refine the Happy Paths
+- Refine the final report
 
 Attendance
  - Gestur Pálsson
@@ -208,12 +231,13 @@ Attendance
  - Manwin Georg Edselsson
  - Riko Efendi
 
+ ---------------------------------------------------------------------------
 
-[14/12/2023 - thu]
+[15/12/2023 - Friday]
 
+Task for the day : 
+- fixed bug on list employee by specific date and range
 
 Attendance
- - Gestur Pálsson
  - Guðni Hrafn Guðlaugsson
- - Manwin Georg Edselsson
  - Riko Efendi
