@@ -195,7 +195,6 @@ class EditVoyageUI:
         for index, employee in enumerate(employees):
             print(f"{index + 1}. {employee.name}")
         print("\n" * 2)
-        print("[S]kip assigning Crew")
         print("-" * DASH_AMOUNT)
 
         user_input = input("\nEnter your choice: ")

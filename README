@@ -1,1 +1,6 @@
-Something something
+This is a program for Chuck Norris's air line Nan Air, a small airline company that flies to five large cities around Iceland. The program can be used to store and update all kinds of information regarding his employees and past/upcoming flights and it can register new employees and create new flights. 
+
+Here is a link to a video presentation on how to use the program and everything that can be done with it.
+https://www.youtube.com/watch?v=iUhXfYQ4oUY
+
+In order to use the program the user needs to open the "main.py" file and run it from there. It needs no Import packages to run.
