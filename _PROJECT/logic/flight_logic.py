@@ -1,4 +1,5 @@
 from data.data_wrapper import DataWrapper
+from utils.logic_utils import LogicUtils
 
 from model.flight import Flight
 
@@ -7,6 +8,7 @@ import random
 class FlightLogic:
     def __init__(self, data_connection:DataWrapper) -> None:
         self.data_wrapper = data_connection
+        self.logic_utils = LogicUtils()
 
     def get_all_upcoming_flights(self):
         return self.inject_destinations_to_flight(self.data_wrapper.get_all_upcoming_flights())
@@ -60,3 +62,31 @@ class FlightLogic:
             four_digit_random_number = "WRONGNA" + str(four_digit_random_number)
 
         return four_digit_random_number
+    
+
+    def get_available_fligths_by_date(self, date):
+        """Returns a list of flights available for an inputed date"""
+
+        past_schedule = self.get_all_past_flights()
+        upcoming_schedule = self.get_all_upcoming_flights()
+        all_flights = past_schedule + upcoming_schedule
+        flights_on_date = [] 
+
+        for flight in all_flights:
+            if date in self.logic_utils.generate_date_range(flight.depart_date, flight.arr_date):
+                flights_on_date.append(flight)
+
+        return flights_on_date
+    
+    def get_non_available_flights_by_date(self, date):
+        """Returns a list of flights not available for an inputed date"""
+        past_schedule = self.get_all_past_flights()
+        upcoming_schedule = self.get_all_upcoming_flights()
+        all_flights = past_schedule + upcoming_schedule
+        flights_on_date = [] 
+
+        for flight in all_flights:
+            if date not in self.logic_utils.generate_date_range(flight.depart_date, flight.arr_date):
+                flights_on_date.append(flight)
+
+        return flights_on_date

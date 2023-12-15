@@ -180,7 +180,7 @@ class ListEmployeeUI:
         print(f"\t\t\t\t\t[B]ack")
         print("-" * DASH_AMOUNT + "\n")
         date_input = input("Enter Date [YYYY-MM-DD]: ")
-        flights = self.logic_wrapper.get_employees_schedule_by_date(date_input)
+        voyages = self.logic_wrapper.get_available_voyages_by_date(date_input)
         self.ui_utils.clear_screen()
 
         print("-" * DASH_AMOUNT)
@@ -189,14 +189,12 @@ class ListEmployeeUI:
         print("\n" * 3)
         employees_printed = set() 
 
-        for flight in flights:
-            unique_employees = {flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2}
-
-            for employee_nid in unique_employees:
+        for voyage in voyages:
+            for employee_nid in voyage.crew.values():
                 if employee_nid not in employees_printed:
                     employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
                     if employee: 
-                        print(f"{employee.name:^22} \tDestination: {flight.arr_at}")
+                        print(f"{employee.name:^22} \tDestination: {voyage.dest}")
                     employees_printed.add(employee_nid)
         print("\n" * 3) 
         print("\n" + "-" * DASH_AMOUNT)
@@ -210,31 +208,28 @@ class ListEmployeeUI:
         print(f"\t\t\t\t\t[B]ack")
         print("-" * DASH_AMOUNT + "\n")
         date_input = input("Enter Date [YYYY-MM-DD]: ")
+
         while True:
             try:
+                if date_input == "b":
+                    break
                 validate_date_format(date_input)
-                
-                all_employees = set(employee.kennitala for employee in self.logic_wrapper.get_all_employees())
-
                 on_duty_employees = set()
-                flights = self.logic_wrapper.get_employees_past_schedule_by_date(date_input)
-                for flight in flights:
-                    on_duty_employees.update({flight.captain, flight.copilot, flight.fsm, flight.fa1, flight.fa2})
-                
-                absent_employees = all_employees - on_duty_employees  
-
+                voyages = self.logic_wrapper.get_non_available_voyages_by_date(date_input)                
                 self.ui_utils.clear_screen()
                 print("-" * DASH_AMOUNT)
                 print(f"Off Duty Employees on \033[32m{date_input}\033[0m:")
                 print("-" * DASH_AMOUNT + "\n")
-                for employee_nid in absent_employees:
-                    employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
-                    if employee:
-                        print(f"{employee.name:^22} {employee.rank:^22}")
+                for voyage in voyages:
+                    for employee_nid in voyage.crew.values():
+                        employee = self.logic_wrapper.get_employee_by_nid(employee_nid)
+                        if employee and employee.kennitala not in on_duty_employees:
+                            print(f"{employee.name:^22} {employee.rank:^22}")
+                            on_duty_employees.add(employee.kennitala)
+                print("\n" + "-" * DASH_AMOUNT)
+                input("\nPress \033[34m[ENTER]\033[0m to exit: ")    
                 break
             except ValueError:
                 print("\033[31mInvalid input.\033[0m Enter a valid format date")
                 time.sleep(1.5)
                 self.ui_utils.clear_screen()
-        print("\n" + "-" * DASH_AMOUNT)
-        input("\nPress \033[34m[ENTER]\033[0m to exit: ")    
