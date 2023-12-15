@@ -58,11 +58,11 @@ class UIUtils:
             fsm = fsm.name if fsm != None else "No Crew Assigned"
 
             print(f"{i + 1}. Voyage id:[{voyage.id}]")
-            print(f"\tGoing a round trip from {voyage.flight_1.dep_from} to {voyage.flight_1.arr_at}.")
-            print(f"\t[{voyage.depart_date}] - [{voyage.arr_date}]")
-            print(f"\tCaptain:                {captain}")
-            print(f"\tCopilot:                {copilot}")
-            print(f"\tFlight Service Manager: {fsm}")
+            print(f"    Going a round trip from {voyage.flight_1.dep_from} to {voyage.flight_1.arr_at}.")
+            print(f"    [{voyage.depart_date}] - [{voyage.arr_date}]")
+            print(f"    Captain:                {captain}")
+            print(f"    Copilot:                {copilot}")
+            print(f"    Flight Service Manager: {fsm}")
 
             # Iterate through the flight attendants
             for k, fa in enumerate(fa_amount):

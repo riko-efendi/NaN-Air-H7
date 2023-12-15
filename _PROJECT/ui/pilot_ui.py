@@ -61,10 +61,10 @@ class PilotUI:
         header = "[ALL PILOTS]"
         self.ui_utils.clear_screen()
         pilots = self.logic_wrapper.get_all_pilots()
-        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
+        print(header + "-" * (DASH_AMOUNT - len(header)) + "\n\n")
         for pilot in pilots:
             print(f"{pilot.name:^46}")
-        print("\n" + "-" * DASH_AMOUNT)
+        print("\n\n" + "-" * DASH_AMOUNT)
         input("\nPress \033[34m[ENTER]\033[0m to exit: ")
 
 

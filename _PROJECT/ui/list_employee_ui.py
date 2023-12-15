@@ -48,7 +48,7 @@ class ListEmployeeUI:
                 self.view_on_duty_employees_by_date()
 
             else:
-                self.input_prompt_str = "Invalid. Enter another choice: "
+                self.input_prompt_str = "\033[31mInvalid.\033[0m Enter another choice: "
 
     def view_all_employees(self) -> None:
         """Prints out every employee registered in the crew.csv file."""
@@ -57,9 +57,9 @@ class ListEmployeeUI:
         self.ui_utils.clear_screen()
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
         for index, employee in enumerate(employees):
-            print(f"{index+1:>2}. {employee.name:<} - {employee.role}\n    {'kt: ' + employee.print_kennitala}\n")
+            print(f"{index+1}. {employee.name} - {employee.role}\n    {'kt: ' + employee.print_kennitala}\n")
 
-        print("\n" + "-" * DASH_AMOUNT)
+        print("-" * DASH_AMOUNT)
         input("\nPress \033[34m[ENTER]\033[0m to exit: ")
 
     def print_update_employee_info(self, name, kennitala, address, role, rank, phone_number):
@@ -88,8 +88,9 @@ class ListEmployeeUI:
             try:
                 header = "[View Employee by Kennitala]"
                 print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
-                print("\n" * 3)
-                
+                print("\n" * 13)
+                print(f"\t\t\t\t\t[B]ack")
+                print("-" * DASH_AMOUNT + "\n")
                 kennitala_input = input("Enter Employee Kennitala: ")
                 
                 validate_integers(kennitala_input)
@@ -117,7 +118,7 @@ class ListEmployeeUI:
         self.print_employee(employee.name, employee.kennitala, employee.address, employee.role, employee.rank, employee.phone_number)
 
         print("\n" * 3)
-        print("\n[U]pdate Info\t[W]ork Schedule\t  [B]ack")
+        print("\n[U]pdate Info\t   [W]ork Schedule\t[B]ack")
         print("-" * DASH_AMOUNT)
         option_input = input("\nEnter your choice: ").lower()
 
@@ -148,7 +149,9 @@ class ListEmployeeUI:
         header = "[WORK SUMMARY]"
         self.ui_utils.clear_screen()
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
-        print("\n" * 3)
+        print("\n" * 13)
+        print(f"\t\t\t\t\t[B]ack")
+        print("-" * DASH_AMOUNT + "\n")
         start_date = input("Enter Start Date [YYYY-MM-DD]: ")
         end_date = input("Enter End Date [YYYY-MM-DD]: ")
 
@@ -157,7 +160,7 @@ class ListEmployeeUI:
         
         self.ui_utils.clear_screen()
         print("-" * DASH_AMOUNT)
-        print(f"Work Schedule for {employee.name} from {start_date} to {end_date}")
+        print(f"{employee.name}'s Work Schedule on {start_date} - {end_date}")
         print("-" * DASH_AMOUNT)
         print("\n" * 3)
         if flights:
@@ -173,7 +176,9 @@ class ListEmployeeUI:
         header = "[View On Duty Employees By Date]"
         self.ui_utils.clear_screen()
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
-        print("\n" * 3)
+        print("\n" * 13)
+        print(f"\t\t\t\t\t[B]ack")
+        print("-" * DASH_AMOUNT + "\n")
         date_input = input("Enter Date [YYYY-MM-DD]: ")
         flights = self.logic_wrapper.get_employees_schedule_by_date(date_input)
         self.ui_utils.clear_screen()
@@ -201,7 +206,9 @@ class ListEmployeeUI:
         header = "[View Off Duty Employee by Date]"
         self.ui_utils.clear_screen()
         print(header + "-" * (DASH_AMOUNT - len(header)) + "\n")
-        print("\n" * 3)
+        print("\n" * 13)
+        print(f"\t\t\t\t\t[B]ack")
+        print("-" * DASH_AMOUNT + "\n")
         date_input = input("Enter Date [YYYY-MM-DD]: ")
         while True:
             try:
